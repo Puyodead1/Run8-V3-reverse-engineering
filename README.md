@@ -2,6 +2,10 @@
 
 This repository contains reverse engineered documentation about various Run8 V3 File Formats. This information is mainly intended for modding.
 
+[/Docs](/Docs) - Contains file format specs
+
+[/Run8DebugTools](/Run8DebugTools) - Contains very crude test parsers for the file formats
+
 ### Progress
 
 - ~~AISignalDatabase.r8~~
