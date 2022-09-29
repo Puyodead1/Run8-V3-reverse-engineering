@@ -2,7 +2,6 @@
 - dispatcher signal controller database - class448 vmethod1
 - dispatcher switch icon database - class446 vmethod1
 - block detector database - class461 vmethod1
-- dispatcher block light database - class447 vemthod1
 - signal head database - class466 vmethod1
 - xing detector list - class465 vmethod1
 - xing gate datebase - class467 vmethod1
