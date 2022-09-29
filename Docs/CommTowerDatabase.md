@@ -1,5 +1,7 @@
 # CommTowerDatabase.r8
 
+Contains a list of Comm Towers
+
 ## Header
 
 | Offset | Type  | Explaination      |
