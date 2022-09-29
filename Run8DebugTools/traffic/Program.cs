@@ -57,7 +57,7 @@ namespace traffic
 
                             int num2 = binaryReader.ReadInt32(); // unknown2 - number of unknown3 entries
                             Console.WriteLine("         Traffic unknown1 {0} unknown2 {1}, number of unknown3: {2}", i, j, num2);
-                            if (trainClass == 0x000000FF)
+                            if (trainClass == 0x000000FF) // SavedTrain
                             {
                                 for (int k = 0; k < num2; k++)
                                 {

@@ -19,7 +19,7 @@ Seems to contain information about AI traffic such as cars, etc
 | Offset | Type     | Explaination       |
 | ------ | -------- | ------------------ |
 | 0      | Int32    | Reserved           |
-| 4      | String   | Route Name 	     |
+| 4      | String   | Route Name         |
 | 8      | Int32    | Unknown            |
 | 12     | Int32    | Number of Unknown1 |
 | 16     | Unknown1 | Unknown1 Entries   |
@@ -47,35 +47,35 @@ Seems to contain information about AI traffic such as cars, etc
 
 ## Unknown3
 
-| Offset | Type       | Explaination                              |
-| ------ | ---------- | ----------------------------------------- |
-| 0      | Int32      | Unknown n                                 |
-| 4      | Byte       | Unknown Boolean                           |
-| 5      | String     | Train Tag (only read if above bool is true) |
-| ...    | Byte		  | Train Caste                               |
-| ...    | Byte		  | Train Special Restrictions   			  |
-| ...    | Byte       | Unknown Boolean                           |
-| ...    | Byte       | Unknown Boolean                           |
-| ...    | Byte       | Unknown Boolean                           |
-| ...    | Int32      | Number of unknown Strings                 |
-| ...    | String     | Unknown Strings                           |
-| ...    | Int32      | Number of unknown Strings                 |
-| ...    | String     | Unknown Strings                           |
-| ...    | Int32      | Number of unknown Strings                 |
-| ...    | String     | Unknown Strings                           |
-| ...    | Int32      | Number of unknown Strings                 |
-| ...    | String     | Unknown Strings                           |
-| ...    | Sub1       | Sub1 (if n > 1)                           |
+| Offset | Type   | Explaination                                                             |
+| ------ | ------ | ------------------------------------------------------------------------ |
+| 0      | Int32  | Unknown n                                                                |
+| 4      | Byte   | Unknown Boolean                                                          |
+| 5      | String | Train Tag (only read if above bool is true)                              |
+| ...    | Byte   | Train Caste                                                              |
+| ...    | Byte   | Train Special Restrictions                                               |
+| ...    | Byte   | Unknown Boolean                                                          |
+| ...    | Byte   | Unknown Boolean                                                          |
+| ...    | Byte   | Unknown Boolean                                                          |
+| ...    | Int32  | Number of unknown Strings                                                |
+| ...    | String | Unknown Strings                                                          |
+| ...    | Int32  | Number of unknown Strings                                                |
+| ...    | String | Unknown Strings (looks like company strings, ex up, csx, etc)            |
+| ...    | Int32  | Number of unknown Strings                                                |
+| ...    | String | Unknown Strings (looks like a list of locomotives, ex ES44, SD40-2, etc) |
+| ...    | Int32  | Number of unknown Strings                                                |
+| ...    | String | Unknown Strings                                                          |
+| ...    | Sub1   | Sub1 (if n > 1)                                                          |
 
 ### Sub1
 
-| Offset | Type   | Explaination              |
-| ------ | ------ | ------------------------- |
-| 0      | Int32  | Number of unknown Strings |
-| 4      | String | Unknown Strings           |
-| ...    | Int32  | Number of unknown Strings |
-| ...    | String | Unknown Strings           |
-| ...    | Sub2   | Sub2 (if n > 2)           |
+| Offset | Type   | Explaination                                              |
+| ------ | ------ | --------------------------------------------------------- |
+| 0      | Int32  | Number of unknown Strings                                 |
+| 4      | String | Unknown Strings (looks like xml file names for some cars) |
+| ...    | Int32  | Number of unknown Strings                                 |
+| ...    | String | Unknown Strings                                           |
+| ...    | Sub2   | Sub2 (if n > 2)                                           |
 
 ### Sub2
 
