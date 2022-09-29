@@ -21,11 +21,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AISpecialLocations", "aispe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Traffic", "traffic\Traffic.csproj", "{39E9FF5D-667C-46DE-9897-3F3A86A0A35E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommTowerDatabase", "commtowerdatabase\CommTowerDatabase.csproj", "{E5AE58CE-6464-4DC5-99E5-238EEA247F15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommTowerDatabase", "commtowerdatabase\CommTowerDatabase.csproj", "{E5AE58CE-6464-4DC5-99E5-238EEA247F15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefectDetectorList", "defectdetectorlist\DefectDetectorList.csproj", "{E304E619-15B9-4228-A9AC-D36CA139ED8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefectDetectorList", "defectdetectorlist\DefectDetectorList.csproj", "{E304E619-15B9-4228-A9AC-D36CA139ED8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatchBlockLightDatabase", "dispatchblocklightdatabase\DispatchBlockLightDatabase.csproj", "{90014056-E7B1-48FD-98DA-F47BE41A4B6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherBlockLightDatabase", "dispatchblocklightdatabase\DispatcherBlockLightDatabase.csproj", "{90014056-E7B1-48FD-98DA-F47BE41A4B6A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatcherSignalControllerDatabase", "DispatcherSignalControllerDatabase\DispatcherSignalControllerDatabase.csproj", "{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +133,14 @@ Global
 		{90014056-E7B1-48FD-98DA-F47BE41A4B6A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90014056-E7B1-48FD-98DA-F47BE41A4B6A}.Release|x64.ActiveCfg = Release|Any CPU
 		{90014056-E7B1-48FD-98DA-F47BE41A4B6A}.Release|x64.Build.0 = Release|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Debug|x64.Build.0 = Debug|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|x64.ActiveCfg = Release|Any CPU
+		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

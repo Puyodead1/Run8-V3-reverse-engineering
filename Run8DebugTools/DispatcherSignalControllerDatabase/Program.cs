@@ -2,13 +2,13 @@
 using System.IO;
 using System.Text;
 
-namespace DispatcherBlockLightDatabase
+namespace DispatcherSignalControllerDatabase
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Run8 DispatcherBlockLightDatabase Parser");
+            Console.WriteLine("Run8 DispatcherSignalControllerDatabase Parser");
 
             if (args.Length == 0)
             {
@@ -37,30 +37,26 @@ namespace DispatcherBlockLightDatabase
                     {
                         int num1 = binaryReader.ReadInt32(); // entry - unknown
 
-                        int recX = binaryReader.ReadInt32(); // entry - rectangle x
-                        int recY = binaryReader.ReadInt32(); // entry - rectangle y
-                        int recW = binaryReader.ReadInt32(); // entry - rectangle width
-                        int recH = binaryReader.ReadInt32(); // entry - rectangle height
-
                         float vec2X = binaryReader.ReadSingle(); // entry - vector2 x
                         float vec2Y = binaryReader.ReadSingle(); // entry - vector2 y 
 
-                        Console.WriteLine("     DispatcherBlockLight {0}: num1={1}, recX={2}, recY={3}, recW={4}, recH={5}, vec2X={6}, vec2Y={7}", i, num1, recX, recY, recW, recH, vec2X, vec2Y);
+                        Console.WriteLine("     DispatcherSignalController {0}: num1={1}, vec2X={2}, vec2Y={3}", i, num1, vec2X, vec2Y);
+                        ReadBlockLight(binaryReader);
 
                         int num2 = binaryReader.ReadInt32(); // entry - number of unknown1
 
-                        Console.WriteLine("     DispatcherBlockLight {0}: Number of unknown1 {1}", i, num2);
+                        Console.WriteLine("     DispatcherSignalController {0}: Number of unknown1 {1}", i, num2);
 
                         for (int j = 0; j < num2; j++)
                         {
                             int int2 = binaryReader.ReadInt32(); // unknown1 - unknown
-                            Console.WriteLine("         DispatcherBlockLight {0} Unknown1 {1}: int2={2}", i, j, int2);
+                            Console.WriteLine("         DispatcherSignalController {0} Unknown1 {1}: int2={2}", i, j, int2);
                         }
 
-                        if(num1 == 2)
+                        if (num1 == 2)
                         {
                             string string0 = ReadString(binaryReader); // unknown2 - unknown
-                            Console.WriteLine("         DispatcherBlockLight {0} Unknown2: string0={2}", i, string0);
+                            Console.WriteLine("         DispatcherSignalController {0} Unknown2: string0={2}", i, string0);
                         }
                     }
                 }
@@ -84,6 +80,37 @@ namespace DispatcherBlockLightDatabase
         {
             int size = binaryReader.ReadInt32(); // string - size/length
             return DecodeString(binaryReader.ReadBytes(size)); // string - Read the specified size of bytes and decode them
+        }
+
+        static void ReadBlockLight(BinaryReader binaryReader)
+        {
+            int num1 = binaryReader.ReadInt32(); // entry - unknown
+
+            int recX = binaryReader.ReadInt32(); // entry - rectangle x
+            int recY = binaryReader.ReadInt32(); // entry - rectangle y
+            int recW = binaryReader.ReadInt32(); // entry - rectangle width
+            int recH = binaryReader.ReadInt32(); // entry - rectangle height
+
+            float vec2X = binaryReader.ReadSingle(); // entry - vector2 x
+            float vec2Y = binaryReader.ReadSingle(); // entry - vector2 y 
+
+            Console.WriteLine("     >> DispatcherBlockLight: num1={0}, recX={1}, recY={2}, recW={3}, recH={4}, vec2X={5}, vec2Y={6}", num1, recX, recY, recW, recH, vec2X, vec2Y);
+
+            int num2 = binaryReader.ReadInt32(); // entry - number of unknown1
+
+            Console.WriteLine("     >> DispatcherBlockLight: Number of unknown1 {0}", num2);
+
+            for (int j = 0; j < num2; j++)
+            {
+                int int2 = binaryReader.ReadInt32(); // unknown1 - unknown
+                Console.WriteLine("         >> DispatcherBlockLight Unknown1 {0}: int2={1}",  j, int2);
+            }
+
+            if (num1 == 2)
+            {
+                string string0 = ReadString(binaryReader); // unknown2 - unknown
+                Console.WriteLine("         >>  DispatcherBlockLight Unknown2: string0={0}", string0);
+            }
         }
     }
 }
