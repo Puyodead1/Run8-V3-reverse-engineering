@@ -1,4 +1,4 @@
-# Dispatch Block Light Database (DispatchBlockLightDatabase.r8)
+# Dispatcher Block Light Database (DispatcherBlockLightDatabase.r8)
 
 Something to do with block lights?
 
