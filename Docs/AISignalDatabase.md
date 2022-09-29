@@ -1,4 +1,4 @@
-# AISignalDatabase
+# AI Signal Database (AISignalDatabase.r8)
 
 Contains a list of signals and their information
 

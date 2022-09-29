@@ -1,4 +1,4 @@
-# AISpecialLocations.r8
+# AI Special Locations (AISpecialLocations.r8)
 
 Seems to contain information about "special" track locations.
 

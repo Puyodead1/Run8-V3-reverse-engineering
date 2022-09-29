@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace star4
+namespace Stars4
 {
     class Program
     {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace aispeciallocations
+namespace AISpecialLocations
 {
     class Program
     {

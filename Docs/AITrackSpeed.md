@@ -1,4 +1,4 @@
-# AITrackSpeed.r8
+# AI Track Speed (AITrackSpeed.r8)
 
 Seems to contain information related to track speeds
 

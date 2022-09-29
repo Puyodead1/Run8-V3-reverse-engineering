@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace dispatchblocklightdatabase
+namespace DispatchBlockLightDatabase
 {
     class Program
     {

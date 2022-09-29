@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace ind
+namespace IndustryConfiguration
 {
     class Program
     {

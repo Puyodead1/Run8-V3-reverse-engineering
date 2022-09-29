@@ -2,13 +2,13 @@
 using System.IO;
 using System.Text;
 
-namespace commtowerdatabase
+namespace CommTowerDatabase
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Run8 Signal Parser");
+            Console.WriteLine("Run8 CommTowerDatabase Parser");
 
             if (args.Length == 0)
             {

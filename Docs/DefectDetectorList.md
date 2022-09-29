@@ -1,4 +1,4 @@
-# DefectDetectorList.r8
+# Defect Detector List (DefectDetectorList.r8)
 
 Contains a list of defect detectors.
 

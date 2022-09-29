@@ -1,8 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 
-namespace aitrackspeed
+namespace AITrackSpeed
 {
     class Program
     {

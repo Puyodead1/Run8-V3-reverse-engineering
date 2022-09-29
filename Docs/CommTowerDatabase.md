@@ -1,4 +1,4 @@
-# CommTowerDatabase.r8
+# Comm Tower Database (CommTowerDatabase.r8)
 
 Contains a list of Comm Towers
 
@@ -12,17 +12,17 @@ Contains a list of Comm Towers
 
 ## Entry
 
-| Offset | Type      | Explaination         |
-| ------ | --------- | -------------------- |
-| 0      | Int32     | Reserved             |
-| 4      | TileIndex | Tile Index           |
-| 12     | Vector3   | Location?            |
-| 24     | String    | Tower Name           |
-| ...    | Byte      | Unknown              |
-| ...    | String    | Dial Code            |
-| ...    | String    | Emergency Dial Code? |
-| ...    | Float     | Unknown              |
-| ...    | String    | Dispatch Tone Type   |
+| Offset | Type      | Explaination        |
+| ------ | --------- | ------------------- |
+| 0      | Int32     | Reserved            |
+| 4      | TileIndex | Tile Index          |
+| 12     | Vector3   | Location?           |
+| 24     | String    | Tower Name          |
+| ...    | Byte      | Unknown             |
+| ...    | String    | Dial Code           |
+| ...    | String    | Emergency Dial Code |
+| ...    | Float     | Unknown             |
+| ...    | String    | Dispatch Tone Type  |
 
 ## Tile Index
 

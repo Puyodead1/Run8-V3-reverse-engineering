@@ -2,13 +2,13 @@
 using System.IO;
 using System.Text;
 
-namespace milepostconfig
+namespace MilepostDatabase
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Run8 Milepost Database Parser");
+            Console.WriteLine("Run8 MilepostDatabase Parser");
 
             if (args.Length == 0)
             {

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace defectdetectorlist
+namespace DefectDetectorList
 {
     class Program
     {
