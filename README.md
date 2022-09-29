@@ -13,7 +13,7 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - ~~AITrackSpeedDatabase.r8~~
 - BlockDetectorDatabase.r8
 - CarSpewerDatabase.r8
-- CommTowerDatabase.r8
+- ~~CommTowerDatabase.r8~~
 - DarkSignalDatabase.r8
 - DefectDetectorList.r8
 - DispatcherBlockLightDatabase.r8

@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aitrackspeed", "aitrackspee
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "aispeciallocations", "aispeciallocations\aispeciallocations.csproj", "{0825B81E-1568-4365-8A3A-0269F93EE747}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "traffic", "traffic\traffic.csproj", "{39E9FF5D-667C-46DE-9897-3F3A86A0A35E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "traffic", "traffic\traffic.csproj", "{39E9FF5D-667C-46DE-9897-3F3A86A0A35E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "commtowerdatabase", "commtowerdatabase\commtowerdatabase.csproj", "{E5AE58CE-6464-4DC5-99E5-238EEA247F15}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -101,6 +103,14 @@ Global
 		{39E9FF5D-667C-46DE-9897-3F3A86A0A35E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{39E9FF5D-667C-46DE-9897-3F3A86A0A35E}.Release|x64.ActiveCfg = Release|Any CPU
 		{39E9FF5D-667C-46DE-9897-3F3A86A0A35E}.Release|x64.Build.0 = Release|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Debug|x64.Build.0 = Debug|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Release|x64.ActiveCfg = Release|Any CPU
+		{E5AE58CE-6464-4DC5-99E5-238EEA247F15}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

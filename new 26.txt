@@ -1,4 +1,3 @@
-- ~~Milepost config - class469 vmethod1~~
 - service area database - class456 vmethod1
 - dispatcher signal controller database - class448 vmethod1
 - dispatcher switch icon database - class446 vmethod1
@@ -11,25 +10,15 @@
 - hump controller list - class463 vmethod1
 - road database - class460 vmethod1
 - car spewer database - class459 vmethod1
-- comm tower database - class453 vmethod1
 - horn bell config - class444 vmethod1
-- ~~ai signal database - class436 vmethod1~~
-- ~~signal .sig - Signal constructor~~
-- ~~ai special locations - class438 vmethod1~~
-- ~~ai track speed - class439 vmethod1~~
-- traffic - class440 vmethod1
 - hump - class464 vmethod1
 - key settings - class449 vmethod1
 - settings - class457 vmethod1
-- ~~track database - class470 vmethod1~~
 - tunnel config - class458 vemthod1
 - rail driver calibration - class450 vmethod1
 - dispatch label config - class451 vmethod1
 - dispatch next screen config - class452 vmethod1
-- ~~industry config - class468 vmethod1~~
 - dark signal database - class462 vmethod1
-
-
 
 
 - class834 - load terrain tile
