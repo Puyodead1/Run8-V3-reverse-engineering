@@ -6,7 +6,6 @@
 - signal head database - class466 vmethod1
 - xing detector list - class465 vmethod1
 - xing gate datebase - class467 vmethod1
-- defect detector list - class454 vmethod1
 - hump controller list - class463 vmethod1
 - road database - class460 vmethod1
 - car spewer database - class459 vmethod1
