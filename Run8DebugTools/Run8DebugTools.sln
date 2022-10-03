@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DefectDetectorList", "defec
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherBlockLightDatabase", "dispatchblocklightdatabase\DispatcherBlockLightDatabase.csproj", "{90014056-E7B1-48FD-98DA-F47BE41A4B6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatcherSignalControllerDatabase", "DispatcherSignalControllerDatabase\DispatcherSignalControllerDatabase.csproj", "{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherSignalControllerDatabase", "DispatcherSignalControllerDatabase\DispatcherSignalControllerDatabase.csproj", "{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatcherSwitchIconDatabase", "DispatcherSwitchIconDatabase\DispatcherSwitchIconDatabase.csproj", "{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,14 @@ Global
 		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|x64.ActiveCfg = Release|Any CPU
 		{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}.Release|x64.Build.0 = Release|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Debug|x64.Build.0 = Debug|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Release|x64.ActiveCfg = Release|Any CPU
+		{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
