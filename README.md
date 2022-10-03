@@ -17,8 +17,8 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - DarkSignalDatabase.r8
 - ~~DefectDetectorList.r8~~
 - ~~DispatcherBlockLightDatabase.r8~~
-- DispatcherSignalControllerDatabase.r8
-- DispatcherSwitchIconDatabase.r8
+- ~~DispatcherSignalControllerDatabase.r8~~
+- ~~DispatcherSwitchIconDatabase.r8~~
 - DispatchLabelConfig.r8
 - DispatchNextScreenConfig.r8
 - HumpControllerList.r8
@@ -37,7 +37,7 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - Terrain Tiles 2 (x_y.tr2)
 - Terrain Tiles 3 (x_y.tr3)
 - Terrain Tiles 4 (x_y.tr4)
-- HornBellConfiguration.r8
+- ~~HornBellConfiguration.r8~~
 - 3D Model (.rn8)
 - Textuer (.tx8)
 - Avatars

@@ -1,6 +1,4 @@
 - service area database - class456 vmethod1
-- dispatcher signal controller database - class448 vmethod1
-- dispatcher switch icon database - class446 vmethod1
 - block detector database - class461 vmethod1
 - signal head database - class466 vmethod1
 - xing detector list - class465 vmethod1
@@ -8,7 +6,6 @@
 - hump controller list - class463 vmethod1
 - road database - class460 vmethod1
 - car spewer database - class459 vmethod1
-- horn bell config - class444 vmethod1
 - hump - class464 vmethod1
 - key settings - class449 vmethod1
 - settings - class457 vmethod1
@@ -20,4 +17,5 @@
 
 
 - class834 - load terrain tile
-- class841 method_10 - loading terrain scenery?
+- class841 LoadTileScenery - loading terrain scenery
+- class655 ReadModel - loading models
