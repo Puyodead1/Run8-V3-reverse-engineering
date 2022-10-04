@@ -29,9 +29,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherBlockLightDatabas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherSignalControllerDatabase", "DispatcherSignalControllerDatabase\DispatcherSignalControllerDatabase.csproj", "{87EEBC78-2CD4-49D7-8786-110CBC54C6EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DispatcherSwitchIconDatabase", "DispatcherSwitchIconDatabase\DispatcherSwitchIconDatabase.csproj", "{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherSwitchIconDatabase", "DispatcherSwitchIconDatabase\DispatcherSwitchIconDatabase.csproj", "{7A5715AF-7FD3-44ED-9DA1-F91C9A331BC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HornBellConfiguration", "HornBellConfiguration\HornBellConfiguration.csproj", "{041BAD60-0B65-4D77-A9C3-AEF8B9B61E92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HornBellConfiguration", "HornBellConfiguration\HornBellConfiguration.csproj", "{041BAD60-0B65-4D77-A9C3-AEF8B9B61E92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -161,6 +163,14 @@ Global
 		{041BAD60-0B65-4D77-A9C3-AEF8B9B61E92}.Release|Any CPU.Build.0 = Release|Any CPU
 		{041BAD60-0B65-4D77-A9C3-AEF8B9B61E92}.Release|x64.ActiveCfg = Release|Any CPU
 		{041BAD60-0B65-4D77-A9C3-AEF8B9B61E92}.Release|x64.Build.0 = Release|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Debug|x64.Build.0 = Debug|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|x64.ActiveCfg = Release|Any CPU
+		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
