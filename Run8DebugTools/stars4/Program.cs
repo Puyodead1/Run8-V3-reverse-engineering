@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Text;
+using static Run8Utils.Run8Utils;
 
 namespace Stars4
 {
@@ -24,42 +25,68 @@ namespace Stars4
                 return;
             }
 
+            string newPath = Path.Join(Path.GetDirectoryName(path), Path.GetFileNameWithoutExtension(path) + "_new.rn8");
 
+            Stars4 stars4 = Read(path);
+            for (int i = 0; i < stars4.strings.Count; i++)
+            {
+                Console.WriteLine("Entry {0}: {1}", i, stars4.strings[i]);
+            }
+
+            stars4.strings.Add("EastPuyoville");
+
+            Write(newPath, stars4);
+        }
+
+        static Stars4 Read(string path)
+        {
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
+                    Stars4 stars4 = new Stars4();
                     binaryReader.ReadInt32(); // header - reserved
-                    int num = binaryReader.ReadInt32(); // header - number of entries
-                    Console.WriteLine("Number of entries: {0}", num);
+                    int entryCount = binaryReader.ReadInt32(); // header - number of entries
+                    Console.WriteLine("Number of entries: {0}", entryCount);
 
-                    for (int i = 0; i < num; i++)
+                    for (int i = 0; i < entryCount; i++)
                     {
-                        string string0 = ReadString(binaryReader); // entry - string 0
-
-                        Console.WriteLine("Entry {0}: string0={1}", i, string0);
+                        string entry = ReadString(binaryReader); // entry - string 
+                        stars4.strings.Add(entry);
                     }
+
+                    return stars4;
                 }
             }
         }
 
-        static string DecodeString(byte[] bytes)
+        static void Write(string path, Stars4 stars4)
         {
-            byte[] result = new byte[bytes.Length / 2];
-            int num = 0;
-            for (int i = 0; i < result.Length; i++)
+            using (FileStream fileStream = new FileStream(path, FileMode.OpenOrCreate))
             {
-                result[i] |= (byte)(bytes[num++] << 4);
-                result[i] |= (byte)(bytes[num++] >> 4);
+                using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
+                {
+                    binaryWriter.Write(stars4.strings.Count);
+
+                    for(int i = 0; i < stars4.strings.Count; i++)
+                    {
+                        string entry = stars4.strings[i];
+                        Console.WriteLine("Writing entry {0}: {1}", i, entry);
+                        binaryWriter.Write(EncodeString(entry));
+                    }
+                }
             }
-
-            return Encoding.UTF8.GetString(result);
         }
+    }
 
-        static string ReadString(BinaryReader binaryReader)
+    class Stars4
+    {
+
+        public Stars4()
         {
-            int size = binaryReader.ReadInt32(); // string - size/length
-            return DecodeString(binaryReader.ReadBytes(size)); // string - Read the specified size of bytes and decode them
+            this.strings = new List<string>();
         }
+
+        public List<string> strings;
     }
 }

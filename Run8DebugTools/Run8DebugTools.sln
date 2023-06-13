@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32901.82
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IndustryConfiguration", "ind\IndustryConfiguration.csproj", "{AB82F56A-F8DE-436B-8031-12E0AD15D6E3}"
 EndProject
@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DispatcherSwitchIconDatabas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HornBellConfiguration", "HornBellConfiguration\HornBellConfiguration.csproj", "{041BAD60-0B65-4D77-A9C3-AEF8B9B61E92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "Model\Model.csproj", "{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terrain", "Terrain\Terrain.csproj", "{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +175,22 @@ Global
 		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|x64.ActiveCfg = Release|Any CPU
 		{DA4FB1D4-D9E7-4FCC-91AC-479048248C8B}.Release|x64.Build.0 = Release|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{8A5B850C-4138-4D8B-AF47-FDF04AA300EE}.Release|x64.Build.0 = Release|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Debug|x64.Build.0 = Debug|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Release|x64.ActiveCfg = Release|Any CPU
+		{54E3E2F0-432C-4C1C-8F9E-815050F06AB1}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
