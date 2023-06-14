@@ -5,7 +5,7 @@ namespace LibRun8.Formats
 {
     public class Signal : FileFormat
     {
-        public string name { get; set; }
+        public string modelName { get; set; }
         public int i0 { get; set; }
         public bool b0 { get; set; }
         public bool b1 { get; set; }
@@ -18,7 +18,7 @@ namespace LibRun8.Formats
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
-                    signal.name = binaryReader.ReadString();
+                    signal.modelName = binaryReader.ReadString();
                     signal.i0 = binaryReader.ReadInt32();
                     signal.b0 = binaryReader.ReadBoolean();
                     signal.b1 = binaryReader.ReadBoolean();

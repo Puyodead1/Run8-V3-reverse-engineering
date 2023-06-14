@@ -6,7 +6,7 @@ Contains information related to a signal
 
 | Offset | Type         | Explaination                                                  |
 | ------ | ------------ | ------------------------------------------------------------- |
-| 0      | String       | Signal Name                                                   |
+| 0      | String       | Model Name                                                    |
 | ...    | Int32        | Unknown                                                       |
 | ...    | Byte         | Unknown Boolean (might be related to signal instruction stop) |
 | ...    | Byte         | Unknown Boolean                                               |
