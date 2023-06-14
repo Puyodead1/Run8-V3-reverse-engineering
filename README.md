@@ -26,7 +26,7 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - RoadDatabase.r8
 - ServiceAreaDatabase.r8
 - SignalHeadDatabase.r8
-- TrackDatabase.r8
+- ~~TrackDatabase.r8~~
 - TunnelConfiguration.r8
 - XingDetectorList.r8
 - XingGateDatabase.r8
@@ -46,7 +46,7 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - .xwb
 - ~~Signal (.sig)~~
 - Run8Settings.r8
-- stars4.r8
+- ~~stars4.r8~~
 - Timetable.xnb
 - Crossing (.xng)
 - .xnb (XNB can apparently store data and images)

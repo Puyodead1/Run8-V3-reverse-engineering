@@ -4,11 +4,11 @@ Contains a list of signals and their information
 
 ## Header
 
-| Offset | Type     | Explaination      |
-| ------ | -------- | ----------------- |
-| 0      | Int32    | Reserved          |
-| 4      | Int32    | Number of entries |
-| 8      | AISignal | AI Signal Entries |
+| Offset | Type     | Explaination        |
+| ------ | -------- | ------------------- |
+| 0      | Int32    | Reserved            |
+| 4      | Int32    | AISignal Count      |
+| 8      | AISignal | AISignals           |
 
 ## AISignal
 

@@ -11,7 +11,7 @@ Seems to contain information about AI traffic such as cars, etc
 | 5      | Int32 | Unknown           |
 | 9      | Int32 | Unknown           |
 | 13     | Int32 | Unknown           |
-| 17     | Int32 | Number of entries |
+| 17     | Int32 | Entry Count		 |
 | 21     | Entry | Entries           |
 
 ## Entry
@@ -19,9 +19,9 @@ Seems to contain information about AI traffic such as cars, etc
 | Offset | Type     | Explaination       |
 | ------ | -------- | ------------------ |
 | 0      | Int32    | Reserved           |
-| 4      | String   | Route Name         |
+| 4      | R8String | Route Name         |
 | 8      | Int32    | Unknown            |
-| 12     | Int32    | Number of Unknown1 |
+| 12     | Int32    | Unknown1 Count	 |
 | 16     | Unknown1 | Unknown1 Entries   |
 
 ## Unknown1
@@ -31,51 +31,51 @@ Seems to contain information about AI traffic such as cars, etc
 | 0      | Int32      | Reserved                                                  |
 | 4      | TrainClass | Train Class                                               |
 | 5      | Int32      | Unknown                                                   |
-| 9      | Int32      | Number of Unknown2                                        |
+| 9      | Int32      | Unknown2 Count	                                          |
 | 13     | Unknown2   | Unknown2 Entries (only read if train class is SavedTrain) |
-| ...    | Int32      | Number of Unknown3                                        |
+| ...    | Int32      | Unknown3 Count                                            |
 | ...    | Unknown3   | Unknown3 Entries                                          |
 
 ## Unknown2
 
-| Offset | Type   | Explaination |
-| ------ | ------ | ------------ |
-| 0      | Int32  | Reserved     |
-| 4      | String | Unknown      |
-| ...    | String | Unknown      |
-| ...    | Int32  | Unknown      |
+| Offset | Type     | Explaination |
+| ------ | -------- | ------------ |
+| 0      | Int32    | Reserved     |
+| 4      | R8String | Unknown      |
+| ...    | R8String | Unknown      |
+| ...    | Int32    | Unknown      |
 
 ## Unknown3
 
-| Offset | Type   | Explaination                                                             |
-| ------ | ------ | ------------------------------------------------------------------------ |
-| 0      | Int32  | Unknown n                                                                |
-| 4      | Byte   | Unknown Boolean                                                          |
-| 5      | String | Train Tag (only read if above bool is true)                              |
-| ...    | Byte   | Train Caste                                                              |
-| ...    | Byte   | Train Special Restrictions                                               |
-| ...    | Byte   | Unknown Boolean                                                          |
-| ...    | Byte   | Unknown Boolean                                                          |
-| ...    | Byte   | Unknown Boolean                                                          |
-| ...    | Int32  | Number of unknown Strings                                                |
-| ...    | String | Unknown Strings                                                          |
-| ...    | Int32  | Number of unknown Strings                                                |
-| ...    | String | Unknown Strings (looks like company strings, ex up, csx, etc)            |
-| ...    | Int32  | Number of unknown Strings                                                |
-| ...    | String | Unknown Strings (looks like a list of locomotives, ex ES44, SD40-2, etc) |
-| ...    | Int32  | Number of unknown Strings                                                |
-| ...    | String | Unknown Strings                                                          |
-| ...    | Sub1   | Sub1 (if n > 1)                                                          |
+| Offset | Type       | Explaination                                                             |
+| ------ | ---------- | ------------------------------------------------------------------------ |
+| 0      | Int32      | Unknown n                                                                |
+| 4      | Byte       | Unknown Boolean                                                          |
+| 5      | R8String   | Train Tag (only read if above bool is true)                              |
+| ...    | Byte       | Train Caste                                                              |
+| ...    | Byte       | Train Special Restrictions                                               |
+| ...    | Byte       | Unknown Boolean                                                          |
+| ...    | Byte       | Unknown Boolean                                                          |
+| ...    | Byte       | Unknown Boolean                                                          |
+| ...    | Int32      | Unknown Strings Count	                                                 |
+| ...    | R8String   | Unknown Strings                                                          |
+| ...    | Int32      | Unknown Strings Count                                                    |
+| ...    | R8String[] | Unknown Strings (looks like company strings, ex up, csx, etc)            |
+| ...    | Int32      | Unknown Strings Count                                                    |
+| ...    | R8String[] | Unknown Strings (looks like a list of locomotives, ex ES44, SD40-2, etc) |
+| ...    | Int32      | Unknown Strings Count                                                    |
+| ...    | R8String[] | Unknown Strings                                                          |
+| ...    | Sub1       | Sub1 (if n > 1)                                                          |
 
 ### Sub1
 
-| Offset | Type   | Explaination                                              |
-| ------ | ------ | --------------------------------------------------------- |
-| 0      | Int32  | Number of unknown Strings                                 |
-| 4      | String | Unknown Strings (looks like xml file names for some cars) |
-| ...    | Int32  | Number of unknown Strings                                 |
-| ...    | String | Unknown Strings                                           |
-| ...    | Sub2   | Sub2 (if n > 2)                                           |
+| Offset | Type       | Explaination                                              |
+| ------ | ---------- | --------------------------------------------------------- |
+| 0      | Int32      | Unknown Strings Count                                     |
+| 4      | R8String[] | Unknown Strings (looks like xml file names for some cars) |
+| ...    | Int32      | Unknown Strings Count                                     |
+| ...    | R8String[] | Unknown Strings                                           |
+| ...    | Sub2       | Sub2 (if n > 2)                                           |
 
 ### Sub2
 
@@ -127,39 +127,3 @@ Seems to contain information about AI traffic such as cars, etc
 | 16  | CajonWB2    | SouthernCA |
 | 32  | CajonEB1    | SouthernCA |
 | 64  | CajonEB2    | SouthernCA |
-
-## String
-
-| Offset | Type  | Explaination        |
-| ------ | ----- | ------------------- |
-| 0      | Int32 | Size of string data |
-| 4      | Bytes | String data         |
-
-## Encoding Strings
-
-```c#
-string s = "1ST COAST RECYCLING";
-byte[] bytes = Encoding.UTF8.GetBytes(s);
-byte[] encoded = new byte[bytes.Length * 2];
-int num = 0;
-for (int i = 0; i < bytes.Length; i++)
-{
-	encoded[num++] = (byte)(bytes[i] >> 4);
-	encoded[num++] = (byte)(bytes[i] << 4);
-}
-```
-
-## Decoding Strings
-
-```c#
-byte[] encoded = <string data>;
-byte[] decodedBytes = new byte[encoded.Length / 2];
-int num = 0;
-for (int i = 0; i < decodedBytes.Length; i++)
-{
-	decodedBytes[i] |= (byte)(encoded[num++] << 4);
-	decodedBytes[i] |= (byte)(encoded[num++] >> 4);
-}
-
-string decodedString = Encoding.UTF8.GetString(decodedBytes);
-```
