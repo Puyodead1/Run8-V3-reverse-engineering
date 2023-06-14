@@ -16,6 +16,7 @@ Seems to contain a list of track locations as well as other track related inform
 | 0      | Int32    | Reserved                        |
 | 4      | Int32    | Number of Unknown               |
 | 8      | Unknown  | Unknown                         |
+| ...    | Int32    | Unknown                         |
 | ...    | Byte     | Unknown Boolean                 |
 | ...    | Unknown2 | Number of Unknown2              |
 | ...    | Byte     | Unknown Byte (Enum) (Always 3?) |
