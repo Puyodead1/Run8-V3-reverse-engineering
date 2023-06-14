@@ -1,5 +1,4 @@
 ﻿using LibRun8.Common;
-using SharpDX;
 
 namespace LibRun8.Formats
 {

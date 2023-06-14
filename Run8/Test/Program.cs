@@ -1,8 +1,10 @@
 ﻿using LibRun8.Formats;
 using System.Text.Json;
 
-//Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_Dwarf_3L_NewSystem.sig");
-//Console.WriteLine("Signal Name: {0}; Entry Count: {1}; Entries Length: {2}", signal.Name, signal.EntryCount, signal.Entries.Length);
+Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_Dwarf_3L_NewSystem.sig");
+var options = new JsonSerializerOptions { WriteIndented = true };
+string jsonString = JsonSerializer.Serialize(signal, options);
+File.WriteAllText("signal.json", jsonString);
 
 //TrackDatabase trackDatabase = TrackDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\SP-UP_RosevilleSub\TrackDatabase.r8");
 //var options = new JsonSerializerOptions { WriteIndented = true };

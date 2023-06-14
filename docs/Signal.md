@@ -7,25 +7,28 @@ Contains information related to a signal
 | Offset | Type         | Explaination                                                  |
 | ------ | ------------ | ------------------------------------------------------------- |
 | 0      | String       | Model Name                                                    |
-| ...    | Int32        | Unknown                                                       |
+| ...    | Int32        | leastRestrictiveSignalState                                   |
 | ...    | Byte         | Unknown Boolean (might be related to signal instruction stop) |
-| ...    | Byte         | Unknown Boolean                                               |
+| ...    | Byte         | isDwarf                                                       |
 | ...    | Int32        | SignalEntry1 Count                                            |
 | ...    | SignalEntry1 | SignalEntry1s                                                 |
 
 ## SignalEntry1
 
-| Offset | Type         | Explaination               |
-| ------ | ------------ | -------------------------- |
-| 0      | Vector3      | Unknown                    |
-| 12     | Vector3      | Unknown                    |
-| 24     | Float        | Unknown                    |
-| 28     | Float        | Unknown                    |
-| 32     | Int32        | SignalEntry2 Count         |
-| 36     | SignalEntry2 | SignalEntry2s              |
+| Offset | Type           | Explaination                |
+| ------ | -------------- | --------------------------- |
+| 0      | Vector3        | Light Offset                |
+| 12     | Vector3        | Color*                      |
+| 24     | Float          | Light Glare Radius (meters) |
+| 28     | Float          | Light Range                 |
+| 32     | Int32          | GlareList Count             |
+| 36     | GlareListEntry | GlareList Entries           |
 
-## SignalEntry2
+* Technically this is a Vector4, but only X, Y and Z come are read, W is constant as 1f
+
+## GlareListEntry
 
 | Offset | Type    | Explaination |
 | ------ | ------- | ------------ |
 | 0      | Vector3 | Unknown      |
+
