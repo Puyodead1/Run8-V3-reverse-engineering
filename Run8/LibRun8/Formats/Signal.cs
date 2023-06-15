@@ -57,11 +57,13 @@ namespace LibRun8.Formats
         public class SignalLight
         {
             public Vector3 lightOffset { get; set; }
-            // this is technically a vec4
-            public Vector4 color { get; set; }
-            public float lightGlareRadiusMeters { get; set; }
-            public float lightRange { get; set; }
+            public Vector3 lightDirectionDeg { get; set; }
             public Vector3[] glareList { get; set; }
+            public Vector4 color { get; set; }
+            public float lightGlareRadiusMeters { get; set; } = 0.35f;
+            public float lightRange { get; set; }
+            public float lightIntensity { get; set; }
+            public bool isLimitedYardLight { get; set; }
         }
     }
 }

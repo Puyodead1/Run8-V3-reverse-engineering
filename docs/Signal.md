@@ -13,22 +13,16 @@ Contains information related to a signal
 | ...    | Int32        | SignalEntry1 Count                                            |
 | ...    | SignalEntry1 | SignalEntry1s                                                 |
 
-## SignalEntry1
+## SignalLight
 
 | Offset | Type           | Explaination                |
 | ------ | -------------- | --------------------------- |
 | 0      | Vector3        | Light Offset                |
-| 12     | Vector3        | Color*                      |
+| 12     | Vector4        | Color*                      |
 | 24     | Float          | Light Glare Radius (meters) |
 | 28     | Float          | Light Range                 |
-| 32     | Int32          | GlareList Count             |
-| 36     | GlareListEntry | GlareList Entries           |
+| 32     | Int32          | Glare Count                 |
+| 36     | Vector3[]      | Glares                      |
 
-* Technically this is a Vector4, but only X, Y and Z come are read, W is constant as 1f
-
-## GlareListEntry
-
-| Offset | Type    | Explaination |
-| ------ | ------- | ------------ |
-| 0      | Vector3 | Unknown      |
+\* W is constant at 1f
 

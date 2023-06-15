@@ -1,13 +1,17 @@
 ﻿using LibRun8.Formats;
 using System.Text.Json;
 
-Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_Dwarf_3L_NewSystem.sig");
 var options = new JsonSerializerOptions { WriteIndented = true };
+
+Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_TwoLight2_Anakin_NewSystem.sig");
 string jsonString = JsonSerializer.Serialize(signal, options);
 File.WriteAllText("signal.json", jsonString);
 
+//XNG signal = XNG.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\XingGate01.xng");
+//string jsonString = JsonSerializer.Serialize(signal, options);
+//File.WriteAllText("xng.json", jsonString);
+
 //TrackDatabase trackDatabase = TrackDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\SP-UP_RosevilleSub\TrackDatabase.r8");
-//var options = new JsonSerializerOptions { WriteIndented = true };
 //string jsonString = JsonSerializer.Serialize(trackDatabase, options);
 //File.WriteAllText("trackdatabase.json", jsonString);
 

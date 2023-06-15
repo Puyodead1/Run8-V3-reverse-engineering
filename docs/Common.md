@@ -1,43 +1,71 @@
 # Common Structures
 
+## LightLoader
+
+| Type           | Explaination                   | Default |
+| -------------- | ------------------------------ | ------- |
+| Bool           | Billboard Glare                |         |
+| Int32          | Light Range                    |         |
+| Float          | Light Width                    |         |
+| Float          | Light Intensity                |         |
+| Float          | Decay Exponent                 | 1f      |
+| Vector3        | Light Offset                   |         |
+| Bool           | Is Spot Light                  |         |
+| Vector4        | Color (W is constant at 1f)    |         |
+| Vector3        | Light Direction Deg            |         |
+| Bool           | Flashing                       |         |
+| Float          | Flash Time Random Variation    |         |
+| Double         | Flash Timer Seconds            |         |
+| Bool           | Has Day Night Sensor           |         |
+| Float          | Day Night Sensor Ambient Level |         |
+| Vector3[]      | Glare List                     |         |
+| Float          | Light Glare Radius Meters      | 0.35f   |
+| Bool           | Is Hep Powered                 |         |
+| Bool           | Is Marker Light                |         |
+| Bool           | Is Numberboard Light           |         |
+| Bool           | Is Limited Yard Light          |         |
+| Bool           | Render Glare Only              | true    |
+| Bool           | Is Incandescent                |         |
+| Float          | Glow Scalar                    |         |
+
 ## Tile Index
 
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | X            |
-| 4      | Int32 | Y            |
+| Type  | Explaination | Default |
+| ----- | ------------ | ------- |
+| Int32 | X            |         |
+| Int32 | Y            |         |
 
 ## Vector3
 
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Float | X            |
-| 4      | Float | Y            |
-| 8      | Float | Z            |
+| Type  | Explaination | Default |
+| ----- | ------------ | ------- |
+| Float | X            |         |
+| Float | Y            |         |
+| Float | Z            |         |
 
 ## Vector2
 
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Float | X            |
-| 4      | Float | Y            |
+| Type  | Explaination | Default |
+| ----- | ------------ | ------- |
+| Float | X            |         |
+| Float | Y            |         |
 
 ## Rectangle
 
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | X            |
-| 4      | Int32 | Y            |
-| 8      | Int32 | Width        |
-| 12     | Int32 | Height       |
+| Type  | Explaination | Default |
+| ----- | ------------ | ------- |
+| Int32 | X            |         |
+| Int32 | Y            |         |
+| Int32 | Width        |         |
+| Int32 | Height       |         |
 
 ## R8String
 Run8 Encoded Strings (UTF-16?)
 
-| Offset | Type  | Explaination        |
-| ------ | ----- | ------------------- |
-| 0      | Int32 | Size of string data |
-| 4      | Bytes | String data         |
+| Type  | Explaination        | Default |
+| ----- | ------------------- | ------- |
+| Int32 | Size of string data |         |
+| Bytes | String data         |         |
 
 ## Encoding Strings
 
