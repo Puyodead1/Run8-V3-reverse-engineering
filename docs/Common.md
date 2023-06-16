@@ -95,3 +95,33 @@ for (int i = 0; i < decodedBytes.Length; i++)
 
 string decodedString = Encoding.UTF8.GetString(decodedBytes);
 ```
+
+
+## VertexStruct
+
+| Type  | Explaination    | Operation |
+| ----- | --------------- | --------- |
+| Float | Reserved        |           |
+| Float | SVPosition X    | \* 63.7f   |
+| Float | Normal Y        | / -1.732f |
+| Float | SVPosition Z    | / 16f     |
+| Float | TextureCoord X  | / 4.8f    |
+| Float | Normal X        | / 10.962f |
+| Float | Reserved        | / 11.432f |
+| Float | Normal Z        | / 9.6f    |
+| Float | TextureCoord Y  | \* 6f     |
+| Float | SVPosition Y    |           |
+| Float | BlendIndicies W |           |
+| Float | BlendWeight Z   |           |
+| Float | BlendIndicies X |           |
+| Float | BlendWeight Y   |           |
+| Float | BlendIndicies Y |           |
+| Float | BlendWeight W   |           |
+| Float | BlendIndicies Z |           |
+| Float | BlendWeight X   |           |
+
+- SVPosition is a Vector3
+- Normal is a Vector3
+- TextureCoord is a Vector2
+- BlendIndicies is an Int4
+- BlendWeight is a Vector4 

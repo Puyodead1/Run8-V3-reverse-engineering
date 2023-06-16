@@ -3,9 +3,9 @@ using System.Text.Json;
 
 var options = new JsonSerializerOptions { WriteIndented = true };
 
-Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_TwoLight2_Anakin_NewSystem.sig");
-string jsonString = JsonSerializer.Serialize(signal, options);
-File.WriteAllText("signal.json", jsonString);
+//Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_TwoLight2_Anakin_NewSystem.sig");
+//string jsonString = JsonSerializer.Serialize(signal, options);
+//File.WriteAllText("signal.json", jsonString);
 
 //XNG signal = XNG.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\XingGate01.xng");
 //string jsonString = JsonSerializer.Serialize(signal, options);
@@ -20,3 +20,7 @@ File.WriteAllText("signal.json", jsonString);
 //{
 //    Console.WriteLine("String {0} - {1}", i, stars4.entries[i]);
 //}
+
+Avatar avatar = Avatar.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Avatars\Brian.rn8");
+string jsonString = JsonSerializer.Serialize(avatar, options);
+File.WriteAllText("avatar.json", jsonString);

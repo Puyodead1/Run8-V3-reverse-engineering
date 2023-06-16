@@ -40,7 +40,7 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - HornBellConfiguration.r8
 - 3D Model (.rn8)
 - Texture (.tx8)
-- Avatars
+- ~~Avatars~~
 - .tkb (Shaders?)
 - .xsb
 - .xwb
@@ -48,5 +48,5 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - Run8Settings.r8
 - ~~stars4.r8~~
 - Timetable.xnb
-- Crossing (.xng)
+- ~~Crossing Gate (.xng)~~
 - .xnb (XNB can apparently store data and images)

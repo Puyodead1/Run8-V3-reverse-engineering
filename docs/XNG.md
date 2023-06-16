@@ -1,6 +1,6 @@
 # XNG
 
-Crossing Gates?
+Crossing Gates
 
 ## Header
 

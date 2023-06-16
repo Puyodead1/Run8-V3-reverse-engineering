@@ -1,20 +1,35 @@
 ﻿namespace LibRun8.Common
 {
-    public struct Vector4
+    public struct Int4
     {
-        public float X { get; set; }
-        public float Y { get; set; }
-        public float Z { get; set; }
-        public float W { get; set; }
+        //
+        // Summary:
+        //     The X component of the vector.
+        public int X { get; set; }
 
         //
         // Summary:
-        //     Initializes a new instance of the Vector4 struct.
+        //     The Y component of the vector.
+        public int Y { get; set; }
+
+        //
+        // Summary:
+        //     The Z component of the vector.
+        public int Z { get; set; }
+
+        //
+        // Summary:
+        //     The W component of the vector.
+        public int W { get; set; }
+
+        //
+        // Summary:
+        //     Initializes a new instance of the Int4 struct.
         //
         // Parameters:
         //   value:
         //     The value that will be assigned to all components.
-        public Vector4(float value)
+        public Int4(int value)
         {
             X = value;
             Y = value;
@@ -24,7 +39,7 @@
 
         //
         // Summary:
-        //     Initializes a new instance of the Vector4 struct.
+        //     Initializes a new instance of the Int4 struct.
         //
         // Parameters:
         //   x:
@@ -38,8 +53,7 @@
         //
         //   w:
         //     Initial value for the W component of the vector.
-
-        public Vector4(float x, float y, float z, float w)
+        public Int4(int x, int y, int z, int w)
         {
             X = x;
             Y = y;
