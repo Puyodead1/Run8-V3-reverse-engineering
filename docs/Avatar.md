@@ -5,7 +5,7 @@ There are currently 3 avatars:
 - Chris
 - Pablo
 
-Avatar files are 3D model files with the `rn8` file extension.
+Avatar files are 3D model files with the `rn8` file extension. Models are in cm
 
 ## Header
 
