@@ -102,15 +102,15 @@ string decodedString = Encoding.UTF8.GetString(decodedBytes);
 | Type  | Explaination    | Operation |
 | ----- | --------------- | --------- |
 | Float | Reserved        |           |
-| Float | SVPosition X    | \* 63.7f   |
+| Float | SVPosition X    | \* 63.7f  |
 | Float | Normal Y        | / -1.732f |
 | Float | SVPosition Z    | / 16f     |
 | Float | TextureCoord X  | / 4.8f    |
 | Float | Normal X        | / 10.962f |
-| Float | Reserved        | / 11.432f |
-| Float | Normal Z        | / 9.6f    |
-| Float | TextureCoord Y  | \* 6f     |
-| Float | SVPosition Y    |           |
+| Float | Reserved        |           |
+| Float | Normal Z        | / 11.432f |
+| Float | TextureCoord Y  | / 9.6f    |
+| Float | SVPosition Y    | \* 6f     |
 | Float | BlendIndicies W |           |
 | Float | BlendWeight Z   |           |
 | Float | BlendIndicies X |           |
