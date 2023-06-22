@@ -11,15 +11,15 @@ Avatar files are 3D model files with the `rn8` file extension.
 
 | Offset | Type            | Explaination            |
 | ------ | --------------- | ----------------------- |
-| 0      | Int32           | VertexStruct Count\*    |
+| 0      | Int32           | VertexStruct Count<sup>1</sup>  |
 | 4      | VertexStruct[]  | VertexStructs           |
-| ...    | Int32           | Texture Name Count      |
+| ...    | Int32           | Texture Name Count<sup>2</sup>  |
 | ...    | String[]        | Texture Names           |
 | ...    | Bool            | IsUshortBuffer          |
 | ...    | Int32           | Index Buffer Size       |
 | ...    | Int32[]         | Index Buffer            |
-| ...    | Int32           | Unknown1 Count          |
-| ...    | UnknownStruct1  | UnknownStruct1s\*\*     |
+| ...    | Int32           | Unknown1 Count<sup>3</sup>      |
+| ...    | UnknownStruct1  | UnknownStruct1s<sup>4</sup>     |
 | ...    | Int32           | Skeleton Hiearchy Count |
 | ...    | Int32[]         | Skeleton Hiearchy       |
 | ...    | Int32           | Bone Index Count        |
@@ -31,8 +31,10 @@ Avatar files are 3D model files with the `rn8` file extension.
 | ...    | Int32           | Animation Clip Count    |
 | ...    | AnimationClip[] | Animation Clips         |
 
-- \* This number gets divided by 7
-- \*\* These are only read when the count is not 0, otherwise only a single entry is created
+- <sup>1</sup>: This number gets divided by 7
+- <sup>2</sup>: 6 is added to the number
+- <sup>3</sup>: 9 is subtracted from the number
+- <sup>4</sup>: These are only read when the count is not 0, otherwise only a single entry is created
 
 
 ## UnknownStruct1
@@ -40,12 +42,12 @@ Avatar files are 3D model files with the `rn8` file extension.
 | Offset | Type           | Explaination         | Value If Single   |
 | ------ | -------------- | -------------------- | ----------------- |
 | 0      | Int32          | Reserved             |                   |
-| 4      | Int32          | Texture Index\*      |                   |
+| 4      | Int32          | Texture Index<sup>1</sup>      |                   |
 | 8      | Int32          | Index Count          | Index Buffer Size |
 | 12     | Int32          | Start Index Location | 0                 |
 | 16     | Int32          | Base VertexLocation  | 0                 |
 
-- \* Gets the texture at the index and appends `_mrao`
+- <sup>1</sup>: Gets the texture at the index and appends `_mrao`
 
 ## AnimationClip
 
