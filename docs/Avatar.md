@@ -20,8 +20,8 @@ Avatar files are 3D model files with the `rn8` file extension. Models are in cm
 | ...    | Int32[]         | Index Buffer            |
 | ...    | Int32           | Unknown1 Count<sup>3</sup>      |
 | ...    | UnknownStruct1  | UnknownStruct1s<sup>4</sup>     |
-| ...    | Int32           | Skeleton Hiearchy Count |
-| ...    | Int32[]         | Skeleton Hiearchy       |
+| ...    | Int32           | Skeleton Hierarchy Count|
+| ...    | Int32[]         | Skeleton Hierarchy      |
 | ...    | Int32           | Bone Index Count        |
 | ...    | Int32[]         | Bone Indicies           |
 | ...    | Int32           | Bind Pose Count         |
@@ -45,7 +45,7 @@ Avatar files are 3D model files with the `rn8` file extension. Models are in cm
 | 4      | Int32          | Texture Index<sup>1</sup>      |                   |
 | 8      | Int32          | Index Count          | Index Buffer Size |
 | 12     | Int32          | Start Index Location | 0                 |
-| 16     | Int32          | Base VertexLocation  | 0                 |
+| 16     | Int32          | Base Vertex Location | 0                 |
 
 - <sup>1</sup>: Gets the texture at the index and appends `_mrao`
 
