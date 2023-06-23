@@ -111,13 +111,13 @@ string decodedString = Encoding.UTF8.GetString(decodedBytes);
 | Float | Normal Z        | / 11.432f |
 | Float | TextureCoord Y  | / 9.6f    |
 | Float | SVPosition Y    | \* 6f     |
-| Float | BlendIndicies W |           |
+| Byte | BlendIndicies W  |           |
 | Float | BlendWeight Z   |           |
-| Float | BlendIndicies X |           |
+| Byte | BlendIndicies X  |           |
 | Float | BlendWeight Y   |           |
-| Float | BlendIndicies Y |           |
+| Byte | BlendIndicies Y  |           |
 | Float | BlendWeight W   |           |
-| Float | BlendIndicies Z |           |
+| Byte | BlendIndicies Z  |           |
 | Float | BlendWeight X   |           |
 
 - SVPosition is a Vector3
