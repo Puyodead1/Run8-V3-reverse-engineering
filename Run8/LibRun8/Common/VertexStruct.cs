@@ -11,5 +11,10 @@
         public Int4 blendIndicies { get; set; }
 
         public Vector4 blendWeight { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("Position: {0}; Normal: {1}; TextureCoord: {2}", svPosition.ToString(), normal.ToString(), texCoord.ToString());
+        }
     }
 }

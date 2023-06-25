@@ -23,4 +23,7 @@ var options = new JsonSerializerOptions { WriteIndented = true };
 
 Avatar avatar = Avatar.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Avatars\Brian.rn8");
 string jsonString = JsonSerializer.Serialize(avatar, options);
-File.WriteAllText("avatar.json", jsonString);
+File.WriteAllText("brian.json", jsonString);
+
+
+//TKB tkb = TKB.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Shaders\Avatar.tkb");
