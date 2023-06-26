@@ -8,8 +8,6 @@ This repository contains reverse engineered documentation about various Run8 V3 
 
 [/blender_scripts](/blender_scripts) - Import/Export scripts for Blender 3.x
 
-[/ksy](/ksy) - Kaitai Structs
-
 ### Progress
 
 - AISignalDatabase.r8
