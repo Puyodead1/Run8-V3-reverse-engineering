@@ -5,6 +5,6 @@ I cannot for the life of me get skeleton import working for avatars.
 currently includes:
 - Avatars
   - Mesh Import
-  - Mesh Export (won't work though due to needing animations and armature)
+  - Mesh Export (Game crashes, skeleton and animations are required)
 - Railcar Models
   - Mesh Import
