@@ -1,0 +1,1 @@
+You can get this from https://github.com/Korchy/blender_autocomplete/tree/master/3.4

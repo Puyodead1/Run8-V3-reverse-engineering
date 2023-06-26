@@ -6,6 +6,10 @@ This repository contains reverse engineered documentation about various Run8 V3 
 
 [/Run8](/Run8) - C# Library for working with file formats
 
+[/blender_scripts](/blender_scripts) - Import/Export scripts for Blender 3.x
+
+[/ksy](/ksy) - Kaitai Structs
+
 ### Progress
 
 - AISignalDatabase.r8
@@ -41,7 +45,7 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - 3D Model (.rn8)
 - Texture (.tx8)
 - ~~Avatars~~
-- .tkb (Shaders?)
+- ~~Shaders/Effects (.tkb)~~
 - .xsb
 - .xwb
 - ~~Signal (.sig)~~

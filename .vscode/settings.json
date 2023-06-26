@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./blender_scripts/autocomplete"
+    ]
+}
