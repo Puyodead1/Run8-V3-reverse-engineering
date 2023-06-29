@@ -1,4 +1,5 @@
 ﻿using LibRun8.Formats;
+using System.IO;
 using System.Text.Json;
 
 var options = new JsonSerializerOptions { WriteIndented = true };
@@ -15,12 +16,11 @@ var options = new JsonSerializerOptions { WriteIndented = true };
 //string jsonString = JsonSerializer.Serialize(trackDatabase, options);
 //File.WriteAllText("trackdatabase.json", jsonString);
 
-//Stars4 stars4 = Stars4.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Misc\stars4.rn8");
-//for(int i = 0; i < stars4.entryCount; i++)
-//{
-//    Console.WriteLine("String {0} - {1}", i, stars4.entries[i]);
-//}
+Stars4 stars4 = Stars4.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Misc\stars4.rn8");
 
-Avatar avatar = Avatar.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Avatars\Brian.rn8");
-string jsonString = JsonSerializer.Serialize(avatar, options);
-File.WriteAllText("brian.json", jsonString);
+var file = File.AppendText("stars4.txt");
+for (int i = 0; i < stars4.entries.Length; i++)
+{
+    file.WriteLine(string.Format("String {0} - {1}", i, stars4.entries[i]));
+}
+file.Close();

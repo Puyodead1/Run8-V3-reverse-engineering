@@ -1,5 +1,10 @@
+from __future__ import annotations
+
+import json
 import math
 import struct
+from os import SEEK_CUR
+from typing import BinaryIO
 
 import bpy
 import mathutils
@@ -7,303 +12,638 @@ from bpy.props import StringProperty
 from bpy.types import Operator
 from bpy_extras.io_utils import ImportHelper
 
-
-# TODO: move this to a separate file
-class BinaryStream(object):
-    _types = {
-        int: struct.Struct("<i"),
-        float: struct.Struct("<f"),
-        bool: struct.Struct("<?"),
-    }
-    _formats = {
-        int: "i",
-        float: "f",
-        bool: "?",
-    }
+# Some constants
+VECTOR_FORWARDRH = mathutils.Vector((0.0, 0.0, -1.0))
+VECTOR_UP = mathutils.Vector((0.0, 1.0, 0.0))
+VECTOR_RIGHT = mathutils.Vector((1.0, 0.0, 0.0))
+VECTOR_ZERO = mathutils.Vector((0.0, 0.0, 0.0))
+ENDIAN_PREFIXES = ("@", "<", ">", "=", "!")
 
 
-class BinaryReader(BinaryStream):
-    _sizes = {
-        int: 4,
-        float: 4,
-        bool: 1,
-    }
+class Matrix(mathutils.Matrix):
+    @property
+    def M11(self) -> float:
+        return self[0][0]
 
-    def __init__(self, serial):
-        self.stream = serial
-        self.index = 0
+    @M11.setter
+    def M11(self, value: float) -> None:
+        self[0][0] = value
 
-    def read(self, type):
-        try:
-            value = self._types[type].unpack_from(self.stream, self.index)[0]
-            self.index += self._sizes[type]
-        except KeyError:
-            if type == str:
-                size = self.read_7bit_int()
-                value = self.stream[self.index : self.index + size]
-                self.index += size
-            elif hasattr(type, "load"):
-                value = type.load(self.read(str))
-            else:
-                raise
-        return value
+    @property
+    def M12(self) -> float:
+        return self[0][1]
 
-    def next(self, count):
-        return self.stream[self.index : self.index + count]
+    @M12.setter
+    def M12(self, value: float) -> None:
+        self[0][1] = value
 
-    def pull(self, count):
-        s = self.stream[self.index : self.index + count]
-        self.index += count
-        return s
+    @property
+    def M13(self) -> float:
+        return self[0][2]
 
-    def remainder(self):
-        v = self.stream[self.index :]
-        self.index = len(self.stream)
-        return v
+    @M13.setter
+    def M13(self, value: float) -> None:
+        self[0][2] = value
 
-    def peek(self, type):
-        index = self.index
-        value = self.read(type)
-        self.index = index
-        return value
+    @property
+    def M14(self) -> float:
+        return self[0][3]
 
-    def peek_list(self, type):
-        index = self.index
-        value = self.read_list(type)
-        self.index = index
-        return value
+    @M14.setter
+    def M14(self, value: float) -> None:
+        self[0][3] = value
 
-    def peek_dict(self, k, v):
-        index = self.index
-        value = self.read_dict(k, v)
-        self.index = index
-        return value
+    @property
+    def M21(self) -> float:
+        return self[1][0]
 
-    def read_double(self):
-        return struct.unpack("d", self.pull(8))[0]
+    @M21.setter
+    def M21(self, value: float) -> None:
+        self[1][0] = value
 
-    def read_float(self) -> float:
-        return self.read(float)
+    @property
+    def M22(self) -> float:
+        return self[1][1]
 
-    def read_byte(self):
-        return struct.unpack("b", self.pull(1))[0]
+    @M22.setter
+    def M22(self, value: float) -> None:
+        self[1][1] = value
 
-    def read_7bit_int(self):
+    @property
+    def M23(self) -> float:
+        return self[1][2]
+
+    @M23.setter
+    def M23(self, value: float) -> None:
+        self[1][2] = value
+
+    @property
+    def M24(self) -> float:
+        return self[1][3]
+
+    @M24.setter
+    def M24(self, value: float) -> None:
+        self[1][3] = value
+
+    @property
+    def M31(self) -> float:
+        return self[2][0]
+
+    @M31.setter
+    def M31(self, value: float) -> None:
+        self[2][0] = value
+
+    @property
+    def M32(self) -> float:
+        return self[2][1]
+
+    @M32.setter
+    def M32(self, value: float) -> None:
+        self[2][1] = value
+
+    @property
+    def M33(self) -> float:
+        return self[2][2]
+
+    @M33.setter
+    def M33(self, value: float) -> None:
+        self[2][2] = value
+
+    @property
+    def M34(self) -> float:
+        return self[2][3]
+
+    @M34.setter
+    def M34(self, value: float) -> None:
+        self[2][3] = value
+
+    @property
+    def M41(self) -> float:
+        return self[3][0]
+
+    @M41.setter
+    def M41(self, value: float) -> None:
+        self[3][0] = value
+
+    @property
+    def M42(self) -> float:
+        return self[3][1]
+
+    @M42.setter
+    def M42(self, value: float) -> None:
+        self[3][1] = value
+
+    @property
+    def M43(self) -> float:
+        return self[3][2]
+
+    @M43.setter
+    def M43(self, value: float) -> None:
+        self[3][2] = value
+
+    @property
+    def M44(self) -> float:
+        return self[3][3]
+
+    @M44.setter
+    def M44(self, value: float) -> None:
+        self[3][3] = value
+
+    @staticmethod
+    def identity_() -> Matrix:
+        return Matrix()
+
+    def rotation_quaternion(self, rotation: Quaternion) -> Matrix:
+        """
+        Creates a rotation matrix from a quaternion.
+        """
+
+        xx = rotation.x * rotation.x
+        yy = rotation.y * rotation.y
+        zz = rotation.z * rotation.z
+        xy = rotation.x * rotation.y
+        zw = rotation.z * rotation.w
+        zx = rotation.z * rotation.x
+        yw = rotation.y * rotation.w
+        yz = rotation.y * rotation.z
+        xw = rotation.x * rotation.w
+
+        result = Matrix.identity_()
+        result.M11 = 1.0 - (2.0 * (yy + zz))
+        result.M12 = 2.0 * (xy + zw)
+        result.M13 = 2.0 * (zx - yw)
+        result.M21 = 2.0 * (xy - zw)
+        result.M22 = 1.0 - (2.0 * (zz + xx))
+        result.M23 = 2.0 * (yz + xw)
+        result.M31 = 2.0 * (zx + yw)
+        result.M32 = 2.0 * (yz - xw)
+        result.M33 = 1.0 - (2.0 * (yy + xx))
+
+        return result
+
+    @staticmethod
+    def rotation_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> Matrix:
+        """
+        Creates a rotation matrix with a specified yaw, pitch, and roll.
+        """
+
+        matrix = Matrix()
+        quaternion = Quaternion.rotation_yaw_pitch_roll(yaw, pitch, roll)
+        return matrix.rotation_quaternion(quaternion)
+
+    @staticmethod
+    def scaling(x: float, y: float, z: float) -> Matrix:
+        result = Matrix.identity_()
+        result.M11 = x
+        result.M22 = y
+        result.M33 = z
+
+        return result
+
+
+class Quaternion(mathutils.Quaternion):
+    @staticmethod
+    def identity_() -> Quaternion:
+        return Quaternion((0, 0, 0, 1))
+
+    @staticmethod
+    def rotation_matrix(matrix: Matrix) -> Quaternion:
+        """
+        Creates a quaternion given a rotation matrix.
+        """
+        result = Quaternion()
+        scale = matrix.M11 + matrix.M22 + matrix.M33
+
+        if scale > 0.0:
+            sqrt = math.sqrt(scale + 1.0)
+            result.w = sqrt * 0.5
+            sqrt = 0.5 / sqrt
+
+            result.x = (matrix.M23 - matrix.M32) * sqrt
+            result.y = (matrix.M31 - matrix.M13) * sqrt
+            result.z = (matrix.M12 - matrix.M21) * sqrt
+        elif (matrix.M11 >= matrix.M22) and (matrix.M11 >= matrix.M33):
+            sqrt = math.sqrt(1.0 + matrix.M11 - matrix.M22 - matrix.M33)
+            half = 0.5 / sqrt
+
+            result.x = 0.5 * sqrt
+            result.y = (matrix.M12 + matrix.M21) * half
+            result.z = (matrix.M13 + matrix.M31) * half
+            result.w = (matrix.M23 - matrix.M32) * half
+        elif matrix.M22 > matrix.M33:
+            sqrt = math.sqrt(1.0 + matrix.M22 - matrix.M11 - matrix.M33)
+            half = 0.5 / sqrt
+
+            result.x = (matrix.M21 + matrix.M12) * half
+            result.y = 0.5 * sqrt
+            result.z = (matrix.M32 + matrix.M23) * half
+            result.w = (matrix.M31 - matrix.M13) * half
+        else:
+            sqrt = math.sqrt(1.0 + matrix.M33 - matrix.M11 - matrix.M22)
+            half = 0.5 / sqrt
+
+            result.x = (matrix.M31 + matrix.M13) * half
+            result.y = (matrix.M32 + matrix.M23) * half
+            result.z = 0.5 * sqrt
+            result.w = (matrix.M12 - matrix.M21) * half
+
+        return result
+
+    @staticmethod
+    def rotation_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> Quaternion:
+        """
+        Creates a quaternion given a yaw, pitch, and roll value.
+        """
+
+        result = Quaternion()
+
+        half_roll = roll * 0.5
+        half_pitch = pitch * 0.5
+        half_yaw = yaw * 0.5
+
+        sin_roll = math.sin(half_roll)
+        cos_roll = math.cos(half_roll)
+        sin_pitch = math.sin(half_pitch)
+        cos_pitch = math.cos(half_pitch)
+        sin_yaw = math.sin(half_yaw)
+        cos_yaw = math.cos(half_yaw)
+
+        result.x = (cos_yaw * sin_pitch * cos_roll) + (sin_yaw * cos_pitch * sin_roll)
+        result.y = (sin_yaw * cos_pitch * cos_roll) - (cos_yaw * sin_pitch * sin_roll)
+        result.z = (cos_yaw * cos_pitch * sin_roll) - (sin_yaw * sin_pitch * cos_roll)
+        result.w = (cos_yaw * cos_pitch * cos_roll) + (sin_yaw * sin_pitch * sin_roll)
+
+        return result
+
+
+class BinaryReader:
+    def __init__(self, buf: BinaryIO, endian: str = "<") -> None:
+        self.buf = buf
+        self.endian = endian
+
+    def align(self) -> None:
+        old = self.tell()
+        new = (old + 3) & -4
+        if new > old:
+            self.seek(new - old, SEEK_CUR)
+
+    def read(self, *args) -> bytes:
+        return self.buf.read(*args)
+
+    def seek(self, *args) -> int:
+        return self.buf.seek(*args)
+
+    def tell(self) -> int:
+        return self.buf.tell()
+
+    def read_string(self, size: int = None, encoding: str = "utf-8") -> str:
+        if size is None:
+            ret = self.read_cstring()
+        else:
+            ret = struct.unpack(self.endian + "%is" % (size), self.read(size))[0]
+
+        return ret.decode(encoding)
+
+    def read_cstring(self) -> bytes:
+        ret = []
+        c = b""
+        while c != b"\0":
+            ret.append(c)
+            c = self.read(1)
+            if not c:
+                raise ValueError("Unterminated string: %r" % (ret))
+        return b"".join(ret)
+
+    def read_7bit_encoded_int(self) -> int:
         value = 0
         shift = 0
         while True:
-            val = ord(self.pull(1))
+            val = ord(self.read(1))
             if val & 128 == 0:
                 break
             value |= (val & 0x7F) << shift
             shift += 7
         return value | (val << shift)
 
-    def read_list(self, type):
-        size = self.read(int)
-        if type in self._formats:
-            value = list(struct.unpack_from("<" + (self._formats[type] * size), self.stream, self.index))
-            self.index += size * self._sizes[type]
-        elif type == bytes:
-            value = [self.read(str) for i in range(size)]
-        elif hasattr(type, "load"):
-            value = [type.load(self.read(str)) for i in range(size)]
+    def read_cs_string(self) -> str:
+        size = self.read_7bit_encoded_int()
+        return self.read_string(size)
+
+    def read_bool(self) -> bool:
+        return bool(struct.unpack(self.endian + "b", self.read(1))[0])
+
+    def read_byte(self) -> int:
+        return struct.unpack(self.endian + "b", self.read(1))[0]
+
+    def read_ubyte(self) -> int:
+        return struct.unpack(self.endian + "B", self.read(1))[0]
+
+    def read_int16(self) -> int:
+        return struct.unpack(self.endian + "h", self.read(2))[0]
+
+    def read_uint16(self) -> int:
+        return struct.unpack(self.endian + "H", self.read(2))[0]
+
+    def read_int32(self) -> int:
+        return struct.unpack(self.endian + "i", self.read(4))[0]
+
+    def read_uint32(self) -> int:
+        return struct.unpack(self.endian + "I", self.read(4))[0]
+
+    def read_int64(self) -> int:
+        return struct.unpack(self.endian + "q", self.read(8))[0]
+
+    def read_uint64(self) -> int:
+        return struct.unpack(self.endian + "Q", self.read(8))[0]
+
+    def read_float(self) -> float:
+        return struct.unpack(self.endian + "f", self.read(4))[0]
+
+    def read_double(self) -> float:
+        return struct.unpack(self.endian + "d", self.read(8))[0]
+
+    def read_struct(self, format: str) -> tuple:
+        if not format.startswith(ENDIAN_PREFIXES):
+            format = self.endian + format
+        size = struct.calcsize(format)
+        return struct.unpack(format, self.read(size))
+
+    # Aliases
+    def read_int(self) -> int:
+        return self.read_int32()
+
+    def read_uint(self) -> int:
+        return self.read_uint32()
+
+    # customs
+    def read_vector3(self) -> mathutils.Vector:
+        return mathutils.Vector((self.read_float(), self.read_float(), self.read_float()))
+
+    def read_vector2(self) -> mathutils.Vector:
+        return mathutils.Vector((self.read_float(), self.read_float()))
+
+    def read_matrix4x4(self) -> Matrix:
+        return Matrix(
+            (
+                (self.read_float(), self.read_float(), self.read_float(), self.read_float()),
+                (self.read_float(), self.read_float(), self.read_float(), self.read_float()),
+                (self.read_float(), self.read_float(), self.read_float(), self.read_float()),
+                (self.read_float(), self.read_float(), self.read_float(), self.read_float()),
+            )
+        )
+
+
+    def read_rotation_quaternion(self) -> mathutils.Euler:
+        x = self.read_float()
+        y = self.read_float()
+        z = self.read_float()
+
+        return mathutils.Euler((x, y, z)).to_quaternion()
+
+    def read_scaling_matrix(self) -> Matrix:
+        x = self.read_float()
+        y = self.read_float()
+        z = self.read_float()
+
+        return Matrix.scaling(x, y, z)
+
+
+class Class141:
+    index_count: int
+    start_index_location: int
+    base_vertex_location: int
+    texture_0: str
+    texture_1: str
+    texture_2: str
+
+
+class Vertex:
+    position: mathutils.Vector
+    normal: mathutils.Vector
+    uv: mathutils.Vector
+    tangent: mathutils.Vector
+    binormal: mathutils.Vector
+
+
+class Class249:
+    quaternion_0: list[Quaternion]
+    quaternion_1: Quaternion
+    vector3_0: list[mathutils.Vector]
+    vector3_1: mathutils.Vector
+
+
+class ModelObject:
+    _reader: BinaryReader
+    flag: bool = False
+    name: str = ""
+    parent_name: str = ""
+    vector3_1: mathutils.Vector = VECTOR_ZERO
+    position: mathutils.Vector = VECTOR_ZERO
+    vector3_3: mathutils.Vector = VECTOR_ZERO
+    quaternion_1: Quaternion = Quaternion.identity_()
+    quaternion_2: Quaternion = Quaternion.identity_()
+    matrix_array_1: list[Matrix] = None
+    matrix_array_2: list[Matrix] = None
+    class_249_0: Class249 = None
+    vertices: list[Vertex]
+    textures: list[str]
+    index_buffer: list[int]
+    class141s: list[Class141] = []
+
+    def __init__(self, reader: BinaryReader, flag: bool, model: Model):
+        self._reader = reader
+        self.flag = flag
+        self.read(model)
+
+    def read(self, model: Model):
+        if self.flag:
+            self.name = self._reader.read_cs_string()
+            self.parent_name = self._reader.read_cs_string()
+            self.vector3_3 = self._reader.read_vector3()
+            self.vector3_1 = self._reader.read_vector3()
+            self.quaternion_1 = self._reader.read_rotation_quaternion()
+            self._reader.read_scaling_matrix()  # unused
+            self._reader.read_rotation_quaternion()  # unused
+            self._reader.read_rotation_quaternion()  # unused
+            # run8 uses Y-Up, Blender uses Z-Up, manually read these values and convert
+            position_x = self._reader.read_float()
+            position_y = self._reader.read_float()
+            position_z = self._reader.read_float()
+            self.position = mathutils.Vector((position_x, -position_z, -position_y))
+            self.quaternion_2 = self._reader.read_rotation_quaternion()
+            self._reader.read_scaling_matrix()  # unused
+            num_matrix_1 = self._reader.read_int32()
+
+            # read matrix array 1
+            self.matrix_array_1 = [None for i in range(num_matrix_1)]
+            for i in range(num_matrix_1):
+                if self.class_249_0 == None:
+                    self.class_249_0 = Class249()
+                    self.class_249_0.quaternion_0 = [None for i in range(num_matrix_1)]
+                    self.class_249_0.vector3_0 = [None for i in range(num_matrix_1)]
+                self.matrix_array_1[i] = self._reader.read_matrix4x4()
+
+            num_matrix_2 = self._reader.read_int32()
+
+            # read matrix array 2
+            self.matrix_array_2 = [None for i in range(num_matrix_2)]
+            for i in range(num_matrix_2):
+                self.matrix_array_2[i] = self._reader.read_matrix4x4()
+
+            if num_matrix_2 != num_matrix_1:
+                self.class_249_0 = None
+            else:
+                for i in range(num_matrix_2):
+                    self.class_249_0.quaternion_0[i] = Quaternion.rotation_matrix(self.matrix_array_2[i])
+                    self.class_249_0.vector3_0[i] = self.matrix_array_2[i].to_translation()
         else:
-            raise TypeError
-        return value
+            self.name = ""
+            self.parent_name = ""
+            self.vector3_3 = VECTOR_ZERO
 
-    def read_dict(self, k, v):
-        size = self.read(int)
-        D = {}
-        for i in range(size):
-            key = self.read(k)
-            value = self.read(v)
-            D[key] = value
-        return D
+        num_vertices = int(self._reader.read_int32() / 7)
+        self.vertices = []
+        for i in range(num_vertices):
+            vertex = Vertex()
+            self._reader.read_float()  # unused
+            position_x = self._reader.read_float() * 63.7 - self.vector3_3.x
+            normal_y = self._reader.read_float() / -1.732
+            position_z = self._reader.read_float() / 16 - self.vector3_3.z
+            uv_x = self._reader.read_float() / 4.8
+            normal_x = self._reader.read_float() / 10.962
+            self._reader.read_float()  # unused
+            normal_z = self._reader.read_float() / 11.432
+            uv_y = self._reader.read_float() / 9.6
+            position_y = -self._reader.read_float() * 6 - self.vector3_3.y
 
-    def read_matrix(self):
-        return mathutils.Matrix([[self.read(float) for i in range(4)] for j in range(4)])
+            vertex.position = mathutils.Vector((position_x, position_y, position_z))
+            vertex.normal = mathutils.Vector((normal_x, normal_y, normal_z))
+            vertex.uv = mathutils.Vector((uv_x, uv_y))
+            vertex.binormal = VECTOR_ZERO
+            vertex.tangent = VECTOR_ZERO
 
+            self.vertices.append(vertex)
 
-def quaternion_from_euler(x: float, y: float, z: float) -> mathutils.Quaternion:
-    # Convert degrees to radians
-    roll = math.radians(x)
-    pitch = math.radians(y)
-    yaw = math.radians(z)
+            num6 = max(abs(vertex.position.x), max(abs(vertex.position.y), abs(vertex.position.z)))
+            if num6 > model.bounding_sphere_radius:
+                model.bounding_sphere_radius = num6
+                print("Set bounding sphere radius to: " + str(model.bounding_sphere_radius))
 
-    # Create an Euler object from the roll, pitch, and yaw angles
-    euler = mathutils.Euler((yaw, pitch, roll), "XYZ")
+        num_textures = self._reader.read_int32() + 6
+        self.textures = []
+        for i in range(num_textures):
+            self.textures.append(self._reader.read_cs_string())
 
-    # Create a rotation matrix from the Euler object
-    rotation_matrix = euler.to_matrix()
+        is_ushort = self._reader.read_bool()
+        num_indices = self._reader.read_int32()
+        self.index_buffer = [None for i in range(num_indices)]
+        for i in range(num_indices):
+            self.index_buffer[i] = self._reader.read_int32()
+            # original code then calculates binormals and tangents for each face, but we don't need that
 
-    # Create a quaternion from the rotation matrix
-    return rotation_matrix.to_quaternion()
+        num5 = self._reader.read_int32() - 9
+        flag3 = False
+        if num5 == 0:
+            class141 = Class141()
+            class141.index_count = len(self.index_buffer)
+            class141.base_vertex_location = 0
+            class141.start_index_location = 0
+            self.class141s.append(class141)
+        else:
+            for i in range(num5):
+                class141 = Class141()
+                self._reader.read_float()  # unused
+                texture_index = self._reader.read_int32()
+                if len(self.textures) > 0:
+                    texture = self.textures[texture_index]
+                    class141.texture_0 = texture
+                    class141.texture_1 = texture + "_mrao"
+                    class141.texture_2 = texture + "_normal"
+                    flag3 |= class141.texture_2 != None
+                class141.index_count = self._reader.read_int32()
+                class141.start_index_location = self._reader.read_int32()
+                class141.base_vertex_location = self._reader.read_int32()
+                self.class141s.append(class141)
 
-
-class Class246(object):
-    quaternion_0: mathutils.Quaternion = None
-    vector3_0: mathutils.Vector = None
-    quaternion_1: mathutils.Quaternion = None
-    vector3_1: mathutils.Vector = None
-
-    def to_json(self):
-        return {"quaternion_0": self.quaternion_0, "vector3_0": self.vector3_0, "quaternion_1": self.quaternion_1, "vector3_1": self.vector3_1}
-
-
-class VertexStruct(object):
-    position: mathutils.Vector = mathutils.Vector()
-    normal: mathutils.Vector = mathutils.Vector()
-    uv: mathutils.Vector = mathutils.Vector()
-    tangent: mathutils.Vector = mathutils.Vector()
-    binormal: mathutils.Vector = mathutils.Vector()
-
-    def to_json(self):
-        return {"position": self.position, "normal": self.normal, "uv": self.uv, "tangent": self.tangent, "binormal": self.binormal}
-
-
-class ExtraMeshData(object):
-    texutre_0: str = None
-    mrao_texture: str = None
-    texture_2: str = None
-    base_vertex_location: int = None
-    start_index_location: int = None
-    index_count: int = None
-
-    def to_json(self):
-        return {
-            "texutre_0": self.texutre_0,
-            "mrao_texture": self.mrao_texture,
-            "texture_2": self.texture_2,
-            "base_vertex_location": self.base_vertex_location,
-            "start_index_location": self.start_index_location,
-            "index_count": self.index_count,
-        }
-
-
-class Mesh(object):
-    string_0: str = None
-    string_1: str = None
-    quaternion_1: mathutils.Quaternion = None
-    quaternion_2: mathutils.Quaternion = None
-    vector3_0: mathutils.Vector = mathutils.Vector()
-    vector3_1: mathutils.Vector = mathutils.Vector()
-    vector3_2: mathutils.Vector = mathutils.Vector()
-    vector3_3: mathutils.Vector = mathutils.Vector()
-    class_246_0: Class246 = None
-    vertex_structs: list[VertexStruct] = []
-    index_buffer: list[int] = []
-    textures: list[str] = []
-    extra_mesh_datas: list[ExtraMeshData] = []
-
-    def to_json(self):
-        return {
-            "string_0": self.string_0,
-            "string_1": self.string_1,
-            "quaternion_1": self.quaternion_1,
-            "quaternion_2": self.quaternion_2,
-            "vector3_0": self.vector3_0,
-            "vector3_1": self.vector3_1,
-            "vector3_2": self.vector3_2,
-            "vector3_3": self.vector3_3,
-            "class_246_0": self.class_246_0,
-        }
+        # if flag3, creates a new VBO of with Vertex, else converts to SharpDX VertexPositionNormalTexture
 
 
-class Model(object):
-    matrix_0: mathutils.Matrix = None
-    vector3_0: mathutils.Vector = None
+class Model:
+    _reader: BinaryReader
+    object_count: int = 1
+    flag: bool = False
+    matrix_0: Matrix = Matrix.identity_()
+    vector3_0: mathutils.Vector = VECTOR_ZERO
+    objects: list[ModelObject] = []
     bounding_sphere_radius: float = 0.0
-    meshes: list[Mesh] = []
 
-    def to_json(self):
-        return {
-            "matrix_0": self.matrix_0,
-            "vector3_0": self.vector3_0,
-            "bounding_sphere_radius": self.bounding_sphere_radius,
-            "meshes": [mesh.to_json() for mesh in self.meshes],
-            "vertex_structs": [vertex_struct.to_json() for vertex_struct in self.vertex_structs],
-            "textures": self.textures,
-            "index_buffer": self.index_buffer,
-            "extra_mesh_datas": [extra_mesh_data.to_json() for extra_mesh_data in self.extra_mesh_datas],
-        }
+    def __init__(self, reader: BinaryReader):
+        self._reader = reader
+        file_type = reader.read_int32()
+        if file_type == -969696:
+            self._read_969696()
+        elif file_type == -969697:
+            self._read_loco()
+        else:
+            # reset the reader to the start of the file
+            self._reader.seek(0)
+        self._read()
 
+    def _read_969696(self):
+        """
+        reads "header" for -969696 files
+        """
+        print("Found -969696 header")
+        self.object_count = self._reader.read_int32()
+        self.flag = True
 
-def calculate_tangents_and_binormals(index1: int, index2: int, index3: int, vertex_structs: list[VertexStruct]):
-    vertex1 = vertex_structs[index1]
-    vertex2 = vertex_structs[index2]
-    vertex3 = vertex_structs[index3]
+    def _read_loco(self):
+        """
+        reads "header" for -969697 files (seems to always be locomotives)
+        """
+        print("Found -979797 (Locomotive) header")
+        self.object_count = self._reader.read_int32()
+        self.vector3_0 = self._reader.read_vector3()
+        self.flag = True
 
-    position_delta1 = vertex2.position - vertex1.position
-    position_delta2 = vertex3.position - vertex1.position
-
-    uv_delta1_x = vertex2.uv.x - vertex1.uv.x
-    uv_delta1_y = vertex2.uv.y - vertex1.uv.y
-    uv_delta2_x = vertex3.uv.x - vertex1.uv.x
-    uv_delta2_y = vertex3.uv.y - vertex1.uv.y
-
-    determinant = uv_delta1_x * uv_delta2_y - uv_delta2_x * uv_delta1_y
-
-    if math.isclose(determinant, 0):
-        # Handle the case when the determinant is close to zero
-        # You can set num5 to a default value or handle it as per your requirements
-        num5 = 0.0
-    else:
-        num5 = 1 / determinant
-
-    tangent = mathutils.Vector()
-    tangent.x = (uv_delta2_y * position_delta1.x - uv_delta1_y * position_delta2.x) * num5
-    tangent.y = (uv_delta2_y * position_delta1.y - uv_delta1_y * position_delta2.y) * num5
-    tangent.z = (uv_delta2_y * position_delta1.z - uv_delta1_y * position_delta2.z) * num5
-    tangent.normalize()
-
-    vertex1.tangent = tangent
-    vertex2.tangent = tangent
-    vertex3.tangent = tangent
-
-    binormal = tangent.cross(vertex1.normal).normalize()
-
-    vertex1.binormal = binormal
-    vertex2.binormal = binormal
-    vertex3.binormal = binormal
-
-    vertex_structs[index1] = vertex1
-    vertex_structs[index2] = vertex2
-    vertex_structs[index3] = vertex3
+    def _read(self):
+        for i in range(self.object_count):
+            model_object = ModelObject(self._reader, self.flag, self)
+            self.objects.append(model_object)
 
 
-def import_mesh(mesh_name: str, vertex_structs: list[VertexStruct], index_buffer: list[int]):
-    # scaling_matrix = mathutils.Matrix.Scale(0.95, 4)
-    vertices = [a.position for a in vertex_structs]
-    normals = [a.normal for a in vertex_structs]
-    uvs = [a.uv for a in vertex_structs]
+def create_mesh(model_object: ModelObject):
+    vertices = [x.position.to_tuple() for x in model_object.vertices]
+    normals = [x.normal.to_tuple() for x in model_object.vertices]
+    uvs = [x.uv.to_tuple() for x in model_object.vertices]
+    indices = model_object.index_buffer
 
     # Create a new mesh object
-    mesh = bpy.data.meshes.new(mesh_name)
-    mesh_obj = bpy.data.objects.new(mesh_name, mesh)
+    mesh = bpy.data.meshes.new(model_object.name)
+    mesh_obj = bpy.data.objects.new(model_object.name, mesh)
     bpy.context.collection.objects.link(mesh_obj)
     bpy.context.view_layer.objects.active = mesh_obj
     mesh_obj.select_set(True)
 
-    # Create vertices and faces using from_pydata
-    faces = []
+    # if there is a parent, set it
+    if model_object.parent_name != "":
+        mesh_obj.parent = bpy.data.objects[model_object.parent_name]
 
-    for i in range(0, len(index_buffer), 3):
-        v1_index, v2_index, v3_index = index_buffer[i : i + 3]
-        a = [v1_index, v2_index, v3_index]
-        faces.append(a)
+    # create faces
+    faces = []
+    for i in range(0, len(indices), 3):
+        faces.append((indices[i], indices[i + 1], indices[i + 2]))
 
     # Assign vertex data to the mesh using from_pydata
     mesh.from_pydata(vertices, [], faces)
 
-    # apply scaling matrix
-    # mesh.transform(scaling_matrix)
+    # Convert Y-Up to Z-Up
+    for vertex in mesh.vertices:
+        # Swap the Y and Z coordinates
+        vertex.co[1], vertex.co[2] = vertex.co[2], -vertex.co[1]
 
-    # mesh.update()
-
-    # Assign per-vertex normals to the mesh
-    normals_flat = [n for normal in normals for n in normal]
-    mesh.vertices.foreach_set("normal", normals_flat)
+    # assign normals
+    mesh.normals_split_custom_set_from_vertices(normals)
 
     # Assign UVs to the mesh
     uv_layer = mesh.uv_layers.new()
@@ -311,156 +651,32 @@ def import_mesh(mesh_name: str, vertex_structs: list[VertexStruct], index_buffer
 
     for face in mesh.polygons:
         for vert_idx, loop_idx in zip(face.vertices, face.loop_indices):
-            uv_layer.data[loop_idx].uv = (uvs[vert_idx][0], -uvs[vert_idx][1])
+            uv_layer.data[loop_idx].uv = (uvs[vert_idx][0], -uvs[vert_idx][1])  # flip the V coordinate
 
-    # rotate upright
-    rotation_angle = math.radians(90)
-    mesh_obj.rotation_euler[0] = rotation_angle
-    mesh_obj.update_tag()
+    # apply rotation
+    mesh_obj.rotation_mode = "QUATERNION"
+    mesh_obj.rotation_quaternion = model_object.quaternion_2
 
-    mesh_obj.update_tag()
+    # apply position
+    mesh_obj.location = model_object.position
 
-    return (mesh, mesh_obj)
+    # back to object mode
+    bpy.ops.object.mode_set(mode="OBJECT")
+
+    for texture in model_object.textures:
+        print(texture)
 
 
 def import_model(context, filepath):
-    vector3_1 = mathutils.Vector((0.0, 0.0, 0.0))
-
-    model = Model()
-    model.matrix_0 = mathutils.Matrix.Identity(4)
-    model.vector3_0 = vector3_1
+    print("\n" * 10)
+    print("Importing Run8 model: %r..." % (filepath))
 
     with open(filepath, "rb") as f:
-        reader = BinaryReader(f.read())
+        reader = BinaryReader(f)
+        model = Model(reader)
 
-        num_meshes = 1
-        flag = False
-        num2 = reader.read(int)
-        if num2 == -969696:
-            num = reader.read(int)
-            flag = True
-        elif num2 == -969697:
-            num = reader.read(int)
-            model.vector3_0 = mathutils.Vector((reader.read(float), reader.read(float), reader.read(float)))
-            vector3_1 = mathutils.Vector()
-            flag = True
-        else:
-            # go back to the start of the file
-            f.seek(0)
-            reader = BinaryReader(f.read())
-
-        for i in range(num_meshes):
-            mesh = Mesh()
-            # TODO: finish this, used for locomotives
-            # if flag:
-            #     class_247.string_0 = reader.read(str)
-            #     class_247.string_1 = reader.read(str)
-            #     class_247.vector3_3 = mathutils.Vector((reader.read(float), reader.read(float), reader.read(float)))
-            #     class_247.vector3_1 = mathutils.Vector((reader.read(float), reader.read(float), reader.read(float)))
-            #     class_247.quaternion_1 = quaternion_from_euler(reader.read(float), reader.read(float), reader.read(float))
-            #     # read unused scaling matrix, 3 floats
-            #     reader.read(float)
-            #     reader.read(float)
-            #     reader.read(float)
-            #     # unused quaternion
-            #     quaternion_from_euler(reader.read(float), reader.read(float), reader.read(float))
-            #     # unused quaternion
-            #     quaternion_from_euler(reader.read(float), reader.read(float), reader.read(float))
-            #     class_247.vector3_2 = mathutils.Vector((reader.read(float), reader.read(float), reader.read(float)))
-            #     class_247.quaternion_2 = quaternion_from_euler(reader.read(float), reader.read(float), reader.read(float))
-            #     # unused scaling matrix, 3 floats
-            #     reader.read(float)
-            #     reader.read(float)
-            #     reader.read(float)
-            #     # number of unknown matrices
-            #     num = reader.read(int)
-            #     matrix_array = [None for i in range(num)]
-            #     for i in range(num):
-            #         if class_247.class_246_0 == None:
-            #             class_247.class_246_0 = Class246()
-            #             class_247.class_246_0.quaternion_0 = [None for i in range(num)]
-            #             class_247.class_246_0.vector3_0 = [None for i in range(num)]
-            #         matrix_array[i]  = reader.read_matrix()
-            # else:
-            #     class_247.string_0 = ""
-            #     class_247.string_1 = ""
-            num_verticies = int(reader.read(int) / 7)
-            for i in range(num_verticies):
-                vertex_struct = VertexStruct()
-
-                # unused float
-                reader.read(float)
-                position_x = reader.read(float) * 63.7 - mesh.vector3_3.x
-                normal_y = reader.read(float) / -1.732
-                position_z = reader.read(float) / 16 - mesh.vector3_3.z
-                texcoord_x = reader.read(float) / 4.8
-                normal_x = reader.read(float) / 10.962
-                # unused float
-                reader.read(float)
-                normal_z = reader.read(float) / 11.432
-                texcoord_y = reader.read(float) / 9.6
-                position_y = -reader.read(float) * 6 - mesh.vector3_3.y
-
-                vertex_struct.position = mathutils.Vector((position_x, position_y, position_z))
-                vertex_struct.normal = mathutils.Vector((normal_x, normal_y, normal_z))
-                vertex_struct.uv = mathutils.Vector((texcoord_x, texcoord_y))
-                vertex_struct.binormal = mathutils.Vector()
-                vertex_struct.tangent = mathutils.Vector()
-
-                mesh.vertex_structs.append(vertex_struct)
-
-                # num6 = max(abs(position_x), max(abs(position_y), abs(position_z)))
-                # if num6 > model.bounding_sphere_radius:
-                #     model.bounding_sphere_radius = num6
-
-            num_textures = reader.read(int) + 6
-            for i in range(num_textures):
-                mesh.textures.append(reader.read(str))
-
-            is_ushort = reader.read(bool)  # we dont care about this since its always read as int32
-            index_buffer_size = reader.read(int)
-
-            for i in range(index_buffer_size):
-                mesh.index_buffer.append(reader.read(int))
-
-            for i in range(len(mesh.index_buffer) - 3):
-                calculate_tangents_and_binormals(mesh.index_buffer[i], mesh.index_buffer[i + 2], mesh.index_buffer[i + 1], mesh.vertex_structs)
-
-            # num of mesh data structs
-            num5 = reader.read(int) - 9
-            if num5 == 0:
-                extra_mesh_data = ExtraMeshData()
-                extra_mesh_data.index_count = len(mesh.index_buffer)
-                extra_mesh_data.start_index_location = 0
-                extra_mesh_data.base_vertex_location = 0
-
-                mesh.extra_mesh_datas.append(extra_mesh_data)
-            else:
-                for i in range(num5):
-                    extra_mesh_data = ExtraMeshData()
-                    # unused float
-                    reader.read(float)
-                    num13 = reader.read(int)
-                    # TODO: does stuff with textures
-                    extra_mesh_data.index_count = reader.read(int)
-                    extra_mesh_data.start_index_location = reader.read(int)
-                    extra_mesh_data.base_vertex_location = reader.read(int)
-
-                    mesh.extra_mesh_datas.append(extra_mesh_data)
-
-            model.meshes.append(mesh)
-
-    for i, mesh in enumerate(model.meshes):
-        mesh_name = "Model_{}".format(i)
-        if len(model.meshes) == 1:
-            # 1 mesh, use the filename for the mesh name
-            mesh_name = filepath.split("\\")[-1].split(".")[0]
-        import_mesh(mesh_name, mesh.vertex_structs, mesh.index_buffer)
-        for texture in mesh.textures:
-            print(texture)
-
-    # we can dispose of the model now
-    del model
+        for i, model_object in enumerate(model.objects):
+            create_mesh(model_object)
 
     return {"FINISHED"}
 
