@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import json
 import math
 import struct
 from enum import Enum
@@ -546,11 +545,11 @@ class ModelObject:
             position_y = -self._reader.read_float() * 6 - self.vector3_3.y
 
             vertex.position = Vector((position_x, position_z, position_y))
-            vertex.normal = Vector((-normal_x, normal_y, normal_z))
-            vertex.uv = Vector((uv_x, uv_y, 0.0))
+            vertex.normal = Vector((normal_x, normal_y, normal_z))
+            vertex.uv = Vector((uv_x, uv_y))
             vertex.binormal = VECTOR_ZERO
             vertex.tangent = VECTOR_ZERO
-            
+
             self.vertices.append(vertex)
 
             num6 = max(abs(vertex.position.x), max(abs(vertex.position.y), abs(vertex.position.z)))

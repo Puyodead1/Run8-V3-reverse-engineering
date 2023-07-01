@@ -1,7 +1,7 @@
 import math
 import random
 import struct
-from io import SEEK_CUR, BytesIO
+from io import SEEK_CUR
 from typing import BinaryIO
 
 import bpy
@@ -11,6 +11,8 @@ from bpy.types import Operator
 from bpy_extras.io_utils import ExportHelper
 
 ENDIAN_PREFIXES = ("@", "<", ">", "=", "!")
+# create a new rotation matrix to rotate -90 degrees on the X axis
+rotation_matrix = mathutils.Matrix.Rotation(math.radians(-90), 4, "X")
 
 def matrix_to_flat_list(matrix):
     return [matrix[i][j] for j in range(4) for i in range(4)] 
@@ -124,13 +126,12 @@ def is_mesh_object(obj):
 
 def write(context, filepath):
     obj = bpy.context.active_object
+    if obj is None:
+        raise Exception("No active object")
 
     if not is_mesh_object(obj):
         raise Exception("Object is not a mesh")
     mesh = obj.data
-
-    # # Rotate by -90 degrees on X axis
-    # obj.rotation_euler = (math.radians(-90), 0, 0)
 
     vertices = [v.co for v in mesh.vertices]
     normals = [v.normal for v in mesh.vertices]
@@ -143,6 +144,8 @@ def write(context, filepath):
     with open(filepath, "wb") as f:
         writer = BinaryWriter(f)
 
+        # for -97 and -96, position should be `rotation_matrix @ Vector((position_x, position_y, position_z))`
+
         # write vertex count
         writer.write_int32(len(vertices) * 7)
         
@@ -151,18 +154,18 @@ def write(context, filepath):
             writer.write_random_float() # unused float
             writer.write_float(vertex.x / 63.7) # write pos x
             writer.write_float(normal.y * -1.732) # write normal y
-            writer.write_float(vertex.z * 16) # write pos z
+            writer.write_float(vertex.y * 16) # write pos y (swapped with z)
             writer.write_float(uv.x * 4.8) # write uv x
             writer.write_float(normal.x * 10.962) # write normal x
             writer.write_random_float() # unused float
             writer.write_float(normal.z * 11.432) # write normal z
-            writer.write_float((uv.y * -1) * 9.6) # write uv y (inverted)
-            writer.write_float(vertex.y / 6) # write pos y
+            writer.write_float(uv.y * 9.6) # write uv y (inverted)
+            writer.write_float(-vertex.z / 6) # write pos z (swapped with y)
 
         # write texture count, 0 for now
         writer.write_int32(1 - 6)
 
-        textures = ["my_balls_itch"]
+        textures = ["test_texture"]
         for texture in textures:
             writer.write_string(texture)
 
