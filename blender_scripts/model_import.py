@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import math
 import struct
+from enum import Enum
 from os import SEEK_CUR
 from typing import BinaryIO
 
@@ -54,6 +55,8 @@ VECTOR_FORWARDRH = Vector((0.0, 0.0, -1.0))
 VECTOR_UP = Vector((0.0, 1.0, 0.0))
 VECTOR_RIGHT = Vector((1.0, 0.0, 0.0))
 VECTOR_ZERO = Vector((0.0, 0.0, 0.0))
+# create a new rotation matrix to rotate 90 degrees on the X axis
+rotation_matrix = mathutils.Matrix.Rotation(math.radians(90), 4, "X")
 ENDIAN_PREFIXES = ("@", "<", ">", "=", "!")
 
 
@@ -201,46 +204,7 @@ class Matrix(mathutils.Matrix):
     @staticmethod
     def identity_() -> Matrix:
         return Matrix()
-        
-
-    def rotation_quaternion(self, rotation: Quaternion) -> Matrix:
-        """
-        Creates a rotation matrix from a quaternion.
-        """
-
-        xx = rotation.x * rotation.x
-        yy = rotation.y * rotation.y
-        zz = rotation.z * rotation.z
-        xy = rotation.x * rotation.y
-        zw = rotation.z * rotation.w
-        zx = rotation.z * rotation.x
-        yw = rotation.y * rotation.w
-        yz = rotation.y * rotation.z
-        xw = rotation.x * rotation.w
-
-        result = Matrix.identity_()
-        result.M11 = 1.0 - (2.0 * (yy + zz))
-        result.M12 = 2.0 * (xy + zw)
-        result.M13 = 2.0 * (zx - yw)
-        result.M21 = 2.0 * (xy - zw)
-        result.M22 = 1.0 - (2.0 * (zz + xx))
-        result.M23 = 2.0 * (yz + xw)
-        result.M31 = 2.0 * (zx + yw)
-        result.M32 = 2.0 * (yz - xw)
-        result.M33 = 1.0 - (2.0 * (yy + xx))
-
-        return result
-
-    @staticmethod
-    def rotation_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> Matrix:
-        """
-        Creates a rotation matrix with a specified yaw, pitch, and roll.
-        """
-
-        matrix = Matrix()
-        quaternion = Quaternion.rotation_yaw_pitch_roll(yaw, pitch, roll)
-        return matrix.rotation_quaternion(quaternion)
-
+    
     @staticmethod
     def scaling(x: float, y: float, z: float) -> Matrix:
         result = Matrix.identity_()
@@ -249,13 +213,13 @@ class Matrix(mathutils.Matrix):
         result.M33 = z
 
         return result
-
+        
 
 class Quaternion(mathutils.Quaternion):
     @staticmethod
     def identity_() -> Quaternion:
         return Quaternion((0, 0, 0, 1))
-
+    
     @staticmethod
     def rotation_matrix(matrix: Matrix) -> Quaternion:
         """
@@ -297,61 +261,6 @@ class Quaternion(mathutils.Quaternion):
             result.z = 0.5 * sqrt
             result.w = (matrix.M12 - matrix.M21) * half
 
-        return result
-
-    @staticmethod
-    def rotation_yaw_pitch_roll(yaw: float, pitch: float, roll: float) -> Quaternion:
-        """
-        Creates a quaternion given a yaw, pitch, and roll value.
-        """
-
-        result = Quaternion()
-
-        half_roll = roll * 0.5
-        half_pitch = pitch * 0.5
-        half_yaw = yaw * 0.5
-
-        sin_roll = math.sin(half_roll)
-        cos_roll = math.cos(half_roll)
-        sin_pitch = math.sin(half_pitch)
-        cos_pitch = math.cos(half_pitch)
-        sin_yaw = math.sin(half_yaw)
-        cos_yaw = math.cos(half_yaw)
-
-        result.x = (cos_yaw * sin_pitch * cos_roll) + (sin_yaw * cos_pitch * sin_roll)
-        result.y = (sin_yaw * cos_pitch * cos_roll) - (cos_yaw * sin_pitch * sin_roll)
-        result.z = (cos_yaw * cos_pitch * sin_roll) - (sin_yaw * sin_pitch * cos_roll)
-        result.w = (cos_yaw * cos_pitch * cos_roll) + (sin_yaw * sin_pitch * sin_roll)
-
-        return result
-
-    @staticmethod
-    def dot(left: Quaternion, right: Quaternion) -> float:
-        return (left.x * right.x) + (left.y * right.y) + (left.z * right.z) + (left.w * right.w)
-
-    @staticmethod
-    def lerp(start: Quaternion, end: Quaternion, amount: float) -> Quaternion:
-        result = Quaternion()
-        inverse = 1.0 - amount
-
-        # ???
-        # if Quaternion.dot(start, end) >= 0.0:
-        #     result.x = (inverse * start.x) + (amount * end.x)
-        #     result.y = (inverse * start.y) + (amount * end.y)
-        #     result.z = (inverse * start.z) + (amount * end.z)
-        #     result.w = (inverse * start.w) + (amount * end.w)
-        # else:
-        #     result.x = (inverse * start.x) - (amount * end.x)
-        #     result.y = (inverse * start.y) - (amount * end.y)
-        #     result.z = (inverse * start.z) - (amount * end.z)
-        #     result.w = (inverse * start.w) - (amount * end.w)
-
-        result.x = (inverse * start.x) + (amount * end.x)
-        result.y = (inverse * start.y) + (amount * end.y)
-        result.z = (inverse * start.z) + (amount * end.z)
-        result.w = (inverse * start.w) + (amount * end.w)
-
-        result.normalize()
         return result
 
 class BinaryReader:
@@ -586,7 +495,8 @@ class ModelObject:
             position_x = self._reader.read_float()
             position_y = self._reader.read_float()
             position_z = self._reader.read_float()
-            self.position = Vector((position_x, position_y, -position_z))
+            self.position = Vector((position_x, position_y, position_z))
+            self.position = rotation_matrix @ self.position
             self.quaternion_2 = self._reader.read_rotation_quaternion()
             self._reader.read_scaling_matrix()  # unused
             num_matrix_1 = self._reader.read_int32()
@@ -621,6 +531,7 @@ class ModelObject:
         num_vertices = int(self._reader.read_int32() / 7)
         print("Vertex Count: " + str(num_vertices))
         self.vertices = []
+
         for i in range(num_vertices):
             vertex = Vertex()
             self._reader.read_float()  # unused
@@ -634,12 +545,12 @@ class ModelObject:
             uv_y = self._reader.read_float() / 9.6
             position_y = -self._reader.read_float() * 6 - self.vector3_3.y
 
-            vertex.position = Vector((position_x, position_y, position_z))
-            vertex.normal = Vector((normal_x, normal_y, normal_z))
-            vertex.uv = Vector((uv_x, uv_y))
+            vertex.position = Vector((position_x, position_z, position_y))
+            vertex.normal = Vector((-normal_x, normal_y, normal_z))
+            vertex.uv = Vector((uv_x, uv_y, 0.0))
             vertex.binormal = VECTOR_ZERO
             vertex.tangent = VECTOR_ZERO
-
+            
             self.vertices.append(vertex)
 
             num6 = max(abs(vertex.position.x), max(abs(vertex.position.y), abs(vertex.position.z)))
@@ -710,8 +621,14 @@ class ModelObject:
     #     self.vector3_0 += vector2 * vector4.y;
     #     self.vector3_0 += vector * -vector4.z;
 
+class EHeader(Enum):
+    NONE = 0
+    NINE_SIX = 1
+    NINE_SEVEN = 2
+
 class Model:
     _reader: BinaryReader
+    header: EHeader = EHeader.NONE
     object_count: int = 1
     flag: bool = False
     matrix_0: Matrix = Matrix.identity_()
@@ -737,6 +654,7 @@ class Model:
         reads "header" for -969696 files
         """
         print("Found -969696 header")
+        self.header = EHeader.NINE_SIX
         self.object_count = self._reader.read_int32()
         self.flag = True
 
@@ -745,6 +663,7 @@ class Model:
         reads "header" for -969697 files (seems to always be locomotives)
         """
         print("Found -979797 (Locomotive) header")
+        self.header = EHeader.NINE_SEVEN
         self.object_count = self._reader.read_int32()
         self.vector3_0 = self._reader.read_vector3()
         self.flag = True
@@ -785,7 +704,6 @@ class Model:
 
 
 def create_mesh(model: Model, model_object: ModelObject):
-
     vertices = [x.position.to_tuple() for x in model_object.vertices]
     normals = [x.normal.to_tuple() for x in model_object.vertices]
     uvs = [x.uv.to_tuple() for x in model_object.vertices]
@@ -820,36 +738,16 @@ def create_mesh(model: Model, model_object: ModelObject):
     # if there is a parent, set it
     if model_object.parent_name != "":
         mesh_obj.parent = bpy.data.objects[model_object.parent_name]
-    else:
-        pass
-        # rotate parents by 90 degrees on the X axis
-        # mesh_obj.rotation_euler = (math.radians(90), 0, 0)
+
 
     # back to object mode
     bpy.ops.object.mode_set(mode="OBJECT")
 
     # apply position
-    # mesh_obj.location = model_object.position
+    mesh_obj.location = model_object.position
 
     for texture in model_object.textures:
         print(texture)
-
-    with open(f"C:\\Users\\23562\\Documents\\Code\\Run8-V3-reverse-engineering\\blender_scripts\\{model_object.name if model_object.name != None and model_object.name != '' else 'Object'}.json", "w") as f:
-        data = {}
-        data["name"] = model_object.name
-        data["parent_name"] = model_object.parent_name
-        data["vector3_1"] = model_object.vector3_1.to_tuple()
-        data["position"] = model_object.position.to_tuple()
-        data["vector3_3"] = model_object.vector3_3.to_tuple()
-        data["quaternion_1"] = model_object.quaternion_1.__str__()
-        data["quaternion_2"] = model_object.quaternion_2.__str__()
-        data["matrix_array_1"] = [x.__str__() for x in model_object.matrix_array_1]
-        data["matrix_array_2"] = [x.__str__() for x in model_object.matrix_array_2]
-        if model_object.class249_0:
-            data["class_249_0"] = model_object.class249_0.to_dict()
-        data["class141s"] = [x.to_dict() for x in model_object.class141s]
-
-        f.write(json.dumps(data, indent=4))
 
 
 def import_model(context, filepath):
