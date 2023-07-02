@@ -111,15 +111,16 @@ string decodedString = Encoding.UTF8.GetString(decodedBytes);
 | Float | Normal Z        | / 11.432f |
 | Float | TextureCoord Y  | / 9.6f    |
 | Float | SVPosition Y    | \* 6f     |
-| Byte | BlendIndicies W  |           |
+| Byte  | BlendIndicies W |           |
 | Float | BlendWeight Z   |           |
-| Byte | BlendIndicies X  |           |
+| Byte  | BlendIndicies X |           |
 | Float | BlendWeight Y   |           |
-| Byte | BlendIndicies Y  |           |
+| Byte  | BlendIndicies Y |           |
 | Float | BlendWeight W   |           |
-| Byte | BlendIndicies Z  |           |
+| Byte  | BlendIndicies Z |           |
 | Float | BlendWeight X   |           |
 
+- Reserved are just random floats that never get used
 - SVPosition is a Vector3
 - Normal is a Vector3
 - TextureCoord is a Vector2
