@@ -1,4 +1,5 @@
 ﻿using LibRun8.Common;
+using LibRun8.Utils;
 
 namespace LibRun8.Formats
 {
@@ -25,7 +26,7 @@ namespace LibRun8.Formats
             return blockDetectorDatabase;
         }
 
-        public override void Write()
+        public override void Write(string path)
         {
             throw new NotImplementedException();
         }
@@ -48,8 +49,8 @@ namespace LibRun8.Formats
                 {
                     blockDetector.Tracks.Add(reader.ReadInt32());
                 }
-                blockDetector.TileXZ = TileIndex.Read(reader);
-                blockDetector.PositionXYZ = Vector3.Read(reader);
+                blockDetector.TileXZ = reader.ReadTileIndex();
+                blockDetector.PositionXYZ = reader.ReadVector3();
 
                 return blockDetector;
             }

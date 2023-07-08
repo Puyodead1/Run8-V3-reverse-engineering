@@ -1,5 +1,4 @@
 ﻿using LibRun8.Formats;
-using System.IO;
 using System.Text.Json;
 
 var options = new JsonSerializerOptions { WriteIndented = true };
@@ -38,6 +37,14 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(blockDetectorDatabase, options);
 //File.WriteAllText("BlockDetectorDatabase.json", jsonString);
 
-CarSpewerDatabase carSpewerDatabase = CarSpewerDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\CarSpewerDatabase.r8");
-jsonString = JsonSerializer.Serialize(carSpewerDatabase, options);
-File.WriteAllText("CarSpewerDatabase.json", jsonString);
+//CarSpewerDatabase carSpewerDatabase = CarSpewerDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\CarSpewerDatabase.r8");
+//jsonString = JsonSerializer.Serialize(carSpewerDatabase, options);
+//File.WriteAllText("CarSpewerDatabase.json", jsonString);
+
+Console.WriteLine("Reading...");
+CommTowerDatabase commTowerDatabase = CommTowerDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\CommTowerDatabase.r8");
+jsonString = JsonSerializer.Serialize(commTowerDatabase, options);
+File.WriteAllText("CommTowerDatabase.json", jsonString);
+
+Console.WriteLine("Writing...");
+commTowerDatabase.Write("CommTowerDatabase_Test.r8");

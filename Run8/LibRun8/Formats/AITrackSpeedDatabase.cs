@@ -26,7 +26,7 @@ namespace LibRun8.Formats
             return aiTrackSpeedDatabase;
         }
 
-        public override void Write()
+        public override void Write(string path)
         {
             throw new NotImplementedException();
         }

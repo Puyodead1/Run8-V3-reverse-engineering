@@ -7,19 +7,19 @@ Contains a list of Comm Towers
 | Offset | Type      | Explaination      |
 | ------ | --------- | ----------------- |
 | 0      | Int32     | Reserved          |
-| 4      | Int32     | CommTower Count	 |
-| 8      | CommTower | CommTowers        |
+| 4      | Int32     | Number of CommTowers |
+| 8      | CommTower[] | CommTowers      |
 
 ## CommTower
 
 | Offset | Type      | Explaination        |
 | ------ | --------- | ------------------- |
 | 0      | Int32     | Reserved            |
-| 4      | TileIndex | Tile Index          |
-| 12     | Vector3   | Location?           |
-| 24     | R8String  | Tower Name          |
-| ...    | Byte      | Unknown             |
+| 4      | TileIndex | TileXZ              |
+| 12     | Vector3   | Position            |
+| 24     | R8String  | Tower ID/Name       |
+| ...    | Byte      | Channel             |
 | ...    | R8String  | Dial Code           |
 | ...    | R8String  | Emergency Dial Code |
-| ...    | Float     | Unknown             |
-| ...    | R8String  | Dispatch Tone Type  |
+| ...    | Float     | Range Meters        |
+| ...    | R8String  | Dispatch Tone Cue Name |

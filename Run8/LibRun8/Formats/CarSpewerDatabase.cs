@@ -1,4 +1,5 @@
 ﻿using LibRun8.Common;
+using LibRun8.Utils;
 
 namespace LibRun8.Formats
 {
@@ -24,7 +25,7 @@ namespace LibRun8.Formats
             return carSpewerDatabase;
         }
 
-        public override void Write()
+        public override void Write(string path)
         {
             throw new NotImplementedException();
         }
@@ -74,8 +75,8 @@ namespace LibRun8.Formats
                 CarSpewStartPoint carSpewStartPoint = new CarSpewStartPoint();
 
                 reader.ReadInt32();
-                carSpewStartPoint.PosXYZ = Vector3.Read(reader);
-                carSpewStartPoint.TileXZ = TileIndex.Read(reader);
+                carSpewStartPoint.PosXYZ = reader.ReadVector3();
+                carSpewStartPoint.TileXZ = reader.ReadTileIndex();
                 carSpewStartPoint.Heading = reader.ReadSingle();
 
                 return carSpewStartPoint;

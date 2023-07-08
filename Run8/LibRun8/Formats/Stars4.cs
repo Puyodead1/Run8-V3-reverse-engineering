@@ -1,4 +1,6 @@
-﻿namespace LibRun8.Formats
+﻿using LibRun8.Utils;
+
+namespace LibRun8.Formats
 {
     public class Stars4 : FileFormat
     {
@@ -17,7 +19,7 @@
 
                     for(int i = 0; i < stars4.Entries.Length; i++)
                     {
-                        stars4.Entries[i] = Utils.String.Read(reader);
+                        stars4.Entries[i] = reader.ReadR8String();
                     }
                 }
             }
@@ -25,7 +27,7 @@
             return stars4;
         }
 
-        public override void Write()
+        public override void Write(string path)
         {
             throw new NotImplementedException();
         }

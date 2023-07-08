@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using LibRun8.Common;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace LibRun8.Utils
@@ -51,6 +53,28 @@ namespace LibRun8.Utils
         public static string ReadFixedString(this BinaryReader reader, int count)
         {
             return Encoding.ASCII.GetString(reader.ReadBytes(count));
+        }
+
+        public static Vector3 ReadVector3(this BinaryReader reader)
+        {
+            float X = reader.ReadSingle();
+            float Y = reader.ReadSingle();
+            float Z = reader.ReadSingle();
+            return new Vector3(X, Y, Z);
+        }
+
+        public static TileIndex ReadTileIndex(this BinaryReader reader)
+        {
+            int X = reader.ReadInt32();
+            int Z = reader.ReadInt32();
+
+            return new TileIndex(X, Z);
+        }
+
+        public static string ReadR8String(this BinaryReader reader)
+        {
+            int size = reader.ReadInt32();
+            return R8String.DecodeBytes(reader.ReadBytes(size));
         }
     }
 }

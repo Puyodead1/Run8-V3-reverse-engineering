@@ -49,7 +49,7 @@ namespace LibRun8.Formats
             return signal;
         }
 
-        public override void Write()
+        public override void Write(string path)
         {
             throw new NotImplementedException();
         }

@@ -29,7 +29,7 @@ namespace LibRun8.Formats
             return database;
         }
 
-        public override void Write()
+        public override void Write(string path)
         {
             throw new NotImplementedException();
         }
