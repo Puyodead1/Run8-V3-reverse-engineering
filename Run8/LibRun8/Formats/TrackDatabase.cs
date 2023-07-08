@@ -4,24 +4,24 @@ namespace LibRun8.Formats
 {
     public class TrackDatabase : FileFormat
     {
-        public TrackSection[] sections { get; set; }
+        public TrackSection[] Sections { get; set; }
 
         public static TrackDatabase Read(string path)
         {
             TrackDatabase database = new TrackDatabase();
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
-                using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                using (BinaryReader reader = new BinaryReader(fileStream))
                 {
-                    binaryReader.ReadInt32(); // reserved
-                    int sectionCount = binaryReader.ReadInt32();
-                    database.sections = new TrackSection[sectionCount];
+                    reader.ReadInt32(); // reserved
+                    int sectionCount = reader.ReadInt32();
+                    database.Sections = new TrackSection[sectionCount];
 
                     for(int i = 0; i < sectionCount; i++)
                     {
                         TrackSection section = new TrackSection();
-                        section.Read(binaryReader);
-                        database.sections[i] = section;
+                        section.Read(reader);
+                        database.Sections[i] = section;
                     }
                 }
             }
@@ -36,87 +36,87 @@ namespace LibRun8.Formats
 
         public class TrackSection
         {
-            public TrackNode[] nodes { get; set; }
-            public int id { get; set; }
-            public bool bool0 { get; set; }
-            public int[] sectionIds { get; set; }
-            public byte byte0 { get; set; }
-            public double double0 { get; set; }
-            public bool bool1 { get; set; }
-            public bool bool2 { get; set; }
-            public int int1 { get; set; }
-            public bool bool3 { get; set; }
-            public bool isTurntable { get; set; } = false;
-            public bool isTransferTable { get; set; } = false;
+            public TrackNode[] Nodes { get; set; }
+            public int Index { get; set; }
+            public bool SwitchLeverPosition { get; set; }
+            public int[] NextSectionIndex { get; set; }
+            public byte TrackType { get; set; } // not 100% sure if this is correct
+            public double RetarderMPH { get; set; }
+            public bool IsOccupied { get; set; }
+            public bool SwitchStandLeftSide { get; set; }
+            public int SwitchStandType { get; set; }
+            public bool IsCTCSwitch { get; set; }
+            //public bool IsTurntable { get; set; } = false;
+            //public bool IsTransferTable { get; set; } = false;
 
-            public void Read(BinaryReader binaryReader)
+            public void Read(BinaryReader reader)
             {
-                binaryReader.ReadInt32(); // reserved
+                reader.ReadInt32(); // reserved
 
-                int nodeCount = binaryReader.ReadInt32();
-                nodes = new TrackNode[nodeCount];
+                int numNodes = reader.ReadInt32();
+                Nodes = new TrackNode[numNodes];
 
-                for(int i = 0; i < nodeCount; i++)
+                for(int i = 0; i < numNodes; i++)
                 {
-                    nodes[i] = new TrackNode();
-                    nodes[i].Read(binaryReader);
+                    Nodes[i] = new TrackNode();
+                    Nodes[i].Read(reader);
                 }
 
-                id = binaryReader.ReadInt32();
-                bool0 = binaryReader.ReadBoolean();
+                Index = reader.ReadInt32();
+                SwitchLeverPosition = reader.ReadBoolean();
 
-                int idCount = binaryReader.ReadInt32();
-                sectionIds = new int[idCount];
-                for(int i = 0; i <  idCount; i++)
+                int numSectionIndices = reader.ReadInt32();
+                NextSectionIndex = new int[numSectionIndices];
+                for(int i = 0; i <  numSectionIndices; i++)
                 {
-                    sectionIds[i] = binaryReader.ReadInt32();
+                    NextSectionIndex[i] = reader.ReadInt32();
                 }
 
-                byte0 = binaryReader.ReadByte();
-                double0 = binaryReader.ReadDouble();
-                bool1 = binaryReader.ReadBoolean();
-                bool2 = binaryReader.ReadBoolean();
-                id = binaryReader.ReadInt32();
-                bool3 = binaryReader.ReadBoolean();
+                TrackType = reader.ReadByte();
+                RetarderMPH = reader.ReadDouble();
+                IsOccupied = reader.ReadBoolean();
+                SwitchStandLeftSide = reader.ReadBoolean();
+                SwitchStandType = reader.ReadInt32();
+                IsCTCSwitch = reader.ReadBoolean();
             }
         }
 
         public class TrackNode
         {
-            public TileIndex tileIndex { get; set; }
-            public Vector3 vector0 { get; set; }
-            public Vector3 vector1 { get; set; }
-            public Vector3 vector2 { get; set; }
-            public int id { get; set; }
-            public bool bool0 { get; set; }
-            public bool bool1 { get; set; }
-            public float float0 { get; set; }
-            public int int1 { get; set; }
-            public float float1 { get; set; }
-            public float float2 { get; set; }
-            public int int2 { get; set; }
-            public int sectionId { get; set; }
-            public bool bool2 { get; set; }
+            public TileIndex TileXZ { get; set; }
+            public Vector3 PositionXYZ { get; set; }
+            public Vector3 TangentDegXYZ { get; set; }
+            public Vector3 EndPositionXYZ { get; set; }
+            public int NodeIndex { get; set; }
+            public bool IsSwitchNode { get; set; }
+            public bool IsReversePath { get; set; }
+            public float CurvatureDeg { get; set; }
+            public int CurveSign { get; set; }
+            public float RadiusMeters { get; set; }
+            public float ArcLengthMeters { get; set; }
+            public int NumSegments { get; set; }
+            public int BelongsToTrackIndex { get; set; }
+            public bool IsSelected { get; set; } // could also be SoundTrigger
 
-            public void Read(BinaryReader binaryReader)
+            public void Read(BinaryReader reader)
             {
-                binaryReader.ReadInt32(); // reserved
+                reader.ReadInt32(); // reserved
 
-                tileIndex = new TileIndex(binaryReader.ReadInt32(), binaryReader.ReadInt32());
-                vector0 = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
-                vector1 = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
-                vector2 = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
+                TileXZ = new TileIndex(reader.ReadInt32(), reader.ReadInt32());
+                PositionXYZ = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                TangentDegXYZ = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                EndPositionXYZ = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
 
-                id = binaryReader.ReadInt32();
-                bool0 = binaryReader.ReadBoolean();
-                bool1 = binaryReader.ReadBoolean();
-                float0 = binaryReader.ReadSingle();
-                int1 = binaryReader.ReadInt32();
-                float1 = binaryReader.ReadSingle();
-                float2 = binaryReader.ReadSingle();
-                int2 = binaryReader.ReadInt32();
-                sectionId = binaryReader.ReadInt32();
-                bool2 = binaryReader.ReadBoolean();
+                NodeIndex = reader.ReadInt32();
+                IsSwitchNode = reader.ReadBoolean();
+                IsReversePath = reader.ReadBoolean();
+                CurvatureDeg = reader.ReadSingle();
+                CurveSign = reader.ReadInt32();
+                RadiusMeters = reader.ReadSingle();
+                ArcLengthMeters = reader.ReadSingle();
+                NumSegments = reader.ReadInt32();
+                BelongsToTrackIndex = reader.ReadInt32();
+                IsSelected = reader.ReadBoolean();
             }
         }
     }

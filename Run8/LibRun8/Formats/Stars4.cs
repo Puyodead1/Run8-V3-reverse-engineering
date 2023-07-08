@@ -2,22 +2,22 @@
 {
     public class Stars4 : FileFormat
     {
-        public string[] entries { get; set; }
+        public string[] Entries { get; set; }
 
         public static Stars4 Read(string path)
         {
             Stars4 stars4 = new Stars4();
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
-                using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                using (BinaryReader reader = new BinaryReader(fileStream))
                 {
-                    binaryReader.ReadInt32();
-                    int entryCount = binaryReader.ReadInt32();
-                    stars4.entries = new string[entryCount];
+                    reader.ReadInt32();
+                    int entryCount = reader.ReadInt32();
+                    stars4.Entries = new string[entryCount];
 
-                    for(int i = 0; i < stars4.entries.Length; i++)
+                    for(int i = 0; i < stars4.Entries.Length; i++)
                     {
-                        stars4.entries[i] = Utils.String.Read(binaryReader);
+                        stars4.Entries[i] = Utils.String.Read(reader);
                     }
                 }
             }

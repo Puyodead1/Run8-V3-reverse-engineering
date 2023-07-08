@@ -44,5 +44,14 @@
         {
             return string.Format("X={0};Y={1};Z={2}", X, Y, Z);
         }
+
+        public static Vector3 Read(BinaryReader reader)
+        {
+            Vector3 v = new Vector3();
+            v.X = reader.ReadSingle();
+            v.Y = reader.ReadSingle();
+            v.Z = reader.ReadSingle();
+            return v;
+        }
     }
 }

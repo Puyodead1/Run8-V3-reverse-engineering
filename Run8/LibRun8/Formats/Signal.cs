@@ -4,44 +4,44 @@ namespace LibRun8.Formats
 {
     public class Signal : FileFormat
     {
-        public string modelName { get; set; }
-        public int leastRestrictiveSignalState { get; set; }
-        public bool b0 { get; set; }
-        public bool isDwarf { get; set; }
-        public SignalLight[] lights { get; set; }
+        public string ModelName { get; set; }
+        public int LeastRestrictiveSignalState { get; set; }
+        public bool B0 { get; set; }
+        public bool IsDwarf { get; set; }
+        public SignalLight[] SignalLights { get; set; }
 
         public static Signal Read(string path)
         {
             Signal signal = new Signal();
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
-                using (BinaryReader binaryReader = new BinaryReader(fileStream))
+                using (BinaryReader reader = new BinaryReader(fileStream))
                 {
-                    signal.modelName = binaryReader.ReadString();
-                    signal.leastRestrictiveSignalState = binaryReader.ReadInt32();
-                    signal.b0 = binaryReader.ReadBoolean();
-                    signal.isDwarf = binaryReader.ReadBoolean();
+                    signal.ModelName = reader.ReadString();
+                    signal.LeastRestrictiveSignalState = reader.ReadInt32();
+                    signal.B0 = reader.ReadBoolean();
+                    signal.IsDwarf = reader.ReadBoolean();
 
-                    int signalCount = binaryReader.ReadInt32();
-                    signal.lights = new SignalLight[signalCount];
+                    int signalCount = reader.ReadInt32();
+                    signal.SignalLights = new SignalLight[signalCount];
 
                     for(int i = 0; i < signalCount; i++)
                     {
                         SignalLight light = new SignalLight();
-                        light.lightOffset = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
-                        light.color = new Vector4(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle(), 1f);
-                        light.lightGlareRadiusMeters = binaryReader.ReadSingle();
-                        light.lightRange = binaryReader.ReadSingle();
+                        light.LightOffset = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                        light.Color = new Vector4(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), 1f);
+                        light.LightGlareRadiusMeters = reader.ReadSingle();
+                        light.LightRange = reader.ReadSingle();
 
-                        int VectorCount = binaryReader.ReadInt32();
-                        light.glareList = new Vector3[VectorCount];
+                        int VectorCount = reader.ReadInt32();
+                        light.GlareList = new Vector3[VectorCount];
 
                         for(int j = 0; j < VectorCount;  j++)
                         {
-                            light.glareList[j] = new Vector3(binaryReader.ReadSingle(), binaryReader.ReadSingle(), binaryReader.ReadSingle());
+                            light.GlareList[j] = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
                         }
 
-                        signal.lights[i] = light;
+                        signal.SignalLights[i] = light;
                     }
                 }
             }
@@ -56,14 +56,14 @@ namespace LibRun8.Formats
 
         public class SignalLight
         {
-            public Vector3 lightOffset { get; set; }
+            public Vector3 LightOffset { get; set; }
             public Vector3 lightDirectionDeg { get; set; }
-            public Vector3[] glareList { get; set; }
-            public Vector4 color { get; set; }
-            public float lightGlareRadiusMeters { get; set; } = 0.35f;
-            public float lightRange { get; set; }
-            public float lightIntensity { get; set; }
-            public bool isLimitedYardLight { get; set; }
+            public Vector3[] GlareList { get; set; }
+            public Vector4 Color { get; set; }
+            public float LightGlareRadiusMeters { get; set; } = 0.35f;
+            public float LightRange { get; set; }
+            public float LightIntensity { get; set; }
+            public bool IsLimitedYardLight { get; set; }
         }
     }
 }

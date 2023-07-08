@@ -4,21 +4,21 @@
     {
         public bool billboardGlare { get; set; }
 
-        public float lightRange { get; set; }
+        public float LightRange { get; set; }
 
         public float lightWidth { get; set; }
 
-        public float lightIntensity { get; set; }
+        public float LightIntensity { get; set; }
 
         public float decayExponent { get; set; } = 1f;
 
-        public Vector3 lightOffsetXYZ { get; set; }
+        public Vector3 LightOffsetXYZ { get; set; }
 
         public bool isSpotLight { get; set; }
 
-        public Vector4 color { get; set; }
+        public Vector4 Color { get; set; }
 
-        public Vector3 lightDirectionDeg { get; set; }
+        public Vector3 LightDirectionDeg { get; set; }
 
         public bool flashing { get; set; }
 
@@ -30,9 +30,9 @@
 
         public float dayNiteSensorAmbientLevel { get; set; }
 
-        public Vector3[] glareList { get; set; }
+        public Vector3[] GlareList { get; set; }
 
-        public float lightGlareRadiusMeters { get; set; } = 0.35f;
+        public float LightGlareRadiusMeters { get; set; } = 0.35f;
 
         public bool isHepPowered { get; set; }
 
@@ -40,7 +40,7 @@
 
         public bool isNumberboardLight { get; set; }
 
-        public bool isLimitedYardLight { get; set; }
+        public bool IsLimitedYardLight { get; set; }
 
         public bool renderGlareOnly { get; set; }
 

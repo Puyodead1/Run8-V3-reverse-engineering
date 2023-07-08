@@ -704,16 +704,12 @@ class Model:
 
 def create_mesh(model: Model, model_object: ModelObject):
     vertices = [x.position.to_tuple() for x in model_object.vertices]
-    normals = [x.normal.to_tuple() for x in model_object.vertices]
+    normals = [x.normal.normalized().to_tuple() for x in model_object.vertices]
     uvs = [x.uv.to_tuple() for x in model_object.vertices]
     indices = model_object.index_buffer
 
     # Create a new mesh object
     mesh = bpy.data.meshes.new(model_object.name)
-    mesh_obj = bpy.data.objects.new(model_object.name, mesh)
-    bpy.context.collection.objects.link(mesh_obj)
-    bpy.context.view_layer.objects.active = mesh_obj
-    mesh_obj.select_set(True)
 
     # create faces
     faces = []
@@ -734,19 +730,23 @@ def create_mesh(model: Model, model_object: ModelObject):
         for vert_idx, loop_idx in zip(face.vertices, face.loop_indices):
             uv_layer.data[loop_idx].uv = (uvs[vert_idx][0], -uvs[vert_idx][1])  # flip the V coordinate
 
+    for texture in model_object.textures:
+        print(texture)
+
     # if there is a parent, set it
     if model_object.parent_name != "":
         mesh_obj.parent = bpy.data.objects[model_object.parent_name]
 
-
-    # back to object mode
-    bpy.ops.object.mode_set(mode="OBJECT")
-
     # apply position
     mesh_obj.location = model_object.position
 
-    for texture in model_object.textures:
-        print(texture)
+
+    # Update mesh geometry
+    mesh.update()
+
+    mesh_obj = bpy.data.objects.new(model_object.name, mesh)
+    bpy.context.collection.objects.link(mesh_obj)
+    bpy.context.view_layer.objects.active = mesh_obj
 
 
 def import_model(context, filepath):
