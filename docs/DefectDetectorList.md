@@ -4,52 +4,28 @@ Contains a list of defect detectors.
 
 ## Header
 
-| Offset | Type     | Explaination        |
-| ------ | -------- | ------------------- |
-| 0      | Int32    | Reserved            |
-| 4      | Int32    | Detector Count      |
-| 8      | Detector | Detectors           |
+| Offset | Type     | Explaination               |
+| ------ | -------- | -------------------------- |
+| 0      | Int32    | Reserved                   |
+| 4      | Int32    | Number of Defect Detectors |
+| 8      | DefectDetector[] | Defect Detectors   |
 
-## Detector
+## Defect Detector
 
-| Offset | Type  | Explaination                   |
-| ------ | ----- | ------------------------------ |
-| 0      | Int32 | Unknown n                      |
-| 4      | Int32 | Sub1 if n == 1, Sub2 if n == 2 |
-
-## Sub1
-
-| Offset | Type      | Explaination                                                   |
-| ------ | --------- | -------------------------------------------------------------- |
-| 0      | Int32     | ID 1, Seems to be displayed like an ID in the format `id1.id2` |
-| 4      | Int32     | ID 1, Seems to be displayed like an ID in the format `id1.id2` |
-| 8      | TileIndex | TileIndex                                                      |
-| 16     | Vector3   | Location                                                       |
-| 28     | Byte      | Unknown Boolean                                                |
-| 29     | Byte      | Unknown Boolean                                                |
-| 30     | Byte      | Unknown Boolean                                                |
-| 31     | Byte      | Unknown Boolean                                                |
-| 32     | Byte      | Unknown Boolean                                                |
-| 33     | Byte      | Unknown Boolean                                                |
-| 34     | R8String  | Detector .xwb file name                                        |
-| ...    | R8String  | Detector .xsb file name                                        |
-| ...    | Int32     | Track Number?                                                  |
-
-## Sub2
-
-| Offset | Type      | Explaination                                                   |
-| ------ | --------- | -------------------------------------------------------------- |
-| 0      | Int32     | ID 1, Seems to be displayed like an ID in the format `id1.id2` |
-| 4      | Int32     | ID 1, Seems to be displayed like an ID in the format `id1.id2` |
-| 8      | TileIndex | TileIndex                                                      |
-| 16     | Vector3   | Location                                                       |
-| 28     | Byte      | Unknown Boolean                                                |
-| 29     | Byte      | Unknown Boolean                                                |
-| 30     | Byte      | Unknown Boolean                                                |
-| 31     | Byte      | Unknown Boolean                                                |
-| 32     | Byte      | Unknown Boolean                                                |
-| 33     | Byte      | Unknown Boolean                                                |
-| 34     | Byte      | Unknown Boolean                                                |
-| 35     | R8String  | Unknown                                                        |
-| ...    | R8String  | Unknown                                                        |
-| ...    | Int32     | Track Number?                                                  |
+| Offset | Type      | Explaination              |
+| ------ | --------- | ------------------------- |
+| 0      | Int32     | Unknown (n)               |
+| 4      | Int32     | Milepost                  |
+| 8      | Int32     | Milepost Decimal          |
+| 16     | TileIndex | Tile Index                |
+| 28     | Vector3   | Position                  |
+| ...    | Byte      | IsAEI (IF n=2 otherwise skip) |
+| 29     | Byte      | SquawkOnDefectOnly        |
+| 30     | Byte      | DraggingEquipment         |
+| 31     | Byte      | SquawkTemperature         |
+| 32     | Byte      | SquawkTrainSpeed          |
+| 33     | Byte      | Hotbox                    |
+| 34     | Byte      | HiWide (Legacy, not used) |
+| 35     | R8String  | WaveBankName              |
+| ...    | R8String  | SoundBankName             |
+| ...    | Int32     | Track Number              |
