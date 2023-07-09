@@ -46,7 +46,12 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(commTowerDatabase, options);
 //File.WriteAllText("CommTowerDatabase.json", jsonString);
 
+//Console.WriteLine("Reading...");
+//DefectDetectorList defectDetectorList = DefectDetectorList.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DefectDetectorList.r8");
+//jsonString = JsonSerializer.Serialize(defectDetectorList, options);
+//File.WriteAllText("DefectDetectorList.json", jsonString);
+
 Console.WriteLine("Reading...");
-DefectDetectorList defectDetectorList = DefectDetectorList.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DefectDetectorList.r8");
-jsonString = JsonSerializer.Serialize(defectDetectorList, options);
-File.WriteAllText("DefectDetectorList.json", jsonString);
+DispatcherLightBlockDatabase dispatcherLightBlockDatabase = DispatcherLightBlockDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DispatcherBlockLightDatabase.r8");
+jsonString = JsonSerializer.Serialize(dispatcherLightBlockDatabase, options);
+File.WriteAllText("DispatcherLightBlockDatabase.json", jsonString);

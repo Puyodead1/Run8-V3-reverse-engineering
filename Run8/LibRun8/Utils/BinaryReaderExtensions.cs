@@ -55,6 +55,13 @@ namespace LibRun8.Utils
             return Encoding.ASCII.GetString(reader.ReadBytes(count));
         }
 
+        public static Vector2 ReadVector2(this BinaryReader reader)
+        {
+            float X = reader.ReadSingle();
+            float Y = reader.ReadSingle();
+            return new Vector2(X, Y);
+        }
+
         public static Vector3 ReadVector3(this BinaryReader reader)
         {
             float X = reader.ReadSingle();
@@ -75,6 +82,11 @@ namespace LibRun8.Utils
         {
             int size = reader.ReadInt32();
             return R8String.DecodeBytes(reader.ReadBytes(size));
+        }
+
+        public static Rectangle ReadRectangle(this BinaryReader reader)
+        {
+            return new Rectangle(reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32(), reader.ReadInt32());
         }
     }
 }

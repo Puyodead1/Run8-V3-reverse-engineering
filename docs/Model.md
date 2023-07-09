@@ -44,7 +44,7 @@ If the type is not `-969696` or `-969697`, the stream should be reset to 0 and r
 | Offset | Type         | Explaination                        |
 | ------ | ------------ |------------------------------------ |
 | 0      | Int32        | Number of Verticies<sup>1</sup>     |
-| 4      | VertexStruct[] | Vertex Buffer                       |
+| 4      | VertexStruct[] | Vertex Buffer                     |
 | ...    | Int32        | Number of Textures<sup>2</sup>      |
 | ...    | String[]     | Textures                            |
 | ...    | bool         | Indicates if the index buffer should be created as ushort |

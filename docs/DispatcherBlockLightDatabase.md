@@ -1,34 +1,23 @@
 # Dispatcher Block Light Database (DispatcherBlockLightDatabase.r8)
 
-Something to do with block lights?
+List of Dispatcher Lights (whatever those are? probably something with the lights in the dispatcher screen)
 
 ## Header
 
-| Offset | Type  | Explaination      |
-| ------ | ----- | ----------------- |
-| 0      | Int32 | Reserved          |
-| 4      | Int32 | Entry Count		 |
-| 8      | Entry | Entries           |
+| Offset | Type            | Explaination              |
+| ------ | --------------- | ------------------------- |
+| 0      | Int32           | Reserved                  |
+| 4      | Int32           | Number of Dispatch Lights |
+| 8      | DispatchLight[] | Dispatch Lights           |
 
-## Entry
+## DispatchLight
 
 | Offset | Type      | Explaination       |
 | ------ | --------- | ------------------ |
 | 0      | Int32     | Unknown n          |
-| 4      | Rectangle | Rectangle          |
-| 20     | Vector2   | Unknown            |
-| 28     | Int32     | Unknown1 Count	  |
-| 32     | ...       | Unknown1s          |
-| 36     | ...       | Unknown2 if n == 2 |
+| 4      | Rectangle | Button Rectangle   |
+| 20     | Vector2   | Screen XY          |
+| 28     | Int32[]   | Number of Indices  |
+| ...    | String    | Name? if n == 2<sup>1</sup> |
 
-## Unknown1
-
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | Unknown      |
-
-## Unknown2
-
-| Offset | Type     | Explaination |
-| ------ | -------- | ------------ |
-| 0      | R8String | Unknown      |
+- <sup>1</sup>: Always seems to be `block01`, although the actual default is an empty string

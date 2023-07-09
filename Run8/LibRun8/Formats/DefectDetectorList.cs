@@ -42,7 +42,7 @@ namespace LibRun8.Formats
             public bool SquawkTemperature { get; set; }
             public bool SquawkTrainSpeed { get; set; }
             public bool Hotbox { get; set; }
-            public bool HiWide { get; set; }
+            public bool HiWide { get; set; } // legacy, not used
             public string WaveBankName { get; set; }
             public string SoundBankName { get; set; }
             public int TrackNumber { get; set; }
