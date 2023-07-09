@@ -733,20 +733,20 @@ def create_mesh(model: Model, model_object: ModelObject):
     for texture in model_object.textures:
         print(texture)
 
-    # if there is a parent, set it
+
+    mesh_obj = bpy.data.objects.new(model_object.name, mesh)
+    bpy.context.collection.objects.link(mesh_obj)
+    bpy.context.view_layer.objects.active = mesh_obj
+
+        # if there is a parent, set it
     if model_object.parent_name != "":
         mesh_obj.parent = bpy.data.objects[model_object.parent_name]
 
     # apply position
     mesh_obj.location = model_object.position
 
-
     # Update mesh geometry
     mesh.update()
-
-    mesh_obj = bpy.data.objects.new(model_object.name, mesh)
-    bpy.context.collection.objects.link(mesh_obj)
-    bpy.context.view_layer.objects.active = mesh_obj
 
 
 def import_model(context, filepath):
