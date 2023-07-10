@@ -126,3 +126,13 @@ string decodedString = Encoding.UTF8.GetString(decodedBytes);
 - TextureCoord is a Vector2
 - BlendIndicies is an Int4
 - BlendWeight is a Vector4 
+
+## DispatcherLight
+
+| Offset | Type      | Explaination       |
+| ------ | --------- | ------------------ |
+| 0      | Int32     | Unknown n          |
+| 4      | Rectangle | Button Rectangle   |
+| 20     | Vector2   | Screen XY          |
+| 28     | Int32[]   | Number of Indices  |
+| ...    | String    | Name? If n == 2    |

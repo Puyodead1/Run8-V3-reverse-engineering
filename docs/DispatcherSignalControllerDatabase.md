@@ -1,34 +1,23 @@
 # Dispatcher Signal Controller Database (DispatcherSignalControllerDatabase.r8)
 
-Contains a list of dispatcher signal controllers, whatever those are.
+List of Dispatcher Signal Controllers (whatever those are? something to do with dispatcher screen)
 
 ## Header
 
-| Offset | Type  | Explaination      |
-| ------ | ----- | ----------------- |
-| 0      | Int32 | Reserved          |
-| 4      | Int32 | Entry Count		 |
-| 8      | Entry | Entries           |
+| Offset | Type                         | Explaination                  |
+| ------ | ---------------------------- | ----------------------------- |
+| 0      | Int32                        | Reserved                      |
+| 4      | Int32                        | Number of Controllers	        |
+| 8      | DispatcherSignalController[] | Dispatcher Signal Controllers |
 
-## Entry
+## DispatcherSignalController
 
 | Offset | Type                 | Explaination                                                             |
 | ------ | -------------------- | ------------------------------------------------------------------------ |
 | 0      | Int32                | Unknown n                                                                |
-| 4      | Vector2              | Vector2 for DispatcherBlockLight below                                   |
-| 12     | DispatcherBlockLight | See [DispatcherBlockLight Entry](/DispatcherBlockLightDatabase.md#Entry) |
-| ...    | Int32                | Unknown1 Count			                                               |
-| ...    | Unknown1             | Unknown1s                                                         |
-| ...    | Unknown2             | Sub1 if n == 2                                                           |
-
-## Unknown1 Entry
-
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | Unknown      |
-
-## Sub1
-
-| Offset | Type     | Explaination |
-| ------ | -------- | ------------ |
-| 0      | R8String | Unknown      |
+| 4      | Vector2              | ScreenXY<sup>1</sup>                                                     |
+| 12     | DispatcherLight      | See [DispatcherLight](/Common.md#DispatcherLight)                        |
+| ...    | Int32                | Number of Signals			                                               |
+| ...    | Int32[]              | Signal Head IDs                                                          |
+| ...    | String               | Name? If n == 2                                                          |
+- <sup>1</sup>: This overrides the ScreenXY in DispatcherLightBlock
