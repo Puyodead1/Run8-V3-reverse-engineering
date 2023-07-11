@@ -4,6 +4,8 @@ This repository contains reverse engineered documentation about various Run8 V3 
 
 [/docs](/docs) - Contains file format specs
 
+[GeneralInfo.md](/GeneralInfo.md) - Contains misc info such as routes
+
 [/Run8](/Run8) - C# Library for working with file formats
 
 [/blender_scripts](/blender_scripts) - Import/Export scripts for Blender 3.x
