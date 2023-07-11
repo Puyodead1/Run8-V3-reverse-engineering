@@ -12,17 +12,17 @@ This repository contains reverse engineered documentation about various Run8 V3 
 
 ### Progress
 
-- AISignalDatabase.r8
+- AISignalDatabase.r8 (Yes, but low accuracy, will come back to it)
 - AISpecialLocations.r8
-- AITrackSpeedDatabase.r8
-- BlockDetectorDatabase.r8
-- CarSpewerDatabase.r8
-- CommTowerDatabase.r8
+- AITrackSpeedDatabase.r8 (Yes, but low accuracy, will come back to it)
+- ~~BlockDetectorDatabase.r8~~
+- ~~CarSpewerDatabase.r8~~
+- ~~CommTowerDatabase.r8~~
 - DarkSignalDatabase.r8
-- DefectDetectorList.r8
-- DispatcherBlockLightDatabase.r8
-- DispatcherSignalControllerDatabase.r8
-- DispatcherSwitchIconDatabase.r8
+- ~~DefectDetectorList.r8~~
+- ~~DispatcherBlockLightDatabase.r8~~
+- ~~DispatcherSignalControllerDatabase.r8~~
+- ~~DispatcherSwitchIconDatabase.r8~~
 - DispatchLabelConfig.r8
 - DispatchNextScreenConfig.r8
 - HumpControllerList.r8
@@ -42,9 +42,9 @@ This repository contains reverse engineered documentation about various Run8 V3 
 - Terrain Tiles 3 (x_y.tr3)
 - Terrain Tiles 4 (x_y.tr4)
 - HornBellConfiguration.r8
-- 3D Model (.rn8)
+- 3D Model (.rn8) (Current only a blender script)
 - Texture (.tx8)
-- ~~Avatars~~
+- Avatars (Current only a blender script)
 - ~~Shaders/Effects (.tkb)~~
 - .xsb
 - .xwb
