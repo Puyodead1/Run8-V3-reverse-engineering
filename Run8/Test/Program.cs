@@ -56,7 +56,12 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(dispatcherLightBlockDatabase, options);
 //File.WriteAllText("DispatcherLightBlockDatabase.json", jsonString);
 
+//Console.WriteLine("Reading...");
+//DispatcherSignalControllerDatabase dispatcherSignalControllerDatabase = DispatcherSignalControllerDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DispatcherSignalControllerDatabase.r8");
+//jsonString = JsonSerializer.Serialize(dispatcherSignalControllerDatabase, options);
+//File.WriteAllText("DispatcherSignalControllerDatabase.json", jsonString);
+
 Console.WriteLine("Reading...");
-DispatcherSignalControllerDatabase dispatcherSignalControllerDatabase = DispatcherSignalControllerDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DispatcherSignalControllerDatabase.r8");
-jsonString = JsonSerializer.Serialize(dispatcherSignalControllerDatabase, options);
-File.WriteAllText("DispatcherSignalControllerDatabase.json", jsonString);
+DispatcherSwitchIconDatabase dispatchSwitchIconDatabase = DispatcherSwitchIconDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DispatcherSwitchIconDatabase.r8");
+jsonString = JsonSerializer.Serialize(dispatchSwitchIconDatabase, options);
+File.WriteAllText("DispatcherSwitchIconDatabase.json", jsonString);
