@@ -1,7 +1,7 @@
 ﻿using LibRun8.Formats;
 using System.Text.Json;
 
-var options = new JsonSerializerOptions { WriteIndented = true };
+var options = new JsonSerializerOptions { WriteIndented = true, NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals };
 string jsonString;
 
 //Signal signal = Signal.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\Signals\HRS_TwoLight2_Anakin_NewSystem.sig");
@@ -61,7 +61,12 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(dispatcherSignalControllerDatabase, options);
 //File.WriteAllText("DispatcherSignalControllerDatabase.json", jsonString);
 
+//Console.WriteLine("Reading...");
+//DispatcherSwitchIconDatabase dispatchSwitchIconDatabase = DispatcherSwitchIconDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DispatcherSwitchIconDatabase.r8");
+//jsonString = JsonSerializer.Serialize(dispatchSwitchIconDatabase, options);
+//File.WriteAllText("DispatcherSwitchIconDatabase.json", jsonString);
+
 Console.WriteLine("Reading...");
-DispatcherSwitchIconDatabase dispatchSwitchIconDatabase = DispatcherSwitchIconDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\DispatcherSwitchIconDatabase.r8");
-jsonString = JsonSerializer.Serialize(dispatchSwitchIconDatabase, options);
-File.WriteAllText("DispatcherSwitchIconDatabase.json", jsonString);
+RoadDatabase roadDatabase = RoadDatabase.Read(@"C:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\RoadDatabase.r8");
+jsonString = JsonSerializer.Serialize(roadDatabase, options);
+File.WriteAllText("RoadDatabase.json", jsonString);
