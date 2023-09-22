@@ -8,7 +8,7 @@ Contains hump controllers
 | ------ | -------------- | --------------------- |
 | 0      | Int32          | Reserved              |
 | 4      | Int32          | Number of Controllers |
-| 8      | HumpController | Controller            |
+| 8      | HumpController | Controllers           |
 
 ## HumpController
 
