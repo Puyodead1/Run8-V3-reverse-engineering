@@ -4,11 +4,11 @@ Seems to contain information about "special" track locations.
 
 ## Header
 
-| Offset | Type              | Explaination                 |
-| ------ | ----------------- | ---------------------------- |
-| 0      | Int32             | Reserved                     |
-| 4      | Int32             | AISpecialLocation Count		|
-| 8      | AISpecialLocation | AISpecialLocation            |
+| Offset | Type              | Explaination            |
+| ------ | ----------------- | ----------------------- |
+| 0      | Int32             | Reserved                |
+| 4      | Int32             | AISpecialLocation Count |
+| 8      | AISpecialLocation | AISpecialLocation       |
 
 ## AISpecialLocation
 

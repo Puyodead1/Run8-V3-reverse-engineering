@@ -4,8 +4,8 @@ List of Dispatcher Lights (whatever those are? something with lights in the disp
 
 ## Header
 
-| Offset | Type              | Explaination              |
-| ------ | ----------------- | ------------------------- |
-| 0      | Int32             | Reserved                  |
+| Offset | Type              | Explaination                |
+| ------ | ----------------- | --------------------------- |
+| 0      | Int32             | Reserved                    |
 | 4      | Int32             | Number of Dispatcher Lights |
-| 8      | DispatcherLight[] | Dispatcher Lights         |
+| 8      | DispatcherLight[] | Dispatcher Lights           |

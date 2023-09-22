@@ -4,11 +4,11 @@ Stores information about industries
 
 ## Header
 
-| Offset | Type        | Explaination             |
-| ------ | ----------- | ------------------------ |
-| 0      | Int32       | Reserved                 |
-| 4      | Int32       | Industry Count 	      |
-| 8      | Industry    | Industries               |
+| Offset | Type     | Explaination   |
+| ------ | -------- | -------------- |
+| 0      | Int32    | Reserved       |
+| 4      | Int32    | Industry Count |
+| 8      | Industry | Industries     |
 
 ## Industry
 

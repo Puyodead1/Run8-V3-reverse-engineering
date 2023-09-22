@@ -4,25 +4,25 @@ Seems to contain information about AI traffic such as cars, etc
 
 ## Header
 
-| Offset | Type  | Explaination      |
-| ------ | ----- | ----------------- |
-| 0      | Int32 | Reserved          |
-| 4      | Byte  | Unknown Boolean   |
-| 5      | Int32 | Unknown           |
-| 9      | Int32 | Unknown           |
-| 13     | Int32 | Unknown           |
-| 17     | Int32 | Entry Count		 |
-| 21     | Entry | Entries           |
+| Offset | Type  | Explaination    |
+| ------ | ----- | --------------- |
+| 0      | Int32 | Reserved        |
+| 4      | Byte  | Unknown Boolean |
+| 5      | Int32 | Unknown         |
+| 9      | Int32 | Unknown         |
+| 13     | Int32 | Unknown         |
+| 17     | Int32 | Entry Count     |
+| 21     | Entry | Entries         |
 
 ## Entry
 
-| Offset | Type     | Explaination       |
-| ------ | -------- | ------------------ |
-| 0      | Int32    | Reserved           |
-| 4      | R8String | Route Name         |
-| 8      | Int32    | Unknown            |
-| 12     | Int32    | Unknown1 Count	 |
-| 16     | Unknown1 | Unknown1 Entries   |
+| Offset | Type     | Explaination     |
+| ------ | -------- | ---------------- |
+| 0      | Int32    | Reserved         |
+| 4      | R8String | Route Name       |
+| 8      | Int32    | Unknown          |
+| 12     | Int32    | Unknown1 Count   |
+| 16     | Unknown1 | Unknown1 Entries |
 
 ## Unknown1
 
@@ -31,7 +31,7 @@ Seems to contain information about AI traffic such as cars, etc
 | 0      | Int32      | Reserved                                                  |
 | 4      | TrainClass | Train Class                                               |
 | 5      | Int32      | Unknown                                                   |
-| 9      | Int32      | Unknown2 Count	                                          |
+| 9      | Int32      | Unknown2 Count                                            |
 | 13     | Unknown2   | Unknown2 Entries (only read if train class is SavedTrain) |
 | ...    | Int32      | Unknown3 Count                                            |
 | ...    | Unknown3   | Unknown3 Entries                                          |
@@ -57,7 +57,7 @@ Seems to contain information about AI traffic such as cars, etc
 | ...    | Byte       | Unknown Boolean                                                          |
 | ...    | Byte       | Unknown Boolean                                                          |
 | ...    | Byte       | Unknown Boolean                                                          |
-| ...    | Int32      | Unknown Strings Count	                                                 |
+| ...    | Int32      | Unknown Strings Count                                                    |
 | ...    | R8String   | Unknown Strings                                                          |
 | ...    | Int32      | Unknown Strings Count                                                    |
 | ...    | R8String[] | Unknown Strings (looks like company strings, ex up, csx, etc)            |
