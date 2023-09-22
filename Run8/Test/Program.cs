@@ -71,7 +71,12 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(roadDatabase, options);
 //File.WriteAllText("RoadDatabase.json", jsonString);
 
+//Console.WriteLine("Reading...");
+//HumpControllerList humpControllerList = HumpControllerList.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\SP-UP_RosevilleSub\HumpControllerList.r8");
+//jsonString = JsonSerializer.Serialize(humpControllerList, options);
+//File.WriteAllText("HumpControllerList.json", jsonString);
+
 Console.WriteLine("Reading...");
-HumpControllerList humpControllerList = HumpControllerList.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\SP-UP_RosevilleSub\HumpControllerList.r8");
-jsonString = JsonSerializer.Serialize(humpControllerList, options);
-File.WriteAllText("HumpControllerList.json", jsonString);
+HumpConfigDatabase hump = HumpConfigDatabase.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\Regions\\NorthernCA\Hump.r8");
+jsonString = JsonSerializer.Serialize(hump, options);
+File.WriteAllText("Hump.json", jsonString);
