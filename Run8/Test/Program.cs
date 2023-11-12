@@ -1,4 +1,5 @@
 ﻿using LibRun8.Formats;
+using LibRun8.Utils;
 using System.Text.Json;
 
 var options = new JsonSerializerOptions { WriteIndented = true, NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals };
@@ -76,7 +77,10 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(humpControllerList, options);
 //File.WriteAllText("HumpControllerList.json", jsonString);
 
+//Console.WriteLine("Reading...");
+//HumpConfigDatabase hump = HumpConfigDatabase.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\Regions\\NorthernCA\Hump.r8");
+//jsonString = JsonSerializer.Serialize(hump, options);
+//File.WriteAllText("Hump.json", jsonString);
+
 Console.WriteLine("Reading...");
-HumpConfigDatabase hump = HumpConfigDatabase.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\Regions\\NorthernCA\Hump.r8");
-jsonString = JsonSerializer.Serialize(hump, options);
-File.WriteAllText("Hump.json", jsonString);
+Texture.DecryptTexture(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_T389_ACFX.tx8");
