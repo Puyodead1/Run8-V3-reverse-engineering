@@ -38,5 +38,26 @@ namespace LibRun8.Utils
             }
             return false;
         }
+
+        public static T[][] ConvertToJaggedArray<T>(T[,] twoDArray)
+        {
+            int rows = twoDArray.GetLength(0);
+            int cols = twoDArray.GetLength(1);
+
+            // Initialize the jagged array
+            T[][] jaggedArray = new T[rows][];
+
+            // Populate the jagged array
+            for (int i = 0; i < rows; i++)
+            {
+                jaggedArray[i] = new T[cols];
+                for (int j = 0; j < cols; j++)
+                {
+                    jaggedArray[i][j] = twoDArray[i, j];
+                }
+            }
+
+            return jaggedArray;
+        }
     }
 }

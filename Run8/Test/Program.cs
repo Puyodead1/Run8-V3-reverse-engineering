@@ -1,4 +1,4 @@
-﻿using LibRun8.Formats;
+﻿using LibRun8.Formats.Terrain;
 using LibRun8.Utils;
 using System.Text.Json;
 
@@ -82,5 +82,10 @@ string jsonString;
 //jsonString = JsonSerializer.Serialize(hump, options);
 //File.WriteAllText("Hump.json", jsonString);
 
+//Console.WriteLine("Reading...");
+//Texture.DecryptTexture(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_T389_ACFX.tx8");
+
 Console.WriteLine("Reading...");
-Texture.DecryptTexture(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_T389_ACFX.tx8");
+TerrainTile tile = Terrain.Read(@"D:\Programs\Run8Studios\V2\Content\V2Routes\Regions\SouthernCA\TerrainTiles\00249_-00019.tr2");
+jsonString = JsonSerializer.Serialize(tile, options);
+File.WriteAllText("Tr2.json", jsonString);
