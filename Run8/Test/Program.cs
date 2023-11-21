@@ -86,6 +86,7 @@ string jsonString;
 //Texture.DecryptTexture(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_T389_ACFX.tx8");
 
 Console.WriteLine("Reading...");
-TerrainTile tile = Terrain.Read(@"D:\Programs\Run8Studios\V2\Content\V2Routes\Regions\SouthernCA\TerrainTiles\00249_-00019.tr2");
+TerrainTile tile = Terrain.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\Regions\HRS_Southeast\TerrainTiles\00000_00000.tr4");
 jsonString = JsonSerializer.Serialize(tile, options);
-File.WriteAllText("Tr2.json", jsonString);
+File.WriteAllText("TerrainTile.json", jsonString);
+//tile.WriteOBJ(@"D:\Programs\Run8Studios\V2\Content\V2Routes\Regions\SouthernCA\TerrainTiles\00249_-00019.obj");
