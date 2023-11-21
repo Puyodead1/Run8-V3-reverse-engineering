@@ -6,6 +6,7 @@ Valid up to: `Update9`
 - HRS_Southeast
 - SelkirkRegion
 - NorthernCA
+- Pennsylvania
 
 ## Routes
 | Route Name             | ID  | Region                 |
