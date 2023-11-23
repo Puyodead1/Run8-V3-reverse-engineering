@@ -19,28 +19,28 @@ namespace LibRun8.Formats.Terrain
                     TerrainTileLoadData terrainTileLoadData = GetLoadData(path);
                     if (terrainTileLoadData != null)
                     {
-                        switch (terrainTileLoadData.type)
+                        switch (terrainTileLoadData.Type)
                         {
                             case ETileType.Ter:
-                                terrainTileLoadData.tile = new TerrainTile();
-                                terrainTileLoadData.tile.tileXZ = tileXZ;
+                                terrainTileLoadData.Tile = new TerrainTile();
+                                terrainTileLoadData.Tile.TileXZ = tileXZ;
                                 break;
                             case ETileType.Tr2:
-                                terrainTileLoadData.tile = new TerrainTile();
-                                terrainTileLoadData.tile.tileXZ = tileXZ;
+                                terrainTileLoadData.Tile = new TerrainTile();
+                                terrainTileLoadData.Tile.TileXZ = tileXZ;
                                 Tr2Loader.LoadTile(terrainTileLoadData);
                                 break;
                             case ETileType.Tr3:
-                                terrainTileLoadData.tile = new TerrainTile();
-                                terrainTileLoadData.tile.tileXZ = tileXZ;
+                                terrainTileLoadData.Tile = new TerrainTile();
+                                terrainTileLoadData.Tile.TileXZ = tileXZ;
                                 break;
                             case ETileType.Tr4:
-                                terrainTileLoadData.tile = new TerrainTile();
-                                terrainTileLoadData.tile.tileXZ = tileXZ;
+                                terrainTileLoadData.Tile = new TerrainTile();
+                                terrainTileLoadData.Tile.TileXZ = tileXZ;
                                 Tr4Loader.LoadTile(terrainTileLoadData, false);
                                 break;
                         }
-                        return terrainTileLoadData.tile;
+                        return terrainTileLoadData.Tile;
                     }
                     else
                     {
@@ -58,30 +58,30 @@ namespace LibRun8.Formats.Terrain
                 case ".tr2":
                     return new TerrainTileLoadData
                     {
-                        filePath = path,
-                        fileNameOnly = Path.GetFileNameWithoutExtension(path),
-                        type = ETileType.Tr2
+                        FilePath = path,
+                        FileNameOnly = Path.GetFileNameWithoutExtension(path),
+                        Type = ETileType.Tr2
                     };
                 case ".tr3":
                     return new TerrainTileLoadData
                     {
-                        filePath = path,
-                        fileNameOnly = Path.GetFileNameWithoutExtension(path),
-                        type = ETileType.Tr3
+                        FilePath = path,
+                        FileNameOnly = Path.GetFileNameWithoutExtension(path),
+                        Type = ETileType.Tr3
                     };
                 case ".ter":
                     return new TerrainTileLoadData
                     {
-                        filePath = path,
-                        fileNameOnly = Path.GetFileNameWithoutExtension(path),
-                        type = ETileType.Ter
+                        FilePath = path,
+                        FileNameOnly = Path.GetFileNameWithoutExtension(path),
+                        Type = ETileType.Ter
                     };
                 case ".tr4":
                     return new TerrainTileLoadData
                     {
-                        filePath = path,
-                        fileNameOnly = Path.GetFileNameWithoutExtension(path),
-                        type = ETileType.Tr4
+                        FilePath = path,
+                        FileNameOnly = Path.GetFileNameWithoutExtension(path),
+                        Type = ETileType.Tr4
                     };
                 default:
                     return null;

@@ -126,10 +126,10 @@ namespace LibRun8.Utils
 
         public static void LoadTextures(BinaryReader reader, TerrainTileLoadData terrainTileLoadData, bool bool0)
         {
-            terrainTileLoadData.tile.texture0Name = reader.ReadString();
-            terrainTileLoadData.tile.texture1Name = reader.ReadString();
-            terrainTileLoadData.tile.texture2Name = reader.ReadString();
-            terrainTileLoadData.tile.texture3Name = reader.ReadString();
+            terrainTileLoadData.Tile.Texture0Name = reader.ReadString();
+            terrainTileLoadData.Tile.Texture1Name = reader.ReadString();
+            terrainTileLoadData.Tile.Texture2Name = reader.ReadString();
+            terrainTileLoadData.Tile.Texture3Name = reader.ReadString();
         }
     }
 }

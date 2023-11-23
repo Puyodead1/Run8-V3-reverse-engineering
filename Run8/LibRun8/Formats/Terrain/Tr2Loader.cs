@@ -11,7 +11,7 @@ namespace LibRun8.Formats.Terrain
 
         public static void LoadTile(TerrainTileLoadData terrainTileLoadData, bool bool0)
         {
-            using (FileStream fileStream = new FileStream(terrainTileLoadData.filePath, FileMode.Open, FileAccess.Read))
+            using (FileStream fileStream = new FileStream(terrainTileLoadData.FilePath, FileMode.Open, FileAccess.Read))
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
                 {
@@ -23,8 +23,8 @@ namespace LibRun8.Formats.Terrain
 
         public static void LoadChunks(BinaryReader reader, TerrainTileLoadData terrainTileLoadData)
         {
-            terrainTileLoadData.tile.detailLevel = 99;
-            terrainTileLoadData.tile.chunkData = new Chunk[25, 25];
+            terrainTileLoadData.Tile.DetailLevel = 99;
+            terrainTileLoadData.Tile.ChunkData = new Chunk[25, 25];
             //int num = 0;
             for (byte x = 0; x < 25; x++)
             {
@@ -49,7 +49,7 @@ namespace LibRun8.Formats.Terrain
                         }
                     }
 
-                    terrainTileLoadData.tile.chunkData[x, z] = chunk;
+                    terrainTileLoadData.Tile.ChunkData[x, z] = chunk;
                 }
             }
 
@@ -57,11 +57,11 @@ namespace LibRun8.Formats.Terrain
 
             try
             {
-                terrainTileLoadData.tile.lonEast = reader.ReadSingle();
-                terrainTileLoadData.tile.lonWest = reader.ReadSingle();
-                terrainTileLoadData.tile.latNorth = reader.ReadSingle();
-                terrainTileLoadData.tile.latSouth = reader.ReadSingle();
-                terrainTileLoadData.tile.procVeg = reader.ReadString();
+                terrainTileLoadData.Tile.LonEast = reader.ReadSingle();
+                terrainTileLoadData.Tile.LonWest = reader.ReadSingle();
+                terrainTileLoadData.Tile.LatNorth = reader.ReadSingle();
+                terrainTileLoadData.Tile.LatSouth = reader.ReadSingle();
+                terrainTileLoadData.Tile.ProcVeg = reader.ReadString();
             }
             catch { }
 

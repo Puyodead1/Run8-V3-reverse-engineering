@@ -2,9 +2,9 @@
 {
     public class TerrainTileLoadData
     {
-        public string filePath { get; set; }
-        public string fileNameOnly { get; set; }
-        public ETileType type { get; set; }
-        public TerrainTile tile { get; set; }
+        public string FilePath { get; set; }
+        public string FileNameOnly { get; set; }
+        public ETileType Type { get; set; }
+        public TerrainTile Tile { get; set; }
     }
 }
