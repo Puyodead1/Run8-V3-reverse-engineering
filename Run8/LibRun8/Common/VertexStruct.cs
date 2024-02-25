@@ -8,9 +8,9 @@
 
         public Vector2 TextureCoordinate { get; set; }
 
-        public Int4 BlendIndicies { get; set; }
+        public Vector3 Tangent { get; set; }
 
-        public Vector4 BlendWeight { get; set; }
+        public Vector3 Binormal { get; set; }
 
         public override string ToString()
         {

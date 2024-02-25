@@ -59,5 +59,16 @@ namespace LibRun8.Utils
 
             return jaggedArray;
         }
+
+        /// <summary>
+        /// Converts degrees to radians.
+        /// </summary>
+        /// <param name="degree">The value to convert.</param>
+        /// <returns>The converted value.</returns>
+        /// Part of SharpDX
+        public static float DegreesToRadians(float degree)
+        {
+            return degree * 0.017453292f;
+        }
     }
 }
