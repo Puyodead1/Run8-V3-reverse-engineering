@@ -1,0 +1,23 @@
+﻿<Project Sdk="WixToolset.Sdk/5.0.0">
+	<PropertyGroup>
+		<OutputName>Run8Tools Installer</OutputName>
+		<EnableProjectHarvesting>true</EnableProjectHarvesting>
+		<HarvestProjectsVerboseOutput>true</HarvestProjectsVerboseOutput>
+	</PropertyGroup>
+	<ItemGroup>
+		<HarvestDirectory Include="$(IntermediateOutputPath)\publish\TextureTools">
+			<ComponentGroupName>TextureToolsFiles</ComponentGroupName>
+			<DirectoryRefId>TextureTools</DirectoryRefId>
+			<SuppressRootDirectory>true</SuppressRootDirectory>
+		</HarvestDirectory>
+		<!--<BindPath Include="..\TextureTools\bin\Release\net6.0\publish" />-->
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\TextureTools\TextureTools.csproj" Publish="true" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="WixToolset.Heat" Version="5.0.0" />
+		<PackageReference Include="WixToolset.Netfx.wixext" Version="5.0.0" />
+		<PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
+	</ItemGroup>
+</Project>

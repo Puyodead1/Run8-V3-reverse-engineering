@@ -1,7 +1,6 @@
 ﻿using LibRun8.Formats;
-using LibRun8.Utils;
-using System.IO;
-using System.Numerics;
+using LibRun8.Util;
+using System.Security.Claims;
 
 namespace LibRun8.Common
 {
@@ -11,12 +10,16 @@ namespace LibRun8.Common
         public string ParentName { get; set; }
         public Vector3 TranslationVector { get; set; }
         public Vector3 Position { get; set; }
-        public Vector3 UnkVec33 { get; set; }
         public Vector3 UnkVec31 { get; set; }
+        public Quaternion UnkQuat0 { get; set; }
+        public Matrix UnusedScalingMatrix0 { get; set; }
+        public Quaternion UnusedRotationMatrix0 { get; set; }
+        public Quaternion UnusedRotationMatrix1 { get; set; }
         public Quaternion UnkQuat1 { get; set; }
-        public Quaternion UnkQuat2 { get; set; }
-        public List<VertexStruct> Vertices { get; set; }
-        public int[] Indices { get; set; }
+        public Matrix UnusedScalingMatrix1 { get; set; }
+        public List<VertexStruct> Vertices;
+        public int[] Indices;
+        public List<ModelObjectDefinition> ObjectDefinitions { get; set; } = new List<ModelObjectDefinition>();
 
         public ModelObject(BinaryReader reader, Model model)
         {
@@ -31,15 +34,15 @@ namespace LibRun8.Common
                 Console.WriteLine("Name: " + Name);
                 Console.WriteLine("ParentName: " + ParentName);
 
-                UnkVec33 = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-                UnkVec33 = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-                UnkQuat1 = Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle())));
-                Matrix.Scaling(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-                Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle())));
-                Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle())));
+                TranslationVector = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                UnkVec31 = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                UnkQuat0 = Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle())));
+                UnusedScalingMatrix0 = Matrix.Scaling(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                UnusedRotationMatrix0 = Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle())));
+                UnusedRotationMatrix1 = Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle())));
                 Position = new Vector3(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
-                UnkQuat2 = Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle()), Utils.Utils.DegreesToRadians(reader.ReadSingle())));
-                Matrix.Scaling(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
+                UnkQuat1 = Quaternion.RotationMatrix(Matrix.RotationYawPitchRoll(Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle()), Utils.DegreesToRadians(reader.ReadSingle())));
+                UnusedScalingMatrix1 = Matrix.Scaling(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
                 int num3 = reader.ReadInt32();
                 Matrix[] array = new Matrix[num3];
                 for (int j = 0; j < num3; j++)
@@ -74,7 +77,7 @@ namespace LibRun8.Common
             for (int i = 0; i < vertexCount; i++)
             {
                 VertexStruct vertex = default;
-                reader.ReadSingle();
+                vertex.UnusedFloat0 = reader.ReadSingle();
                 Vector3 pos = default;
                 Vector3 normal = default;
                 Vector2 texcoord = default;
@@ -83,7 +86,7 @@ namespace LibRun8.Common
                 pos.Z = reader.ReadSingle() / 16f - TranslationVector.Z;
                 texcoord.X = reader.ReadSingle() / 4.8f;
                 normal.X = reader.ReadSingle() / 10.962f;
-                reader.ReadSingle();
+                vertex.UnusedFloat1 = reader.ReadSingle();
                 normal.Z = reader.ReadSingle() / 11.432f;
                 texcoord.Y = reader.ReadSingle() / 9.6f;
                 pos.Y = reader.ReadSingle() * 6f - TranslationVector.Y;
@@ -119,25 +122,34 @@ namespace LibRun8.Common
             // TODO: calculate binormals and tangents
 
             int num5 = reader.ReadInt32() - 9;
+            bool flag = false;
             if (num5 == 0)
             {
-                // TODO:
+                ModelObjectDefinition class2 = new ModelObjectDefinition
+                {
+                    IndexCountPerInstance = Indices.Length,
+                    BaseVertexLocation = 0,
+                    StartIndexLocation = 0
+                };
+                ObjectDefinitions.Add(class2);
             }
             else
             {
                 for (int i = 0; i < num5; i++)
                 {
-                    reader.ReadSingle();
-                    int num13 = reader.ReadInt32();
+                    ModelObjectDefinition def = new ModelObjectDefinition();
+                    float unusedFloat0 = reader.ReadSingle();
+                    int texIndex = reader.ReadInt32();
                     if (textureNames.Length > 0)
                     {
-                        // texture shit, 214
-                        Console.WriteLine(textureNames[num13]);
+                        def.texture2D_0 = textureNames[texIndex];
+                        flag |= def.texture2D_2 != null;
                     }
 
-                    int ic = reader.ReadInt32();
-                    int sil = reader.ReadInt32();
-                    int bvl = reader.ReadInt32();
+                    def.IndexCountPerInstance = reader.ReadInt32();
+                    def.StartIndexLocation = reader.ReadInt32();
+                    def.BaseVertexLocation = reader.ReadInt32();
+                    ObjectDefinitions.Add(def);
                 }
             }
         }

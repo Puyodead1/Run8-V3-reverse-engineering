@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+	  <DirectoryRef Id="TextureTools">
+		  <Component Id="TextureTools.Environment.Path" Guid="E59CC821-5758-4DDA-8FC0-32DCCA836278">
+			  <Environment
+				Id="PATH"
+				Name="PATH"
+				Value="[INSTALLFOLDER]TextureTools"
+				Permanent="yes"
+				Part="last"
+				Action="set"
+				System="yes" />
+		  </Component>
+	  </DirectoryRef>
+	  <ComponentGroup Id="Run8Tools.Environment">
+		  <ComponentRef Id="TextureTools.Environment.Path" />
+	  </ComponentGroup>
+  </Fragment>
+</Wix>

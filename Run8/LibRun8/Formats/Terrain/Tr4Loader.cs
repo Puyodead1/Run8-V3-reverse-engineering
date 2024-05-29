@@ -1,5 +1,5 @@
 ﻿using LibRun8.Common;
-using LibRun8.Utils;
+using LibRun8.Util;
 using System.IO.Compression;
 
 namespace LibRun8.Formats.Terrain

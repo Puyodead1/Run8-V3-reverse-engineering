@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ModelLoaderTest": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Programs\\Run8Studios\\Run8 Train Simulator V3\\Content\\V3RailVehicles\\Body\\R8_SD40T-2_SP01.rn8\""
+    }
+  }
+}

@@ -1,7 +1,7 @@
 ﻿using LibRun8.Common;
 using LibRun8.Formats.Terrain;
 
-namespace LibRun8.Utils
+namespace LibRun8.Util
 {
     public class TileUtil
     {

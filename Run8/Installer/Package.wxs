@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:netfx="http://wixtoolset.org/schemas/v4/wxs/netfx" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+	<Package Name="Run8Tools" Manufacturer="Puyodead1" Version="1.0.0.0" UpgradeCode="5a1cef46-efb0-4718-a4d2-d2a3bea5d34e" Compressed="true">
+		<MajorUpgrade DowngradeErrorMessage="!(loc.DowngradeError)" />
+		<Media Id="1" Cabinet="data.cab" EmbedCab="yes" CompressionLevel="high" />
+		<netfx:DotNetCompatibilityCheck Id="DOTNETRUNTIMECHECK" Platform="$(Platform)" Property="NETCOREVERSION" RollForward="major" RuntimeType="core" Version="6.0.400" />
+		<Launch Condition="Installed OR NETCOREVERSION" Message="[ProductName] requires .NET Core 6.x"/>
+		<Feature Id="Main">
+			<ComponentGroupRef Id="TextureToolsFiles" />
+			<ComponentGroupRef Id="Run8Tools.Environment" />
+		</Feature>
+		<ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+		<!--<WixVariable Id="WixUIBannerBmp" Value="$(var.ProjectDir)\Images\banner.png" />
+		<WixVariable Id="WixUIDialogBmp" Value="$(var.ProjectDir)\Images\dialog.png" />-->
+		<WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\assets\License.rtf" />
+	</Package>
+</Wix>

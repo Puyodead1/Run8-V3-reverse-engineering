@@ -2,15 +2,18 @@
 {
     public struct VertexStruct
     {
-        public Vector3 Position { get; set; }
+        public float UnusedFloat0 { get; set; }
+        public float UnusedFloat1 { get; set; }
 
-        public Vector3 Normal { get; set; }
+        public Vector3 Position;
 
-        public Vector2 TextureCoordinate { get; set; }
+        public Vector3 Normal;
 
-        public Vector3 Tangent { get; set; }
+        public Vector2 TextureCoordinate;
 
-        public Vector3 Binormal { get; set; }
+        public Vector3 Tangent;
+
+        public Vector3 Binormal;
 
         public override string ToString()
         {

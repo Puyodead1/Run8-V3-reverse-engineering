@@ -5,10 +5,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="JeremyAnsel.Media.WavefrontObj" Version="3.0.29" />
+    <PackageReference Include="JeremyAnsel.Media.WavefrontObj" Version="3.0.36" />
+    <PackageReference Include="morelinq" Version="4.2.0" />
   </ItemGroup>
 
 </Project>

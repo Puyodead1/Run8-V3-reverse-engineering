@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace LibRun8.Utils
+namespace LibRun8.Util
 {
     public class R8String
     {

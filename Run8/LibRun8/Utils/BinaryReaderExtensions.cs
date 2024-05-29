@@ -1,9 +1,8 @@
 ﻿using LibRun8.Common;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace LibRun8.Utils
+namespace LibRun8.Util
 {
     /// <summary>
     /// Provides some conspicuously absent string and type functionality to 

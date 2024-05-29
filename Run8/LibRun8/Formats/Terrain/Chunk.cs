@@ -6,7 +6,7 @@ namespace LibRun8.Formats.Terrain
         public static readonly int CHUNK_SIZE = 25;
 
         public float[,] heightMap;
-        public float[][] jaggedHeightMap { get { return Utils.Utils.ConvertToJaggedArray(heightMap); } }
+        public float[][] jaggedHeightMap { get { return Util.Utils.ConvertToJaggedArray(heightMap); } }
         public short hixels { get; set; }
         public int cx { get; set; }
         public int cz { get; set; }

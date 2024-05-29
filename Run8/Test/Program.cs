@@ -1,6 +1,6 @@
 ﻿using LibRun8.Formats;
 using LibRun8.Formats.Terrain;
-using LibRun8.Utils;
+using LibRun8.Util;
 using System.Text.Json;
 
 var options = new JsonSerializerOptions { WriteIndented = true, NumberHandling = System.Text.Json.Serialization.JsonNumberHandling.AllowNamedFloatingPointLiterals };
@@ -77,7 +77,7 @@ Console.WriteLine("Reading...");
 //jsonString = JsonSerializer.Serialize(hump, options);
 //File.WriteAllText("Hump.json", jsonString);
 
-//Texture.DecryptTexture(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_T389_ACFX.tx8");
+//Texture.Decrypt(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\Run8_ES44DC_CabNS.tx8");
 
 // TODO: we need to come back to this
 //TerrainTile tile = Terrain.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\Regions\Pennsylvania\TerrainTiles\00000_00000.tr4");
@@ -85,6 +85,6 @@ Console.WriteLine("Reading...");
 //File.WriteAllText("TerrainTile.json", jsonString);
 //tile.WriteOBJ(@"D:\Programs\Run8Studios\V2\Content\V2Routes\Regions\SouthernCA\TerrainTiles\00249_-00019.obj");
 
-Model model = Model.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_SD45-2_SBS01.rn8");
+Model model = Model.Read(@"D:\Programs\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_SD40T-2_SP01.rn8");
 jsonString = JsonSerializer.Serialize(model, options);
 File.WriteAllText("Model.json", jsonString);

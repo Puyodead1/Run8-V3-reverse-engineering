@@ -1498,7 +1498,7 @@ namespace LibRun8.Common
         // Token: 0x0600083A RID: 2106 RVA: 0x00023CBC File Offset: 0x00021EBC
         public static void Scaling(float x, float y, float z, out Matrix result)
         {
-            result = Matrix.Identity;
+            result = Identity;
             result.M11 = x;
             result.M22 = y;
             result.M33 = z;
@@ -1511,11 +1511,10 @@ namespace LibRun8.Common
         /// <param name="y">Scaling factor that is applied along the y-axis.</param>
         /// <param name="z">Scaling factor that is applied along the z-axis.</param>
         /// <returns>The created scaling matrix.</returns>
-        // Token: 0x0600083B RID: 2107 RVA: 0x00023CE0 File Offset: 0x00021EE0
         public static Matrix Scaling(float x, float y, float z)
         {
             Matrix matrix;
-            Matrix.Scaling(x, y, z, out matrix);
+            Scaling(x, y, z, out matrix);
             return matrix;
         }
 
@@ -1524,10 +1523,9 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="scale">The uniform scale that is applied along all axis.</param>
         /// <param name="result">When the method completes, contains the created scaling matrix.</param>
-        // Token: 0x0600083C RID: 2108 RVA: 0x00023CF8 File Offset: 0x00021EF8
         public static void Scaling(float scale, out Matrix result)
         {
-            result = Matrix.Identity;
+            result = Identity;
             result.M33 = scale;
             result.M22 = scale;
             result.M11 = scale;
@@ -1538,11 +1536,10 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="scale">The uniform scale that is applied along all axis.</param>
         /// <returns>The created scaling matrix.</returns>
-        // Token: 0x0600083D RID: 2109 RVA: 0x00023D2C File Offset: 0x00021F2C
         public static Matrix Scaling(float scale)
         {
             Matrix matrix;
-            Matrix.Scaling(scale, out matrix);
+            Scaling(scale, out matrix);
             return matrix;
         }
 
@@ -1551,7 +1548,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <param name="result">When the method completes, contains the created rotation matrix.</param>
-        // Token: 0x0600083E RID: 2110 RVA: 0x00023D44 File Offset: 0x00021F44
         public static void RotationX(float angle, out Matrix result)
         {
             float num = (float)Math.Cos((double)angle);
@@ -1568,11 +1564,10 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
-        // Token: 0x0600083F RID: 2111 RVA: 0x00023D8C File Offset: 0x00021F8C
         public static Matrix RotationX(float angle)
         {
             Matrix matrix;
-            Matrix.RotationX(angle, out matrix);
+            RotationX(angle, out matrix);
             return matrix;
         }
 
@@ -1581,12 +1576,11 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <param name="result">When the method completes, contains the created rotation matrix.</param>
-        // Token: 0x06000840 RID: 2112 RVA: 0x00023DA4 File Offset: 0x00021FA4
         public static void RotationY(float angle, out Matrix result)
         {
             float num = (float)Math.Cos((double)angle);
             float num2 = (float)Math.Sin((double)angle);
-            result = Matrix.Identity;
+            result = Identity;
             result.M11 = num;
             result.M13 = -num2;
             result.M31 = num2;
@@ -1598,11 +1592,10 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
-        // Token: 0x06000841 RID: 2113 RVA: 0x00023DEC File Offset: 0x00021FEC
         public static Matrix RotationY(float angle)
         {
             Matrix matrix;
-            Matrix.RotationY(angle, out matrix);
+            RotationY(angle, out matrix);
             return matrix;
         }
 
@@ -1611,7 +1604,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <param name="result">When the method completes, contains the created rotation matrix.</param>
-        // Token: 0x06000842 RID: 2114 RVA: 0x00023E04 File Offset: 0x00022004
         public static void RotationZ(float angle, out Matrix result)
         {
             float num = (float)Math.Cos((double)angle);
@@ -1628,7 +1620,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
-        // Token: 0x06000843 RID: 2115 RVA: 0x00023E4C File Offset: 0x0002204C
         public static Matrix RotationZ(float angle)
         {
             Matrix matrix;
@@ -1642,7 +1633,6 @@ namespace LibRun8.Common
         /// <param name="axis">The axis around which to rotate. This parameter is assumed to be normalized.</param>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <param name="result">When the method completes, contains the created rotation matrix.</param>
-        // Token: 0x06000844 RID: 2116 RVA: 0x00023E64 File Offset: 0x00022064
         public static void RotationAxis(ref Vector3 axis, float angle, out Matrix result)
         {
             float x = axis.X;
@@ -1674,7 +1664,6 @@ namespace LibRun8.Common
         /// <param name="axis">The axis around which to rotate. This parameter is assumed to be normalized.</param>
         /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
-        // Token: 0x06000845 RID: 2117 RVA: 0x00023F68 File Offset: 0x00022168
         public static Matrix RotationAxis(Vector3 axis, float angle)
         {
             Matrix matrix;
@@ -1687,7 +1676,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="rotation">The quaternion to use to build the matrix.</param>
         /// <param name="result">The created rotation matrix.</param>
-        // Token: 0x06000846 RID: 2118 RVA: 0x00023F80 File Offset: 0x00022180
         public static void RotationQuaternion(ref Quaternion rotation, out Matrix result)
         {
             float num = rotation.X * rotation.X;
@@ -1716,7 +1704,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="rotation">The quaternion to use to build the matrix.</param>
         /// <returns>The created rotation matrix.</returns>
-        // Token: 0x06000847 RID: 2119 RVA: 0x000240C0 File Offset: 0x000222C0
         public static Matrix RotationQuaternion(Quaternion rotation)
         {
             Matrix matrix;
@@ -1731,7 +1718,6 @@ namespace LibRun8.Common
         /// <param name="pitch">Pitch around the x-axis, in radians.</param>
         /// <param name="roll">Roll around the z-axis, in radians.</param>
         /// <param name="result">When the method completes, contains the created rotation matrix.</param>
-        // Token: 0x06000848 RID: 2120 RVA: 0x000240D8 File Offset: 0x000222D8
         public static void RotationYawPitchRoll(float yaw, float pitch, float roll, out Matrix result)
         {
             Quaternion quaternion = default(Quaternion);
@@ -1746,7 +1732,6 @@ namespace LibRun8.Common
         /// <param name="pitch">Pitch around the x-axis, in radians.</param>
         /// <param name="roll">Roll around the z-axis, in radians.</param>
         /// <returns>The created rotation matrix.</returns>
-        // Token: 0x06000849 RID: 2121 RVA: 0x00024100 File Offset: 0x00022300
         public static Matrix RotationYawPitchRoll(float yaw, float pitch, float roll)
         {
             Matrix matrix;
@@ -1759,7 +1744,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="value">The offset for all three coordinate planes.</param>
         /// <param name="result">When the method completes, contains the created translation matrix.</param>
-        // Token: 0x0600084A RID: 2122 RVA: 0x00024118 File Offset: 0x00022318
         public static void Translation(ref Vector3 value, out Matrix result)
         {
             Matrix.Translation(value.X, value.Y, value.Z, out result);
@@ -1770,7 +1754,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="value">The offset for all three coordinate planes.</param>
         /// <returns>The created translation matrix.</returns>
-        // Token: 0x0600084B RID: 2123 RVA: 0x00024134 File Offset: 0x00022334
         public static Matrix Translation(Vector3 value)
         {
             Matrix matrix;
@@ -1785,7 +1768,6 @@ namespace LibRun8.Common
         /// <param name="y">Y-coordinate offset.</param>
         /// <param name="z">Z-coordinate offset.</param>
         /// <param name="result">When the method completes, contains the created translation matrix.</param>
-        // Token: 0x0600084C RID: 2124 RVA: 0x0002414C File Offset: 0x0002234C
         public static void Translation(float x, float y, float z, out Matrix result)
         {
             result = Matrix.Identity;
@@ -1801,7 +1783,6 @@ namespace LibRun8.Common
         /// <param name="y">Y-coordinate offset.</param>
         /// <param name="z">Z-coordinate offset.</param>
         /// <returns>The created translation matrix.</returns>
-        // Token: 0x0600084D RID: 2125 RVA: 0x00024170 File Offset: 0x00022370
         public static Matrix Translation(float x, float y, float z)
         {
             Matrix matrix;
@@ -1815,7 +1796,6 @@ namespace LibRun8.Common
         /// <param name="left">The first matrix to add.</param>
         /// <param name="right">The second matrix to add.</param>
         /// <returns>The sum of the two matrices.</returns>
-        // Token: 0x0600085B RID: 2139 RVA: 0x00024684 File Offset: 0x00022884
         public static Matrix operator +(Matrix left, Matrix right)
         {
             Matrix matrix;
@@ -1828,7 +1808,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="value">The matrix to assert (unchanged).</param>
         /// <returns>The asserted (unchanged) matrix.</returns>
-        // Token: 0x0600085C RID: 2140 RVA: 0x000246A0 File Offset: 0x000228A0
         public static Matrix operator +(Matrix value)
         {
             return value;
@@ -1840,7 +1819,6 @@ namespace LibRun8.Common
         /// <param name="left">The first matrix to subtract.</param>
         /// <param name="right">The second matrix to subtract.</param>
         /// <returns>The difference between the two matrices.</returns>
-        // Token: 0x0600085D RID: 2141 RVA: 0x000246A4 File Offset: 0x000228A4
         public static Matrix operator -(Matrix left, Matrix right)
         {
             Matrix matrix;
@@ -1853,7 +1831,6 @@ namespace LibRun8.Common
         /// </summary>
         /// <param name="value">The matrix to negate.</param>
         /// <returns>The negated matrix.</returns>
-        // Token: 0x0600085E RID: 2142 RVA: 0x000246C0 File Offset: 0x000228C0
         public static Matrix operator -(Matrix value)
         {
             Matrix matrix;
@@ -1867,7 +1844,6 @@ namespace LibRun8.Common
         /// <param name="right">The matrix to scale.</param>
         /// <param name="left">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
-        // Token: 0x0600085F RID: 2143 RVA: 0x000246D8 File Offset: 0x000228D8
         public static Matrix operator *(float left, Matrix right)
         {
             Matrix matrix;
@@ -1881,7 +1857,6 @@ namespace LibRun8.Common
         /// <param name="left">The matrix to scale.</param>
         /// <param name="right">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
-        // Token: 0x06000860 RID: 2144 RVA: 0x000246F0 File Offset: 0x000228F0
         public static Matrix operator *(Matrix left, float right)
         {
             Matrix matrix;
@@ -1895,7 +1870,6 @@ namespace LibRun8.Common
         /// <param name="left">The first matrix to multiply.</param>
         /// <param name="right">The second matrix to multiply.</param>
         /// <returns>The product of the two matrices.</returns>
-        // Token: 0x06000861 RID: 2145 RVA: 0x00024708 File Offset: 0x00022908
         public static Matrix operator *(Matrix left, Matrix right)
         {
             Matrix matrix;
@@ -1909,7 +1883,6 @@ namespace LibRun8.Common
         /// <param name="left">The matrix to scale.</param>
         /// <param name="right">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
-        // Token: 0x06000862 RID: 2146 RVA: 0x00024724 File Offset: 0x00022924
         public static Matrix operator /(Matrix left, float right)
         {
             Matrix matrix;
@@ -1923,7 +1896,6 @@ namespace LibRun8.Common
         /// <param name="left">The first matrix to divide.</param>
         /// <param name="right">The second matrix to divide.</param>
         /// <returns>The quotient of the two matrices.</returns>
-        // Token: 0x06000863 RID: 2147 RVA: 0x0002473C File Offset: 0x0002293C
         public static Matrix operator /(Matrix left, Matrix right)
         {
             Matrix matrix;
@@ -1937,7 +1909,6 @@ namespace LibRun8.Common
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
-        // Token: 0x06000866 RID: 2150 RVA: 0x00024774 File Offset: 0x00022974
         public override string ToString()
         {
             return string.Format(CultureInfo.CurrentCulture, "[M11:{0} M12:{1} M13:{2} M14:{3}] [M21:{4} M22:{5} M23:{6} M24:{7}] [M31:{8} M32:{9} M33:{10} M34:{11}] [M41:{12} M42:{13} M43:{14} M44:{15}]", new object[]
@@ -1954,7 +1925,6 @@ namespace LibRun8.Common
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
-        // Token: 0x06000867 RID: 2151 RVA: 0x00024880 File Offset: 0x00022A80
         public string ToString(string format)
         {
             if (format == null)
@@ -1991,7 +1961,6 @@ namespace LibRun8.Common
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
-        // Token: 0x06000868 RID: 2152 RVA: 0x00024A08 File Offset: 0x00022C08
         public string ToString(IFormatProvider formatProvider)
         {
             return string.Format(formatProvider, "[M11:{0} M12:{1} M13:{2} M14:{3}] [M21:{4} M22:{5} M23:{6} M24:{7}] [M31:{8} M32:{9} M33:{10} M34:{11}] [M41:{12} M42:{13} M43:{14} M44:{15}]", new object[]
@@ -2023,7 +1992,6 @@ namespace LibRun8.Common
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
-        // Token: 0x06000869 RID: 2153 RVA: 0x00024B20 File Offset: 0x00022D20
         public string ToString(string format, IFormatProvider formatProvider)
         {
             if (format == null)
@@ -2059,7 +2027,6 @@ namespace LibRun8.Common
         /// <returns>
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
         /// </returns>
-        // Token: 0x0600086A RID: 2154 RVA: 0x00024C5C File Offset: 0x00022E5C
         public override int GetHashCode()
         {
             int num = this.M11.GetHashCode();

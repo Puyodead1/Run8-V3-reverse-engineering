@@ -1,5 +1,6 @@
 ﻿// part of sharpdx, stripped down
 
+using LibRun8.Util;
 using System.Globalization;
 using System.Runtime.InteropServices;
 
@@ -509,6 +510,75 @@ namespace LibRun8.Common
         }
 
         /// <summary>
+        /// Performs a linear interpolation between two quaternions.
+        /// </summary>
+        /// <param name="start">Start quaternion.</param>
+        /// <param name="end">End quaternion.</param>
+        /// <param name="amount">Value between 0 and 1 indicating the weight of <paramref name="end" />.</param>
+        /// <param name="result">When the method completes, contains the linear interpolation of the two quaternions.</param>
+        /// <remarks>
+        /// This method performs the linear interpolation based on the following formula.
+        /// <code>start + (end - start) * amount</code>
+        /// Passing <paramref name="amount" /> a value of 0 will cause <paramref name="start" /> to be returned; a value of 1 will cause <paramref name="end" /> to be returned. 
+        /// </remarks>
+        public static void Lerp(ref Quaternion start, ref Quaternion end, float amount, out Quaternion result)
+        {
+            result = default;
+
+            float num = 1f - amount;
+            if (Quaternion.Dot(start, end) >= 0f)
+            {
+                result.X = num * start.X + amount * end.X;
+                result.Y = num * start.Y + amount * end.Y;
+                result.Z = num * start.Z + amount * end.Z;
+                result.W = num * start.W + amount * end.W;
+            }
+            else
+            {
+                result.X = num * start.X - amount * end.X;
+                result.Y = num * start.Y - amount * end.Y;
+                result.Z = num * start.Z - amount * end.Z;
+                result.W = num * start.W - amount * end.W;
+            }
+            result.Normalize();
+        }
+
+        /// <summary>
+        /// Performs a linear interpolation between two quaternion.
+        /// </summary>
+        /// <param name="start">Start quaternion.</param>
+        /// <param name="end">End quaternion.</param>
+        /// <param name="amount">Value between 0 and 1 indicating the weight of <paramref name="end" />.</param>
+        /// <returns>The linear interpolation of the two quaternions.</returns>
+        /// <remarks>
+        /// This method performs the linear interpolation based on the following formula.
+        /// <code>start + (end - start) * amount</code>
+        /// Passing <paramref name="amount" /> a value of 0 will cause <paramref name="start" /> to be returned; a value of 1 will cause <paramref name="end" /> to be returned. 
+        /// </remarks>
+        public static Quaternion Lerp(Quaternion start, Quaternion end, float amount)
+        {
+            Quaternion quaternion;
+            Quaternion.Lerp(ref start, ref end, amount, out quaternion);
+            return quaternion;
+        }
+
+        /// <summary>
+        /// Converts the quaternion into a unit quaternion.
+        /// </summary>
+        public void Normalize()
+        {
+            float num = this.Length();
+            if (!Utils.IsZero(num))
+            {
+                float num2 = 1f / num;
+                this.X *= num2;
+                this.Y *= num2;
+                this.Z *= num2;
+                this.W *= num2;
+            }
+        }
+
+        /// <summary>
         /// Adds two quaternions.
         /// </summary>
         /// <param name="left">The first quaternion to add.</param>
@@ -583,6 +653,41 @@ namespace LibRun8.Common
             Quaternion quaternion;
             Quaternion.Multiply(ref left, ref right, out quaternion);
             return quaternion;
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="T:SharpDX.Quaternion" /> is equal to this instance.
+        /// </summary>
+        /// <param name="other">The <see cref="T:SharpDX.Quaternion" /> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="T:SharpDX.Quaternion" /> is equal to this instance; otherwise, <c>false</c>.
+        /// </returns>
+        // Token: 0x060009B3 RID: 2483 RVA: 0x00029A88 File Offset: 0x00027C88
+        public bool Equals(ref Quaternion other)
+        {
+            return Utils.NearEqual(other.X, this.X) && Utils.NearEqual(other.Y, this.Y) && Utils.NearEqual(other.Z, this.Z) && Utils.NearEqual(other.W, this.W);
+        }
+
+        /// <summary>
+        /// Tests for equality between two objects.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The second value to compare.</param>
+        /// <returns><c>true</c> if <paramref name="left" /> has the same value as <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        public static bool operator ==(Quaternion left, Quaternion right)
+        {
+            return left.Equals(ref right);
+        }
+
+        /// <summary>
+        /// Tests for inequality between two objects.
+        /// </summary>
+        /// <param name="left">The first value to compare.</param>
+        /// <param name="right">The second value to compare.</param>
+        /// <returns><c>true</c> if <paramref name="left" /> has a different value than <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        public static bool operator !=(Quaternion left, Quaternion right)
+        {
+            return !left.Equals(ref right);
         }
 
         /// <summary>
