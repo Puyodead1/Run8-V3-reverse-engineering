@@ -31,17 +31,17 @@ namespace LibRun8.Formats.Terrain
                 for (byte z = 0; z < 25; z++)
                 {
                     Chunk chunk = new Chunk();
-                    chunk.hixels = (short)reader.ReadInt32();
-                    chunk.heightMap = new float[chunk.hixels, chunk.hixels];
-                    chunk.cx = x;
-                    chunk.cz = z;
+                    chunk.Hixels = (short)reader.ReadInt32();
+                    chunk.HeightMap = new float[chunk.Hixels, chunk.Hixels];
+                    chunk.CX = x;
+                    chunk.CZ = z;
 
-                    for (int i = 0; i < chunk.hixels; i++)
+                    for (int i = 0; i < chunk.Hixels; i++)
                     {
-                        for (int j = 0; j < chunk.hixels; j++)
+                        for (int j = 0; j < chunk.Hixels; j++)
                         {
                             float elevation = reader.ReadSingle();
-                            chunk.heightMap[i, j] = elevation;
+                            chunk.HeightMap[i, j] = elevation;
                             //if(elevation <= heightOffset + 0.2f)
                             //{
                             //    num++;
@@ -65,7 +65,8 @@ namespace LibRun8.Formats.Terrain
             }
             catch { }
 
-            //TileUtil.smethod_13(this);
+            // this calculates vertex and index buffer
+            TileUtil.smethod_13(terrainTileLoadData.Tile);
         }
 
         public void Write(string path)

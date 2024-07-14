@@ -4,16 +4,36 @@ meta:
   application: Run8 Train Simulator V3
   endian: le
 types:
-  c_string:
+  cs_string:
     seq:
       - id: len
-        type: b8
+        type: u1
         doc: Length of the string as a 7 bit encoded int
       - id: value
         type: str
         encoding: UTF-8
         size: len
         doc: The string
+  vector2:
+    seq:
+      - id: x
+        type: f4
+      - id: y
+        type: f4
+  vector3:
+    seq:
+      - id: x
+        type: f4
+      - id: y
+        type: f4
+      - id: z
+        type: f4
+  tilexz:
+    seq:
+      - id: x
+        type: s4
+      - id: z
+        type: s4
   matrix4:
     seq:
       - id: m11

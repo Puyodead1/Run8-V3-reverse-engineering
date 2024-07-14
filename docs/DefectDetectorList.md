@@ -14,12 +14,12 @@ Contains a list of defect detectors.
 
 | Offset | Type      | Explaination                  |
 | ------ | --------- | ----------------------------- |
-| 0      | Int32     | Unknown (n)                   |
+| 0      | Int32     | Version (v)                   |
 | 4      | Int32     | Milepost                      |
 | 8      | Int32     | Milepost Decimal              |
 | 16     | TileIndex | Tile Index                    |
 | 28     | Vector3   | Position                      |
-| ...    | Byte      | IsAEI (IF n=2 otherwise skip) |
+| ...    | Byte      | IsAEI (IF v=2 otherwise skip) |
 | 29     | Byte      | SquawkOnDefectOnly            |
 | 30     | Byte      | DraggingEquipment             |
 | 31     | Byte      | SquawkTemperature             |

@@ -9,17 +9,20 @@ namespace LibRun8.Formats.Terrain
         public string Texture2Name { get; set; }
         public string Texture3Name { get; set; }
         public int DetailLevel { get; set; }
-        public Chunk[,] ChunkData;
+        public Chunk[,] ChunkData { get; set; }
         public float LonWest { get; set; }
         public float LonEast { get; set; }
         public float LatNorth { get; set; }
         public float LatSouth { get; set; }
         public string ProcVeg { get; set; }
-        public VertexStruct[] AllVerticesTemp;
+        public VertexStruct[] AllVerticesTemp { get; set; }
+        public int[] IndexBuffer { get; set; }
         public TileIndex TileXZ { get; set; }
         public List<SceneryAssetLoader> LoadList { get; set; } = new List<SceneryAssetLoader>();
         public ProceduralVegetation Plants { get; set; }
         public byte[] WeightMap { get; set; }
+        public Vector2 CenterXZ { get; set; }
+        public float CenterY { get; set; }
 
         public void CopyToVertexBuffers()
         {
@@ -33,6 +36,11 @@ namespace LibRun8.Formats.Terrain
           
             //this.indexBuffer = null;
             //this.allVerticesTemp = null;
+        }
+
+        public void WriteOBJ(string path)
+        {
+            
         }
     }
 }

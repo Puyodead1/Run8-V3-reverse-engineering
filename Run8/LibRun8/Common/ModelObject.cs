@@ -1,6 +1,5 @@
 ﻿using LibRun8.Formats;
 using LibRun8.Util;
-using System.Security.Claims;
 
 namespace LibRun8.Common
 {

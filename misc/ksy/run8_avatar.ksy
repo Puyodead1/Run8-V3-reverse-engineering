@@ -19,7 +19,7 @@ seq:
     type: s4
     doc: The number of textures in the mesh
   - id: textures
-    type: run8_common::c_string
+    type: run8_common::cs_string
     repeat: expr
     repeat-expr: num_textures
     doc: The textures in the mesh
@@ -173,7 +173,7 @@ types:
   bone_index_struct:
     seq:
       - id: key
-        type: run8_common::c_string
+        type: run8_common::cs_string
         doc: The bone name
       - id: bone_index
         type: s4
@@ -181,7 +181,7 @@ types:
   animation_clip:
     seq:
       - id: key
-        type: run8_common::c_string
+        type: run8_common::cs_string
         doc: The animation clip name
       - id: duration
         type: f8
@@ -205,4 +205,3 @@ types:
       - id: transform
         type: run8_common::matrix4
         doc: The transform of the keyframe
-        

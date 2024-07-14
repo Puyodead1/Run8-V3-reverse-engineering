@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MappingTest": {
+      "commandName": "Project",
+      "commandLineArgs": "\"D:\\Programs\\Run8Studios\\Run8 Train Simulator V3\\old\\Run-8 Train Simulator V3_update_11_renamed.exe\" \"D:\\Programs\\Run8Studios\\Run8 Train Simulator V3\\old\\Run-8 Train Simulator V3_update_12_cleaned.exe\""
+    }
+  }
+}

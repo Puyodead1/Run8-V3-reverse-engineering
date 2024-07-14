@@ -10,7 +10,7 @@ namespace LibRun8.Formats.Terrain
             {
                 for (int j = 0; j < Chunk.CHUNK_SIZE - 1; j++)
                 {
-                    if (chunkData[j, i].hixels == chunkData[j + 1, i].hixels)
+                    if (chunkData[j, i].Hixels == chunkData[j + 1, i].Hixels)
                     {
                         MatchNeighboursX(chunkData[j, i], chunkData[j + 1, i]);
                     }
@@ -20,7 +20,7 @@ namespace LibRun8.Formats.Terrain
             {
                 for (int l = 0; l < Chunk.CHUNK_SIZE - 1; l++)
                 {
-                    if (chunkData[k, l + 1].hixels == chunkData[k, l].hixels)
+                    if (chunkData[k, l + 1].Hixels == chunkData[k, l].Hixels)
                     {
                         MatchNeighboursZ(chunkData[k, l + 1], chunkData[k, l]);
                     }
@@ -30,7 +30,7 @@ namespace LibRun8.Formats.Terrain
             {
                 for (int n = 0; n < Chunk.CHUNK_SIZE - 1; n++)
                 {
-                    if (chunkData[n, m].hixels != chunkData[n + 1, m].hixels)
+                    if (chunkData[n, m].Hixels != chunkData[n + 1, m].Hixels)
                     {
                         MatchNeighboursX(chunkData[n, m], chunkData[n + 1, m]);
                     }
@@ -40,7 +40,7 @@ namespace LibRun8.Formats.Terrain
             {
                 for (int num2 = 0; num2 < Chunk.CHUNK_SIZE - 1; num2++)
                 {
-                    if (chunkData[num, num2 + 1].hixels != chunkData[num, num2].hixels)
+                    if (chunkData[num, num2 + 1].Hixels != chunkData[num, num2].Hixels)
                     {
                         MatchNeighboursZ(chunkData[num, num2 + 1], chunkData[num, num2]);
                     }
@@ -50,19 +50,19 @@ namespace LibRun8.Formats.Terrain
 
         private static void MatchNeighboursX(Chunk left, Chunk right)
         {
-            float maxLeftX = left.vertices.Max((VertexStruct vertex) => vertex.Position.X);
-            float min = right.vertices.Min((VertexStruct vertex) => vertex.Position.X);
-            List<VertexStruct> list = left.vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.X, maxLeftX)).ToList();
-            List<VertexStruct> list2 = right.vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.X, min)).ToList();
+            float maxLeftX = left.Vertices.Max((VertexStruct vertex) => vertex.Position.X);
+            float min = right.Vertices.Min((VertexStruct vertex) => vertex.Position.X);
+            List<VertexStruct> list = left.Vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.X, maxLeftX)).ToList();
+            List<VertexStruct> list2 = right.Vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.X, min)).ToList();
             if (list.Count > list2.Count)
             {
                 MatchNeighboursX(list2, 0, list2.Count() - 1, list, 0, list.Count() - 1);
                 int num = 0;
-                for (int i = 0; i < left.vertices.Length; i++)
+                for (int i = 0; i < left.Vertices.Length; i++)
                 {
-                    if (AreFloatsApproximatelyEqual(left.vertices[i].Position.X, maxLeftX))
+                    if (AreFloatsApproximatelyEqual(left.Vertices[i].Position.X, maxLeftX))
                     {
-                        left.vertices[i] = list[num++];
+                        left.Vertices[i] = list[num++];
                     }
                 }
                 return;
@@ -71,21 +71,21 @@ namespace LibRun8.Formats.Terrain
             {
                 MatchNeighboursX(list, 0, list.Count() - 1, list2, 0, list2.Count() - 1);
                 int num2 = 0;
-                for (int j = 0; j < right.vertices.Length; j++)
+                for (int j = 0; j < right.Vertices.Length; j++)
                 {
-                    if (AreFloatsApproximatelyEqual(right.vertices[j].Position.X, maxLeftX))
+                    if (AreFloatsApproximatelyEqual(right.Vertices[j].Position.X, maxLeftX))
                     {
-                        right.vertices[j] = list2[num2++];
+                        right.Vertices[j] = list2[num2++];
                     }
                 }
                 return;
             }
             int num3 = 0;
-            for (int k = 0; k < right.vertices.Length; k++)
+            for (int k = 0; k < right.Vertices.Length; k++)
             {
-                if (AreFloatsApproximatelyEqual(right.vertices[k].Position.X, maxLeftX))
+                if (AreFloatsApproximatelyEqual(right.Vertices[k].Position.X, maxLeftX))
                 {
-                    right.vertices[k] = list[num3++];
+                    right.Vertices[k] = list[num3++];
                 }
             }
         }
@@ -129,19 +129,19 @@ namespace LibRun8.Formats.Terrain
 
         private static void MatchNeighboursZ(Chunk left, Chunk right)
         {
-            float maxLeftZ = left.vertices.Max((VertexStruct vertex) => vertex.Position.Z);
-            float min = right.vertices.Min((VertexStruct vertex) => vertex.Position.Z);
-            List<VertexStruct> list = left.vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.Z, maxLeftZ)).ToList();
-            List<VertexStruct> list2 = right.vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.Z, min)).ToList();
+            float maxLeftZ = left.Vertices.Max((VertexStruct vertex) => vertex.Position.Z);
+            float min = right.Vertices.Min((VertexStruct vertex) => vertex.Position.Z);
+            List<VertexStruct> list = left.Vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.Z, maxLeftZ)).ToList();
+            List<VertexStruct> list2 = right.Vertices.Where((VertexStruct vertex) => AreFloatsApproximatelyEqual(vertex.Position.Z, min)).ToList();
             if (list.Count > list2.Count)
             {
                 MatchNeighboursZ(list2, 0, list2.Count() - 1, list, 0, list.Count() - 1);
                 int num = 0;
-                for (int i = 0; i < left.vertices.Length; i++)
+                for (int i = 0; i < left.Vertices.Length; i++)
                 {
-                    if (AreFloatsApproximatelyEqual(left.vertices[i].Position.Z, maxLeftZ))
+                    if (AreFloatsApproximatelyEqual(left.Vertices[i].Position.Z, maxLeftZ))
                     {
-                        left.vertices[i] = list[num++];
+                        left.Vertices[i] = list[num++];
                     }
                 }
                 return;
@@ -150,21 +150,21 @@ namespace LibRun8.Formats.Terrain
             {
                 MatchNeighboursZ(list, 0, list.Count() - 1, list2, 0, list2.Count() - 1);
                 int num2 = 0;
-                for (int j = 0; j < right.vertices.Length; j++)
+                for (int j = 0; j < right.Vertices.Length; j++)
                 {
-                    if (AreFloatsApproximatelyEqual(right.vertices[j].Position.Z, maxLeftZ))
+                    if (AreFloatsApproximatelyEqual(right.Vertices[j].Position.Z, maxLeftZ))
                     {
-                        right.vertices[j] = list2[num2++];
+                        right.Vertices[j] = list2[num2++];
                     }
                 }
                 return;
             }
             int num3 = 0;
-            for (int k = 0; k < right.vertices.Length; k++)
+            for (int k = 0; k < right.Vertices.Length; k++)
             {
-                if (AreFloatsApproximatelyEqual(right.vertices[k].Position.Z, maxLeftZ))
+                if (AreFloatsApproximatelyEqual(right.Vertices[k].Position.Z, maxLeftZ))
                 {
-                    right.vertices[k] = list[num3++];
+                    right.Vertices[k] = list[num3++];
                 }
             }
         }
