@@ -1,13 +1,15 @@
 # This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
+# type: ignore
 
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
-from .run8_common import Run8Common
+from lib_run8.kaitai import common
 
-if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 9):
-    raise Exception("Incompatible Kaitai Struct Python API: 0.9 or later is required, but you have %s" % (kaitaistruct.__version__))
 
-class Run8Tilescenery(KaitaiStruct):
+if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
+    raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
+
+class TileScenery(KaitaiStruct):
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -18,36 +20,36 @@ class Run8Tilescenery(KaitaiStruct):
         self.num_assets = self._io.read_s4le()
         self.assets = []
         for i in range(self.num_assets):
-            self.assets.append(Run8Tilescenery.Asset(self._io, self, self._root))
+            self.assets.append(TileScenery.Asset(self._io, self, self._root))
 
 
     class Asset(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):
             self.num_decals = self._io.read_s4le()
             self.decals = []
             for i in range(self.num_decals):
-                self.decals.append(Run8Tilescenery.Decal(self._io, self, self._root))
+                self.decals.append(TileScenery.Decal(self._io, self, self._root))
 
             self.disregard_bounding_test = self._io.read_bits_int_be(1) != 0
             self._io.align_to_byte()
-            self.model_name = Run8Common.CsString(self._io, self, self._root)
-            self.position = Run8Common.Vector3(self._io, self, self._root)
-            self.rotation = Run8Common.Vector3(self._io, self, self._root)
-            self.scale = Run8Common.Vector3(self._io, self, self._root)
-            self.tile_xz = Run8Common.Tilexz(self._io, self, self._root)
+            self.model_name = common.Common.CsString(self._io)
+            self.position = common.Common.Vector3(self._io)
+            self.rotation = common.Common.Vector3(self._io)
+            self.scale = common.Common.Vector3(self._io)
+            self.tile_xz = common.Common.Tilexz(self._io)
 
 
     class Decal(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):
@@ -57,19 +59,19 @@ class Run8Tilescenery(KaitaiStruct):
             self.num_digits = self._io.read_s4le()
             self.digits = []
             for i in range(self.num_digits):
-                self.digits.append(Run8Tilescenery.Digit(self._io, self, self._root))
+                self.digits.append(TileScenery.Digit(self._io, self, self._root))
 
-            self.offset = Run8Common.Vector3(self._io, self, self._root)
-            self.rotation_deg = Run8Common.Vector3(self._io, self, self._root)
+            self.offset = common.Common.Vector3(self._io)
+            self.rotation_deg = common.Common.Vector3(self._io)
             self.size = self._io.read_f4le()
-            self.texture_name = Run8Common.CsString(self._io, self, self._root)
+            self.texture_name = common.Common.CsString(self._io)
 
 
     class Digit(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):

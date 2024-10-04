@@ -1,13 +1,15 @@
 # This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
+# type: ignore
 
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
+from lib_run8.kaitai import common
 
 
-if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 9):
-    raise Exception("Incompatible Kaitai Struct Python API: 0.9 or later is required, but you have %s" % (kaitaistruct.__version__))
+if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
+    raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
-class Run8Tr2(KaitaiStruct):
+class Tr2(KaitaiStruct):
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -15,45 +17,45 @@ class Run8Tr2(KaitaiStruct):
         self._read()
 
     def _read(self):
-        self.texture_1 = Run8Common.CsString(self._io, self, self._root)
-        self.texture_2 = Run8Common.CsString(self._io, self, self._root)
-        self.texture_3 = Run8Common.CsString(self._io, self, self._root)
-        self.texture_4 = Run8Common.CsString(self._io, self, self._root)
+        self.texture_1 = common.Common.CsString(self._io)
+        self.texture_2 = common.Common.CsString(self._io)
+        self.texture_3 = common.Common.CsString(self._io)
+        self.texture_4 = common.Common.CsString(self._io)
         self.chunks = []
         for i in range(25):
-            self.chunks.append(Run8Tr2.ChunkRow(self._io, self, self._root))
+            self.chunks.append(Tr2.ChunkRow(self._io, self, self._root))
 
         self.lon_east = self._io.read_f4le()
         self.lon_west = self._io.read_f4le()
         self.lat_north = self._io.read_f4le()
         self.lat_south = self._io.read_f4le()
 
-    class ChunkRow(KaitaiStruct):
-        def __init__(self, _io, _parent=None, _root=None):
-            self._io = _io
-            self._parent = _parent
-            self._root = _root if _root else self
-            self._read()
-
-        def _read(self):
-            self.chunks = []
-            for i in range(25):
-                self.chunks.append(Run8Tr2.Chunk(self._io, self, self._root))
-
-
-
     class Chunk(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):
             self.chunk_size = self._io.read_u4le()
             self.elevations_row = []
             for i in range(self.chunk_size):
-                self.elevations_row.append(Run8Tr2.ElevationCol(self._io, self, self._root))
+                self.elevations_row.append(Tr2.ElevationCol(self._io, self, self._root))
+
+
+
+    class ChunkRow(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root
+            self._read()
+
+        def _read(self):
+            self.chunks = []
+            for i in range(25):
+                self.chunks.append(Tr2.Chunk(self._io, self, self._root))
 
 
 
@@ -61,7 +63,7 @@ class Run8Tr2(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):

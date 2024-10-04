@@ -1,20 +1,20 @@
 meta:
-  id: run8_tr2
+  id: tr2
   title: Run8 TR2 Terrain Tile
   application: Run8 Train Simulator
   file-extension: tr2
   endian: le
   imports:
-    - run8_common
+    - common
 seq:
   - id: texture_1
-    type: run8_common::cs_string
+    type: common::cs_string
   - id: texture_2
-    type: run8_common::cs_string
+    type: common::cs_string
   - id: texture_3
-    type: run8_common::cs_string
+    type: common::cs_string
   - id: texture_4
-    type: run8_common::cs_string
+    type: common::cs_string
   - id: chunks
     type: chunk_row
     repeat: expr

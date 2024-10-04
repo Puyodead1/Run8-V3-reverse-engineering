@@ -1,11 +1,11 @@
 meta:
-  id: run8_avatar
+  id: avatar
   title: Run8 V3 Avatar File
   application: Run8 Train Simulator V3
   file-extension: rn8
   endian: le
   imports:
-    - run8_common
+    - common
 seq:
   - id: vertex_count
     type: s4
@@ -19,7 +19,7 @@ seq:
     type: s4
     doc: The number of textures in the mesh
   - id: textures
-    type: run8_common::cs_string
+    type: common::cs_string
     repeat: expr
     repeat-expr: num_textures
     doc: The textures in the mesh
@@ -69,7 +69,7 @@ seq:
     type: s4
     doc: The number of bind poses
   - id: bind_poses
-    type: run8_common::matrix4
+    type: common::matrix4
     repeat: expr
     repeat-expr: num_bind_poses
     doc: The bind poses
@@ -77,7 +77,7 @@ seq:
     type: s4
     doc: The number of inverse bind poses
   - id: inverse_bind_poses
-    type: run8_common::matrix4
+    type: common::matrix4
     repeat: expr
     repeat-expr: num_inverse_bind_poses
     doc: The inverse bind poses
@@ -173,7 +173,7 @@ types:
   bone_index_struct:
     seq:
       - id: key
-        type: run8_common::cs_string
+        type: common::cs_string
         doc: The bone name
       - id: bone_index
         type: s4
@@ -181,7 +181,7 @@ types:
   animation_clip:
     seq:
       - id: key
-        type: run8_common::cs_string
+        type: common::cs_string
         doc: The animation clip name
       - id: duration
         type: f8
@@ -203,5 +203,5 @@ types:
         type: f8
         doc: The time of the keyframe
       - id: transform
-        type: run8_common::matrix4
+        type: common::matrix4
         doc: The transform of the keyframe

@@ -1,9 +1,17 @@
 meta:
-  id: run8_common
+  id: common
   title: Common
   application: Run8 Train Simulator V3
   endian: le
+  ks-opaque-types: true
 types:
+  string:
+    seq:
+      - id: len_value
+        type: s4
+      - id: value
+        size: len_value
+        process: lib_run8.string_utils.decode_run8_string(len_value)
   cs_string:
     seq:
       - id: len
@@ -68,3 +76,13 @@ types:
         type: f4
       - id: m44
         type: f4
+  color:
+    seq:
+      - id: a
+        type: s1
+      - id: r
+        type: s1
+      - id: g
+        type: s1
+      - id: b
+        type: s1

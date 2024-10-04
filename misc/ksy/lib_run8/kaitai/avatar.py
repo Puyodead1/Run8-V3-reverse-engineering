@@ -1,14 +1,15 @@
 # This is a generated file! Please edit source .ksy file and use kaitai-struct-compiler to rebuild
+# type: ignore
 
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
-from .run8_common import Run8Common
+from lib_run8.kaitai import common
 
 
-if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 9):
-    raise Exception("Incompatible Kaitai Struct Python API: 0.9 or later is required, but you have %s" % (kaitaistruct.__version__))
+if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
+    raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
-class Run8Avatar(KaitaiStruct):
+class Avatar(KaitaiStruct):
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -19,12 +20,12 @@ class Run8Avatar(KaitaiStruct):
         self.vertex_count = self._io.read_s4le()
         self.vertices = []
         for i in range(self.num_vertices):
-            self.vertices.append(Run8Avatar.VertexStruct(self._io, self, self._root))
+            self.vertices.append(Avatar.VertexStruct(self._io, self, self._root))
 
         self.texture_count = self._io.read_s4le()
         self.textures = []
         for i in range(self.num_textures):
-            self.textures.append(Run8Common.CsString(self._io, self, self._root))
+            self.textures.append(common.Common.CsString(self._io))
 
         self.is_ushort_index_buffer = self._io.read_bits_int_be(1) != 0
         self._io.align_to_byte()
@@ -44,7 +45,7 @@ class Run8Avatar(KaitaiStruct):
         self.num_unknown_structs = self._io.read_s4le()
         self.unknown_structs = []
         for i in range(self.num_unknown_struct_altered):
-            self.unknown_structs.append(Run8Avatar.UnknownStruct(self._io, self, self._root))
+            self.unknown_structs.append(Avatar.UnknownStruct(self._io, self, self._root))
 
         self.num_skeleton_hierarchy = self._io.read_s4le()
         self.skeleton_hierarchy = []
@@ -54,46 +55,71 @@ class Run8Avatar(KaitaiStruct):
         self.num_bone_indices = self._io.read_s4le()
         self.bone_indices = []
         for i in range(self.num_bone_indices):
-            self.bone_indices.append(Run8Avatar.BoneIndexStruct(self._io, self, self._root))
+            self.bone_indices.append(Avatar.BoneIndexStruct(self._io, self, self._root))
 
         self.num_bind_poses = self._io.read_s4le()
         self.bind_poses = []
         for i in range(self.num_bind_poses):
-            self.bind_poses.append(Run8Common.Matrix4(self._io, self, self._root))
+            self.bind_poses.append(common.Common.Matrix4(self._io))
 
         self.num_inverse_bind_poses = self._io.read_s4le()
         self.inverse_bind_poses = []
         for i in range(self.num_inverse_bind_poses):
-            self.inverse_bind_poses.append(Run8Common.Matrix4(self._io, self, self._root))
+            self.inverse_bind_poses.append(common.Common.Matrix4(self._io))
 
         self.num_animations = self._io.read_s4le()
         self.animations = []
         for i in range(self.num_animations):
-            self.animations.append(Run8Avatar.AnimationClip(self._io, self, self._root))
+            self.animations.append(Avatar.AnimationClip(self._io, self, self._root))
 
 
     class AnimationClip(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):
-            self.key = Run8Common.CsString(self._io, self, self._root)
+            self.key = common.Common.CsString(self._io)
             self.duration = self._io.read_f8le()
             self.num_keyframes = self._io.read_s4le()
             self.keyframes = []
             for i in range(self.num_keyframes):
-                self.keyframes.append(Run8Avatar.AnimationKeyframe(self._io, self, self._root))
+                self.keyframes.append(Avatar.AnimationKeyframe(self._io, self, self._root))
 
+
+
+    class AnimationKeyframe(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root
+            self._read()
+
+        def _read(self):
+            self.bone_index = self._io.read_s4le()
+            self.time = self._io.read_f8le()
+            self.transform = common.Common.Matrix4(self._io)
+
+
+    class BoneIndexStruct(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root
+            self._read()
+
+        def _read(self):
+            self.key = common.Common.CsString(self._io)
+            self.bone_index = self._io.read_s4le()
 
 
     class UnknownStruct(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):
@@ -108,7 +134,7 @@ class Run8Avatar(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
-            self._root = _root if _root else self
+            self._root = _root
             self._read()
 
         def _read(self):
@@ -132,30 +158,21 @@ class Run8Avatar(KaitaiStruct):
             self.blend_weight_x = self._io.read_f4le()
 
 
-    class AnimationKeyframe(KaitaiStruct):
-        def __init__(self, _io, _parent=None, _root=None):
-            self._io = _io
-            self._parent = _parent
-            self._root = _root if _root else self
-            self._read()
+    @property
+    def num_textures(self):
+        if hasattr(self, '_m_num_textures'):
+            return self._m_num_textures
 
-        def _read(self):
-            self.bone_index = self._io.read_s4le()
-            self.time = self._io.read_f8le()
-            self.transform = Run8Common.Matrix4(self._io, self, self._root)
+        self._m_num_textures = self.texture_count + 6
+        return getattr(self, '_m_num_textures', None)
 
+    @property
+    def num_unknown_struct_altered(self):
+        if hasattr(self, '_m_num_unknown_struct_altered'):
+            return self._m_num_unknown_struct_altered
 
-    class BoneIndexStruct(KaitaiStruct):
-        def __init__(self, _io, _parent=None, _root=None):
-            self._io = _io
-            self._parent = _parent
-            self._root = _root if _root else self
-            self._read()
-
-        def _read(self):
-            self.key = Run8Common.CsString(self._io, self, self._root)
-            self.bone_index = self._io.read_s4le()
-
+        self._m_num_unknown_struct_altered = self.num_unknown_structs - 9
+        return getattr(self, '_m_num_unknown_struct_altered', None)
 
     @property
     def num_vertices(self):
@@ -164,21 +181,5 @@ class Run8Avatar(KaitaiStruct):
 
         self._m_num_vertices = self.vertex_count // 7
         return getattr(self, '_m_num_vertices', None)
-
-    @property
-    def num_textures(self):
-        if hasattr(self, '_m_num_textures'):
-            return self._m_num_textures
-
-        self._m_num_textures = (self.texture_count + 6)
-        return getattr(self, '_m_num_textures', None)
-
-    @property
-    def num_unknown_struct_altered(self):
-        if hasattr(self, '_m_num_unknown_struct_altered'):
-            return self._m_num_unknown_struct_altered
-
-        self._m_num_unknown_struct_altered = (self.num_unknown_structs - 9)
-        return getattr(self, '_m_num_unknown_struct_altered', None)
 
 
