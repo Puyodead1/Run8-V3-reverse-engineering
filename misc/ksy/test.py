@@ -7,6 +7,7 @@ from lib_run8.kaitai.settings import Settings
 from lib_run8.kaitai.stars4 import Stars4
 from lib_run8.kaitai.tile_scenery import TileScenery
 from lib_run8.kaitai.tr2 import Tr2
+from lib_run8.visualizer import KaitaiStructVisualizer
 
 # f = open("./samples/V2/00000_00037.rn8", "rb")
 # stream = KaitaiStream(f)
@@ -41,5 +42,6 @@ from lib_run8.kaitai.tr2 import Tr2
 with open("./samples/V3/Run8Settings.r8", "rb") as f:
     stream = KaitaiStream(f)
     data = Settings(stream)
-    print(data.host_message.value)
+    tree = KaitaiStructVisualizer.obj_to_h(data)
+    pprint.pp(tree)
     stream.close()
