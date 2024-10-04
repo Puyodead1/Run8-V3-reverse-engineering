@@ -26,15 +26,17 @@ seq:
     doc: d:Whether the index buffer is ushort or not
   - id: num_index_buffer
     type: s4
-    doc: d:Indicie count
+    doc: d:Indice count
   - id: ushort_index_buffer
     type: u2
     if: is_ushort_index_buffer.is_true
+    doc: d:Only if the index buffer is ushort
     repeat: expr
     repeat-expr: num_index_buffer
   - id: index_buffer
     type: s4
     if: is_ushort_index_buffer.is_false
+    doc: d:Only if the index buffer is not ushort
     repeat: expr
     repeat-expr: num_index_buffer
   - id: num_unknown_structs
@@ -52,7 +54,7 @@ seq:
     repeat-expr: num_skeleton_hierarchy
   - id: num_bone_indices
     type: s4
-    doc: d:Bone Indicies
+    doc: d:Bone Indices
   - id: bone_indices
     type: bone_index_struct
     repeat: expr

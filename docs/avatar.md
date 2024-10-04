@@ -11,14 +11,14 @@
 | Int32 | texture_count | Texture count |
 | [C# String](common.md#cs_string)[] | textures |  |
 | Boolean | is_ushort_index_buffer | Whether the index buffer is ushort or not |
-| Int32 | num_index_buffer | Indicie count |
-| u2[] | ushort_index_buffer |  |
-| Int32[] | index_buffer |  |
+| Int32 | num_index_buffer | Indice count |
+| UShort[] | ushort_index_buffer | Only if the index buffer is ushort |
+| Int32[] | index_buffer | Only if the index buffer is not ushort |
 | Int32 | num_unknown_structs |  |
 | unknown_struct[] | unknown_structs |  |
 | Int32 | num_skeleton_hierarchy | Skeleton bone count |
 | Int32[] | skeleton_hierarchy |  |
-| Int32 | num_bone_indices | Bone Indicies |
+| Int32 | num_bone_indices | Bone Indices |
 | bone_index_struct[] | bone_indices |  |
 | Int32 | num_bind_poses | Bind pose count |
 | [Matrix4x4](common.md#matrix4)[] | bind_poses |  |

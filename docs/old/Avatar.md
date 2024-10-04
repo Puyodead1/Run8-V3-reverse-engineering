@@ -24,7 +24,7 @@ Avatar files are 3D model files with the `rn8` file extension. Models are in cm
 | ...    | Int32             | Skeleton Hierarchy Count       |
 | ...    | Int32[]           | Skeleton Hierarchy             |
 | ...    | Int32             | Bone Index Count               |
-| ...    | BoneIndexStruct[] | Bone Indicies                  |
+| ...    | BoneIndexStruct[] | Bone Indices                   |
 | ...    | Int32             | Bind Pose Count                |
 | ...    | Matrix4x4[]       | Bind Poses                     |
 | ...    | Int32             | Inverse Bind Pose Count        |

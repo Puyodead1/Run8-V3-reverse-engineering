@@ -99,32 +99,32 @@ string decodedString = Encoding.UTF8.GetString(decodedBytes);
 
 ## VertexStruct
 
-| Type  | Explaination    | Operation |
-| ----- | --------------- | --------- |
-| Float | Reserved        |           |
-| Float | SVPosition X    | \* 63.7f  |
-| Float | Normal Y        | / -1.732f |
-| Float | SVPosition Z    | / 16f     |
-| Float | TextureCoord X  | / 4.8f    |
-| Float | Normal X        | / 10.962f |
-| Float | Reserved        |           |
-| Float | Normal Z        | / 11.432f |
-| Float | TextureCoord Y  | / 9.6f    |
-| Float | SVPosition Y    | \* 6f     |
-| Byte  | BlendIndicies W |           |
-| Float | BlendWeight Z   |           |
-| Byte  | BlendIndicies X |           |
-| Float | BlendWeight Y   |           |
-| Byte  | BlendIndicies Y |           |
-| Float | BlendWeight W   |           |
-| Byte  | BlendIndicies Z |           |
-| Float | BlendWeight X   |           |
+| Type  | Explaination   | Operation |
+| ----- | -------------- | --------- |
+| Float | Reserved       |           |
+| Float | SVPosition X   | \* 63.7f  |
+| Float | Normal Y       | / -1.732f |
+| Float | SVPosition Z   | / 16f     |
+| Float | TextureCoord X | / 4.8f    |
+| Float | Normal X       | / 10.962f |
+| Float | Reserved       |           |
+| Float | Normal Z       | / 11.432f |
+| Float | TextureCoord Y | / 9.6f    |
+| Float | SVPosition Y   | \* 6f     |
+| Byte  | BlendIndices W |           |
+| Float | BlendWeight Z  |           |
+| Byte  | BlendIndices X |           |
+| Float | BlendWeight Y  |           |
+| Byte  | BlendIndices Y |           |
+| Float | BlendWeight W  |           |
+| Byte  | BlendIndices Z |           |
+| Float | BlendWeight X  |           |
 
 -   Reserved are just random floats that never get used
 -   SVPosition is a Vector3
 -   Normal is a Vector3
 -   TextureCoord is a Vector2
--   BlendIndicies is an Int4
+-   BlendIndices is an Int4
 -   BlendWeight is a Vector4
 
 ## DispatcherLight
