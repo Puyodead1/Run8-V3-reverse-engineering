@@ -23,7 +23,7 @@ types:
         repeat: expr
         repeat-expr: num_decals
       - id: disregard_bounding_test
-        type: b1
+        type: s1
       - id: model_name
         type: common::cs_string
       - id: position

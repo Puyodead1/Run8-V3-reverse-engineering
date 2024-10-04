@@ -34,8 +34,7 @@ class KeySettings(KaitaiStruct):
         def _read(self):
             self.reserved = self._io.read_s4le()
             self.name = common.Common.String(self._io)
-            self.enum70 = self._io.read_bits_int_be(1) != 0
-            self._io.align_to_byte()
+            self.enum70 = self._io.read_s1()
             self.num_keys = self._io.read_s4le()
             self.keys = []
             for i in range(self.num_keys):

@@ -36,8 +36,7 @@ class TileScenery(KaitaiStruct):
             for i in range(self.num_decals):
                 self.decals.append(TileScenery.Decal(self._io, self, self._root))
 
-            self.disregard_bounding_test = self._io.read_bits_int_be(1) != 0
-            self._io.align_to_byte()
+            self.disregard_bounding_test = self._io.read_s1()
             self.model_name = common.Common.CsString(self._io)
             self.position = common.Common.Vector3(self._io)
             self.rotation = common.Common.Vector3(self._io)

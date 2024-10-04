@@ -24,7 +24,7 @@ seq:
     repeat-expr: num_textures
     doc: The textures in the mesh
   - id: is_ushort_index_buffer
-    type: b1
+    type: s1
     doc: Whether the index buffer is ushort or not
   - id: num_index_buffer
     type: s4

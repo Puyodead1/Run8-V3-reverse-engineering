@@ -24,7 +24,7 @@ types:
       - id: name
         type: common::string
       - id: enum70
-        type: b1
+        type: s1
       - id: num_keys
         type: s4
       - id: keys
