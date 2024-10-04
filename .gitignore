@@ -1,2 +1,3 @@
-Samples/
+**/**/Samples/*
+!**/**/Samples/output/
 **/*/__pycache__

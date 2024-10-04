@@ -86,3 +86,12 @@ types:
         type: u1
       - id: b
         type: u1
+  boolean:
+    seq:
+      - id: value
+        type: u1
+    instances:
+      is_true:
+        value: value != 0
+      is_false:
+        value: value == 0

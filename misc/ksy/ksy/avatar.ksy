@@ -24,20 +24,20 @@ seq:
     repeat-expr: num_textures
     doc: The textures in the mesh
   - id: is_ushort_index_buffer
-    type: s1
+    type: common::boolean
     doc: Whether the index buffer is ushort or not
   - id: num_index_buffer
     type: s4
     doc: The size of the index buffer
   - id: ushort_index_buffer
     type: u2
-    if: is_ushort_index_buffer == true
+    if: is_ushort_index_buffer.is_true
     repeat: expr
     repeat-expr: num_index_buffer
     doc: The index buffer
   - id: index_buffer
     type: s4
-    if: is_ushort_index_buffer == false
+    if: is_ushort_index_buffer.is_false
     repeat: expr
     repeat-expr: num_index_buffer
     doc: The index buffer

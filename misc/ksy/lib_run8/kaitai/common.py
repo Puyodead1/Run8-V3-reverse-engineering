@@ -19,6 +19,33 @@ class Common(KaitaiStruct):
     def _read(self):
         pass
 
+    class Boolean(KaitaiStruct):
+        def __init__(self, _io, _parent=None, _root=None):
+            self._io = _io
+            self._parent = _parent
+            self._root = _root
+            self._read()
+
+        def _read(self):
+            self.value = self._io.read_u1()
+
+        @property
+        def is_false(self):
+            if hasattr(self, '_m_is_false'):
+                return self._m_is_false
+
+            self._m_is_false = self.value == 0
+            return getattr(self, '_m_is_false', None)
+
+        @property
+        def is_true(self):
+            if hasattr(self, '_m_is_true'):
+                return self._m_is_true
+
+            self._m_is_true = self.value != 0
+            return getattr(self, '_m_is_true', None)
+
+
     class Color(KaitaiStruct):
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io

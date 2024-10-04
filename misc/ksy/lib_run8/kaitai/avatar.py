@@ -27,16 +27,15 @@ class Avatar(KaitaiStruct):
         for i in range(self.num_textures):
             self.textures.append(common.Common.CsString(self._io))
 
-        self.is_ushort_index_buffer = self._io.read_bits_int_be(1) != 0
-        self._io.align_to_byte()
+        self.is_ushort_index_buffer = common.Common.Boolean(self._io)
         self.num_index_buffer = self._io.read_s4le()
-        if self.is_ushort_index_buffer == True:
+        if self.is_ushort_index_buffer.is_true:
             self.ushort_index_buffer = []
             for i in range(self.num_index_buffer):
                 self.ushort_index_buffer.append(self._io.read_u2le())
 
 
-        if self.is_ushort_index_buffer == False:
+        if self.is_ushort_index_buffer.is_false:
             self.index_buffer = []
             for i in range(self.num_index_buffer):
                 self.index_buffer.append(self._io.read_s4le())

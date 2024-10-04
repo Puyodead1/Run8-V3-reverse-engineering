@@ -18,9 +18,9 @@ seq:
   - id: headlight_intensity
     type: f4
   - id: bool0
-    type: s1
+    type: common::boolean
   - id: bool1
-    type: s1
+    type: common::boolean
   - id: player_name
     type: common::string
   - id: float4
@@ -34,62 +34,62 @@ seq:
   - id: tile_draw_range
     type: s4
   - id: bool2
-    type: s1
+    type: common::boolean
   - id: vegetation_density
     type: s4
   - id: bool3
-    type: s1
+    type: common::boolean
   - id: enable_car_spawners
-    type: s1
+    type: common::boolean
   - id: fade_time
     type: f8
   - id: new_messages_on_top
-    type: s1
+    type: common::boolean
   - id: bool6
-    type: s1
+    type: common::boolean
   - id: radio_volume
     type: f4
   - id: bool7
-    type: s1
+    type: common::boolean
   - id: use_24_hour_time
-    type: s1
+    type: common::boolean
   - id: use_dst
-    type: s1
+    type: common::boolean
   - id: chatbox_open_sound
-    type: s1
+    type: common::boolean
   - id: realistic_train_handling
-    type: s1
+    type: common::boolean
   - id: text_message_color
     type: common::color
   - id: system_message_color
     type: common::color
   - id: render_distant_terrain
-    type: s1
+    type: common::boolean
   - id: render_weather
-    type: s1
+    type: common::boolean
   - id: cloud_density
     type: f4
     doc: clamped to 0.6-1.0
   - id: reserved2
     type: s1
   - id: bool14
-    type: s1
+    type: common::boolean
   - id: flange_squeal
-    type: s1
+    type: common::boolean
   - id: bool16
-    type: s1
+    type: common::boolean
   - id: smoke_effects
-    type: s1
+    type: common::boolean
   - id: avatar_tags
-    type: s1
+    type: common::boolean
   - id: max_fps
     type: s8
   - id: vsync
-    type: s1
+    type: common::boolean
   - id: bool20
-    type: s1
+    type: common::boolean
   - id: camera_crosshairs
-    type: s1
+    type: common::boolean
   - id: num_list0
     type: s4
   - id: list0
@@ -99,13 +99,13 @@ seq:
   - id: current_avatar
     type: s1
   - id: thin_vegetation
-    type: s1
+    type: common::boolean
   - id: rent_a_conductor
-    type: s1
+    type: common::boolean
   - id: conductor_current_avatar
     type: s1
   - id: generate_conductor_name
-    type: s1
+    type: common::boolean
   - id: conductor_name
     type: common::string
   - id: mouse_look
@@ -115,31 +115,33 @@ seq:
   - id: int3
     type: s4
   - id: bool25
-    type: s1
+    type: common::boolean
   - id: float11
     type: f4
   - id: float12
     type: f4
   - id: autosave_train_interval
     type: s4
+    doc: in minutes
   - id: autosave_train
-    type: s1
+    type: common::boolean
   - id: int5
     type: s4
   - id: bool27
-    type: s1
+    type: common::boolean
   - id: autosave_world_interval
     type: s4
+    doc: in minutes
   - id: int7
     type: s4
   - id: autosave_world
-    type: s1
+    type: common::boolean
   - id: invert_camera_y
-    type: s1
+    type: common::boolean
   - id: raildriver_led_readout
     type: s1
   - id: use_raildriver
-    type: s1
+    type: common::boolean
   - id: network_password
     type: common::string
   - id: network_port
@@ -153,11 +155,11 @@ seq:
   - id: consist_editor_password
     type: common::string
   - id: bool31
-    type: s1
+    type: common::boolean
   - id: host_delete_lost_client_trains
-    type: s1
+    type: common::boolean
   - id: network_time_sync_on
-    type: s1
+    type: common::boolean
   - id: num_list1
     type: s4
   - id: list1
@@ -177,7 +179,7 @@ seq:
   - id: client_port
     type: s4
   - id: slow_speed_for_unit
-    type: s1
+    type: common::boolean
   - id: slow_speed_mph
     type: f4
   - id: small_window_x
@@ -187,11 +189,11 @@ seq:
   - id: float14
     type: f4
   - id: monitor_0_toggle
-    type: s1
+    type: common::boolean
   - id: monitor_1_toggle
-    type: s1
+    type: common::boolean
   - id: monitor_2_toggle
-    type: s1
+    type: common::boolean
   - id: num_list2
     type: s4
   - id: list2
@@ -201,117 +203,117 @@ seq:
   - id: string9
     type: common::cs_string
   - id: bool38
-    type: s1
+    type: common::boolean
   - id: basic_mrao
-    type: s1
+    type: common::boolean
   - id: airbrake_cheat
     type: s1
   - id: client_use_host_horns
-    type: s1
+    type: common::boolean
   - id: ai_signal_call
     type: s4
   - id: det_audio_in_cab_only
-    type: s1
+    type: common::boolean
   - id: use_shadows
-    type: s1
+    type: common::boolean
   - id: shadow_vehicles
-    type: s1
+    type: common::boolean
   - id: shadow_scenery
-    type: s1
+    type: common::boolean
   - id: shadow_signal_heads
-    type: s1
+    type: common::boolean
   - id: shadow_trains
-    type: s1
+    type: common::boolean
   - id: shadow_switch_stands
-    type: s1
+    type: common::boolean
   - id: shadow_quality
     type: s4
   - id: presentation_mode
-    type: s1
+    type: common::boolean
   - id: shadow_terrain
-    type: s1
+    type: common::boolean
   - id: shadow_update
     type: f8
   - id: shadow_sample
     type: s4
   - id: shadow_procedural_vegetation
-    type: s1
+    type: common::boolean
   - id: cab_volume
     type: f4
   - id: train_roll
     type: f4
   - id: host_allow_clients_to_renumber
-    type: s1
+    type: common::boolean
   - id: stringline_derailments
-    type: s1
+    type: common::boolean
   - id: switch_derailments
-    type: s1
+    type: common::boolean
   - id: tipover_derailments
-    type: s1
+    type: common::boolean
   - id: allow_slippery_rails
-    type: s1
+    type: common::boolean
   - id: parallel_updates
     type: s4
   - id: use_dof
-    type: s1
+    type: common::boolean
   - id: realistic_alerter
-    type: s1
+    type: common::boolean
   - id: master_volume
     type: f4
   - id: mouse_level_drag
     type: f4
   - id: highlight_mouse_drag
-    type: s1
+    type: common::boolean
   - id: use_64bit_rt
-    type: s1
+    type: common::boolean
   - id: bool60
-    type: s1
+    type: common::boolean
   - id: use_vignette
-    type: s1
+    type: common::boolean
   - id: float19
     type: f4
   - id: tone_mapping
     type: s1
   - id: render_precipitation
-    type: s1
+    type: common::boolean
   - id: use_v2_braking
-    type: s1
+    type: common::boolean
   - id: parking_brake_icon
-    type: s1
+    type: common::boolean
   - id: bool67
-    type: s1
+    type: common::boolean
   - id: realistic_independent_brake
-    type: s1
+    type: common::boolean
   - id: allow_dynamiters
-    type: s1
+    type: common::boolean
   - id: raindrop_mode
     type: s1
   - id: reflection_mode
     type: s1
   - id: realistic_dpu
-    type: s1
+    type: common::boolean
   - id: host_message
     type: common::cs_string
   - id: render_static_raindrops
-    type: s1
+    type: common::boolean
   - id: cold_wx_airbrake_effects
-    type: s1
+    type: common::boolean
   - id: int17
     type: s4
   - id: int18
     type: s4
   - id: use_custom_device
-    type: s1
+    type: common::boolean
   - id: udp
     type: s4
   - id: use_colorband_reduction
-    type: s1
+    type: common::boolean
   - id: antialiasing_mode
     type: s1
   - id: msg_alert_sound
-    type: s1
+    type: common::boolean
   - id: use_normal_mapping
-    type: s1
+    type: common::boolean
   - id: shadow_mitigation
     type: f4
   - id: loco_failures
@@ -319,7 +321,7 @@ seq:
   - id: tag_text_size
     type: f4
   - id: ds_symbol_mode
-    type: s1
+    type: common::boolean
 
 types:
   class787:

@@ -1,3 +1,4 @@
+import json
 import pprint
 
 from kaitaistruct import KaitaiStream
@@ -27,21 +28,27 @@ from lib_run8.visualizer import KaitaiStructVisualizer
 # with open("./samples/V3/stars4.rn8", "rb") as f:
 #     stream = KaitaiStream(f)
 #     data = Stars4(stream)
-#     for i, v in enumerate(data.strings):
-#         print(i, v.value)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     with open("./samples/output/stars4.json", "w") as f:
+#         f.write(json.dumps(tree, indent=4))
+#     pprint.pp(tree)
 #     stream.close()
 
 
 # with open("./samples/V3/Run8KeySettings.r8", "rb") as f:
 #     stream = KaitaiStream(f)
 #     data = KeySettings(stream)
-#     for i in data.settings:
-#         print(i)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     with open("./samples/output/Run8KeySettings.json", "w") as f:
+#         f.write(json.dumps(tree, indent=4))
+#     pprint.pp(tree)
 #     stream.close()
 
 with open("./samples/V3/Run8Settings.r8", "rb") as f:
     stream = KaitaiStream(f)
     data = Settings(stream)
     tree = KaitaiStructVisualizer.obj_to_h(data)
+    # with open("./samples/output/Run8Settings.json", "w") as f:
+    #     f.write(json.dumps(tree, indent=4))
     pprint.pp(tree)
     stream.close()
