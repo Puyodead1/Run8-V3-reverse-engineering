@@ -10,6 +10,7 @@
 | Int32 | num_service_areas |  |
 | service_area[] | service_areas |  |
 
+
 ## Types
 
 ### service_area
@@ -17,8 +18,11 @@
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Int32 | num |  |
-| path1 | path1 |  |
-| path2 | path2 |  |
+| path1 | path1<sup>1</sup> |  |
+| path2 | path2<sup>2</sup> |  |
+
+- <sup>1</sup>: Only if num == 1
+- <sup>2</sup>: Only if num == 2
 
 ### path1
 
@@ -32,6 +36,7 @@
 | Boolean | bool2 |  |
 | Boolean | bool3 |  |
 
+
 ### path2
 
 | Type       | ID | Description |
@@ -41,6 +46,7 @@
 | Float | float0 |  |
 | class646 | class646 |  |
 
+
 ### class646
 
 | Type       | ID | Description |
@@ -49,4 +55,5 @@
 | Int8 | enum60_0 |  |
 | Double | double1 |  |
 | Double | double2 |  |
+
 

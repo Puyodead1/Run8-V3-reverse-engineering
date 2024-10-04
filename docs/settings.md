@@ -2,7 +2,7 @@
 
 # Settings (Run8Settings.r8)
 
-Stores game settings
+Stores game settings. A lot of this shit appears to be unused, or is for developer crap that is stripped in release versions.
 
 ## Root Structure
 
@@ -162,6 +162,7 @@ Stores game settings
 | Float | tag_text_size |  |
 | Boolean | ds_symbol_mode |  |
 
+
 ## Types
 
 ### class787
@@ -172,6 +173,7 @@ Stores game settings
 | [R8String](common.md#r8string) | string0 |  |
 | Int32 | num_list1 |  |
 | Int32[] | list1 |  |
+
 
 ### class522
 
@@ -184,6 +186,7 @@ Probably represents a client
 | [R8String](common.md#r8string) | password |  |
 | Int32 | port |  |
 
+
 ### class537
 
 | Type       | ID | Description |
@@ -191,6 +194,7 @@ Probably represents a client
 | [R8String](common.md#r8string) | string0 |  |
 | Int32 | int0 |  |
 | [Vector3](common.md#vector3) | vector30 |  |
+
 
 ## Enums
 ### raildriver_led_mode

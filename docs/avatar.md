@@ -36,7 +36,6 @@ There are currently 3 avatars:
 | animation_clip[] | animations |  |
 
 - <sup>1</sup>: Only if the index buffer is ushort
-
 - <sup>2</sup>: Only if the index buffer is not ushort
 
 ## Types
@@ -64,6 +63,7 @@ There are currently 3 avatars:
 | UInt8 | blend_idex_z |  |
 | Float | blend_weight_x |  |
 
+
 ### unknown_struct
 
 | Type       | ID | Description |
@@ -83,6 +83,7 @@ There are currently 3 avatars:
 | [C# String](common.md#cs_string) | key |  |
 | Int32 | bone_index |  |
 
+
 ### animation_clip
 
 | Type       | ID | Description |
@@ -92,6 +93,7 @@ There are currently 3 avatars:
 | Int32 | num_keyframes |  |
 | animation_keyframe[] | keyframes |  |
 
+
 ### animation_keyframe
 
 | Type       | ID | Description |
@@ -99,4 +101,5 @@ There are currently 3 avatars:
 | Int32 | bone_index |  |
 | Double | time |  |
 | [Matrix4x4](common.md#matrix4) | transform |  |
+
 

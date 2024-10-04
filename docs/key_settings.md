@@ -12,6 +12,7 @@ Stores game keybind settings
 | Int32 | num_settings |  |
 | key_setting[] | settings |  |
 
+
 ## Types
 
 ### key_setting
@@ -23,4 +24,5 @@ Stores game keybind settings
 | Int8 | enum70 |  |
 | Int32 | num_keys |  |
 | Int32[] | keys |  |
+
 

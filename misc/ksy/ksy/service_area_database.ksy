@@ -24,9 +24,11 @@ types:
       - id: path1
         type: path1
         if: num == 1
+        doc: c:Only if num == 1
       - id: path2
         type: path2
         if: num == 2
+        doc: c:Only if num == 2
   path1:
     seq:
       - id: tile_xz

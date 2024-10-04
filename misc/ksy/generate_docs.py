@@ -116,7 +116,8 @@ def generate_markdown(root: dict, output_file: Path):
             # write out comment legend
             if comment_count > 0:
                 for count, comment in comments:
-                    file.write(f"- <sup>{count}</sup>: {comment}\n\n")
+                    file.write(f"- <sup>{count}</sup>: {comment}\n")
+            file.write("\n")
 
         # Types
         if "types" in root:
@@ -158,7 +159,8 @@ def generate_markdown(root: dict, output_file: Path):
                 # write out conditional legend
                 if comment_count > 0:
                     for count, comment in comments:
-                        file.write(f"- <sup>{count}</sup>: {comment}\n\n")
+                        file.write(f"- <sup>{count}</sup>: {comment}\n")
+                file.write("\n")
 
         # Enums
         if "enums" in root:

@@ -16,6 +16,7 @@
 | Float | lat_north |  |
 | Float | lat_south |  |
 
+
 ## Types
 
 ### chunk_row
@@ -24,6 +25,7 @@
 | ---------- | ---- | ----------- |
 | chunk[] | chunks | Tile Y |
 
+
 ### chunk
 
 | Type       | ID | Description |
@@ -31,9 +33,11 @@
 | UInt32 | chunk_size | Number of elevation points in this chunk |
 | elevation_col[] | elevations_row | Chunk X |
 
+
 ### elevation_col
 
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Float[] | elevation | Chunk Y |
+
 

@@ -1,4 +1,4 @@
-doc: Stores game settings
+doc: Stores game settings. A lot of this shit appears to be unused, or is for developer crap that is stripped in release versions.
 meta:
   id: settings
   title: Settings (Run8Settings.r8)

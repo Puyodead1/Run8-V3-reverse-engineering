@@ -9,6 +9,7 @@
 | Int32 | num_assets |  |
 | asset[] | assets |  |
 
+
 ## Types
 
 ### asset
@@ -24,6 +25,7 @@
 | [Vector3](common.md#vector3) | scale |  |
 | [TileXZ](common.md#tilexz) | tile_xz |  |
 
+
 ### decal
 
 | Type       | ID | Description |
@@ -38,9 +40,11 @@
 | Float | size |  |
 | [C# String](common.md#cs_string) | texture_name |  |
 
+
 ### digit
 
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Int32 | digit |  |
+
 

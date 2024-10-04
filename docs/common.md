@@ -42,6 +42,7 @@ Run8 specific string format
 | Int32 | len_value | Length of the encoded string, x2 len of decoded string |
 | Bytes | value | Decoded string |
 
+
 ### cs_string
 
 C# style string
@@ -51,12 +52,14 @@ C# style string
 | UInt8 | len | Length of the string as a 7 bit encoded int |
 | String | value |  |
 
+
 ### vector2
 
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Float | x |  |
 | Float | y |  |
+
 
 ### vector3
 
@@ -66,12 +69,14 @@ C# style string
 | Float | y |  |
 | Float | z |  |
 
+
 ### tilexz
 
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Int32 | x |  |
 | Int32 | z |  |
+
 
 ### matrix4
 
@@ -94,6 +99,7 @@ C# style string
 | Float | m43 |  |
 | Float | m44 |  |
 
+
 ### color
 
 | Type       | ID | Description |
@@ -103,6 +109,7 @@ C# style string
 | UInt8 | g |  |
 | UInt8 | b |  |
 
+
 ### boolean
 
 This is just a bullshit stub
@@ -110,4 +117,5 @@ This is just a bullshit stub
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | UInt8 | value |  |
+
 

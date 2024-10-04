@@ -12,3 +12,4 @@ Contains a list of strings, including file paths. Strings are referenced by thei
 | Int32 | num_strings |  |
 | [R8String](common.md#r8string)[] | strings |  |
 
+
