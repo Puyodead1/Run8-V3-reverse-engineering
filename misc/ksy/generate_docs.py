@@ -5,6 +5,7 @@ import yaml
 
 TYPE_MAP = {
     "u1": "UInt8",
+    "u2": "UShort",
     "u4": "UInt32",
     "u64": "UInt64",
     "s1": "Int8",
