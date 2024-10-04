@@ -79,10 +79,10 @@ types:
   color:
     seq:
       - id: a
-        type: s1
+        type: u1
       - id: r
-        type: s1
+        type: u1
       - id: g
-        type: s1
+        type: u1
       - id: b
-        type: s1
+        type: u1

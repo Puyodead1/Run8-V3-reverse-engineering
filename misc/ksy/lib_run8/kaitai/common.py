@@ -27,10 +27,10 @@ class Common(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self.a = self._io.read_s1()
-            self.r = self._io.read_s1()
-            self.g = self._io.read_s1()
-            self.b = self._io.read_s1()
+            self.a = self._io.read_u1()
+            self.r = self._io.read_u1()
+            self.g = self._io.read_u1()
+            self.b = self._io.read_u1()
 
 
     class CsString(KaitaiStruct):
