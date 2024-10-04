@@ -45,6 +45,7 @@ def parse_doc(doc: str, default_name: str) -> str:
     """
     name = default_name
     desc = ""
+    comment = ""
     split = doc.split(";")
 
     for part in split:
@@ -52,7 +53,9 @@ def parse_doc(doc: str, default_name: str) -> str:
             name = part[2:]
         elif part.startswith("d:"):
             desc = part[2:]
-    return name, desc
+        elif part.startswith("c:"):
+            comment = part[2:]
+    return name, desc, comment
 
 
 def format_enum(enum_info):
@@ -81,6 +84,8 @@ def generate_markdown(root: dict, output_file: Path):
 
         # Root type
         if "seq" in root:
+            comment_count = 0
+            comments = []
             file.write("## Root Structure\n\n")
             # Table header
             file.write("| Type       | ID | Description |\n")
@@ -93,7 +98,7 @@ def generate_markdown(root: dict, output_file: Path):
                 is_list = field.get("repeat") != None
                 field_enum = field.get("enum")
                 field_doc = field.get("doc", "")
-                name, desc = parse_doc(field_doc, field_id)
+                name, desc, comment = parse_doc(field_doc, field_id)
                 if field_id.lower().startswith("reserved"):
                     # name = "Reserved"
                     desc = "This field is unused"
@@ -101,13 +106,24 @@ def generate_markdown(root: dict, output_file: Path):
                     field_type_mapped += f" ([{field_enum}](#enums))"
                 if is_list:
                     field_type_mapped += "[]"
+                if comment != "":
+                    comment_count += 1
+                    name += f"<sup>{comment_count}</sup>"
+                    comments.append((comment_count, comment))
                 file.write(f"| {field_type_mapped} | {name} | {desc} |\n")
             file.write("\n")
+
+            # write out comment legend
+            if comment_count > 0:
+                for count, comment in comments:
+                    file.write(f"- <sup>{count}</sup>: {comment}\n\n")
 
         # Types
         if "types" in root:
             file.write("## Types\n\n")
             for type_name, type_info in root.get("types", {}).items():
+                comment_count = 0
+                comments = []
                 file.write(f"### {type_name}\n\n")
                 if "doc" in type_info:
                     file.write(f"{type_info['doc']}\n\n")
@@ -124,7 +140,7 @@ def generate_markdown(root: dict, output_file: Path):
                     is_list = field.get("repeat") != None
                     field_enum = field.get("enum")
                     field_doc = field.get("doc", "")
-                    name, desc = parse_doc(field_doc, field_id)
+                    name, desc, comment = parse_doc(field_doc, field_id)
                     if field_id == "reserved":
                         # name = "Reserved"
                         desc = "This field is unused"
@@ -132,9 +148,17 @@ def generate_markdown(root: dict, output_file: Path):
                         field_type_mapped += f" ([{field_enum}](#enums))"
                     if is_list:
                         field_type_mapped += "[]"
+                    if comment != "":
+                        comment_count += 1
+                        name += f"<sup>{comment_count}</sup>"
+                        comments.append((comment_count, comment))
                     file.write(f"| {field_type_mapped} | {name} | {desc} |\n")
 
                 file.write("\n")
+                # write out conditional legend
+                if comment_count > 0:
+                    for count, comment in comments:
+                        file.write(f"- <sup>{count}</sup>: {comment}\n\n")
 
         # Enums
         if "enums" in root:

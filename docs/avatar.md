@@ -2,30 +2,42 @@
 
 # Avatar File
 
+There are currently 3 avatars:
+ - Brian
+ - Chris
+ - Pablo
+ 
+
+ Avatar files are 3D model files with the `rn8` file extension. Model units are in centimeters.
+
 ## Root Structure
 
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
-| Int32 | vertex_count | Vertex count |
+| Int32 | vertex_count | Divide by 7 |
 | vertex_struct[] | vertices |  |
-| Int32 | texture_count | Texture count |
+| Int32 | texture_count | Add 6 |
 | [C# String](common.md#cs_string)[] | textures |  |
-| Boolean | is_ushort_index_buffer | Whether the index buffer is ushort or not |
-| Int32 | num_index_buffer | Indice count |
-| UShort[] | ushort_index_buffer | Only if the index buffer is ushort |
-| Int32[] | index_buffer | Only if the index buffer is not ushort |
-| Int32 | num_unknown_structs |  |
+| Boolean | is_ushort_index_buffer | True if the indices are stored as ushorts |
+| Int32 | num_index_buffer |  |
+| UShort[] | ushort_index_buffer<sup>1</sup> |  |
+| Int32[] | index_buffer<sup>2</sup> |  |
+| Int32 | num_unknown_structs | Subtract 9 |
 | unknown_struct[] | unknown_structs |  |
-| Int32 | num_skeleton_hierarchy | Skeleton bone count |
+| Int32 | num_skeleton_hierarchy |  |
 | Int32[] | skeleton_hierarchy |  |
-| Int32 | num_bone_indices | Bone Indices |
+| Int32 | num_bone_indices |  |
 | bone_index_struct[] | bone_indices |  |
-| Int32 | num_bind_poses | Bind pose count |
+| Int32 | num_bind_poses |  |
 | [Matrix4x4](common.md#matrix4)[] | bind_poses |  |
-| Int32 | num_inverse_bind_poses | Inverse bind pose count |
+| Int32 | num_inverse_bind_poses |  |
 | [Matrix4x4](common.md#matrix4)[] | inverse_bind_poses |  |
-| Int32 | num_animations | Animation count |
+| Int32 | num_animations | Seems to always be 16 |
 | animation_clip[] | animations |  |
+
+- <sup>1</sup>: Only if the index buffer is ushort
+
+- <sup>2</sup>: Only if the index buffer is not ushort
 
 ## Types
 
@@ -34,15 +46,15 @@
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Float | reserved1 |  |
-| Float | position_x |  |
-| Float | normal_y |  |
-| Float | position_z |  |
-| Float | uv_x |  |
-| Float | normal_x |  |
+| Float | position_x | Multiply by 63.7f |
+| Float | normal_y | Divide by -1.732f |
+| Float | position_z | Divide by 16f |
+| Float | tex_coord_x | Divide by 4.8f |
+| Float | normal_x | Divide by 10.962f |
 | Float | reserved2 |  |
-| Float | normal_z |  |
-| Float | uv_y |  |
-| Float | position_y |  |
+| Float | normal_z | Divide by 11.432f |
+| Float | tex_coord_y | Divide by 9.6f |
+| Float | position_y | Multiply by 6f |
 | UInt8 | blend_index_w |  |
 | Float | blend_weight_z |  |
 | UInt8 | blend_index_x |  |
@@ -57,10 +69,12 @@
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Int32 | reserved | This field is unused |
-| Int32 | texture_index |  |
+| Int32 | texture_index<sup>1</sup> |  |
 | Int32 | num_index_buffer |  |
 | Int32 | start_index_location |  |
 | Int32 | base_vertex_location |  |
+
+- <sup>1</sup>: `_mrao` is appended to the texture name
 
 ### bone_index_struct
 
@@ -73,8 +87,8 @@
 
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
-| [C# String](common.md#cs_string) | key |  |
-| Double | duration |  |
+| [C# String](common.md#cs_string) | clip_name |  |
+| Double | duration | Duration in ms |
 | Int32 | num_keyframes |  |
 | animation_keyframe[] | keyframes |  |
 

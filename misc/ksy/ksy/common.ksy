@@ -1,4 +1,28 @@
-doc: Common types
+doc: "Common Types\n\n
+  ## Encoding Strings\n
+  ```c#\n
+  string s = \"1ST COAST RECYCLING\";\n
+  byte[] bytes = Encoding.UTF8.GetBytes(s);\n
+  byte[] encoded = new byte[bytes.Length * 2];\n
+  int num = 0;\n
+  for (int i = 0; i < bytes.Length; i++)\n
+  {\n
+  \tencoded[num++] = (byte)(bytes[i] >> 4);\n
+  \tencoded[num++] = (byte)(bytes[i] << 4);\n
+  }\n
+  ```\n\n
+  ## Decoding Strings\n
+  ```c#\n
+  byte[] encoded = <string data>;\n
+  byte[] decodedBytes = new byte[encoded.Length / 2];\n
+  int num = 0;\n
+  for (int i = 0; i < decodedBytes.Length; i++)\n
+  {\n
+  \tdecodedBytes[i] |= (byte)(encoded[num++] << 4);\n
+  \tdecodedBytes[i] |= (byte)(encoded[num++] >> 4);\n
+  }\n\n
+  string decodedString = Encoding.UTF8.GetString(decodedBytes);\n
+  ```"
 meta:
   id: common
   title: Common
