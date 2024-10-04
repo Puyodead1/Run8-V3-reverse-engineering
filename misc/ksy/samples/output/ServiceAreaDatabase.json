@@ -1,0 +1,776 @@
+{
+    "num_service_areas": 22,
+    "reserved": 1,
+    "service_areas": [
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 345.3999938964844,
+                    "y": 336.8999938964844,
+                    "z": -291.5400085449219
+                },
+                "tile_xz": {
+                    "x": 181,
+                    "z": -97
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 736.8300170898438,
+                    "y": 324.7200012207031,
+                    "z": -82.77999877929688
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 717.760009765625,
+                    "y": 324.7200012207031,
+                    "z": -76.13999938964844
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 699.4199829101562,
+                    "y": 324.7200012207031,
+                    "z": -69.7699966430664
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 679.52001953125,
+                    "y": 324.7200012207031,
+                    "z": -63.099998474121094
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 661.3900146484375,
+                    "y": 324.7200012207031,
+                    "z": -56.81999969482422
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 739.0499877929688,
+                    "y": 324.7200012207031,
+                    "z": -75.97000122070312
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 720.1799926757812,
+                    "y": 324.7200012207031,
+                    "z": -69.5199966430664
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 701.6599731445312,
+                    "y": 324.7200012207031,
+                    "z": -63.13999938964844
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 681.8599853515625,
+                    "y": 324.7200012207031,
+                    "z": -56.459999084472656
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 663.72998046875,
+                    "y": 324.7200012207031,
+                    "z": -50.150001525878906
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 704.2999877929688,
+                    "y": 324.7200012207031,
+                    "z": -55.56999969482422
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 684.6099853515625,
+                    "y": 324.7200012207031,
+                    "z": -48.93000030517578
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 10.0,
+                "position": {
+                    "x": 666.280029296875,
+                    "y": 324.7200012207031,
+                    "z": -42.599998474121094
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "float0": 20.0,
+                "position": {
+                    "x": 555.6099853515625,
+                    "y": 324.7200012207031,
+                    "z": -12.949999809265137
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "float0": 20.0,
+                "position": {
+                    "x": 570.3499755859375,
+                    "y": 324.7200012207031,
+                    "z": -17.989999771118164
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "float0": 20.0,
+                "position": {
+                    "x": 586.239990234375,
+                    "y": 324.7200012207031,
+                    "z": -23.420000076293945
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "float0": 20.0,
+                "position": {
+                    "x": 616.8300170898438,
+                    "y": 324.7200012207031,
+                    "z": -34.06999969482422
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "float0": 20.0,
+                "position": {
+                    "x": 633.280029296875,
+                    "y": 324.7200012207031,
+                    "z": -39.72999954223633
+                },
+                "tile_xz": {
+                    "x": 175,
+                    "z": -101
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 25.0,
+                "position": {
+                    "x": 681.1796875,
+                    "y": 336.109375,
+                    "z": -227.44921875
+                },
+                "tile_xz": {
+                    "x": 180,
+                    "z": -97
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 25.0,
+                "position": {
+                    "x": 637.25,
+                    "y": 336.109375,
+                    "z": -203.171875
+                },
+                "tile_xz": {
+                    "x": 180,
+                    "z": -97
+                }
+            }
+        },
+        {
+            "num": 1,
+            "path1": {
+                "bool0": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool1": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool2": {
+                    "is_false": false,
+                    "is_true": true,
+                    "value": 1
+                },
+                "bool3": {
+                    "is_false": true,
+                    "is_true": false,
+                    "value": 0
+                },
+                "float0": 25.0,
+                "position": {
+                    "x": 661.21875,
+                    "y": 336.1015625,
+                    "z": -216.4296875
+                },
+                "tile_xz": {
+                    "x": 180,
+                    "z": -97
+                }
+            }
+        }
+    ]
+}

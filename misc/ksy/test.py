@@ -1,9 +1,9 @@
 import json
-import pprint
 
 from kaitaistruct import KaitaiStream
 
 from lib_run8.kaitai.key_settings import KeySettings
+from lib_run8.kaitai.service_area_database import ServiceAreaDatabase
 from lib_run8.kaitai.settings import Settings
 from lib_run8.kaitai.stars4 import Stars4
 from lib_run8.kaitai.tile_scenery import TileScenery
@@ -31,7 +31,7 @@ from lib_run8.visualizer import KaitaiStructVisualizer
 #     tree = KaitaiStructVisualizer.obj_to_h(data)
 #     with open("./samples/output/stars4.json", "w") as f:
 #         f.write(json.dumps(tree, indent=4))
-#     pprint.pp(tree)
+#     print(json.dumps(tree, indent=4))
 #     stream.close()
 
 
@@ -41,14 +41,24 @@ from lib_run8.visualizer import KaitaiStructVisualizer
 #     tree = KaitaiStructVisualizer.obj_to_h(data)
 #     with open("./samples/output/Run8KeySettings.json", "w") as f:
 #         f.write(json.dumps(tree, indent=4))
-#     pprint.pp(tree)
+#     print(json.dumps(tree, indent=4))
 #     stream.close()
 
-with open("./samples/V3/Run8Settings.r8", "rb") as f:
+# with open("./samples/V3/Run8Settings.r8", "rb") as f:
+#     stream = KaitaiStream(f)
+#     data = Settings(stream)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     # with open("./samples/output/Run8Settings.json", "w") as f:
+#     #     f.write(json.dumps(tree, indent=4))
+#     print(json.dumps(tree, indent=4))
+#     stream.close()
+
+
+with open("./samples/V3/ServiceAreaDatabase.r8", "rb") as f:
     stream = KaitaiStream(f)
-    data = Settings(stream)
+    data = ServiceAreaDatabase(stream)
     tree = KaitaiStructVisualizer.obj_to_h(data)
-    # with open("./samples/output/Run8Settings.json", "w") as f:
+    # with open("./samples/output/ServiceAreaDatabase.json", "w") as f:
     #     f.write(json.dumps(tree, indent=4))
-    pprint.pp(tree)
+    print(json.dumps(tree, indent=4))
     stream.close()
