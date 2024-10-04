@@ -1,6 +1,6 @@
 meta:
-  id: tr2
-  title: Run8 TR2 Terrain Tile
+  id: terrain_tr2
+  title: TR2 Terrain Tile
   application: Run8 Train Simulator
   file-extension: tr2
   endian: le
@@ -19,6 +19,7 @@ seq:
     type: chunk_row
     repeat: expr
     repeat-expr: 25
+    doc: d:Tile X; Tiles are 25x25 chunks
   - id: lon_east
     type: f4
   - id: lon_west
@@ -34,17 +35,21 @@ types:
         type: chunk
         repeat: expr
         repeat-expr: 25
+        doc: d:Tile Y; Tiles are 25x25 chunks
   chunk:
     seq:
       - id: chunk_size
         type: u4
+        doc: d:Number of elevation points in this chunk
       - id: elevations_row
         type: elevation_col
         repeat: expr
         repeat-expr: chunk_size
+        doc: d:Chunk X
   elevation_col:
     seq:
       - id: elevation
         type: f4
         repeat: expr
         repeat-expr: _parent.chunk_size
+        doc: d:Chunk Y

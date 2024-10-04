@@ -4,12 +4,36 @@
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
 from lib_run8.kaitai import common
+from enum import IntEnum
 
 
 if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Settings(KaitaiStruct):
+    """Stars4 file contains a list of strings, including file paths. Strings are referenced by their index."""
+
+    class AntialiasingMode(IntEnum):
+        none = 0
+        fxaa = 1
+        smaa_x1 = 2
+
+    class RaildriverLedMode(IntEnum):
+        speed = 0
+        coupler = 1
+        distance = 2
+        throttle = 3
+        speed_limit = 4
+        none = 5
+
+    class RaindropMode(IntEnum):
+        disabled = 0
+        performance = 1
+        quality = 2
+
+    class ReflectionMode(IntEnum):
+        low = 1
+        high = 2
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -83,7 +107,7 @@ class Settings(KaitaiStruct):
         self.int7 = self._io.read_s4le()
         self.autosave_world = common.Common.Boolean(self._io)
         self.invert_camera_y = common.Common.Boolean(self._io)
-        self.raildriver_led_readout = self._io.read_s1()
+        self.raildriver_led_readout = KaitaiStream.resolve_enum(Settings.RaildriverLedMode, self._io.read_s1())
         self.use_raildriver = common.Common.Boolean(self._io)
         self.network_password = common.Common.String(self._io)
         self.network_port = self._io.read_s4le()
@@ -121,7 +145,7 @@ class Settings(KaitaiStruct):
         self.string9 = common.Common.CsString(self._io)
         self.bool38 = common.Common.Boolean(self._io)
         self.basic_mrao = common.Common.Boolean(self._io)
-        self.airbrake_cheat = self._io.read_s1()
+        self.airbrake_cheat_flags = self._io.read_s1()
         self.client_use_host_horns = common.Common.Boolean(self._io)
         self.ai_signal_call = self._io.read_s4le()
         self.det_audio_in_cab_only = common.Common.Boolean(self._io)
@@ -132,7 +156,7 @@ class Settings(KaitaiStruct):
         self.shadow_trains = common.Common.Boolean(self._io)
         self.shadow_switch_stands = common.Common.Boolean(self._io)
         self.shadow_quality = self._io.read_s4le()
-        self.presentation_mode = common.Common.Boolean(self._io)
+        self.presentation_mode_one = common.Common.Boolean(self._io)
         self.shadow_terrain = common.Common.Boolean(self._io)
         self.shadow_update = self._io.read_f8le()
         self.shadow_sample = self._io.read_s4le()
@@ -146,7 +170,7 @@ class Settings(KaitaiStruct):
         self.allow_slippery_rails = common.Common.Boolean(self._io)
         self.parallel_updates = self._io.read_s4le()
         self.use_dof = common.Common.Boolean(self._io)
-        self.realistic_alerter = common.Common.Boolean(self._io)
+        self.realistic_alerter_time = common.Common.Boolean(self._io)
         self.master_volume = self._io.read_f4le()
         self.mouse_level_drag = self._io.read_f4le()
         self.highlight_mouse_drag = common.Common.Boolean(self._io)
@@ -154,15 +178,15 @@ class Settings(KaitaiStruct):
         self.bool60 = common.Common.Boolean(self._io)
         self.use_vignette = common.Common.Boolean(self._io)
         self.float19 = self._io.read_f4le()
-        self.tone_mapping = self._io.read_s1()
+        self.tone_mapping_flags = self._io.read_s1()
         self.render_precipitation = common.Common.Boolean(self._io)
         self.use_v2_braking = common.Common.Boolean(self._io)
         self.parking_brake_icon = common.Common.Boolean(self._io)
         self.bool67 = common.Common.Boolean(self._io)
         self.realistic_independent_brake = common.Common.Boolean(self._io)
         self.allow_dynamiters = common.Common.Boolean(self._io)
-        self.raindrop_mode = self._io.read_s1()
-        self.reflection_mode = self._io.read_s1()
+        self.raindrop_mode = KaitaiStream.resolve_enum(Settings.RaindropMode, self._io.read_s1())
+        self.reflection_mode = KaitaiStream.resolve_enum(Settings.ReflectionMode, self._io.read_s1())
         self.realistic_dpu = common.Common.Boolean(self._io)
         self.host_message = common.Common.CsString(self._io)
         self.render_static_raindrops = common.Common.Boolean(self._io)
@@ -172,7 +196,7 @@ class Settings(KaitaiStruct):
         self.use_custom_device = common.Common.Boolean(self._io)
         self.udp = self._io.read_s4le()
         self.use_colorband_reduction = common.Common.Boolean(self._io)
-        self.antialiasing_mode = self._io.read_s1()
+        self.antialiasing_mode = KaitaiStream.resolve_enum(Settings.AntialiasingMode, self._io.read_s1())
         self.msg_alert_sound = common.Common.Boolean(self._io)
         self.use_normal_mapping = common.Common.Boolean(self._io)
         self.shadow_mitigation = self._io.read_f4le()
@@ -181,6 +205,7 @@ class Settings(KaitaiStruct):
         self.ds_symbol_mode = common.Common.Boolean(self._io)
 
     class Class522(KaitaiStruct):
+        """Probably represents a client."""
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent

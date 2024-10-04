@@ -1,6 +1,6 @@
 meta:
   id: tile_scenery
-  title: Run8 Tile Scenery File
+  title: Tile Scenery File
   application: Run8 Train Simulator
   file-extension: rn8
   endian: le

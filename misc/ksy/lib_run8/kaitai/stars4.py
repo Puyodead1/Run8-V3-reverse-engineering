@@ -10,6 +10,7 @@ if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Stars4(KaitaiStruct):
+    """Contains a list of strings, including file paths. Strings are referenced by their index."""
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -18,9 +19,9 @@ class Stars4(KaitaiStruct):
 
     def _read(self):
         self.reserved = self._io.read_s4le()
-        self.count = self._io.read_s4le()
+        self.num_strings = self._io.read_s4le()
         self.strings = []
-        for i in range(self.count):
+        for i in range(self.num_strings):
             self.strings.append(common.Common.String(self._io))
 
 

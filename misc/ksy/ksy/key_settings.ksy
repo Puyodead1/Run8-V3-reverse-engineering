@@ -1,6 +1,7 @@
+doc: Stores game keybind settings
 meta:
   id: key_settings
-  title: Run8 Key Settings
+  title: Key Settings (Run8KeySettings.r8)
   application: Run8 Train Simulator
   file-extension: r8
   endian: le
@@ -22,7 +23,7 @@ types:
       - id: reserved
         type: s4
       - id: name
-        type: common::string
+        type: common::r8string
       - id: enum70
         type: s1
       - id: num_keys

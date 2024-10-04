@@ -10,6 +10,7 @@ if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Common(KaitaiStruct):
+    """Common types."""
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -20,6 +21,7 @@ class Common(KaitaiStruct):
         pass
 
     class Boolean(KaitaiStruct):
+        """This is just a bullshit stub."""
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
@@ -61,6 +63,7 @@ class Common(KaitaiStruct):
 
 
     class CsString(KaitaiStruct):
+        """C# style string. Prefixed with a 7 bit encoded int."""
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent

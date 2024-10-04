@@ -1,6 +1,6 @@
 meta:
   id: service_area_database
-  title: Run8 ServiceAreaDatabase
+  title: ServiceAreaDatabase (ServiceAreaDatabase.r8)
   application: Run8 Train Simulator
   file-extension: r8
   endian: le

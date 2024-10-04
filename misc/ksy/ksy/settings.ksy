@@ -1,6 +1,7 @@
+doc: Stores game settings
 meta:
   id: settings
-  title: Run8 Settings
+  title: Settings (Run8Settings.r8)
   application: Run8 Train Simulator
   file-extension: r8
   endian: le
@@ -22,7 +23,7 @@ seq:
   - id: bool1
     type: common::boolean
   - id: player_name
-    type: common::string
+    type: common::r8string
   - id: float4
     type: f4
   - id: sea_sick_intensity
@@ -57,6 +58,7 @@ seq:
     type: common::boolean
   - id: chatbox_open_sound
     type: common::boolean
+    doc: d:Play sound when chatbox is opened
   - id: realistic_train_handling
     type: common::boolean
   - id: text_message_color
@@ -69,13 +71,14 @@ seq:
     type: common::boolean
   - id: cloud_density
     type: f4
-    doc: clamped to 0.6-1.0
+    doc: d:Clamped to 0.6-1.0
   - id: reserved2
     type: s1
   - id: bool14
     type: common::boolean
   - id: flange_squeal
     type: common::boolean
+    doc: d:Enable Flange Squeal Sound
   - id: bool16
     type: common::boolean
   - id: smoke_effects
@@ -107,7 +110,7 @@ seq:
   - id: generate_conductor_name
     type: common::boolean
   - id: conductor_name
-    type: common::string
+    type: common::r8string
   - id: mouse_look
     type: s4
   - id: mouse_move
@@ -122,7 +125,7 @@ seq:
     type: f4
   - id: autosave_train_interval
     type: s4
-    doc: in minutes
+    doc: d:in minutes
   - id: autosave_train
     type: common::boolean
   - id: int5
@@ -131,7 +134,7 @@ seq:
     type: common::boolean
   - id: autosave_world_interval
     type: s4
-    doc: in minutes
+    doc: d:in minutes
   - id: int7
     type: s4
   - id: autosave_world
@@ -140,20 +143,22 @@ seq:
     type: common::boolean
   - id: raildriver_led_readout
     type: s1
+    enum: raildriver_led_mode
+    doc: n:RailDriver LED Mode
   - id: use_raildriver
     type: common::boolean
   - id: network_password
-    type: common::string
+    type: common::r8string
   - id: network_port
     type: s4
   - id: max_clients
     type: s4
   - id: dispatch_password
-    type: common::string
+    type: common::r8string
   - id: ai_password
-    type: common::string
+    type: common::r8string
   - id: consist_editor_password
-    type: common::string
+    type: common::r8string
   - id: bool31
     type: common::boolean
   - id: host_delete_lost_client_trains
@@ -167,11 +172,11 @@ seq:
     repeat: expr
     repeat-expr: num_list1
   - id: region
-    type: common::string
+    type: common::r8string
   - id: scenario_filter
     type: s1
   - id: scenario_name
-    type: common::string
+    type: common::r8string
   - id: tdc_screen_scale
     type: f8
   - id: double2
@@ -206,7 +211,7 @@ seq:
     type: common::boolean
   - id: basic_mrao
     type: common::boolean
-  - id: airbrake_cheat
+  - id: airbrake_cheat_flags
     type: s1
   - id: client_use_host_horns
     type: common::boolean
@@ -228,8 +233,9 @@ seq:
     type: common::boolean
   - id: shadow_quality
     type: s4
-  - id: presentation_mode
+  - id: presentation_mode_one
     type: common::boolean
+    doc: d:True if the presentation mode is set to One
   - id: shadow_terrain
     type: common::boolean
   - id: shadow_update
@@ -256,7 +262,7 @@ seq:
     type: s4
   - id: use_dof
     type: common::boolean
-  - id: realistic_alerter
+  - id: realistic_alerter_time
     type: common::boolean
   - id: master_volume
     type: f4
@@ -272,7 +278,7 @@ seq:
     type: common::boolean
   - id: float19
     type: f4
-  - id: tone_mapping
+  - id: tone_mapping_flags
     type: s1
   - id: render_precipitation
     type: common::boolean
@@ -288,8 +294,10 @@ seq:
     type: common::boolean
   - id: raindrop_mode
     type: s1
+    enum: raindrop_mode
   - id: reflection_mode
     type: s1
+    enum: reflection_mode
   - id: realistic_dpu
     type: common::boolean
   - id: host_message
@@ -310,6 +318,7 @@ seq:
     type: common::boolean
   - id: antialiasing_mode
     type: s1
+    enum: antialiasing_mode
   - id: msg_alert_sound
     type: common::boolean
   - id: use_normal_mapping
@@ -329,7 +338,7 @@ types:
       - id: reserved
         type: s4
       - id: string0
-        type: common::string
+        type: common::r8string
       - id: num_list1
         type: s4
       - id: list1
@@ -337,20 +346,40 @@ types:
         repeat: expr
         repeat-expr: num_list1
   class522:
+    doc: Probably represents a client
     seq:
       - id: server_name
-        type: common::string
+        type: common::r8string
       - id: server_address
-        type: common::string
+        type: common::r8string
       - id: password
-        type: common::string
+        type: common::r8string
       - id: port
         type: s4
   class537:
     seq:
       - id: string0
-        type: common::string
+        type: common::r8string
       - id: int0
         type: s4
       - id: vector30
         type: common::vector3
+enums:
+  raildriver_led_mode:
+    0: speed
+    1: coupler
+    2: distance
+    3: throttle
+    4: speed_limit
+    5: none
+  antialiasing_mode:
+    0: none
+    1: fxaa
+    2: smaa_x1
+  raindrop_mode:
+    0: disabled
+    1: performance
+    2: quality
+  reflection_mode:
+    1: low
+    2: high

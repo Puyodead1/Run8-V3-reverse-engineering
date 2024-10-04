@@ -1,3 +1,4 @@
+doc: Common types
 meta:
   id: common
   title: Common
@@ -5,23 +6,26 @@ meta:
   endian: le
   ks-opaque-types: true
 types:
-  string:
+  r8string:
+    doc: Run8 specific string format
     seq:
       - id: len_value
         type: s4
+        doc: d:Length of the encoded string, x2 len of decoded string
       - id: value
         size: len_value
         process: lib_run8.string_utils.decode_run8_string(len_value)
+        doc: d:Decoded string
   cs_string:
+    doc: C# style string
     seq:
       - id: len
         type: u1
-        doc: Length of the string as a 7 bit encoded int
+        doc: d:Length of the string as a 7 bit encoded int
       - id: value
         type: str
         encoding: UTF-8
         size: len
-        doc: The string
   vector2:
     seq:
       - id: x
@@ -87,6 +91,7 @@ types:
       - id: b
         type: u1
   boolean:
+    doc: This is just a bullshit stub
     seq:
       - id: value
         type: u1

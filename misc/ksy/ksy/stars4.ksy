@@ -1,6 +1,7 @@
+doc: Contains a list of strings, including file paths. Strings are referenced by their index.
 meta:
   id: stars4
-  title: Run8 Stars4
+  title: Stars4 (stars4.r8)
   application: Run8 Train Simulator
   file-extension: rn8
   endian: le
@@ -9,9 +10,9 @@ meta:
 seq:
   - id: reserved
     type: s4
-  - id: count
+  - id: num_strings
     type: s4
   - id: strings
-    type: common::string
+    type: common::r8string
     repeat: expr
-    repeat-expr: count
+    repeat-expr: num_strings

@@ -1,6 +1,6 @@
 meta:
   id: avatar
-  title: Run8 V3 Avatar File
+  title: Avatar File
   application: Run8 Train Simulator V3
   file-extension: rn8
   endian: le
@@ -9,86 +9,75 @@ meta:
 seq:
   - id: vertex_count
     type: s4
-    doc: The number of verticies in the mesh
+    doc: d:Vertex count
   - id: vertices
     type: vertex_struct
     repeat: expr
     repeat-expr: num_vertices
-    doc: The verticies in the mesh
   - id: texture_count
     type: s4
-    doc: The number of textures in the mesh
+    doc: d:Texture count
   - id: textures
     type: common::cs_string
     repeat: expr
     repeat-expr: num_textures
-    doc: The textures in the mesh
   - id: is_ushort_index_buffer
     type: common::boolean
-    doc: Whether the index buffer is ushort or not
+    doc: d:Whether the index buffer is ushort or not
   - id: num_index_buffer
     type: s4
-    doc: The size of the index buffer
+    doc: d:Indicie count
   - id: ushort_index_buffer
     type: u2
     if: is_ushort_index_buffer.is_true
     repeat: expr
     repeat-expr: num_index_buffer
-    doc: The index buffer
   - id: index_buffer
     type: s4
     if: is_ushort_index_buffer.is_false
     repeat: expr
     repeat-expr: num_index_buffer
-    doc: The index buffer
   - id: num_unknown_structs
     type: s4
-    doc: The number of unknown structs
   - id: unknown_structs
     type: unknown_struct
     repeat: expr
     repeat-expr: num_unknown_struct_altered
-    doc: The unknown structs
   - id: num_skeleton_hierarchy
     type: s4
-    doc: The number of bones in the skeleton
+    doc: d:Skeleton bone count
   - id: skeleton_hierarchy
     type: s4
     repeat: expr
     repeat-expr: num_skeleton_hierarchy
-    doc: The bones in the skeleton
   - id: num_bone_indices
     type: s4
-    doc: The number of bone indices
+    doc: d:Bone Indicies
   - id: bone_indices
     type: bone_index_struct
     repeat: expr
     repeat-expr: num_bone_indices
-    doc: The bone indices
   - id: num_bind_poses
     type: s4
-    doc: The number of bind poses
+    doc: d:Bind pose count
   - id: bind_poses
     type: common::matrix4
     repeat: expr
     repeat-expr: num_bind_poses
-    doc: The bind poses
   - id: num_inverse_bind_poses
     type: s4
-    doc: The number of inverse bind poses
+    doc: d:Inverse bind pose count
   - id: inverse_bind_poses
     type: common::matrix4
     repeat: expr
     repeat-expr: num_inverse_bind_poses
-    doc: The inverse bind poses
   - id: num_animations
     type: s4
-    doc: The number of animations. This seems always be 16
+    doc: d:Animation count; This seems always be 16
   - id: animations
     type: animation_clip
     repeat: expr
     repeat-expr: num_animations
-    doc: The animations
 instances:
   num_vertices:
     value: vertex_count / 7
@@ -101,7 +90,6 @@ types:
     seq:
       - id: reserved1
         type: f4
-        doc: A value that is never used in the game
       - id: position_x
         type: f4
         doc: The x position of the vertex
@@ -157,7 +145,6 @@ types:
     seq:
       - id: reserved
         type: s4
-        doc: A value that is never used in the game
       - id: texture_index
         type: s4
         doc: Index of the texture
@@ -188,7 +175,7 @@ types:
         doc: The duration of the animation clip
       - id: num_keyframes
         type: s4
-        doc: The number of keyframes
+        doc: Number of keyframes
       - id: keyframes
         type: animation_keyframe
         repeat: expr
