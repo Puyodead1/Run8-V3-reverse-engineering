@@ -122,13 +122,11 @@ namespace LibRun8.Common
             {
                 string s = reader.ReadString();
                 textureNames[i] = s;
-                Console.WriteLine("Texture " + i + ": " + s);
+                Console.WriteLine("\tTexture " + i + ": " + s);
             }
             bool isUshortIndexBuffer = reader.ReadBoolean();
 
             int indexCount = reader.ReadInt32();
-            Console.WriteLine(reader.BaseStream.Position);
-            Console.WriteLine(indexCount);
 
             Indices = new int[indexCount];
             for (int i = 0; i < indexCount; i++)

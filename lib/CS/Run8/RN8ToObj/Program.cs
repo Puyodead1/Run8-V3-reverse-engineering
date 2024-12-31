@@ -78,7 +78,6 @@ namespace RN8ToDae
             {
                 ModelObject obj = model.Objects[i];
 
-                Console.WriteLine("Model {0} has {1} definitions", i + 1, obj.ObjectDefinitions.Count);
 
                 string id = obj.Name;
                 if (string.IsNullOrEmpty(id))
@@ -89,81 +88,115 @@ namespace RN8ToDae
 
                 id = id.Replace(" ", "_");
 
+                Console.WriteLine("Model {0} has {1} definitions", id, obj.ObjectDefinitions.Count);
+
                 string parent = obj.ParentName;
                 if (!string.IsNullOrEmpty(parent)) parent = parent.Replace(" ", "_");
-              
-                ColladaGeometry geoBuilder = new ColladaGeometry(id, id);
 
-                double[] positions = obj.Vertices
-                    .SelectMany(v => new double[] { v.Position.X, -v.Position.Z, v.Position.Y })
-                    .ToArray();
+                List<SceneNode> defNodes = new List<SceneNode>();
 
-                double[] normals = obj.Vertices
-                    .SelectMany(v => new double[] { v.Normal.X, -v.Normal.Z, v.Normal.Y })
-                    .ToArray();
-
-                int[] indices = obj.Indices.SelectMany(x => new int[] { x, x }).ToArray();
-
-                // create the sources
-                source pos_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.Positions, positions);
-                source normals_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.Normals, normals);
-
-                // add the sources to the geometry
-                geoBuilder.AddSources(new source[] { pos_source });
-
-                // add triangle input offsets
-                geoBuilder.AddTriangleInput(ColladaSemantic.Vertex);
-                geoBuilder.AddTriangleInput(ColladaSemantic.Normal);
-
-                // add triangle
-                geoBuilder.AddTriangles(indices);
-
-                geometries.Add(geoBuilder.ToGeometry());
-
-                instance_geometry node_geo = new instance_geometry()
+                for (int j = 0; j < obj.ObjectDefinitions.Count; j++)
                 {
-                    url = string.Format("#{0}", geoBuilder.Id),
-                };
+                    string thisId = id;
+                    ModelObjectDefinition definition = obj.ObjectDefinitions[j];
 
-                LibRun8.Common.Vector3 offset;
-                if (obj.class252_0 != null)
+                    if (obj.ObjectDefinitions.Count > 1)
+                        thisId = string.Format("{0}_{1}", id, j);
+                    
+
+                    var startVertex = definition.BaseVertexLocation;
+                    var startIndex = definition.StartIndexLocation;
+                    var indexCount = definition.IndexCountPerInstance;
+
+                    ColladaGeometry geoBuilder = new ColladaGeometry(thisId, thisId);
+
+                    double[] positions = obj.Vertices.Skip(startVertex)
+                        .SelectMany(v => new double[] { v.Position.X, -v.Position.Z, v.Position.Y })
+                        .ToArray();
+
+                    double[] normals = obj.Vertices.Skip(startVertex)
+                        .SelectMany(v => new double[] { v.Normal.X, -v.Normal.Z, v.Normal.Y })
+                        .ToArray();
+
+                    int[] indices = obj.Indices.ToList().GetRange(startIndex, indexCount).SelectMany(x => new int[] { x, x }).ToArray();
+
+                    // create the sources
+                    source pos_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.Positions, positions);
+                    source normals_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.Normals, normals);
+
+                    // add the sources to the geometry
+                    geoBuilder.AddSources(new source[] { pos_source });
+
+                    // add triangle input offsets
+                    geoBuilder.AddTriangleInput(ColladaSemantic.Vertex);
+                    geoBuilder.AddTriangleInput(ColladaSemantic.Normal);
+
+                    // add triangle
+                    geoBuilder.AddTriangles(indices);
+
+                    geometries.Add(geoBuilder.ToGeometry());
+
+                    instance_geometry nodeGeo = new instance_geometry()
+                    {
+                        url = string.Format("#{0}", geoBuilder.Id),
+                    };
+
+                    LibRun8.Common.Vector3 offset;
+                    if (obj.class252_0 != null)
+                    {
+                        offset = obj.class252_0.vector3_0[j];
+                    }
+                    else
+                    {
+                        offset = obj.Position;
+                    }
+
+                    Matrix transformMatrix = Matrix.Identity;
+                    transformMatrix.M14 = offset.X;
+                    transformMatrix.M24 = offset.Z;
+                    transformMatrix.M34 = offset.Y;
+
+                    double[] transform = transformMatrix.ToArray().Select(x => (double)x).ToArray();
+
+                    matrix nodeMatrix = new matrix
+                    {
+                        sid = "transform",
+                        Values = transform
+                    };
+
+                    node defNode = new node()
+                    {
+                        id = thisId,
+                        name = thisId,
+                        Items = new object[] { nodeMatrix },
+                        ItemsElementName = new ItemsChoiceType2[] { ItemsChoiceType2.matrix },
+                        instance_geometry = new instance_geometry[] { nodeGeo }
+                    };
+
+                    defNodes.Add(new SceneNode(thisId, defNode));
+                }
+
+                SceneNode sceneNode;
+
+                if(defNodes.Count > 1)
                 {
-                    offset = obj.class252_0.vector3_0[0];
+                    node emptyNode = new node
+                    {
+                        id = id,
+                        name = id,
+                    };
+
+                    sceneNode = new SceneNode(id, emptyNode);
+                    sceneNode.children.AddRange(defNodes);
                 }
                 else
                 {
-                    offset = obj.Position;
+                    sceneNode = defNodes.First();
                 }
-
-                Matrix transformMatrix = Matrix.Identity;
-                transformMatrix.M14 = offset.X;
-                transformMatrix.M24 = offset.Z;
-                transformMatrix.M34 = offset.Y;
-
-                double[] transform = transformMatrix.ToArray().Select(x => (double)x).ToArray();
-
-                matrix node_matrix = new matrix
-                {
-                    sid = "transform",
-                    Values = transform
-                };
-
-
-                node scene_node = new node()
-                {
-                    id = id,
-                    name = id,
-                    Items = new object[] { node_matrix },
-                    ItemsElementName = new ItemsChoiceType2[] { ItemsChoiceType2.matrix },
-                    instance_geometry = new instance_geometry[] { node_geo }
-                };
-
-                //sceneNodes.Add(scene_node);
 
                 if (string.IsNullOrEmpty(parent) && !sceneNodes.Any(x => x.id == id))
                 {
-                    Console.WriteLine(string.Format("Creating root node {0}", id));
-                    sceneNodes.Add(new SceneNode(id, scene_node));
+                    sceneNodes.Add(sceneNode);
                 }
                 else if (!string.IsNullOrEmpty(parent))
                 {
@@ -171,53 +204,17 @@ namespace RN8ToDae
                     if (parentNode == null)
                     {
                         Console.WriteLine(string.Format("Failed to find parent {0} for {1}", parent, id));
-                        danglingSceneNodes.Add(new DanglingSceneNode { id = id, parent = parent, node = scene_node, tries = 0 });
                         continue;
                     }
 
-                    Console.WriteLine(string.Format("-- Adding child {0} to parent {1}", id, parent));
-                    parentNode.children.Add(new SceneNode(id, scene_node));
-               
-
-                    //try
-                    //{
-                    //    SceneNode parentNode = ColladaUtils.FindParent(sceneNodes, parent);
-                    //    if (parentNode.HasChild(id))
-                    //    {
-                    //        Console.WriteLine(string.Format("Object {0} has a parent of {1}, but a child with that name is already present", id, parent));
-                    //        continue;
-                    //    }
-                    //    else
-                    //    {
-                    //        Console.WriteLine(string.Format("Adding child {0} to parent {1}", id, parentNode.id));
-                    //        parentNode.AddChild(id, scene_node);
-                    //    }
-                    //} catch(InvalidOperationException e)
-                    //{
-                    //    SceneNode? parentNode = ColladaUtils.FindParent(sceneNodes, parent);
-                    //    if (parentNode == null)
-                    //    {
-                    //        Console.WriteLine(string.Format("Failed to find parent {0} for {1}", parent, id));
-                    //        danglingSceneNodes.Add(new DanglingSceneNode { id = id, parent = parent, node = scene_node, tries = 0 });
-                    //        continue;
-                    //    }
-
-                    //    Console.WriteLine(string.Format("-- Adding child {0} to parent {1}", id, parent));
-                    //    parentNode.AddChild(id, scene_node);
-                    //}
+                    parentNode.children.Add(sceneNode);
                 }
             }
-
-            //Console.WriteLine("Resolving dangling...");
-
-            //ResolveParents(danglingSceneNodes, sceneNodes);
 
             library_geometries lgeo = new library_geometries()
             {
                 geometry = geometries.ToArray()
             };
-
-
 
             visual_scene vscene = new visual_scene()
             {

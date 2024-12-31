@@ -139,17 +139,18 @@ namespace LibRun8.Collada
 
         public static SceneNode? FindParent(List<SceneNode> sceneNodes, string parent)
         {
-            foreach(SceneNode sceneNode in sceneNodes)
+            foreach (SceneNode sceneNode in sceneNodes)
             {
-                if (sceneNode.id == parent)
+                SceneNode? foundNode = FindParent(sceneNode.children, parent);
+                if (foundNode != null)
+                {
+                    return foundNode;
+                }
+
+                if (sceneNode.id == parent || sceneNode.id == parent + "_0" || sceneNode.id == parent + "_1")
                 {
                     return sceneNode;
                 }
-            }
-
-            foreach(SceneNode sceneNode in sceneNodes)
-            {
-                return FindParent(sceneNode.children, parent);
             }
 
             return null;
@@ -285,10 +286,8 @@ namespace LibRun8.Collada
 
         public node ToNode()
         {
-            Console.WriteLine(string.Format("{0} has {1} children", this.id, this.children.Count));
             node[] children = this.children.Select(x =>
             {
-                Console.WriteLine(string.Format("{0} is a child of {1}", x.id, this.id));
                 return x.ToNode();
             }).ToArray();
             Console.WriteLine();
