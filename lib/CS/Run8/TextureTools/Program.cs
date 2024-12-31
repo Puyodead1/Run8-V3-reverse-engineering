@@ -1,13 +1,13 @@
 ﻿using LibRun8.Util;
 using System.CommandLine;
 
-namespace TextureTools
+namespace TextureTool
 {
     internal class Program
     {
         static async Task<int> Main(string[] args)
         {
-            var rootCommand = new RootCommand("Run8 Texture Tools");
+            var rootCommand = new RootCommand("Run8 Texture Tool");
             var decryptCommand = new Command("decrypt", "Convert tx8 to dds");
             var encryptCommand = new Command("encrypt", "Convert dds to tx8");
 

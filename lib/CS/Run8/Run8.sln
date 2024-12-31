@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "R8Explorer", "R8Explorer\R8Explorer.csproj", "{80BDF0E7-5B94-4D6D-8673-3A8329754DFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RN8ToDae", "RN8ToObj\RN8ToDae.csproj", "{D02547FF-99B5-4DCF-89AA-FD63EACB43F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColladaConverter", "RN8ToObj\ColladaConverter.csproj", "{D02547FF-99B5-4DCF-89AA-FD63EACB43F5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModelLoaderTest", "ModelLoaderTest\ModelLoaderTest.csproj", "{F53A81EB-8C95-472C-99DC-A290BE5CBA02}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextureTools", "TextureTools\TextureTools.csproj", "{7713BA1D-E3AD-4F54-9AFB-E631A6E90DE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextureTool", "TextureTools\TextureTool.csproj", "{7713BA1D-E3AD-4F54-9AFB-E631A6E90DE3}"
 EndProject
 Project("{B7DD6F7E-DEF8-4E67-B5B7-07EF123DB6F0}") = "Installer", "Installer\Installer.wixproj", "{58C6A29C-6754-41BC-AA4B-E7CBCB587519}"
 EndProject

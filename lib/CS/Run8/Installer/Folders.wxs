@@ -3,7 +3,8 @@
   <Fragment>
 	  <StandardDirectory Id="ProgramFiles6432Folder">
 		  <Directory Id="INSTALLFOLDER" Name="!(bind.Property.ProductName)">
-			  <Directory Id="TextureTools" Name="TextureTools" />
+			  <Directory Id="TextureTool" Name="TextureTool" />
+			  <Directory Id="ColladaConverter" Name="ColladaConverter" />
 		  </Directory>
 	  </StandardDirectory>
   </Fragment>
