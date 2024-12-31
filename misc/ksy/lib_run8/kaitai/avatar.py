@@ -10,6 +10,13 @@ if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Avatar(KaitaiStruct):
+    """There are currently 3 avatars:
+     - Brian
+     - Chris
+     - Pablo
+     
+    
+     Avatar files are 3D model files with the `rn8` file extension. Model units are in centimeters."""
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -80,7 +87,7 @@ class Avatar(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self.key = common.Common.CsString(self._io)
+            self.clip_name = common.Common.CsString(self._io)
             self.duration = self._io.read_f8le()
             self.num_keyframes = self._io.read_s4le()
             self.keyframes = []
@@ -141,11 +148,11 @@ class Avatar(KaitaiStruct):
             self.position_x = self._io.read_f4le()
             self.normal_y = self._io.read_f4le()
             self.position_z = self._io.read_f4le()
-            self.uv_x = self._io.read_f4le()
+            self.tex_coord_x = self._io.read_f4le()
             self.normal_x = self._io.read_f4le()
             self.reserved2 = self._io.read_f4le()
             self.normal_z = self._io.read_f4le()
-            self.uv_y = self._io.read_f4le()
+            self.tex_coord_y = self._io.read_f4le()
             self.position_y = self._io.read_f4le()
             self.blend_index_w = self._io.read_u1()
             self.blend_weight_z = self._io.read_f4le()

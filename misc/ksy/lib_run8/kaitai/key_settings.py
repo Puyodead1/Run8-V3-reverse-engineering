@@ -10,6 +10,7 @@ if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class KeySettings(KaitaiStruct):
+    """Stores game keybind settings."""
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -33,7 +34,7 @@ class KeySettings(KaitaiStruct):
 
         def _read(self):
             self.reserved = self._io.read_s4le()
-            self.name = common.Common.String(self._io)
+            self.name = common.Common.R8string(self._io)
             self.enum70 = self._io.read_s1()
             self.num_keys = self._io.read_s4le()
             self.keys = []

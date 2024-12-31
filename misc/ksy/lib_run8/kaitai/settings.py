@@ -11,7 +11,7 @@ if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Settings(KaitaiStruct):
-    """Stars4 file contains a list of strings, including file paths. Strings are referenced by their index."""
+    """Stores game settings. A lot of this shit appears to be unused, or is for developer crap that is stripped in release versions."""
 
     class AntialiasingMode(IntEnum):
         none = 0
@@ -48,7 +48,7 @@ class Settings(KaitaiStruct):
         self.headlight_intensity = self._io.read_f4le()
         self.bool0 = common.Common.Boolean(self._io)
         self.bool1 = common.Common.Boolean(self._io)
-        self.player_name = common.Common.String(self._io)
+        self.player_name = common.Common.R8string(self._io)
         self.float4 = self._io.read_f4le()
         self.sea_sick_intensity = self._io.read_f4le()
         self.train_draw_range = self._io.read_f4le()
@@ -92,7 +92,7 @@ class Settings(KaitaiStruct):
         self.rent_a_conductor = common.Common.Boolean(self._io)
         self.conductor_current_avatar = self._io.read_s1()
         self.generate_conductor_name = common.Common.Boolean(self._io)
-        self.conductor_name = common.Common.String(self._io)
+        self.conductor_name = common.Common.R8string(self._io)
         self.mouse_look = self._io.read_s4le()
         self.mouse_move = self._io.read_f4le()
         self.int3 = self._io.read_s4le()
@@ -109,12 +109,12 @@ class Settings(KaitaiStruct):
         self.invert_camera_y = common.Common.Boolean(self._io)
         self.raildriver_led_readout = KaitaiStream.resolve_enum(Settings.RaildriverLedMode, self._io.read_s1())
         self.use_raildriver = common.Common.Boolean(self._io)
-        self.network_password = common.Common.String(self._io)
+        self.network_password = common.Common.R8string(self._io)
         self.network_port = self._io.read_s4le()
         self.max_clients = self._io.read_s4le()
-        self.dispatch_password = common.Common.String(self._io)
-        self.ai_password = common.Common.String(self._io)
-        self.consist_editor_password = common.Common.String(self._io)
+        self.dispatch_password = common.Common.R8string(self._io)
+        self.ai_password = common.Common.R8string(self._io)
+        self.consist_editor_password = common.Common.R8string(self._io)
         self.bool31 = common.Common.Boolean(self._io)
         self.host_delete_lost_client_trains = common.Common.Boolean(self._io)
         self.network_time_sync_on = common.Common.Boolean(self._io)
@@ -123,9 +123,9 @@ class Settings(KaitaiStruct):
         for i in range(self.num_list1):
             self.list1.append(Settings.Class522(self._io, self, self._root))
 
-        self.region = common.Common.String(self._io)
+        self.region = common.Common.R8string(self._io)
         self.scenario_filter = self._io.read_s1()
-        self.scenario_name = common.Common.String(self._io)
+        self.scenario_name = common.Common.R8string(self._io)
         self.tdc_screen_scale = self._io.read_f8le()
         self.double2 = self._io.read_f8le()
         self.client_port = self._io.read_s4le()
@@ -213,9 +213,9 @@ class Settings(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self.server_name = common.Common.String(self._io)
-            self.server_address = common.Common.String(self._io)
-            self.password = common.Common.String(self._io)
+            self.server_name = common.Common.R8string(self._io)
+            self.server_address = common.Common.R8string(self._io)
+            self.password = common.Common.R8string(self._io)
             self.port = self._io.read_s4le()
 
 
@@ -227,7 +227,7 @@ class Settings(KaitaiStruct):
             self._read()
 
         def _read(self):
-            self.string0 = common.Common.String(self._io)
+            self.string0 = common.Common.R8string(self._io)
             self.int0 = self._io.read_s4le()
             self.vector30 = common.Common.Vector3(self._io)
 
@@ -241,7 +241,7 @@ class Settings(KaitaiStruct):
 
         def _read(self):
             self.reserved = self._io.read_s4le()
-            self.string0 = common.Common.String(self._io)
+            self.string0 = common.Common.R8string(self._io)
             self.num_list1 = self._io.read_s4le()
             self.list1 = []
             for i in range(self.num_list1):

@@ -10,7 +10,34 @@ if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
     raise Exception("Incompatible Kaitai Struct Python API: 0.11 or later is required, but you have %s" % (kaitaistruct.__version__))
 
 class Common(KaitaiStruct):
-    """Common types."""
+    """Common Types
+    
+     ## Encoding Strings
+     ```c#
+     string s = "1ST COAST RECYCLING";
+     byte[] bytes = Encoding.UTF8.GetBytes(s);
+     byte[] encoded = new byte[bytes.Length * 2];
+     int num = 0;
+     for (int i = 0; i < bytes.Length; i++)
+     {
+     	encoded[num++] = (byte)(bytes[i] >> 4);
+     	encoded[num++] = (byte)(bytes[i] << 4);
+     }
+     ```
+    
+     ## Decoding Strings
+     ```c#
+     byte[] encoded = <string data>;
+     byte[] decodedBytes = new byte[encoded.Length / 2];
+     int num = 0;
+     for (int i = 0; i < decodedBytes.Length; i++)
+     {
+     	decodedBytes[i] |= (byte)(encoded[num++] << 4);
+     	decodedBytes[i] |= (byte)(encoded[num++] >> 4);
+     }
+    
+     string decodedString = Encoding.UTF8.GetString(decodedBytes);
+     ```."""
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
         self._parent = _parent
@@ -63,7 +90,7 @@ class Common(KaitaiStruct):
 
 
     class CsString(KaitaiStruct):
-        """C# style string. Prefixed with a 7 bit encoded int."""
+        """C# style string."""
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent
@@ -101,7 +128,8 @@ class Common(KaitaiStruct):
             self.m44 = self._io.read_f4le()
 
 
-    class String(KaitaiStruct):
+    class R8string(KaitaiStruct):
+        """Run8 specific string format."""
         def __init__(self, _io, _parent=None, _root=None):
             self._io = _io
             self._parent = _parent

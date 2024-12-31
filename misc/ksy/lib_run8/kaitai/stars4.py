@@ -22,7 +22,7 @@ class Stars4(KaitaiStruct):
         self.num_strings = self._io.read_s4le()
         self.strings = []
         for i in range(self.num_strings):
-            self.strings.append(common.Common.String(self._io))
+            self.strings.append(common.Common.R8string(self._io))
 
 
 
