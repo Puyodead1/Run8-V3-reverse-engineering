@@ -1,7 +1,4 @@
 ﻿using Collada141;
-using MoreLinq;
-using MoreLinq.Experimental;
-using System.Collections;
 using System.ComponentModel;
 
 namespace LibRun8.Collada

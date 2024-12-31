@@ -23,7 +23,6 @@ namespace LibRun8.Common
         public ModelObject ParentObject { get; set; }
         public Vector3 UnkVec30 { get; set; } = Vector3.Zero;
         public Quaternion UnkQuat2 { get; set; } = Quaternion.Identity;
-        public ModelType Type { get; set; }
         public bool bool_0 { get; set; }
 
         public ModelObject(BinaryReader reader, Model model)
@@ -66,7 +65,7 @@ namespace LibRun8.Common
                     array2[k] = new Matrix(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
                 }
 
-                if(num4 != num3)
+                if (num4 != num3)
                 {
                     this.class252_0 = null;
                 }
@@ -170,54 +169,5 @@ namespace LibRun8.Common
                 }
             }
         }
-
-        public void CalculateOffset(float float_0)
-        {
-            Vector3 vector = Vector3.Transform(Vector3.ForwardRH, this.ParentObject.UnkQuat0);
-            Vector3 vector2 = Vector3.Transform(Vector3.Up, this.ParentObject.UnkQuat0);
-            Vector3 vector3 = Vector3.Transform(Vector3.Right, this.ParentObject.UnkQuat0);
-            //this.vector3_2 != Vector3.Zero;
-            if (this.class252_0 != null)
-            {
-                this.class252_0.method_0(float_0);
-                this.UnkQuat0 = this.ParentObject.UnkQuat0 * this.class252_0.quaternion_1 * this.UnkQuat2 * this.UnkQuat1;
-                this.UnkVec30 = this.ParentObject.UnkVec30;
-                this.UnkVec30 += vector3 * this.class252_0.vector3_1.X;
-                this.UnkVec30 += vector2 * this.class252_0.vector3_1.Y;
-                this.UnkVec30 += vector * this.class252_0.vector3_1.Z;
-            }
-            else
-            {
-                this.UnkQuat0 = this.ParentObject.UnkQuat0;
-                this.UnkVec30 = this.ParentObject.UnkVec30;
-                this.UnkVec30 += vector3 * this.Position.X;
-                this.UnkVec30 += vector2 * this.Position.Y;
-                this.UnkVec30 += vector * this.Position.Z;
-            }
-            Vector3 vector4 = this.TranslationVector - this.ParentObject.TranslationVector + this.UnkVec31;
-            this.UnkVec30 += vector3 * vector4.X;
-            this.UnkVec30 += vector2 * vector4.Y;
-            this.UnkVec30 += vector * -vector4.Z;
-        }
-    }
-
-    public enum ModelType
-    {
-        Window1Or2,
-        const_1,
-        CarLoad,
-        InteriorLow,
-        InteriorHigh,
-        Wiper,
-        WindowEngDriver,
-        WindowFiremanConductor_3Or4,
-        Beacon,
-        HEPGlass,
-        GlassWheelslip,
-        GlassPCS,
-        GlassHolder,
-        RainGlass,
-        RearDoor,
-        FrontDoor
     }
 }
