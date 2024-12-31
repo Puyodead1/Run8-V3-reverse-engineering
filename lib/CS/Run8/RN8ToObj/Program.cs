@@ -118,18 +118,26 @@ namespace RN8ToDae
                         .SelectMany(v => new double[] { v.Normal.X, -v.Normal.Z, v.Normal.Y })
                         .ToArray();
 
-                    int[] indices = obj.Indices.ToList().GetRange(startIndex, indexCount).SelectMany(x => new int[] { x, x }).ToArray();
+                    double[] uvs = obj.Vertices.Skip(startVertex)
+                        .SelectMany(v => new double[] { v.TextureCoordinate.X, -v.TextureCoordinate.Y })
+                        .ToArray();
+
+                    int[] indices = obj.Indices.ToList().GetRange(startIndex, indexCount).SelectMany(x => new int[] { x, x, x }).ToArray();
 
                     // create the sources
                     source pos_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.Positions, positions);
                     source normals_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.Normals, normals);
+                    source uvs_source = ColladaUtils.CreateSource(geoBuilder.Id, ColladaArrayType.UVs, uvs, 2);
 
                     // add the sources to the geometry
                     geoBuilder.AddSources(new source[] { pos_source });
+                    geoBuilder.AddSources(new source[] { normals_source });
+                    geoBuilder.AddSources(new source[] { uvs_source });
 
                     // add triangle input offsets
                     geoBuilder.AddTriangleInput(ColladaSemantic.Vertex);
                     geoBuilder.AddTriangleInput(ColladaSemantic.Normal);
+                    geoBuilder.AddTriangleInput(ColladaSemantic.UV);
 
                     // add triangle
                     geoBuilder.AddTriangles(indices);
@@ -144,7 +152,11 @@ namespace RN8ToDae
                     LibRun8.Common.Vector3 offset;
                     if (obj.class252_0 != null)
                     {
-                        offset = obj.class252_0.vector3_0[j];
+                        if (j >= obj.class252_0.vector3_0.Length) 
+                            offset = obj.class252_0.vector3_0.Last();
+                        else
+                            offset = obj.class252_0.vector3_0[j];
+
                     }
                     else
                     {

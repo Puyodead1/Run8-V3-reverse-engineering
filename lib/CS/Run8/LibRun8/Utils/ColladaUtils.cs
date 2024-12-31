@@ -12,7 +12,7 @@ namespace LibRun8.Collada
         Positions,
         [Description("normals")]
         Normals,
-        [Description("uvs")]
+        [Description("map-0")]
         UVs
     }
 
@@ -21,7 +21,9 @@ namespace LibRun8.Collada
         [Description("VERTEX")]
         Vertex,
         [Description("NORMAL")]
-        Normal
+        Normal,
+        [Description("TEXCOORD")]
+        UV
     }
 
 
@@ -103,13 +105,20 @@ namespace LibRun8.Collada
             {
                 source = string.Format("#{0}-{1}-array", Id, typeName),
                 count = (ulong)(value.Length / stride),
-                stride = (ulong)stride,
-                param = new param[] {
+                stride = (ulong)stride
+            };
+
+            if (arrayType != ColladaArrayType.UVs) 
+                _accessor.param = new param[] {
                     new param() {name="X", type="float"},
                     new param() {name="Y", type="float"},
                     new param() {name="Z", type="float"},
-                }
-            };
+                };
+            else
+                _accessor.param = new param[] {
+                    new param() {name="S", type="float"},
+                    new param() {name="T", type="float"},
+                };
 
             sourceTechnique_common _techniqueCommon = new sourceTechnique_common()
             {
@@ -219,9 +228,10 @@ namespace LibRun8.Collada
 
             if (semantic == ColladaSemantic.Vertex) type = "vertices";
             else if (semantic == ColladaSemantic.Normal) type = "normals";
+            else if (semantic == ColladaSemantic.UV) type = "map-0";
             else throw new Exception("Unknown ColladaSemantic");
 
-            this.inputLocalOffsets.Add(new InputLocalOffset() { semantic = semanticName, source = string.Format("#{0}-{1}", this.Id, type), offset = (ulong)this.inputLocalOffsets.Count });
+            this.inputLocalOffsets.Add(new InputLocalOffset() { semantic = semanticName, source = string.Format("#{0}-{1}", this.Id, type), offset = (ulong)this.inputLocalOffsets.Count, set = 0 });
         }
 
         public void AddTriangles(int[] indices)
