@@ -2048,7 +2048,7 @@ namespace LibRun8.Common
         }
 
         /// <summary>
-        /// The size of the <see cref="T:SharpDX.Matrix" /> type, in bytes.
+        /// The size of the <see cref="T:SharpDX.Matrix" /> Type, in bytes.
         /// </summary>
         public static readonly int SizeInBytes = Marshal.SizeOf(typeof(Matrix));
 

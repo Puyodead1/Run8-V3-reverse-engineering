@@ -5,7 +5,7 @@ using System.Text;
 namespace LibRun8.Util
 {
     /// <summary>
-    /// Provides some conspicuously absent string and type functionality to 
+    /// Provides some conspicuously absent string and Type functionality to 
     /// <seealso cref="BinaryReader"/>
     /// </summary>
     static class BinaryReaderExtensions
@@ -13,7 +13,7 @@ namespace LibRun8.Util
         /// <summary>
         /// Reads a class or a struct from the reader
         /// </summary>
-        /// <typeparam name="T">The type to read</typeparam>
+        /// <typeparam name="T">The Type to read</typeparam>
         /// <param name="reader">The reader</param>
         /// <returns>An instance of <typeparamref name="T"/> as read from the stream</returns>
         public static T ReadType<T>(this BinaryReader reader)

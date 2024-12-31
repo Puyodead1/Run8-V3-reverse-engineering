@@ -2,9 +2,6 @@
 {
     public struct VertexStruct
     {
-        public float UnusedFloat0 { get; set; }
-        public float UnusedFloat1 { get; set; }
-
         public Vector3 Position;
 
         public Vector3 Normal;

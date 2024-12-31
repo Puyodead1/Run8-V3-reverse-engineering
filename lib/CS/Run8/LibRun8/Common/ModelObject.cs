@@ -7,26 +7,29 @@ namespace LibRun8.Common
     {
         public string Name { get; set; }
         public string ParentName { get; set; }
-        public Vector3 TranslationVector { get; set; }
-        public Vector3 Position { get; set; }
-        public Vector3 UnkVec31 { get; set; }
-        public Quaternion UnkQuat0 { get; set; }
+        public Vector3 TranslationVector { get; set; } = Vector3.Zero;
+        public Vector3 Position { get; set; } = Vector3.Zero;
+        public Vector3 UnkVec31 { get; set; } = Vector3.Zero;
+        public Quaternion UnkQuat0 { get; set; } = Quaternion.Identity;
         public Matrix UnusedScalingMatrix0 { get; set; }
         public Quaternion UnusedRotationMatrix0 { get; set; }
         public Quaternion UnusedRotationMatrix1 { get; set; }
-        public Quaternion UnkQuat1 { get; set; }
+        public Quaternion UnkQuat1 { get; set; } = Quaternion.Identity;
         public Matrix UnusedScalingMatrix1 { get; set; }
         public List<VertexStruct> Vertices;
         public int[] Indices;
         public List<ModelObjectDefinition> ObjectDefinitions { get; set; } = new List<ModelObjectDefinition>();
+        public Class252 class252_0 { get; set; }
+        public ModelObject ParentObject { get; set; }
+        public Vector3 UnkVec30 { get; set; } = Vector3.Zero;
+        public Quaternion UnkQuat2 { get; set; } = Quaternion.Identity;
+        public ModelType Type { get; set; }
+        public bool bool_0 { get; set; }
 
         public ModelObject(BinaryReader reader, Model model)
         {
             if (model.IsAdvancedModel)
             {
-                // do advanced loading
-                //throw new NotImplementedException();
-
                 Name = reader.ReadString();
                 ParentName = reader.ReadString();
 
@@ -46,14 +49,14 @@ namespace LibRun8.Common
                 Matrix[] array = new Matrix[num3];
                 for (int j = 0; j < num3; j++)
                 {
-                    //if (modelObject.class249_0 == null)
-                    //{
-                    //    modelObject.class249_0 = new Class249
-                    //    {
-                    //        quaternion_0 = new Quaternion[num3],
-                    //        vector3_0 = new Vector3[num3]
-                    //    };
-                    //}
+                    if (this.class252_0 == null)
+                    {
+                        this.class252_0 = new Class252
+                        {
+                            quaternion_0 = new Quaternion[num3],
+                            vector3_0 = new Vector3[num3]
+                        };
+                    }
                     array[j] = new Matrix(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
                 }
                 int num4 = reader.ReadInt32();
@@ -63,7 +66,18 @@ namespace LibRun8.Common
                     array2[k] = new Matrix(reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle(), reader.ReadSingle());
                 }
 
-                // TODO: 112
+                if(num4 != num3)
+                {
+                    this.class252_0 = null;
+                }
+                else
+                {
+                    for (int l = 0; l < num4; l++)
+                    {
+                        this.class252_0.quaternion_0[l] = Quaternion.RotationMatrix(array2[l]);
+                        this.class252_0.vector3_0[l] = array[l].TranslationVector;
+                    }
+                }
             }
             else
             {
@@ -76,22 +90,23 @@ namespace LibRun8.Common
             for (int i = 0; i < vertexCount; i++)
             {
                 VertexStruct vertex = default;
-                vertex.UnusedFloat0 = reader.ReadSingle();
-                Vector3 pos = default;
+                reader.ReadSingle();
+                Vector3 position = default;
                 Vector3 normal = default;
-                Vector2 texcoord = default;
-                pos.X = reader.ReadSingle() * 63.7f - TranslationVector.X;
+                Vector2 uv = default;
+                position.X = reader.ReadSingle() * 63.7f - TranslationVector.X;
                 normal.Y = reader.ReadSingle() / -1.732f;
-                pos.Z = reader.ReadSingle() / 16f - TranslationVector.Z;
-                texcoord.X = reader.ReadSingle() / 4.8f;
+                position.Z = reader.ReadSingle() / 16f - TranslationVector.Z;
+                uv.X = reader.ReadSingle() / 4.8f;
                 normal.X = reader.ReadSingle() / 10.962f;
-                vertex.UnusedFloat1 = reader.ReadSingle();
+                reader.ReadSingle();
                 normal.Z = reader.ReadSingle() / 11.432f;
-                texcoord.Y = reader.ReadSingle() / 9.6f;
-                pos.Y = reader.ReadSingle() * 6f - TranslationVector.Y;
-                vertex.Position = pos;
+                uv.Y = reader.ReadSingle() / 9.6f;
+                position.Y = -reader.ReadSingle() * 6f - TranslationVector.Y;
+
+                vertex.Position = position;
                 vertex.Normal = normal;
-                vertex.TextureCoordinate = texcoord;
+                vertex.TextureCoordinate = uv;
                 vertex.Binormal = Vector3.Zero;
                 vertex.Tangent = Vector3.Zero;
                 Vertices.Add(vertex);
@@ -112,11 +127,16 @@ namespace LibRun8.Common
             bool isUshortIndexBuffer = reader.ReadBoolean();
 
             int indexCount = reader.ReadInt32();
+            Console.WriteLine(reader.BaseStream.Position);
+            Console.WriteLine(indexCount);
+
             Indices = new int[indexCount];
             for (int i = 0; i < indexCount; i++)
             {
-                Indices[i] = reader.ReadInt32();
+                int a = reader.ReadInt32();
+                Indices[i] = a;
             }
+
 
             // TODO: calculate binormals and tangents
 
@@ -152,5 +172,54 @@ namespace LibRun8.Common
                 }
             }
         }
+
+        public void CalculateOffset(float float_0)
+        {
+            Vector3 vector = Vector3.Transform(Vector3.ForwardRH, this.ParentObject.UnkQuat0);
+            Vector3 vector2 = Vector3.Transform(Vector3.Up, this.ParentObject.UnkQuat0);
+            Vector3 vector3 = Vector3.Transform(Vector3.Right, this.ParentObject.UnkQuat0);
+            //this.vector3_2 != Vector3.Zero;
+            if (this.class252_0 != null)
+            {
+                this.class252_0.method_0(float_0);
+                this.UnkQuat0 = this.ParentObject.UnkQuat0 * this.class252_0.quaternion_1 * this.UnkQuat2 * this.UnkQuat1;
+                this.UnkVec30 = this.ParentObject.UnkVec30;
+                this.UnkVec30 += vector3 * this.class252_0.vector3_1.X;
+                this.UnkVec30 += vector2 * this.class252_0.vector3_1.Y;
+                this.UnkVec30 += vector * this.class252_0.vector3_1.Z;
+            }
+            else
+            {
+                this.UnkQuat0 = this.ParentObject.UnkQuat0;
+                this.UnkVec30 = this.ParentObject.UnkVec30;
+                this.UnkVec30 += vector3 * this.Position.X;
+                this.UnkVec30 += vector2 * this.Position.Y;
+                this.UnkVec30 += vector * this.Position.Z;
+            }
+            Vector3 vector4 = this.TranslationVector - this.ParentObject.TranslationVector + this.UnkVec31;
+            this.UnkVec30 += vector3 * vector4.X;
+            this.UnkVec30 += vector2 * vector4.Y;
+            this.UnkVec30 += vector * -vector4.Z;
+        }
+    }
+
+    public enum ModelType
+    {
+        Window1Or2,
+        const_1,
+        CarLoad,
+        InteriorLow,
+        InteriorHigh,
+        Wiper,
+        WindowEngDriver,
+        WindowFiremanConductor_3Or4,
+        Beacon,
+        HEPGlass,
+        GlassWheelslip,
+        GlassPCS,
+        GlassHolder,
+        RainGlass,
+        RearDoor,
+        FrontDoor
     }
 }

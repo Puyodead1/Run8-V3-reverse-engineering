@@ -3,7 +3,7 @@
 namespace LibRun8.Util
 {
     /// <summary>
-    /// Provides some conspicuously absent string and type functionality to 
+    /// Provides some conspicuously absent string and Type functionality to 
     /// <seealso cref="BinaryWriter"/>
     /// </summary>
     static class BinaryWriterExtensions

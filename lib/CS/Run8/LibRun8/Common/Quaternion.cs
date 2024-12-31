@@ -773,7 +773,7 @@ namespace LibRun8.Common
         }
 
         /// <summary>
-        /// The size of the <see cref="T:SharpDX.Quaternion" /> type, in bytes.
+        /// The size of the <see cref="T:SharpDX.Quaternion" /> Type, in bytes.
         /// </summary>
         // Token: 0x04000EF3 RID: 3827
         public static readonly int SizeInBytes = Marshal.SizeOf(typeof(Quaternion));
