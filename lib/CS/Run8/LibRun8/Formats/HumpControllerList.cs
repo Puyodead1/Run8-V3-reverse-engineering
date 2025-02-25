@@ -6,26 +6,26 @@ namespace LibRun8.Formats
 {
     public class HumpControllerList : FileFormat
     {
-        public List<HumpController> Controllers { get; set; } = new List<HumpController>();
+        public List<HumpController> Controllers { get; set; } = new();
 
         public static HumpControllerList Read(string path)
         {
-            HumpControllerList list = new HumpControllerList();
+            HumpControllerList controllerList = new HumpControllerList();
             using (FileStream fileStream = new FileStream(path, FileMode.Open))
             {
                 using (BinaryReader reader = new BinaryReader(fileStream))
                 {
                     reader.ReadInt32(); // reserved
-                    int entryCount = reader.ReadInt32();
-                    for (int i = 0; i < entryCount; i++)
+                    int controllerCount = reader.ReadInt32();
+                    for (int i = 0; i < controllerCount; i++)
                     {
                         HumpController controller = HumpController.Read(reader);
-                        list.Controllers.Add(controller);
+                        controllerList.Controllers.Add(controller);
                     }
                 }
             }
 
-            return list;
+            return controllerList;
         }
 
         public override void Write(string path)
@@ -38,7 +38,7 @@ namespace LibRun8.Formats
             public string Name { get; set; }
             public TileIndex TileXZ { get; set; }
             public Vector3 Position { get; set; }
-            public List<TrackPath> trackPaths { get; set; } = new List<TrackPath>();
+            public List<TrackPath> TrackPaths { get; set; } = new();
 
             public static HumpController Read(BinaryReader reader)
             {
@@ -49,11 +49,11 @@ namespace LibRun8.Formats
                 controller.Position = Vector3.Read(reader);
                 reader.ReadR8String(); // ????
 
-                int entryCount = reader.ReadInt32();
-                for (int i = 0; i < entryCount; i++)
+                int trackCount = reader.ReadInt32();
+                for (int i = 0; i < trackCount; i++)
                 {
                     TrackPath trackPath = TrackPath.Read(reader);
-                    controller.trackPaths.Add(trackPath);
+                    controller.TrackPaths.Add(trackPath);
                 }
 
                 return controller;

@@ -4,7 +4,7 @@ namespace LibRun8.Formats
 {
     public class HumpConfigDatabase : FileFormat
     {
-        public List<Hump> Humps { get; set; } = new List<Hump>();
+        public List<HumpConfigEntry> Humps { get; set; } = new();
 
         public static HumpConfigDatabase Read(string path)
         {
@@ -14,11 +14,11 @@ namespace LibRun8.Formats
                 using (BinaryReader reader = new BinaryReader(fileStream))
                 {
                     reader.ReadInt32(); // reserved
-                    int entryCount = reader.ReadInt32();
-                    for (int i = 0; i < entryCount; i++)
+                    int humpCount = reader.ReadInt32();
+                    for (int i = 0; i < humpCount; i++)
                     {
-                        Hump humpConfig = Hump.Read(reader);
-                        item.Humps.Add(humpConfig);
+                        HumpConfigEntry humpConfigEntryConfig = HumpConfigEntry.Read(reader);
+                        item.Humps.Add(humpConfigEntryConfig);
                     }
                 }
             }
@@ -31,31 +31,31 @@ namespace LibRun8.Formats
             throw new NotImplementedException();
         }
 
-        public class Hump
+        public class HumpConfigEntry
         {
             public string Name { get; set; }
-            public List<HumpConfig> Configs { get; set; } = new List<HumpConfig>();
+            public List<HumpConfig> Configs { get; set; } = new();
 
-            public static Hump Read(BinaryReader reader)
+            public static HumpConfigEntry Read(BinaryReader reader)
             {
-                Hump hump = new Hump();
+                HumpConfigEntry humpConfigEntry = new HumpConfigEntry();
                 reader.ReadInt32(); // reserved
-                hump.Name = reader.ReadR8String();
+                humpConfigEntry.Name = reader.ReadR8String();
 
-                int entryCount = reader.ReadInt32();
-                for (int i = 0; i < entryCount; i++)
+                int configCount = reader.ReadInt32();
+                for (int i = 0; i < configCount; i++)
                 {
                     HumpConfig config = HumpConfig.Read(reader);
-                    hump.Configs.Add(config);
+                    humpConfigEntry.Configs.Add(config);
                 }
 
-                return hump;
+                return humpConfigEntry;
             }
 
             public class HumpConfig
             {
                 public string ConfigName { get; set; }
-                public List<HumpTrack> Tracks { get; set; } = new List<HumpTrack>();
+                public List<HumpConfigTrack> Tracks { get; set; } = new();
 
                 public static HumpConfig Read(BinaryReader reader)
                 {
@@ -69,31 +69,31 @@ namespace LibRun8.Formats
                     int entryCount = reader.ReadInt32();
                     for (int i = 0; i < entryCount; i++)
                     {
-                        HumpTrack track = HumpTrack.Read(reader);
-                        config.Tracks.Add(track);
+                        HumpConfigTrack configTrack = HumpConfigTrack.Read(reader);
+                        config.Tracks.Add(configTrack);
                     }
 
                     return config;
                 }
 
-                public class HumpTrack
+                public class HumpConfigTrack
                 {
                     public string TrackName { get; set; }
-                    public List<string> Tags { get; set; } = new List<string>();
+                    public List<string> Tags { get; set; } = new();
 
-                    public static HumpTrack Read(BinaryReader reader)
+                    public static HumpConfigTrack Read(BinaryReader reader)
                     {
-                        HumpTrack track = new HumpTrack();
+                        HumpConfigTrack configTrack = new HumpConfigTrack();
                         reader.ReadInt32(); // reserved
-                        track.TrackName = reader.ReadR8String();
+                        configTrack.TrackName = reader.ReadR8String();
 
-                        int entryCount = reader.ReadInt32();
-                        for (int i = 0; i < entryCount; i++)
+                        int tagCount = reader.ReadInt32();
+                        for (int i = 0; i < tagCount; i++)
                         {
-                            track.Tags.Add(reader.ReadR8String());
+                            configTrack.Tags.Add(reader.ReadR8String());
                         }
 
-                        return track;
+                        return configTrack;
                     }
                 }
             }
