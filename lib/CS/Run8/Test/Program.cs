@@ -22,15 +22,15 @@ Console.WriteLine("Reading...");
 //jsonString = JsonConvert.SerializeObject(trackDatabase, options);
 //File.WriteAllText("TrackDatabase.json", jsonString);
 
-Stars4 stars4 = Stars4.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\Misc\stars4.rn8");
+// Stars4 stars4 = Stars4.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\Misc\stars4.rn8");
 
-List<string> lines = new List<string>();
-for (int i = 0; i < stars4.Entries.Length; i++)
-{
-    lines.Add(string.Format("String {0} - {1}", i, stars4.Entries[i]));
-}
+// List<string> lines = new List<string>();
+// for (int i = 0; i < stars4.Entries.Length; i++)
+// {
+//     lines.Add(string.Format("String {0} - {1}", i, stars4.Entries[i]));
+// }
 
-File.WriteAllLines("stars4.txt", lines);
+// File.WriteAllLines("stars4.txt", lines);
 
 //AISignalDatabase aiSignalDatabase = AISignalDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_BakersfieldSub\AISignalDatabase.r8");
 //string jsonString = JsonConvert.SerializeObject(aiSignalDatabase, options);
@@ -93,7 +93,7 @@ File.WriteAllLines("stars4.txt", lines);
 //jsonString = JsonConvert.SerializeObject(tile, options);
 //File.WriteAllText("TerrainTile.json", jsonString);
 
-//Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_Bethgon_BNSF01_Ld.rn8");
+Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_Bethgon_BNSF01_Ld.rn8");
 //Model model = Model.Read(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\R8_Caboose_c509_SP01.rn8");
 //foreach (ModelObject obj in model.Objects)
 //{
@@ -103,4 +103,4 @@ File.WriteAllLines("stars4.txt", lines);
 //jsonString = JsonConvert.SerializeObject(model, options);
 //File.WriteAllText("Model.json", jsonString);
 
-//model.WriteCollada(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\R8_Bethgon_BNSF01_Ld.dae");
+model.WriteCollada(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\R8_Bethgon_BNSF01_Ld.dae");
