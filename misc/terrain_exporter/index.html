@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Pin and Rectangle Example</title>
+
+        <style>
+            html,
+            body,
+            #viewDiv {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #exportButton {
+                position: absolute;
+                top: 10px;
+                left: 10px;
+                padding: 10px;
+                background-color: #0078d4;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            #exportButton:hover {
+                background-color: #005a8e;
+            }
+            .selected {
+                outline: 2px solid red; /* Highlight selected tiles */
+            }
+        </style>
+        <script src="https://js.arcgis.com/4.31/"></script>
+    </head>
+    <body>
+        <div id="viewDiv"></div>
+        <button id="exportButton">Export KML</button>
+
+        <script>
+            require([
+                "esri/Map",
+                "esri/views/MapView",
+                "esri/widgets/Home",
+                "esri/widgets/ScaleBar",
+                "esri/widgets/LayerList",
+                "esri/widgets/Expand",
+                "esri/Graphic",
+                "esri/geometry/Point",
+                "esri/geometry/Polygon",
+                "esri/geometry/SpatialReference",
+                "esri/layers/ImageryLayer",
+            ], function (
+                Map,
+                MapView,
+                Home,
+                ScaleBar,
+                LayerList,
+                Expand,
+                Graphic,
+                Point,
+                Polygon,
+                SpatialReference,
+                ImageryLayer
+            ) {
+                // Create map and view
+                const elevationLayer = new ImageryLayer({
+                    url: "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+                });
+                const map = new Map({
+                    basemap: "osm",
+                    layers: [elevationLayer],
+                });
+
+                const view = new MapView({
+                    container: "viewDiv",
+                    map: map,
+                    center: [-83.11846, 42.320764],
+                    zoom: 15,
+                });
+
+                // Widgets
+                const homeBtn = new Home({ view: view });
+                const scaleBar = new ScaleBar({ view: view, unit: "dual" });
+                const layerList = new LayerList({ view: view });
+                const layerListExpand = new Expand({
+                    view: view,
+                    content: layerList,
+                    expanded: false,
+                    expandTooltip: "Expand LayerList",
+                });
+                view.ui.add(homeBtn, "top-left");
+                view.ui.add(layerListExpand, "top-right");
+                view.ui.add(scaleBar, "bottom-right");
+
+                let currentPin = null;
+                let rectangles = []; // Store drawn rectangles
+
+                // Define fixed size of rectangle (in degrees for simplicity)
+                let rectSize = { width: 0.01, height: 0.01 }; // Using small degrees for testing
+
+                // Handle click event to place pin and rectangle
+                view.on("click", function (event) {
+                    const point = new Point({
+                        longitude: event.mapPoint.longitude,
+                        latitude: event.mapPoint.latitude,
+                        spatialReference: new SpatialReference({ wkid: 4326 }),
+                    });
+
+                    // Check if we clicked on an existing pin or rectangle
+                    view.hitTest(event).then(function (response) {
+                        const graphic = response.results[0]?.graphic;
+
+                        if (graphic) {
+                            // If clicked on a rectangle, update selection (no action needed for now)
+                        } else {
+                            // If no pin exists, place it
+                            if (!currentPin) {
+                                currentPin = new Graphic({
+                                    geometry: point,
+                                    symbol: {
+                                        type: "simple-marker",
+                                        color: "red",
+                                        size: "12px",
+                                        outline: { color: "white", width: 2 },
+                                    },
+                                });
+                                view.graphics.add(currentPin);
+                            }
+
+                            // Place the first rectangle if none exists
+                            if (rectangles.length === 0) {
+                                placeRectangle(point, 0);
+                            } else {
+                                createAdjacentRectangle();
+                            }
+                        }
+                    });
+                });
+
+                // Function to place a rectangle at a specific location
+                function placeRectangle(point, index) {
+                    // Hardcode rectangle coordinates around the click point (for simplicity)
+                    const rectangleCoords = [
+                        [
+                            [
+                                [point.longitude - rectSize.width / 2, point.latitude - rectSize.height / 2],
+                                [point.longitude + rectSize.width / 2, point.latitude - rectSize.height / 2],
+                                [point.longitude + rectSize.width / 2, point.latitude + rectSize.height / 2],
+                                [point.longitude - rectSize.width / 2, point.latitude + rectSize.height / 2],
+                                [point.longitude - rectSize.width / 2, point.latitude - rectSize.height / 2],
+                            ],
+                        ],
+                    ];
+
+                    const rectangleSymbol = {
+                        type: "simple-fill",
+                        color: [0, 0, 255, 0.3], // Light blue
+                        outline: { color: "blue", width: 2 },
+                    };
+
+                    const tilePolygon = new Polygon({
+                        rings: rectangleCoords,
+                        spatialReference: new SpatialReference({ wkid: 4326 }),
+                    });
+
+                    const tileGraphic = new Graphic({
+                        geometry: tilePolygon,
+                        symbol: rectangleSymbol,
+                    });
+
+                    rectangles.push(tileGraphic);
+                    view.graphics.add(tileGraphic);
+                }
+
+                // Function to create an adjacent rectangle to the right of the first one
+                function createAdjacentRectangle() {
+                    const firstRectangle = rectangles[0];
+                    const firstRectangleCenter = firstRectangle.geometry.centroid;
+
+                    // Move the second rectangle to the right (x-axis)
+                    const newPoint = new Point({
+                        longitude: firstRectangleCenter.longitude + rectSize.width,
+                        latitude: firstRectangleCenter.latitude,
+                        spatialReference: firstRectangleCenter.spatialReference,
+                    });
+
+                    placeRectangle(newPoint, 1); // Place next rectangle at new position
+                }
+
+                // Export button functionality for KML
+                document.getElementById("exportButton").onclick = () => {
+                    const kmlContent = "<kml>Exported KML content here</kml>";
+                    const blob = new Blob([kmlContent], { type: "application/vnd.google-earth.kml+xml" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.download = "export.kml";
+                    a.click();
+                };
+            });
+        </script>
+    </body>
+</html>

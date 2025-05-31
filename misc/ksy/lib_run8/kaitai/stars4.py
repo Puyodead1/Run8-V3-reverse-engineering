@@ -19,10 +19,10 @@ class Stars4(KaitaiStruct):
 
     def _read(self):
         self.reserved = self._io.read_s4le()
-        self.num_strings = self._io.read_s4le()
-        self.strings = []
-        for i in range(self.num_strings):
-            self.strings.append(common.Common.R8string(self._io))
+        self.num_entries = self._io.read_s4le()
+        self.entries = []
+        for i in range(self.num_entries):
+            self.entries.append(common.Common.R8string(self._io))
 
 
 

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TextureTool": {
+      "commandName": "Project",
+      "commandLineArgs": "decrypt \"E:\\Run8Studios\\Run8 Train Simulator V3\\Content\\V3RailVehicles\\Body\\R8_BethgonII_BNSF01_0.tx8\""
+    }
+  }
+}

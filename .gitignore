@@ -1,2 +1,14 @@
 **/**/Samples/*
 __pycache__
+*.dae
+*.obj
+*.rn8
+*.r8
+*.fbx
+*.tr2
+*.tr3
+*.ter
+*.tr4
+*.bin
+*.tiff
+*.tif

@@ -12,25 +12,38 @@ def main(file):
 
         reader = BinaryReader(io.BytesIO(data))
 
-        all_points = []
+        print(reader.read_cs_string())
+        print(reader.read_cs_string())
+        print(reader.read_cs_string())
+        print(reader.read_cs_string())
 
-        print(reader.read_cs_string())
-        print(reader.read_cs_string())
-        print(reader.read_cs_string())
-        print(reader.read_cs_string())
+        chunks = []
+        min_value = 9999999
+        max_value = -9999999
 
         # heightmap
         for x in range(25):
             for y in range(25):
                 # read chunk hixels
-                hixels = reader.read_int32()
-                print(f"{x},{y} = {hixels}")
-                for cx in range(hixels):
-                    for cy in range(hixels):
+                hixel_count = reader.read_int32()
+                print(f"Chunk at {x},{y} has a density of {hixel_count}x{hixel_count} points")
+
+                chunk_points = []
+                for cx in range(hixel_count):
+                    for cy in range(hixel_count):
                         value = reader.read_float()
                         # print(f"{x},{y},{cx},{cy} = {value}")
-                        all_points.append(value)
-        print(f"Total Points: {len(all_points)}")
+                        chunk_points.append(value)
+                        min_value = min(min_value, value)
+                        max_value = max(max_value, value)
+
+                print(f"Chunk at {x},{y} has {len(chunk_points)} points")
+                chunks.append(chunk_points)
+        print(f"Total Points: {sum([len(x) for y in chunk_points for x in chunks])}")
+
+        # find the min and max values
+        print(f"Min: {min_value}")
+        print(f"Max: {max_value}")
 
         try:
             print(f"East: {reader.read_float()}")

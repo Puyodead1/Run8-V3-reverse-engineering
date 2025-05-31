@@ -3,21 +3,23 @@ import math
 
 import numpy as np
 import rasterio
+
 from binwriter import BinaryWriter
-from noise import snoise2
 
 CHUNKS_X = 25
 CHUNKS_Z = 25
 TILE_X = 1026.0822  # meters
 TILE_Z = 844.3211  # meters
-HIXELS = 30  # number of points per chunk side
 CHUNK_SIZE_X = TILE_X / CHUNKS_X
 CHUNK_SIZE_Z = TILE_Z / CHUNKS_Z
 
 
 def main(file: str):
-    with rasterio.open("./USGS_1M_13_x51y456_WY_LaramieLidar_2021_D21.tif") as heightmap:
+    with rasterio.open("./tiles/0_1.tif") as heightmap:
         height_values = heightmap.read(1)
+
+    HIXELS = height_values.shape[1] // CHUNKS_Z
+    print(f"Hixels per chunk per side: {HIXELS}")
 
     x_points_required = CHUNKS_X * HIXELS
     z_points_required = CHUNKS_Z * HIXELS

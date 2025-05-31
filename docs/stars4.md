@@ -9,7 +9,7 @@ Contains a list of strings, including file paths. Strings are referenced by thei
 | Type       | ID | Description |
 | ---------- | ---- | ----------- |
 | Int32 | reserved | This field is unused |
-| Int32 | num_strings |  |
-| [R8String](common.md#r8string)[] | strings |  |
+| Int32 | num_entries |  |
+| [R8String](common.md#r8string)[] | entries |  |
 
 

@@ -9,6 +9,10 @@ from lib_run8.kaitai.stars4 import Stars4
 from lib_run8.kaitai.tile_scenery import TileScenery
 from lib_run8.kaitai.tr2 import Tr2
 from lib_run8.visualizer import KaitaiStructVisualizer
+from lib_run8.kaitai.ai_signal_database import AiSignalDatabase
+from lib_run8.kaitai.ai_track_speed_database import AiTrackSpeedDatabase
+from lib_run8.kaitai.ai_special_locations import AiSpecialLocations
+from lib_run8.kaitai.traffic import Traffic
 
 # f = open("./samples/V2/00000_00037.rn8", "rb")
 # stream = KaitaiStream(f)
@@ -25,18 +29,18 @@ from lib_run8.visualizer import KaitaiStructVisualizer
 # stream.close()
 
 
-with open("./samples/V3/stars4.rn8", "rb") as f:
-    stream = KaitaiStream(f)
-    data = Stars4(stream)
-    tree = KaitaiStructVisualizer.obj_to_h(data)
-    for i in range(len(tree["strings"])):
-        print(i)
-        o = tree["strings"][i]
-        o["index"] = i
-    with open("./samples/output/stars4.json", "w") as f:
-        f.write(json.dumps(tree, indent=4))
-    print(json.dumps(tree, indent=4))
-    stream.close()
+# with open("./samples/V3/stars4.rn8", "rb") as f:
+#     stream = KaitaiStream(f)
+#     data = Stars4(stream)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     for i in range(len(tree["strings"])):
+#         print(i)
+#         o = tree["strings"][i]
+#         o["index"] = i
+#     with open("./samples/output/stars4.json", "w") as f:
+#         f.write(json.dumps(tree, indent=4))
+#     print(json.dumps(tree, indent=4))
+#     stream.close()
 
 
 # with open("./samples/V3/Run8KeySettings.r8", "rb") as f:
@@ -66,3 +70,42 @@ with open("./samples/V3/stars4.rn8", "rb") as f:
 #     #     f.write(json.dumps(tree, indent=4))
 #     print(json.dumps(tree, indent=4))
 #     stream.close()
+
+
+# with open("./samples/V3/AISignalDatabase.r8", "rb") as f:
+#     stream = KaitaiStream(f)
+#     data = AiSignalDatabase(stream)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     # with open("./samples/output/ServiceAreaDatabase.json", "w") as f:
+#     #     f.write(json.dumps(tree, indent=4))
+#     print(json.dumps(tree, indent=4))
+#     stream.close()
+
+# with open("./samples/V3/AITrackSpeedDatabase.r8", "rb") as f:
+#     stream = KaitaiStream(f)
+#     data = AiTrackSpeedDatabase(stream)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     # with open("./samples/output/ServiceAreaDatabase.json", "w") as f:
+#     #     f.write(json.dumps(tree, indent=4))
+#     print(json.dumps(tree, indent=4))
+#     stream.close()
+
+
+# with open("./samples/V3/AISpecialLocations.r8", "rb") as f:
+#     stream = KaitaiStream(f)
+#     data = AiSpecialLocations(stream)
+#     tree = KaitaiStructVisualizer.obj_to_h(data)
+#     # with open("./samples/output/ServiceAreaDatabase.json", "w") as f:
+#     #     f.write(json.dumps(tree, indent=4))
+#     print(json.dumps(tree, indent=4))
+#     stream.close()
+
+
+with open("./samples/V3/Traffic.r8", "rb") as f:
+    stream = KaitaiStream(f)
+    data = Traffic(stream)
+    tree = KaitaiStructVisualizer.obj_to_h(data)
+    # with open("./samples/output/ServiceAreaDatabase.json", "w") as f:
+    #     f.write(json.dumps(tree, indent=4))
+    print(json.dumps(tree, indent=4))
+    stream.close()

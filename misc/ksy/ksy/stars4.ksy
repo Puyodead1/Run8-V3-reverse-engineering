@@ -10,9 +10,9 @@ meta:
 seq:
   - id: reserved
     type: s4
-  - id: num_strings
+  - id: num_entries
     type: s4
-  - id: strings
+  - id: entries
     type: common::r8string
     repeat: expr
-    repeat-expr: num_strings
+    repeat-expr: num_entries
