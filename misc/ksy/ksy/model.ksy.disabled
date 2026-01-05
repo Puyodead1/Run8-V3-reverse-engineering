@@ -1,0 +1,182 @@
+doc: 3D Model file
+meta:
+  id: model
+  title: RN8 (*.rn8)
+  application: Run8 Train Simulator
+  file-extension: rn8
+  endian: le
+  imports:
+    - common
+
+seq:
+  - id: type_peek
+    type: s4
+
+  - id: header_basic
+    type: header_basic
+    if: type_peek == -969696
+
+  - id: header_loco
+    type: header_loco
+    if: type_peek == -969697
+
+  - id: objects
+    type: model_object
+    repeat: expr
+    repeat-expr: header_object_count
+    if: has_header or true
+
+instances:
+  has_header:
+    value: "type_peek == -969696 or type_peek == -969697"
+
+  header_object_count:
+    value: "(has_header ? (type_peek == -969696 ? header_basic.object_count : header_loco.object_count) : 1)"
+
+types:
+  header_basic:
+    seq:
+      - id: object_count
+        type: s4
+
+  header_loco:
+    seq:
+      - id: object_count
+        type: s4
+      - id: vector3_0
+        type: common::vector3
+
+  model_object:
+    seq:
+      - id: complex_model_body
+        type: complex_body
+        if: _root.has_header
+      - id: vertex_count_raw
+        type: s4
+      - id: vertices
+        type: vertex
+        repeat: expr
+        repeat-expr: vertex_count
+      - id: texture_count_raw
+        type: s4
+      - id: textures
+        type: texture
+        repeat: expr
+        repeat-expr: texture_count
+      - id: is_ushort
+        type: s1
+      - id: index_count
+        type: s4
+      - id: indices
+        type: s4
+        repeat: expr
+        repeat-expr: index_count
+      - id: submesh_count_raw
+        type: s4
+      - id: submeshes
+        type: submesh
+        repeat: expr
+        repeat-expr: submesh_count
+
+    instances:
+      vertex_count:
+        value: "vertex_count_raw / 7"
+      texture_count:
+        value: "texture_count_raw + 6"
+      submesh_count:
+        value: "submesh_count_raw - 9"
+  complex_body:
+    seq:
+      - id: name
+        type: common::cs_string
+      - id: parent_name
+        type: common::cs_string
+      - id: translation_vector
+        type: common::vector3
+      - id: relative_parent_offset
+        type: common::vector3
+      - id: local_rotation_offset
+        type: common::vector3
+      - id: unused1
+        type: common::vector3
+        doc: unused scaling matrix
+      - id: unused2
+        type: common::vector3
+        doc: unused rotation matrix
+      - id: unused3
+        type: common::vector3
+        doc: unused rotation matrix
+      - id: local_rest_translation
+        type: common::vector3
+      - id: local_geometry_rotation
+        type: common::vector3
+      - id: unused4
+        type: common::vector3
+        doc: Unused scaling matrix
+      - id: translation_frame_count
+        type: s4
+      - id: translation_matrices
+        type: common::matrix4
+        repeat: expr
+        repeat-expr: translation_frame_count
+      - id: rotation_frame_count
+        type: s4
+      - id: rotation
+        type: common::matrix4
+        repeat: expr
+        repeat-expr: rotation_frame_count
+  vertex:
+    seq:
+      - id: reserved_1
+        type: f4
+      - id: pos_x_raw
+        type: f4
+      - id: normal_y_raw
+        type: f4
+      - id: pos_z_raw
+        type: f4
+      - id: uv_x_raw
+        type: f4
+      - id: normal_x_raw
+        type: f4
+      - id: reserved_2
+        type: f4
+      - id: normal_z_raw
+        type: f4
+      - id: uv_y_raw
+        type: f4
+      - id: pos_y_raw
+        type: f4
+    instances:
+      pos_x:
+        value: "pos_x_raw * 63.7 - (_root.has_header ? _parent.complex_model_body.translation_vector.x : 0)"
+      pos_y:
+        value: "pos_y_raw * 6 - (_root.has_header ? _parent.complex_model_body.translation_vector.y : 0)"
+      pos_z:
+        value: "pos_z_raw / 16 - (_root.has_header ? _parent.complex_model_body.translation_vector.z : 0)"
+      normal_x:
+        value: "normal_x_raw / 10.962"
+      normal_y:
+        value: "normal_y_raw / -1.732"
+      normal_z:
+        value: "normal_z_raw / 11.432"
+      uv_x:
+        value: "uv_x_raw / 4.8"
+      uv_y:
+        value: "uv_y_raw / 9.6"
+  texture:
+    seq:
+      - id: file_name
+        type: common::cs_string
+  submesh:
+    seq:
+      - id: reserved_2
+        type: f4
+      - id: num12
+        type: s4
+      - id: index_count
+        type: s4
+      - id: start_index_location
+        type: s4
+      - id: base_vertex_location
+        type: s4

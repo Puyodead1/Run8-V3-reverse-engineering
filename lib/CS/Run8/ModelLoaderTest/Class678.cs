@@ -247,7 +247,7 @@ namespace ModelLoaderTest
                         //List<VertexPositionNormalTexture> list3 = new List<VertexPositionNormalTexture>(list.Count);
                         //foreach (Struct7 struct2 in list)
                         //{
-                        //    list3.Add(new VertexPositionNormalTexture(struct2.vector3_0, struct2.vector3_1, struct2.vector2_0));
+                        //    list3.Add(new VertexPositionNormalTexture(struct2.position, struct2.vector3_1, struct2.vector2_0));
                         //}
                         //@class.VertexBuffer = SharpDX.Toolkit.Graphics.Buffer.Vertex.New<VertexPositionNormalTexture>(graphicsDevice_0, list3.ToArray(), ResourceUsage.Immutable);
                         @class.VertexBuffer = list.ToArray();
@@ -268,7 +268,7 @@ namespace ModelLoaderTest
             //        {
             //            class5.class252_0.class252_0 = this.ObjectList.Find(new Predicate<Class252>(class5.method_0));
             //        }
-            //        string text3 = class5.class252_0.string_0.ToLower();
+            //        string text3 = class5.class252_0.trackName.ToLower();
             //        if (text3.Contains("wiper"))
             //        {
             //            class5.class252_0.enum41_0 = Enum41.const_5;
@@ -373,7 +373,7 @@ namespace ModelLoaderTest
 
         //// Token: 0x04001DD8 RID: 7640
         //[CompilerGenerated]
-        //private float float_0;
+        //private float rotationDegY;
 
         public uint uint_0;
 

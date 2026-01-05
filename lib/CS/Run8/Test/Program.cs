@@ -1,8 +1,6 @@
 ﻿using LibRun8.Formats;
 using LibRun8.Formats.Terrain;
 using Newtonsoft.Json;
-using Collada141;
-using LibRun8.Collada;
 using LibRun8.Common;
 
 var options = new JsonSerializerSettings { Formatting = Formatting.Indented };
@@ -93,7 +91,7 @@ Console.WriteLine("Reading...");
 //jsonString = JsonConvert.SerializeObject(tile, options);
 //File.WriteAllText("TerrainTile.json", jsonString);
 
-Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\R8_Bethgon_BNSF01_Ld.rn8");
+Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\Run8_ES44_BNSF01.rn8");
 //Model model = Model.Read(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\R8_Caboose_c509_SP01.rn8");
 //foreach (ModelObject obj in model.Objects)
 //{
@@ -103,4 +101,4 @@ Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Rail
 //jsonString = JsonConvert.SerializeObject(model, options);
 //File.WriteAllText("Model.json", jsonString);
 
-model.WriteCollada(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\R8_Bethgon_BNSF01_Ld.dae");
+model.WriteGLTF(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\Run8_ES44_BNSF01.glb");

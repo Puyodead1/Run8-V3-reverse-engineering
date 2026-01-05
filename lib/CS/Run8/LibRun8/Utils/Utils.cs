@@ -60,7 +60,7 @@ namespace LibRun8.Util
         /// <summary>
         /// Converts degrees to radians.
         /// </summary>
-        /// <param name="degree">The value to convert.</param>
+        /// <param nameType="degree">The value to convert.</param>
         /// <returns>The converted value.</returns>
         /// Part of SharpDX
         public static float DegreesToRadians(float degree)
@@ -71,9 +71,9 @@ namespace LibRun8.Util
         /// <summary>
         /// Clamps the specified value.
         /// </summary>
-        /// <param name="value">The value.</param>
-        /// <param name="min">The min.</param>
-        /// <param name="max">The max.</param>
+        /// <param nameType="value">The value.</param>
+        /// <param nameType="min">The min.</param>
+        /// <param nameType="max">The max.</param>
         /// <returns>The result of clamping a value between min and max</returns>
         public static int Clamp(int value, int min, int max)
         {
@@ -95,9 +95,9 @@ namespace LibRun8.Util
         /// See http://www.encyclopediaofmath.org/index.php/Linear_interpolation and
         /// http://fgiesen.wordpress.com/2012/08/15/linear-interpolation-past-present-and-future/
         /// </remarks>
-        /// <param name="from">Value to interpolate from.</param>
-        /// <param name="to">Value to interpolate to.</param>
-        /// <param name="amount">Interpolation amount.</param>
+        /// <param nameType="from">Value to interpolate from.</param>
+        /// <param nameType="to">Value to interpolate to.</param>
+        /// <param nameType="amount">Interpolation amount.</param>
         /// <returns>The result of linear interpolation of values based on the amount.</returns>
         public static float Lerp(float from, float to, float amount)
         {
@@ -107,7 +107,7 @@ namespace LibRun8.Util
         /// <summary>
         /// Determines whether the specified value is close to zero (0.0f).
         /// </summary>
-        /// <param name="a">The floating value.</param>
+        /// <param nameType="a">The floating value.</param>
         /// <returns><c>true</c> if the specified value is close to zero (0.0f); otherwise, <c>false</c>.</returns>
         public static bool IsZero(float a)
         {
@@ -118,8 +118,8 @@ namespace LibRun8.Util
         /// Checks if a and b are almost equals, taking into account the magnitude of floating point numbers (unlike <see cref="M:SharpDX.MathUtil.WithinEpsilon(System.Single,System.Single,System.Single)" /> method). See Remarks.
         /// See remarks.
         /// </summary>
-        /// <param name="a">The left value to compare.</param>
-        /// <param name="b">The right value to compare.</param>
+        /// <param nameType="a">The left value to compare.</param>
+        /// <param nameType="b">The right value to compare.</param>
         /// <returns><c>true</c> if a almost equal to b, <c>false</c> otherwise</returns>
         /// <remarks>
         /// The code is using the technique described by Bruce Dawson in 

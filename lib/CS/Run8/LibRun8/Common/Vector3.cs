@@ -45,8 +45,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Adds two vectors.
         /// </summary>
-        /// <param name="left">The first vector to add.</param>
-        /// <param name="right">The second vector to add.</param>
+        /// <param nameType="left">The first vector to add.</param>
+        /// <param nameType="right">The second vector to add.</param>
         /// <returns>The sum of the two vectors.</returns>
         public static Vector3 operator +(Vector3 left, Vector3 right)
         {
@@ -57,8 +57,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Subtracts two vectors.
         /// </summary>
-        /// <param name="left">The first vector to subtract.</param>
-        /// <param name="right">The second vector to subtract.</param>
+        /// <param nameType="left">The first vector to subtract.</param>
+        /// <param nameType="right">The second vector to subtract.</param>
         /// <returns>The difference of the two vectors.</returns>
         public static Vector3 operator -(Vector3 left, Vector3 right)
         {
@@ -68,7 +68,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Reverses the direction of a given vector.
         /// </summary>
-        /// <param name="value">The vector to negate.</param>
+        /// <param nameType="value">The vector to negate.</param>
         /// <returns>A vector facing in the opposite direction.</returns>
         public static Vector3 operator -(Vector3 value)
         {
@@ -78,8 +78,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Perform a component-wise subtraction
         /// </summary>
-        /// <param name="value">The input vector.</param>
-        /// <param name="scalar">The scalar value to be subtraced from elements</param>
+        /// <param nameType="value">The input vector.</param>
+        /// <param nameType="scalar">The scalar value to be subtraced from elements</param>
         /// <returns>The vector with added scalar from each element.</returns>
         public static Vector3 operator -(Vector3 value, float scalar)
         {
@@ -89,8 +89,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Perform a component-wise subtraction
         /// </summary>
-        /// <param name="value">The input vector.</param>
-        /// <param name="scalar">The scalar value to be subtraced from elements</param>
+        /// <param nameType="value">The input vector.</param>
+        /// <param nameType="scalar">The scalar value to be subtraced from elements</param>
         /// <returns>The vector with subtraced scalar from each element.</returns>
         public static Vector3 operator -(float scalar, Vector3 value)
         {
@@ -102,9 +102,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Calculates the cross product of two vectors.
         /// </summary>
-        /// <param name="left">First source vector.</param>
-        /// <param name="right">Second source vector.</param>
-        /// <param name="result">When the method completes, contains he cross product of the two vectors.</param>
+        /// <param nameType="left">First source vector.</param>
+        /// <param nameType="right">Second source vector.</param>
+        /// <param nameType="result">When the method completes, contains he cross product of the two vectors.</param>
         public static void Cross(ref Vector3 left, ref Vector3 right, out Vector3 result)
         {
             result = new Vector3(left.Y * right.Z - left.Z * right.Y, left.Z * right.X - left.X * right.Z, left.X * right.Y - left.Y * right.X);
@@ -113,8 +113,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Calculates the cross product of two vectors.
         /// </summary>
-        /// <param name="left">First source vector.</param>
-        /// <param name="right">Second source vector.</param>
+        /// <param nameType="left">First source vector.</param>
+        /// <param nameType="right">Second source vector.</param>
         /// <returns>The cross product of the two vectors.</returns>
         public static Vector3 Cross(Vector3 left, Vector3 right)
         {
@@ -138,7 +138,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines whether the specified value is close to zero (0.0f).
         /// </summary>
-        /// <param name="a">The floating value.</param>
+        /// <param nameType="a">The floating value.</param>
         /// <returns><c>true</c> if the specified value is close to zero (0.0f); otherwise, <c>false</c>.</returns>
         public static bool IsZero(float a)
         {
@@ -163,7 +163,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Converts the vector into a unit vector.
         /// </summary>
-        /// <param name="value">The vector to normalize.</param>
+        /// <param nameType="value">The vector to normalize.</param>
         /// <returns>The normalized vector.</returns>
         public static Vector3 Normalize(Vector3 value)
         {
@@ -188,9 +188,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Transforms a 3D vector by the given <see cref="Quaternion"/> rotation.
         /// </summary>
-        /// <param name="vector">The vector to rotate.</param>
-        /// <param name="rotation">The <see cref="Quaternion"/> rotation to apply.</param>
-        /// <param name="result">When the method completes, contains the transformed <see cref="Vector4"/>.</param>
+        /// <param nameType="vector">The vector to rotate.</param>
+        /// <param nameType="rotation">The <see cref="Quaternion"/> rotation to apply.</param>
+        /// <param nameType="result">When the method completes, contains the transformed <see cref="Vector4"/>.</param>
         public static void Transform(ref Vector3 vector, ref Quaternion rotation, out Vector3 result)
         {
             float x = rotation.X + rotation.X;
@@ -215,8 +215,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Transforms a 3D vector by the given <see cref="Quaternion"/> rotation.
         /// </summary>
-        /// <param name="vector">The vector to rotate.</param>
-        /// <param name="rotation">The <see cref="Quaternion"/> rotation to apply.</param>
+        /// <param nameType="vector">The vector to rotate.</param>
+        /// <param nameType="rotation">The <see cref="Quaternion"/> rotation to apply.</param>
         /// <returns>The transformed <see cref="Vector4"/>.</returns>
         public static Vector3 Transform(Vector3 vector, Quaternion rotation)
         {
@@ -228,12 +228,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Transforms an array of vectors by the given <see cref="Quaternion"/> rotation.
         /// </summary>
-        /// <param name="source">The array of vectors to transform.</param>
-        /// <param name="rotation">The <see cref="Quaternion"/> rotation to apply.</param>
-        /// <param name="destination">The array for which the transformed vectors are stored.
-        /// This array may be the same array as <paramref name="source"/>.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="destination"/> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="destination"/> is shorter in length than <paramref name="source"/>.</exception>
+        /// <param nameType="source">The array of vectors to transform.</param>
+        /// <param nameType="rotation">The <see cref="Quaternion"/> rotation to apply.</param>
+        /// <param nameType="destination">The array for which the transformed vectors are stored.
+        /// This array may be the same array as <paramref nameType="source"/>.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref nameType="source"/> or <paramref nameType="destination"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref nameType="destination"/> is shorter in length than <paramref nameType="source"/>.</exception>
         public static void Transform(Vector3[] source, ref Quaternion rotation, Vector3[] destination)
         {
             if (source == null)
@@ -279,9 +279,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Transforms a 3D vector by the given <see cref="Matrix"/>.
         /// </summary>
-        /// <param name="vector">The source vector.</param>
-        /// <param name="transform">The transformation <see cref="Matrix"/>.</param>
-        /// <param name="result">When the method completes, contains the transformed <see cref="Vector4"/>.</param>
+        /// <param nameType="vector">The source vector.</param>
+        /// <param nameType="transform">The transformation <see cref="Matrix"/>.</param>
+        /// <param nameType="result">When the method completes, contains the transformed <see cref="Vector4"/>.</param>
         public static void Transform(ref Vector3 vector, ref Matrix transform, out Vector4 result)
         {
             result = new Vector4(
@@ -294,8 +294,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Transforms a 3D vector by the given <see cref="Matrix"/>.
         /// </summary>
-        /// <param name="vector">The source vector.</param>
-        /// <param name="transform">The transformation <see cref="Matrix"/>.</param>
+        /// <param nameType="vector">The source vector.</param>
+        /// <param nameType="transform">The transformation <see cref="Matrix"/>.</param>
         /// <returns>The transformed <see cref="Vector4"/>.</returns>
         public static Vector4 Transform(Vector3 vector, Matrix transform)
         {
@@ -307,11 +307,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Transforms an array of 3D vectors by the given <see cref="Matrix"/>.
         /// </summary>
-        /// <param name="source">The array of vectors to transform.</param>
-        /// <param name="transform">The transformation <see cref="Matrix"/>.</param>
-        /// <param name="destination">The array for which the transformed vectors are stored.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="source"/> or <paramref name="destination"/> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="destination"/> is shorter in length than <paramref name="source"/>.</exception>
+        /// <param nameType="source">The array of vectors to transform.</param>
+        /// <param nameType="transform">The transformation <see cref="Matrix"/>.</param>
+        /// <param nameType="destination">The array for which the transformed vectors are stored.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref nameType="source"/> or <paramref nameType="destination"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref nameType="destination"/> is shorter in length than <paramref nameType="source"/>.</exception>
         public static void Transform(Vector3[] source, ref Matrix transform, Vector4[] destination)
         {
             if (source == null)
@@ -330,12 +330,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Performs a linear interpolation between two vectors.
         /// </summary>
-        /// <param name="start">Start vector.</param>
-        /// <param name="end">End vector.</param>
-        /// <param name="amount">Value between 0 and 1 indicating the weight of <paramref name="end" />.</param>
-        /// <param name="result">When the method completes, contains the linear interpolation of the two vectors.</param>
+        /// <param nameType="start">Start vector.</param>
+        /// <param nameType="end">End vector.</param>
+        /// <param nameType="amount">Value between 0 and 1 indicating the weight of <paramref nameType="end" />.</param>
+        /// <param nameType="result">When the method completes, contains the linear interpolation of the two vectors.</param>
         /// <remarks>
-        /// Passing <paramref name="amount" /> a value of 0 will cause <paramref name="start" /> to be returned; a value of 1 will cause <paramref name="end" /> to be returned. 
+        /// Passing <paramref nameType="amount" /> a value of 0 will cause <paramref nameType="start" /> to be returned; a value of 1 will cause <paramref nameType="end" /> to be returned. 
         /// </remarks>
         public static void Lerp(ref Vector3 start, ref Vector3 end, float amount, out Vector3 result)
         {
@@ -349,12 +349,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Performs a linear interpolation between two vectors.
         /// </summary>
-        /// <param name="start">Start vector.</param>
-        /// <param name="end">End vector.</param>
-        /// <param name="amount">Value between 0 and 1 indicating the weight of <paramref name="end" />.</param>
+        /// <param nameType="start">Start vector.</param>
+        /// <param nameType="end">End vector.</param>
+        /// <param nameType="amount">Value between 0 and 1 indicating the weight of <paramref nameType="end" />.</param>
         /// <returns>The linear interpolation of the two vectors.</returns>
         /// <remarks>
-        /// Passing <paramref name="amount" /> a value of 0 will cause <paramref name="start" /> to be returned; a value of 1 will cause <paramref name="end" /> to be returned. 
+        /// Passing <paramref nameType="amount" /> a value of 0 will cause <paramref nameType="start" /> to be returned; a value of 1 will cause <paramref nameType="end" /> to be returned. 
         /// </remarks>
         public static Vector3 Lerp(Vector3 start, Vector3 end, float amount)
         {
@@ -366,9 +366,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Tests for equality between two objects.
         /// </summary>
-        /// <param name="left">The first value to compare.</param>
-        /// <param name="right">The second value to compare.</param>
-        /// <returns><c>true</c> if <paramref name="left" /> has the same value as <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        /// <param nameType="left">The first value to compare.</param>
+        /// <param nameType="right">The second value to compare.</param>
+        /// <returns><c>true</c> if <paramref nameType="left" /> has the same value as <paramref nameType="right" />; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Vector3 left, Vector3 right)
         {
             return left.Equals(right);
@@ -377,9 +377,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Tests for inequality between two objects.
         /// </summary>
-        /// <param name="left">The first value to compare.</param>
-        /// <param name="right">The second value to compare.</param>
-        /// <returns><c>true</c> if <paramref name="left" /> has a different value than <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        /// <param nameType="left">The first value to compare.</param>
+        /// <param nameType="right">The second value to compare.</param>
+        /// <returns><c>true</c> if <paramref nameType="left" /> has a different value than <paramref nameType="right" />; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Vector3 left, Vector3 right)
         {
             return !left.Equals(right);
@@ -388,8 +388,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Multiplies a vector with another by performing component-wise multiplication equivalent to <see cref="M:SharpDX.Vector3.Multiply(SharpDX.Vector3@,SharpDX.Vector3@,SharpDX.Vector3@)" />.
         /// </summary>
-        /// <param name="left">The first vector to multiply.</param>
-        /// <param name="right">The second vector to multiply.</param>
+        /// <param nameType="left">The first vector to multiply.</param>
+        /// <param nameType="right">The second vector to multiply.</param>
         /// <returns>The multiplication of the two vectors.</returns>
         public static Vector3 operator *(Vector3 left, Vector3 right)
         {
@@ -399,8 +399,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a vector by the given value.
         /// </summary>
-        /// <param name="value">The vector to scale.</param>
-        /// <param name="scale">The amount by which to scale the vector.</param>
+        /// <param nameType="value">The vector to scale.</param>
+        /// <param nameType="scale">The amount by which to scale the vector.</param>
         /// <returns>The scaled vector.</returns>
         public static Vector3 operator *(float scale, Vector3 value)
         {
@@ -410,8 +410,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a vector by the given value.
         /// </summary>
-        /// <param name="value">The vector to scale.</param>
-        /// <param name="scale">The amount by which to scale the vector.</param>
+        /// <param nameType="value">The vector to scale.</param>
+        /// <param nameType="scale">The amount by which to scale the vector.</param>
         /// <returns>The scaled vector.</returns>
         public static Vector3 operator *(Vector3 value, float scale)
         {

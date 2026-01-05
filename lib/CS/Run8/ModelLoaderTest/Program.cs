@@ -47,7 +47,7 @@ namespace ModelLoaderTest
                     StringBuilder sb = new StringBuilder();
                     Class252 obj = @class.ObjectList[i];
                     // write the vertex buffer
-                    //sb.AppendLine("o " + obj.string_0);
+                    //sb.AppendLine("o " + obj.trackName);
                     
                     for(int j = 0; j < obj.list_0.Count; j++)
                     {

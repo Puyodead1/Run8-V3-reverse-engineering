@@ -1,89 +1,149 @@
+import math
+
 import bpy
 from mathutils import Vector
 
-from ..binreader import BinaryReader
+from ..lib_run8.terrain_tr2 import TerrainTr2
 from ..utils import Vertex
-from .terrain_utils import Chunk, ETileType, TerrainTile
+from .terrain_utils import Chunk
 
 DEBUG = False
 
 
-class TR2(TerrainTile):
-    def __init__(self, reader: BinaryReader, x: float, y: float) -> None:
-        super().__init__(reader, ETileType.TR2, x, y)
+def generate_grid_mesh_triangle_indices(chunk: TerrainTr2.Chunk, vertex_count: int) -> list[int]:
+    chunk.index_buffer = []
+    chunk_size = chunk.chunk_size
 
-        self.read()
+    num = vertex_count - chunk_size * chunk_size
+    for row in range(0, chunk_size - 1):
+        for col in range(0, chunk_size - 1):
+            bl = col + row * chunk_size + num
+            br = col + 1 + row * chunk_size + num
+            tl = col + (row + 1) * chunk_size + num
+            tr = col + 1 + (row + 1) * chunk_size + num
 
-    def read(self):
-        self.string_0 = self._reader.read_cs_string()
-        self.string_1 = self._reader.read_cs_string()
-        self.string_2 = self._reader.read_cs_string()
-        self.string_3 = self._reader.read_cs_string()
+            # first triangle
+            chunk.index_buffer.append(tl)
+            chunk.index_buffer.append(bl)
+            chunk.index_buffer.append(br)
 
-        if DEBUG:
-            print("String0: " + self.string_0)
-            print("String1: " + self.string_1)
-            print("String2: " + self.string_2)
-            print("String3: " + self.string_3)
+            # second triangle
+            chunk.index_buffer.append(tl)
+            chunk.index_buffer.append(br)
+            chunk.index_buffer.append(tr)
 
-        self.int_0 = 99
 
-        self.chunks = []
-        num = 0
-        for i in range(25):
-            row = []
-            for j in range(25):
-                chunk = Chunk()
-                chunk.chunk_size = self._reader.read_int32()
-                chunk.elevations = [[0] * chunk.chunk_size] * chunk.chunk_size
-                chunk.tile_row = i
-                chunk.tile_col = j
-                for chunk_row in range(chunk.chunk_size):
-                    for chunk_col in range(chunk.chunk_size):
-                        elevation = self._reader.read_float()
-                        if elevation <= 1.2 + 0.2:  # HRS_Southeast is -2
-                            num += 1
-                        chunk.elevations[chunk_row][chunk_col] = elevation
-                if DEBUG:
-                    print(f"Read chunk {chunk.tile_row} {chunk.tile_col}")
-                row.append(chunk)
-            self.chunks.append(row)
+def calculate_face_normals(chunk: TerrainTr2.Chunk):
+    # initialize normals to zero
+    for vertex in chunk.vertices:
+        vertex.normal = Vector((0.0, 0.0, 0.0))
 
-        # IsRegionSouthernCA() && num > 100
-        self.bool_0 = num > 100
+    vertex_grid_size = int(math.sqrt(len(chunk.vertices)))
 
-        try:
-            self.float_2 = self._reader.read_float()
-            self.float_3 = self._reader.read_float()
-            self.float_4 = self._reader.read_float()
-            self.float_5 = self._reader.read_float()
-            self.string_5 = self._reader.read_cs_string()
+    # calculate face normals
+    for row in range(vertex_grid_size - 1):
+        for col in range(vertex_grid_size - 1):
+            vertex_index1 = row * vertex_grid_size + col + 1
+            vertex_index2 = row * vertex_grid_size + col
+            vertex_index3 = (row + 1) * vertex_grid_size + col
+            vertex_index4 = (row + 1) * vertex_grid_size + (col + 1)
+            vertex_index5 = (row + 1) * vertex_grid_size + col
+            vertex_index6 = (row + 1) * vertex_grid_size + (col + 1)
+            vertex_index7 = row * vertex_grid_size + col + 1
 
-            if DEBUG:
-                print("Float2: " + str(self.float_2))
-                print("Float3: " + str(self.float_3))
-                print("Float4: " + str(self.float_4))
-                print("Float5: " + str(self.float_5))
-                print("String5: " + self.string_5)
-        except:
-            pass
+            face_normal1 = chunk.vertices[vertex_index1].position - chunk.vertices[vertex_index2].position
+            face_normal2 = chunk.vertices[vertex_index3].position - chunk.vertices[vertex_index2].position
+            face_normal2.cross(face_normal1)
+
+            chunk.vertices[vertex_index1].normal += face_normal2
+            chunk.vertices[vertex_index2].normal += face_normal2
+            chunk.vertices[vertex_index3].normal += face_normal2
+            chunk.vertices[vertex_index4].normal += face_normal2
+            chunk.vertices[vertex_index5].normal += face_normal2
+            chunk.vertices[vertex_index6].normal += face_normal2
+            chunk.vertices[vertex_index7].normal += face_normal2
+
+    # normalize the vertex normals
+    for vertex in chunk.vertices:
+        vertex.normal.normalize()
+
+
+def draw_chunk(chunk: TerrainTr2.Chunk, tile_row: int, tile_col: int, tile_x: int, tile_z: int, parent):
+    name = f"Chunk_{tile_row}_{tile_col}"
+    vertices = [x.position.to_tuple() for x in chunk.vertices]
+    normals = [x.normal.to_tuple() for x in chunk.vertices]
+    uvs = [x.uv.to_tuple() for x in chunk.vertices]
+    indices = chunk.index_buffer
+
+    tile_x = tile_x * 845
+    tile_z = tile_z * 1024
+    real_tile_offset = Vector((tile_x, tile_z, 0))
+
+    # offset the vertices
+    for i in range(0, len(vertices)):
+        vertices[i] = (
+            vertices[i][0] + real_tile_offset.x,
+            vertices[i][1] + real_tile_offset.y,
+            vertices[i][2] + real_tile_offset.z,
+        )
+
+    # Create a new mesh object
+    mesh = bpy.data.meshes.new(name)
+
+    # create faces
+    faces = []
+    for i in range(0, len(indices), 3):
+        faces.append((indices[i], indices[i + 1], indices[i + 2]))
+
+    # Assign vertex data to the mesh using from_pydata
+    mesh.from_pydata(vertices, [], faces)
+
+    # invert normals
+    for i in range(0, len(normals)):
+        normals[i] = (-normals[i][0], -normals[i][1], -normals[i][2])
+
+    # assign normals
+    mesh.normals_split_custom_set_from_vertices(normals)
+
+    # Assign UVs to the mesh
+    uv_layer = mesh.uv_layers.new()
+    mesh.uv_layers.active = uv_layer
+
+    for face in mesh.polygons:
+        for vert_idx, loop_idx in zip(face.vertices, face.loop_indices):
+            uv_layer.data[loop_idx].uv = (uvs[vert_idx][0], -uvs[vert_idx][1])  # flip the V coordinate
+
+    # Update mesh geometry
+    mesh.update()
+
+    mesh_obj = bpy.data.objects.new(name, mesh)
+    # bpy.context.collection.objects.link(mesh_obj)
+    parent.objects.link(mesh_obj)
+    bpy.context.view_layer.objects.active = mesh_obj
+
+
+class TR2(object):
+    def __init__(self, filename: str, x: float, y: float) -> None:
+        self.x = x
+        self.y = y
+        self.tile = TerrainTr2.from_file(filename)
 
         # create vertices
         x_coefficient = 33.772842  # width of a chunk (X)
         y_coefficient = 41.043285  # length of a chunk (Y)
         for tile_row in range(0, 25):
             for tile_col in range(0, 25):
-                chunk = self.chunks[tile_row][tile_col]
+                chunk = self.tile.chunks[tile_row].chunks[tile_col]
                 chunk_size = chunk.chunk_size
 
                 vertex_count = 0
-                self.chunks[tile_row][tile_col].vertices = [0] * (chunk_size * chunk_size)
+                self.tile.chunks[tile_row].chunks[tile_col].vertices = [0] * (chunk_size * chunk_size)
                 for chunk_row in range(0, chunk_size):
                     for chunk_col in range(0, chunk_size):
                         vertex = Vertex()
                         position_x = tile_row * x_coefficient + x_coefficient / (chunk_size - 1) * chunk_row
                         position_y = tile_col * y_coefficient + y_coefficient / (chunk_size - 1) * chunk_col
-                        position_z = chunk.elevations[chunk_row][chunk_col]
+                        position_z = chunk.elevations[chunk_row].elevation[chunk_col]
                         uv_x = position_x / 844.3211  # total width of a tile
                         uv_y = -position_z / 1026.0822  # total length of a tile
 
@@ -91,16 +151,12 @@ class TR2(TerrainTile):
                             (position_x, position_y, position_z)
                         )  # we swap the y and z coordinates
                         vertex.uv = Vector((uv_x, uv_y))
-                        self.chunks[tile_row][tile_col].vertices[vertex_count] = vertex
+                        self.tile.chunks[tile_row].chunks[tile_col].vertices[vertex_count] = vertex
                         vertex_count += 1
 
-                chunk.generate_grid_mesh_triangle_indices(chunk_size, vertex_count)
-                chunk.calculate_face_normals()
+                generate_grid_mesh_triangle_indices(chunk, vertex_count)
+                calculate_face_normals(chunk)
 
-        # # print this data to a file
-        # a = json.dumps([[x.to_json() for x in y] for y in self.chunks])
-        # with open("C:\\Users\\23562\\Documents\\Code\\Run8-V3-reverse-engineering\\blender_scripts\\TR2_1.json", "w") as f:
-        #     f.write(a)
         self.smethod_0()
 
     def merge_chunk_vertices(self, chunk1: Chunk, chunk2: Chunk, x: bool = True):
@@ -169,15 +225,15 @@ class TR2(TerrainTile):
     def smethod_0(self):
         for i in range(25):
             for j in range(24):
-                chunk1 = self.chunks[j][i]
-                chunk2 = self.chunks[j + 1][i]
+                chunk1 = self.tile.chunks[j].chunks[i]
+                chunk2 = self.tile.chunks[j + 1].chunks[i]
                 if chunk1.chunk_size == chunk2.chunk_size:
                     self.merge_chunk_vertices(chunk1, chunk2, True)
 
         for i in range(25):
             for j in range(24):
-                chunk1 = self.chunks[i][j + 1]
-                chunk2 = self.chunks[i][j]
+                chunk1 = self.tile.chunks[i].chunks[j + 1]
+                chunk2 = self.tile.chunks[i].chunks[j]
                 if chunk1.chunk_size == chunk2.chunk_size:
                     if DEBUG:
                         print("merge z vertices")
@@ -185,15 +241,15 @@ class TR2(TerrainTile):
 
         for i in range(25):
             for j in range(24):
-                chunk1 = self.chunks[j][i]
-                chunk2 = self.chunks[j + 1][i]
+                chunk1 = self.tile.chunks[j].chunks[i]
+                chunk2 = self.tile.chunks[j + 1].chunks[i]
                 if chunk1.chunk_size != chunk2.chunk_size:
                     self.merge_chunk_vertices(chunk1, chunk2, True)
 
         for i in range(25):
             for j in range(24):
-                chunk1 = self.chunks[i][j + 1]
-                chunk2 = self.chunks[i][j]
+                chunk1 = self.tile.chunks[i].chunks[j + 1]
+                chunk2 = self.tile.chunks[i].chunks[j]
                 if chunk1.chunk_size != chunk2.chunk_size:
                     if DEBUG:
                         print("merge z vertices")
@@ -240,8 +296,8 @@ class TR2(TerrainTile):
         collection = bpy.data.collections.new(f"Tile_{self.x}_{self.y}")
         bpy.context.scene.collection.children.link(collection)
 
-        for i, row in enumerate(self.chunks):
-            for j, chunk in enumerate(row):
+        for i, row in enumerate(self.tile.chunks):
+            for j, chunk in enumerate(row.chunks):
                 if DEBUG:
                     print(f"Drawing chunk {i} {j}")
-                chunk.draw(self, collection)
+                draw_chunk(chunk, i, j, self.x, self.y, collection)

@@ -38,7 +38,7 @@ types:
         doc: d:Length of the encoded string, x2 len of decoded string
       - id: value
         size: len_value
-        process: lib_run8.string_utils.decode_run8_string(len_value)
+        #process: lib_run8.string_utils.decode_run8_string(len_value)
         doc: d:Decoded string
   cs_string:
     doc: C# style string

@@ -15,7 +15,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Quaternion" /> struct.
         /// </summary>
-        /// <param name="value">The value that will be assigned to all components.</param>
+        /// <param nameType="value">The value that will be assigned to all components.</param>
         public Quaternion(float value)
         {
             this.X = value;
@@ -27,7 +27,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Quaternion" /> struct.
         /// </summary>
-        /// <param name="value">A vector containing the values with which to initialize the components.</param>
+        /// <param nameType="value">A vector containing the values with which to initialize the components.</param>
         public Quaternion(Vector4 value)
         {
             this.X = value.X;
@@ -39,8 +39,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Quaternion" /> struct.
         /// </summary>
-        /// <param name="value">A vector containing the values with which to initialize the X, Y, and Z components.</param>
-        /// <param name="w">Initial value for the W component of the quaternion.</param>
+        /// <param nameType="value">A vector containing the values with which to initialize the X, Y, and Z components.</param>
+        /// <param nameType="w">Initial value for the W component of the quaternion.</param>
         public Quaternion(Vector3 value, float w)
         {
             this.X = value.X;
@@ -52,9 +52,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Quaternion" /> struct.
         /// </summary>
-        /// <param name="value">A vector containing the values with which to initialize the X and Y components.</param>
-        /// <param name="z">Initial value for the Z component of the quaternion.</param>
-        /// <param name="w">Initial value for the W component of the quaternion.</param>
+        /// <param nameType="value">A vector containing the values with which to initialize the X and Y components.</param>
+        /// <param nameType="z">Initial value for the Z component of the quaternion.</param>
+        /// <param nameType="w">Initial value for the W component of the quaternion.</param>
         public Quaternion(Vector2 value, float z, float w)
         {
             this.X = value.X;
@@ -66,10 +66,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Quaternion" /> struct.
         /// </summary>
-        /// <param name="x">Initial value for the X component of the quaternion.</param>
-        /// <param name="y">Initial value for the Y component of the quaternion.</param>
-        /// <param name="z">Initial value for the Z component of the quaternion.</param>
-        /// <param name="w">Initial value for the W component of the quaternion.</param>
+        /// <param nameType="x">Initial value for the X component of the quaternion.</param>
+        /// <param nameType="y">Initial value for the Y component of the quaternion.</param>
+        /// <param nameType="z">Initial value for the Z component of the quaternion.</param>
+        /// <param nameType="w">Initial value for the W component of the quaternion.</param>
         public Quaternion(float x, float y, float z, float w)
         {
             this.X = x;
@@ -81,9 +81,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Quaternion" /> struct.
         /// </summary>
-        /// <param name="values">The values to assign to the X, Y, Z, and W components of the quaternion. This must be an array with four elements.</param>
-        /// <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="values" /> is <c>null</c>.</exception>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="values" /> contains more or less than four elements.</exception>
+        /// <param nameType="values">The values to assign to the X, Y, Z, and W components of the quaternion. This must be an array with four elements.</param>
+        /// <exception cref="T:System.ArgumentNullException">Thrown when <paramref nameType="values" /> is <c>null</c>.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref nameType="values" /> contains more or less than four elements.</exception>
         public Quaternion(float[] values)
         {
             if (values == null)
@@ -120,9 +120,9 @@ namespace LibRun8.Common
         /// Gets or sets the component at the specified index.
         /// </summary>
         /// <value>The value of the X, Y, Z, or W component, depending on the index.</value>
-        /// <param name="index">The index of the component to access. Use 0 for the X component, 1 for the Y component, 2 for the Z component, and 3 for the W component.</param>
+        /// <param nameType="index">The index of the component to access. Use 0 for the X component, 1 for the Y component, 2 for the Z component, and 3 for the W component.</param>
         /// <returns>The value of the component at the specified index.</returns>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref name="index" /> is out of the range [0, 3].</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref nameType="index" /> is out of the range [0, 3].</exception>
         public float this[int index]
         {
             get
@@ -212,9 +212,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Adds two quaternions.
         /// </summary>
-        /// <param name="left">The first quaternion to add.</param>
-        /// <param name="right">The second quaternion to add.</param>
-        /// <param name="result">When the method completes, contains the sum of the two quaternions.</param>
+        /// <param nameType="left">The first quaternion to add.</param>
+        /// <param nameType="right">The second quaternion to add.</param>
+        /// <param nameType="result">When the method completes, contains the sum of the two quaternions.</param>
         public static void Add(ref Quaternion left, ref Quaternion right, out Quaternion result)
         {
             result = default;
@@ -227,8 +227,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Adds two quaternions.
         /// </summary>
-        /// <param name="left">The first quaternion to add.</param>
-        /// <param name="right">The second quaternion to add.</param>
+        /// <param nameType="left">The first quaternion to add.</param>
+        /// <param nameType="right">The second quaternion to add.</param>
         /// <returns>The sum of the two quaternions.</returns>
         public static Quaternion Add(Quaternion left, Quaternion right)
         {
@@ -240,9 +240,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Subtracts two quaternions.
         /// </summary>
-        /// <param name="left">The first quaternion to subtract.</param>
-        /// <param name="right">The second quaternion to subtract.</param>
-        /// <param name="result">When the method completes, contains the difference of the two quaternions.</param>
+        /// <param nameType="left">The first quaternion to subtract.</param>
+        /// <param nameType="right">The second quaternion to subtract.</param>
+        /// <param nameType="result">When the method completes, contains the difference of the two quaternions.</param>
         public static void Subtract(ref Quaternion left, ref Quaternion right, out Quaternion result)
         {
             result = default;
@@ -255,8 +255,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Subtracts two quaternions.
         /// </summary>
-        /// <param name="left">The first quaternion to subtract.</param>
-        /// <param name="right">The second quaternion to subtract.</param>
+        /// <param nameType="left">The first quaternion to subtract.</param>
+        /// <param nameType="right">The second quaternion to subtract.</param>
         /// <returns>The difference of the two quaternions.</returns>
         public static Quaternion Subtract(Quaternion left, Quaternion right)
         {
@@ -268,9 +268,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a quaternion by the given value.
         /// </summary>
-        /// <param name="value">The quaternion to scale.</param>
-        /// <param name="scale">The amount by which to scale the quaternion.</param>
-        /// <param name="result">When the method completes, contains the scaled quaternion.</param>
+        /// <param nameType="value">The quaternion to scale.</param>
+        /// <param nameType="scale">The amount by which to scale the quaternion.</param>
+        /// <param nameType="result">When the method completes, contains the scaled quaternion.</param>
         public static void Multiply(ref Quaternion value, float scale, out Quaternion result)
         {
             result = default;
@@ -283,8 +283,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a quaternion by the given value.
         /// </summary>
-        /// <param name="value">The quaternion to scale.</param>
-        /// <param name="scale">The amount by which to scale the quaternion.</param>
+        /// <param nameType="value">The quaternion to scale.</param>
+        /// <param nameType="scale">The amount by which to scale the quaternion.</param>
         /// <returns>The scaled quaternion.</returns>
         public static Quaternion Multiply(Quaternion value, float scale)
         {
@@ -296,9 +296,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Multiplies a quaternion by another.
         /// </summary>
-        /// <param name="left">The first quaternion to multiply.</param>
-        /// <param name="right">The second quaternion to multiply.</param>
-        /// <param name="result">When the method completes, contains the multiplied quaternion.</param>
+        /// <param nameType="left">The first quaternion to multiply.</param>
+        /// <param nameType="right">The second quaternion to multiply.</param>
+        /// <param nameType="result">When the method completes, contains the multiplied quaternion.</param>
         public static void Multiply(ref Quaternion left, ref Quaternion right, out Quaternion result)
         {
             result = default;
@@ -323,8 +323,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Multiplies a quaternion by another.
         /// </summary>
-        /// <param name="left">The first quaternion to multiply.</param>
-        /// <param name="right">The second quaternion to multiply.</param>
+        /// <param nameType="left">The first quaternion to multiply.</param>
+        /// <param nameType="right">The second quaternion to multiply.</param>
         /// <returns>The multiplied quaternion.</returns>
         public static Quaternion Multiply(Quaternion left, Quaternion right)
         {
@@ -336,8 +336,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Reverses the direction of a given quaternion.
         /// </summary>
-        /// <param name="value">The quaternion to negate.</param>
-        /// <param name="result">When the method completes, contains a quaternion facing in the opposite direction.</param>
+        /// <param nameType="value">The quaternion to negate.</param>
+        /// <param nameType="result">When the method completes, contains a quaternion facing in the opposite direction.</param>
         public static void Negate(ref Quaternion value, out Quaternion result)
         {
             result = default;
@@ -350,7 +350,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Reverses the direction of a given quaternion.
         /// </summary>
-        /// <param name="value">The quaternion to negate.</param>
+        /// <param nameType="value">The quaternion to negate.</param>
         /// <returns>A quaternion facing in the opposite direction.</returns>
         public static Quaternion Negate(Quaternion value)
         {
@@ -362,8 +362,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Conjugates a quaternion.
         /// </summary>
-        /// <param name="value">The quaternion to conjugate.</param>
-        /// <param name="result">When the method completes, contains the conjugated quaternion.</param>
+        /// <param nameType="value">The quaternion to conjugate.</param>
+        /// <param nameType="result">When the method completes, contains the conjugated quaternion.</param>
         public static void Conjugate(ref Quaternion value, out Quaternion result)
         {
             result = default;
@@ -376,7 +376,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Conjugates a quaternion.
         /// </summary>
-        /// <param name="value">The quaternion to conjugate.</param>
+        /// <param nameType="value">The quaternion to conjugate.</param>
         /// <returns>The conjugated quaternion.</returns>
         public static Quaternion Conjugate(Quaternion value)
         {
@@ -388,9 +388,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Calculates the dot product of two quaternions.
         /// </summary>
-        /// <param name="left">First source quaternion.</param>
-        /// <param name="right">Second source quaternion.</param>
-        /// <param name="result">When the method completes, contains the dot product of the two quaternions.</param>
+        /// <param nameType="left">First source quaternion.</param>
+        /// <param nameType="right">Second source quaternion.</param>
+        /// <param nameType="result">When the method completes, contains the dot product of the two quaternions.</param>
         public static void Dot(ref Quaternion left, ref Quaternion right, out float result)
         {
             result = left.X * right.X + left.Y * right.Y + left.Z * right.Z + left.W * right.W;
@@ -399,8 +399,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Calculates the dot product of two quaternions.
         /// </summary>
-        /// <param name="left">First source quaternion.</param>
-        /// <param name="right">Second source quaternion.</param>
+        /// <param nameType="left">First source quaternion.</param>
+        /// <param nameType="right">Second source quaternion.</param>
         /// <returns>The dot product of the two quaternions.</returns>
         public static float Dot(Quaternion left, Quaternion right)
         {
@@ -411,8 +411,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a quaternion given a rotation matrix.
         /// </summary>
-        /// <param name="matrix">The rotation matrix.</param>
-        /// <param name="result">When the method completes, contains the newly created quaternion.</param>
+        /// <param nameType="matrix">The rotation matrix.</param>
+        /// <param nameType="result">When the method completes, contains the newly created quaternion.</param>
         // Token: 0x0600098F RID: 2447 RVA: 0x00028DF0 File Offset: 0x00026FF0
         public static void RotationMatrix(ref Matrix matrix, out Quaternion result)
         {
@@ -461,7 +461,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a quaternion given a rotation matrix.
         /// </summary>
-        /// <param name="matrix">The rotation matrix.</param>
+        /// <param nameType="matrix">The rotation matrix.</param>
         /// <returns>The newly created quaternion.</returns>
         public static Quaternion RotationMatrix(Matrix matrix)
         {
@@ -473,10 +473,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a quaternion given a yaw, pitch, and roll value.
         /// </summary>
-        /// <param name="yaw">The yaw of rotation.</param>
-        /// <param name="pitch">The pitch of rotation.</param>
-        /// <param name="roll">The roll of rotation.</param>
-        /// <param name="result">When the method completes, contains the newly created quaternion.</param>
+        /// <param nameType="yaw">The yaw of rotation.</param>
+        /// <param nameType="pitch">The pitch of rotation.</param>
+        /// <param nameType="roll">The roll of rotation.</param>
+        /// <param nameType="result">When the method completes, contains the newly created quaternion.</param>
         public static void RotationYawPitchRoll(float yaw, float pitch, float roll, out Quaternion result)
         {
             result = default;
@@ -498,9 +498,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a quaternion given a yaw, pitch, and roll value.
         /// </summary>
-        /// <param name="yaw">The yaw of rotation.</param>
-        /// <param name="pitch">The pitch of rotation.</param>
-        /// <param name="roll">The roll of rotation.</param>
+        /// <param nameType="yaw">The yaw of rotation.</param>
+        /// <param nameType="pitch">The pitch of rotation.</param>
+        /// <param nameType="roll">The roll of rotation.</param>
         /// <returns>The newly created quaternion.</returns>
         public static Quaternion RotationYawPitchRoll(float yaw, float pitch, float roll)
         {
@@ -512,14 +512,14 @@ namespace LibRun8.Common
         /// <summary>
         /// Performs a linear interpolation between two quaternions.
         /// </summary>
-        /// <param name="start">Start quaternion.</param>
-        /// <param name="end">End quaternion.</param>
-        /// <param name="amount">Value between 0 and 1 indicating the weight of <paramref name="end" />.</param>
-        /// <param name="result">When the method completes, contains the linear interpolation of the two quaternions.</param>
+        /// <param nameType="start">Start quaternion.</param>
+        /// <param nameType="end">End quaternion.</param>
+        /// <param nameType="amount">Value between 0 and 1 indicating the weight of <paramref nameType="end" />.</param>
+        /// <param nameType="result">When the method completes, contains the linear interpolation of the two quaternions.</param>
         /// <remarks>
         /// This method performs the linear interpolation based on the following formula.
         /// <code>start + (end - start) * amount</code>
-        /// Passing <paramref name="amount" /> a value of 0 will cause <paramref name="start" /> to be returned; a value of 1 will cause <paramref name="end" /> to be returned. 
+        /// Passing <paramref nameType="amount" /> a value of 0 will cause <paramref nameType="start" /> to be returned; a value of 1 will cause <paramref nameType="end" /> to be returned. 
         /// </remarks>
         public static void Lerp(ref Quaternion start, ref Quaternion end, float amount, out Quaternion result)
         {
@@ -546,14 +546,14 @@ namespace LibRun8.Common
         /// <summary>
         /// Performs a linear interpolation between two quaternion.
         /// </summary>
-        /// <param name="start">Start quaternion.</param>
-        /// <param name="end">End quaternion.</param>
-        /// <param name="amount">Value between 0 and 1 indicating the weight of <paramref name="end" />.</param>
+        /// <param nameType="start">Start quaternion.</param>
+        /// <param nameType="end">End quaternion.</param>
+        /// <param nameType="amount">Value between 0 and 1 indicating the weight of <paramref nameType="end" />.</param>
         /// <returns>The linear interpolation of the two quaternions.</returns>
         /// <remarks>
         /// This method performs the linear interpolation based on the following formula.
         /// <code>start + (end - start) * amount</code>
-        /// Passing <paramref name="amount" /> a value of 0 will cause <paramref name="start" /> to be returned; a value of 1 will cause <paramref name="end" /> to be returned. 
+        /// Passing <paramref nameType="amount" /> a value of 0 will cause <paramref nameType="start" /> to be returned; a value of 1 will cause <paramref nameType="end" /> to be returned. 
         /// </remarks>
         public static Quaternion Lerp(Quaternion start, Quaternion end, float amount)
         {
@@ -581,8 +581,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Adds two quaternions.
         /// </summary>
-        /// <param name="left">The first quaternion to add.</param>
-        /// <param name="right">The second quaternion to add.</param>
+        /// <param nameType="left">The first quaternion to add.</param>
+        /// <param nameType="right">The second quaternion to add.</param>
         /// <returns>The sum of the two quaternions.</returns>
         public static Quaternion operator +(Quaternion left, Quaternion right)
         {
@@ -594,8 +594,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Subtracts two quaternions.
         /// </summary>
-        /// <param name="left">The first quaternion to subtract.</param>
-        /// <param name="right">The second quaternion to subtract.</param>
+        /// <param nameType="left">The first quaternion to subtract.</param>
+        /// <param nameType="right">The second quaternion to subtract.</param>
         /// <returns>The difference of the two quaternions.</returns>
         public static Quaternion operator -(Quaternion left, Quaternion right)
         {
@@ -607,7 +607,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Reverses the direction of a given quaternion.
         /// </summary>
-        /// <param name="value">The quaternion to negate.</param>
+        /// <param nameType="value">The quaternion to negate.</param>
         /// <returns>A quaternion facing in the opposite direction.</returns>
         public static Quaternion operator -(Quaternion value)
         {
@@ -619,8 +619,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a quaternion by the given value.
         /// </summary>
-        /// <param name="value">The quaternion to scale.</param>
-        /// <param name="scale">The amount by which to scale the quaternion.</param>
+        /// <param nameType="value">The quaternion to scale.</param>
+        /// <param nameType="scale">The amount by which to scale the quaternion.</param>
         /// <returns>The scaled quaternion.</returns>
         public static Quaternion operator *(float scale, Quaternion value)
         {
@@ -632,8 +632,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a quaternion by the given value.
         /// </summary>
-        /// <param name="value">The quaternion to scale.</param>
-        /// <param name="scale">The amount by which to scale the quaternion.</param>
+        /// <param nameType="value">The quaternion to scale.</param>
+        /// <param nameType="scale">The amount by which to scale the quaternion.</param>
         /// <returns>The scaled quaternion.</returns>
         public static Quaternion operator *(Quaternion value, float scale)
         {
@@ -645,8 +645,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Multiplies a quaternion by another.
         /// </summary>
-        /// <param name="left">The first quaternion to multiply.</param>
-        /// <param name="right">The second quaternion to multiply.</param>
+        /// <param nameType="left">The first quaternion to multiply.</param>
+        /// <param nameType="right">The second quaternion to multiply.</param>
         /// <returns>The multiplied quaternion.</returns>
         public static Quaternion operator *(Quaternion left, Quaternion right)
         {
@@ -658,7 +658,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines whether the specified <see cref="T:SharpDX.Quaternion" /> is equal to this instance.
         /// </summary>
-        /// <param name="other">The <see cref="T:SharpDX.Quaternion" /> to compare with this instance.</param>
+        /// <param nameType="other">The <see cref="T:SharpDX.Quaternion" /> to compare with this instance.</param>
         /// <returns>
         /// <c>true</c> if the specified <see cref="T:SharpDX.Quaternion" /> is equal to this instance; otherwise, <c>false</c>.
         /// </returns>
@@ -671,9 +671,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Tests for equality between two objects.
         /// </summary>
-        /// <param name="left">The first value to compare.</param>
-        /// <param name="right">The second value to compare.</param>
-        /// <returns><c>true</c> if <paramref name="left" /> has the same value as <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        /// <param nameType="left">The first value to compare.</param>
+        /// <param nameType="right">The second value to compare.</param>
+        /// <returns><c>true</c> if <paramref nameType="left" /> has the same value as <paramref nameType="right" />; otherwise, <c>false</c>.</returns>
         public static bool operator ==(Quaternion left, Quaternion right)
         {
             return left.Equals(ref right);
@@ -682,9 +682,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Tests for inequality between two objects.
         /// </summary>
-        /// <param name="left">The first value to compare.</param>
-        /// <param name="right">The second value to compare.</param>
-        /// <returns><c>true</c> if <paramref name="left" /> has a different value than <paramref name="right" />; otherwise, <c>false</c>.</returns>
+        /// <param nameType="left">The first value to compare.</param>
+        /// <param nameType="right">The second value to compare.</param>
+        /// <returns><c>true</c> if <paramref nameType="left" /> has a different value than <paramref nameType="right" />; otherwise, <c>false</c>.</returns>
         public static bool operator !=(Quaternion left, Quaternion right)
         {
             return !left.Equals(ref right);
@@ -704,7 +704,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents this instance.
         /// </summary>
-        /// <param name="format">The format.</param>
+        /// <param nameType="format">The format.</param>
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
@@ -726,7 +726,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents this instance.
         /// </summary>
-        /// <param name="formatProvider">The format provider.</param>
+        /// <param nameType="formatProvider">The format provider.</param>
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
@@ -738,8 +738,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents this instance.
         /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="formatProvider">The format provider.</param>
+        /// <param nameType="format">The format.</param>
+        /// <param nameType="formatProvider">The format provider.</param>
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>

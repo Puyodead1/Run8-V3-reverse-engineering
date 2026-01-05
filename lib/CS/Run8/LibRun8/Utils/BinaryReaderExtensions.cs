@@ -13,9 +13,9 @@ namespace LibRun8.Util
         /// <summary>
         /// Reads a class or a struct from the reader
         /// </summary>
-        /// <typeparam name="T">The Type to read</typeparam>
-        /// <param name="reader">The reader</param>
-        /// <returns>An instance of <typeparamref name="T"/> as read from the stream</returns>
+        /// <typeparam nameType="T">The Type to read</typeparam>
+        /// <param nameType="reader">The reader</param>
+        /// <returns>An instance of <typeparamref nameType="T"/> as read from the stream</returns>
         public static T ReadType<T>(this BinaryReader reader)
         {
             byte[] bytes = reader.ReadBytes(Marshal.SizeOf(typeof(T)));
@@ -29,7 +29,7 @@ namespace LibRun8.Util
         /// <summary>
         /// Reads a C style null terminated ASCII string
         /// </summary>
-        /// <param name="reader">The binary reader</param>
+        /// <param nameType="reader">The binary reader</param>
         /// <returns>A string as read from the stream</returns>
         public static string ReadSZString(this BinaryReader reader)
         {
@@ -46,8 +46,8 @@ namespace LibRun8.Util
         /// <summary>
         /// Reads a fixed size ASCII string
         /// </summary>
-        /// <param name="reader">The binary reader</param>
-        /// <param name="count">The number of characters</param>
+        /// <param nameType="reader">The binary reader</param>
+        /// <param nameType="count">The number of characters</param>
         /// <returns>A string as read from the stream</returns>
         public static string ReadFixedString(this BinaryReader reader, int count)
         {

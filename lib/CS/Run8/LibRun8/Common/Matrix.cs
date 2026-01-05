@@ -140,7 +140,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Matrix" /> struct.
         /// </summary>
-        /// <param name="value">The value that will be assigned to all components.</param>
+        /// <param nameType="value">The value that will be assigned to all components.</param>
         public Matrix(float value)
         {
             this.M44 = value;
@@ -164,22 +164,22 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Matrix" /> struct.
         /// </summary>
-        /// <param name="M11">The value to assign at row 1 column 1 of the matrix.</param>
-        /// <param name="M12">The value to assign at row 1 column 2 of the matrix.</param>
-        /// <param name="M13">The value to assign at row 1 column 3 of the matrix.</param>
-        /// <param name="M14">The value to assign at row 1 column 4 of the matrix.</param>
-        /// <param name="M21">The value to assign at row 2 column 1 of the matrix.</param>
-        /// <param name="M22">The value to assign at row 2 column 2 of the matrix.</param>
-        /// <param name="M23">The value to assign at row 2 column 3 of the matrix.</param>
-        /// <param name="M24">The value to assign at row 2 column 4 of the matrix.</param>
-        /// <param name="M31">The value to assign at row 3 column 1 of the matrix.</param>
-        /// <param name="M32">The value to assign at row 3 column 2 of the matrix.</param>
-        /// <param name="M33">The value to assign at row 3 column 3 of the matrix.</param>
-        /// <param name="M34">The value to assign at row 3 column 4 of the matrix.</param>
-        /// <param name="M41">The value to assign at row 4 column 1 of the matrix.</param>
-        /// <param name="M42">The value to assign at row 4 column 2 of the matrix.</param>
-        /// <param name="M43">The value to assign at row 4 column 3 of the matrix.</param>
-        /// <param name="M44">The value to assign at row 4 column 4 of the matrix.</param>
+        /// <param nameType="M11">The value to assign at row 1 column 1 of the matrix.</param>
+        /// <param nameType="M12">The value to assign at row 1 column 2 of the matrix.</param>
+        /// <param nameType="M13">The value to assign at row 1 column 3 of the matrix.</param>
+        /// <param nameType="M14">The value to assign at row 1 column 4 of the matrix.</param>
+        /// <param nameType="M21">The value to assign at row 2 column 1 of the matrix.</param>
+        /// <param nameType="M22">The value to assign at row 2 column 2 of the matrix.</param>
+        /// <param nameType="M23">The value to assign at row 2 column 3 of the matrix.</param>
+        /// <param nameType="M24">The value to assign at row 2 column 4 of the matrix.</param>
+        /// <param nameType="M31">The value to assign at row 3 column 1 of the matrix.</param>
+        /// <param nameType="M32">The value to assign at row 3 column 2 of the matrix.</param>
+        /// <param nameType="M33">The value to assign at row 3 column 3 of the matrix.</param>
+        /// <param nameType="M34">The value to assign at row 3 column 4 of the matrix.</param>
+        /// <param nameType="M41">The value to assign at row 4 column 1 of the matrix.</param>
+        /// <param nameType="M42">The value to assign at row 4 column 2 of the matrix.</param>
+        /// <param nameType="M43">The value to assign at row 4 column 3 of the matrix.</param>
+        /// <param nameType="M44">The value to assign at row 4 column 4 of the matrix.</param>
         public Matrix(float M11, float M12, float M13, float M14, float M21, float M22, float M23, float M24, float M31, float M32, float M33, float M34, float M41, float M42, float M43, float M44)
         {
             this.M11 = M11;
@@ -203,9 +203,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Initializes a new instance of the <see cref="T:SharpDX.Matrix" /> struct.
         /// </summary>
-        /// <param name="values">The values to assign to the components of the matrix. This must be an array with sixteen elements.</param>
-        /// <exception cref="T:System.ArgumentNullException">Thrown when <paramref name="values" /> is <c>null</c>.</exception>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref name="values" /> contains more or less than sixteen elements.</exception>
+        /// <param nameType="values">The values to assign to the components of the matrix. This must be an array with sixteen elements.</param>
+        /// <exception cref="T:System.ArgumentNullException">Thrown when <paramref nameType="values" /> is <c>null</c>.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when <paramref nameType="values" /> contains more or less than sixteen elements.</exception>
         public Matrix(float[] values)
         {
             if (values == null)
@@ -430,9 +430,9 @@ namespace LibRun8.Common
         /// Gets or sets the component at the specified index.
         /// </summary>
         /// <value>The value of the matrix component, depending on the index.</value>
-        /// <param name="index">The zero-based index of the component to access.</param>
+        /// <param nameType="index">The zero-based index of the component to access.</param>
         /// <returns>The value of the component at the specified index.</returns>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref name="index" /> is out of the range [0, 15].</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref nameType="index" /> is out of the range [0, 15].</exception>
         public float this[int index]
         {
             get
@@ -537,10 +537,10 @@ namespace LibRun8.Common
         /// Gets or sets the component at the specified index.
         /// </summary>
         /// <value>The value of the matrix component, depending on the index.</value>
-        /// <param name="row">The row of the matrix to access.</param>
-        /// <param name="column">The column of the matrix to access.</param>
+        /// <param nameType="row">The row of the matrix to access.</param>
+        /// <param nameType="column">The column of the matrix to access.</param>
         /// <returns>The value of the component at the specified index.</returns>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref name="row" /> or <paramref name="column" />is out of the range [0, 3].</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref nameType="row" /> or <paramref nameType="column" />is out of the range [0, 3].</exception>
         // Token: 0x170000B9 RID: 185
         public float this[int row, int column]
         {
@@ -598,8 +598,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Exchanges two rows in the matrix.
         /// </summary>
-        /// <param name="firstRow">The first row to exchange. This is an index of the row starting at zero.</param>
-        /// <param name="secondRow">The second row to exchange. This is an index of the row starting at zero.</param>
+        /// <param nameType="firstRow">The first row to exchange. This is an index of the row starting at zero.</param>
+        /// <param nameType="secondRow">The second row to exchange. This is an index of the row starting at zero.</param>
         // Token: 0x060007F1 RID: 2033 RVA: 0x00020EEC File Offset: 0x0001F0EC
         public void ExchangeRows(int firstRow, int secondRow)
         {
@@ -640,8 +640,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Exchanges two columns in the matrix.
         /// </summary>
-        /// <param name="firstColumn">The first column to exchange. This is an index of the column starting at zero.</param>
-        /// <param name="secondColumn">The second column to exchange. This is an index of the column starting at zero.</param>
+        /// <param nameType="firstColumn">The first column to exchange. This is an index of the column starting at zero.</param>
+        /// <param nameType="secondColumn">The second column to exchange. This is an index of the column starting at zero.</param>
         // Token: 0x060007F2 RID: 2034 RVA: 0x00020FD8 File Offset: 0x0001F1D8
         public void ExchangeColumns(int firstColumn, int secondColumn)
         {
@@ -696,9 +696,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the sum of two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to add.</param>
-        /// <param name="right">The second matrix to add.</param>
-        /// <param name="result">When the method completes, contains the sum of the two matrices.</param>
+        /// <param nameType="left">The first matrix to add.</param>
+        /// <param nameType="right">The second matrix to add.</param>
+        /// <param nameType="result">When the method completes, contains the sum of the two matrices.</param>
         // Token: 0x060007F4 RID: 2036 RVA: 0x00021174 File Offset: 0x0001F374
         public static void Add(ref Matrix left, ref Matrix right, out Matrix result)
         {
@@ -723,8 +723,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the sum of two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to add.</param>
-        /// <param name="right">The second matrix to add.</param>
+        /// <param nameType="left">The first matrix to add.</param>
+        /// <param nameType="right">The second matrix to add.</param>
         /// <returns>The sum of the two matrices.</returns>
         // Token: 0x060007F5 RID: 2037 RVA: 0x000212B4 File Offset: 0x0001F4B4
         public static Matrix Add(Matrix left, Matrix right)
@@ -737,9 +737,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the difference between two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to subtract.</param>
-        /// <param name="right">The second matrix to subtract.</param>
-        /// <param name="result">When the method completes, contains the difference between the two matrices.</param>
+        /// <param nameType="left">The first matrix to subtract.</param>
+        /// <param nameType="right">The second matrix to subtract.</param>
+        /// <param nameType="result">When the method completes, contains the difference between the two matrices.</param>
         // Token: 0x060007F6 RID: 2038 RVA: 0x000212D0 File Offset: 0x0001F4D0
         public static void Subtract(ref Matrix left, ref Matrix right, out Matrix result)
         {
@@ -764,8 +764,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the difference between two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to subtract.</param>
-        /// <param name="right">The second matrix to subtract.</param>
+        /// <param nameType="left">The first matrix to subtract.</param>
+        /// <param nameType="right">The second matrix to subtract.</param>
         /// <returns>The difference between the two matrices.</returns>
         // Token: 0x060007F7 RID: 2039 RVA: 0x00021410 File Offset: 0x0001F610
         public static Matrix Subtract(Matrix left, Matrix right)
@@ -778,9 +778,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by the given value.
         /// </summary>
-        /// <param name="left">The matrix to scale.</param>
-        /// <param name="right">The amount by which to scale.</param>
-        /// <param name="result">When the method completes, contains the scaled matrix.</param>
+        /// <param nameType="left">The matrix to scale.</param>
+        /// <param nameType="right">The amount by which to scale.</param>
+        /// <param nameType="result">When the method completes, contains the scaled matrix.</param>
         // Token: 0x060007F8 RID: 2040 RVA: 0x0002142C File Offset: 0x0001F62C
         public static void Multiply(ref Matrix left, float right, out Matrix result)
         {
@@ -805,8 +805,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by the given value.
         /// </summary>
-        /// <param name="left">The matrix to scale.</param>
-        /// <param name="right">The amount by which to scale.</param>
+        /// <param nameType="left">The matrix to scale.</param>
+        /// <param nameType="right">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
         // Token: 0x060007F9 RID: 2041 RVA: 0x0002151C File Offset: 0x0001F71C
         public static Matrix Multiply(Matrix left, float right)
@@ -819,9 +819,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the product of two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to multiply.</param>
-        /// <param name="right">The second matrix to multiply.</param>
-        /// <param name="result">The product of the two matrices.</param>
+        /// <param nameType="left">The first matrix to multiply.</param>
+        /// <param nameType="right">The second matrix to multiply.</param>
+        /// <param nameType="result">The product of the two matrices.</param>
         // Token: 0x060007FA RID: 2042 RVA: 0x00021534 File Offset: 0x0001F734
         public static void Multiply(ref Matrix left, ref Matrix right, out Matrix result)
         {
@@ -849,8 +849,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the product of two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to multiply.</param>
-        /// <param name="right">The second matrix to multiply.</param>
+        /// <param nameType="left">The first matrix to multiply.</param>
+        /// <param nameType="right">The second matrix to multiply.</param>
         /// <returns>The product of the two matrices.</returns>
         // Token: 0x060007FB RID: 2043 RVA: 0x00021930 File Offset: 0x0001FB30
         public static Matrix Multiply(Matrix left, Matrix right)
@@ -863,9 +863,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by the given value.
         /// </summary>
-        /// <param name="left">The matrix to scale.</param>
-        /// <param name="right">The amount by which to scale.</param>
-        /// <param name="result">When the method completes, contains the scaled matrix.</param>
+        /// <param nameType="left">The matrix to scale.</param>
+        /// <param nameType="right">The amount by which to scale.</param>
+        /// <param nameType="result">When the method completes, contains the scaled matrix.</param>
         // Token: 0x060007FC RID: 2044 RVA: 0x0002194C File Offset: 0x0001FB4C
         public static void Divide(ref Matrix left, float right, out Matrix result)
         {
@@ -891,8 +891,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by the given value.
         /// </summary>
-        /// <param name="left">The matrix to scale.</param>
-        /// <param name="right">The amount by which to scale.</param>
+        /// <param nameType="left">The matrix to scale.</param>
+        /// <param nameType="right">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
         // Token: 0x060007FD RID: 2045 RVA: 0x00021A44 File Offset: 0x0001FC44
         public static Matrix Divide(Matrix left, float right)
@@ -905,9 +905,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the quotient of two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to divide.</param>
-        /// <param name="right">The second matrix to divide.</param>
-        /// <param name="result">When the method completes, contains the quotient of the two matrices.</param>
+        /// <param nameType="left">The first matrix to divide.</param>
+        /// <param nameType="right">The second matrix to divide.</param>
+        /// <param nameType="result">When the method completes, contains the quotient of the two matrices.</param>
         // Token: 0x060007FE RID: 2046 RVA: 0x00021A5C File Offset: 0x0001FC5C
         public static void Divide(ref Matrix left, ref Matrix right, out Matrix result)
         {
@@ -932,8 +932,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Determines the quotient of two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to divide.</param>
-        /// <param name="right">The second matrix to divide.</param>
+        /// <param nameType="left">The first matrix to divide.</param>
+        /// <param nameType="right">The second matrix to divide.</param>
         /// <returns>The quotient of the two matrices.</returns>
         // Token: 0x060007FF RID: 2047 RVA: 0x00021B9C File Offset: 0x0001FD9C
         public static Matrix Divide(Matrix left, Matrix right)
@@ -946,10 +946,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Performs the exponential operation on a matrix.
         /// </summary>
-        /// <param name="value">The matrix to perform the operation on.</param>
-        /// <param name="exponent">The exponent to raise the matrix to.</param>
-        /// <param name="result">When the method completes, contains the exponential matrix.</param>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref name="exponent" /> is negative.</exception>
+        /// <param nameType="value">The matrix to perform the operation on.</param>
+        /// <param nameType="exponent">The exponent to raise the matrix to.</param>
+        /// <param nameType="result">When the method completes, contains the exponential matrix.</param>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref nameType="exponent" /> is negative.</exception>
         // Token: 0x06000800 RID: 2048 RVA: 0x00021BB8 File Offset: 0x0001FDB8
         public static void Exponent(ref Matrix value, int exponent, out Matrix result)
         {
@@ -988,10 +988,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Performs the exponential operation on a matrix.
         /// </summary>
-        /// <param name="value">The matrix to perform the operation on.</param>
-        /// <param name="exponent">The exponent to raise the matrix to.</param>
+        /// <param nameType="value">The matrix to perform the operation on.</param>
+        /// <param nameType="exponent">The exponent to raise the matrix to.</param>
         /// <returns>The exponential matrix.</returns>
-        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref name="exponent" /> is negative.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">Thrown when the <paramref nameType="exponent" /> is negative.</exception>
         // Token: 0x06000801 RID: 2049 RVA: 0x00021C30 File Offset: 0x0001FE30
         public static Matrix Exponent(Matrix value, int exponent)
         {
@@ -1003,8 +1003,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Negates a matrix.
         /// </summary>
-        /// <param name="value">The matrix to be negated.</param>
-        /// <param name="result">When the method completes, contains the negated matrix.</param>
+        /// <param nameType="value">The matrix to be negated.</param>
+        /// <param nameType="result">When the method completes, contains the negated matrix.</param>
         // Token: 0x06000802 RID: 2050 RVA: 0x00021C48 File Offset: 0x0001FE48
         public static void Negate(ref Matrix value, out Matrix result)
         {
@@ -1029,7 +1029,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Negates a matrix.
         /// </summary>
-        /// <param name="value">The matrix to be negated.</param>
+        /// <param nameType="value">The matrix to be negated.</param>
         /// <returns>The negated matrix.</returns>
         // Token: 0x06000803 RID: 2051 RVA: 0x00021D28 File Offset: 0x0001FF28
         public static Matrix Negate(Matrix value)
@@ -1042,8 +1042,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Calculates the inverse of the specified matrix.
         /// </summary>
-        /// <param name="value">The matrix whose inverse is to be calculated.</param>
-        /// <param name="result">When the method completes, contains the inverse of the specified matrix.</param>
+        /// <param nameType="value">The matrix whose inverse is to be calculated.</param>
+        /// <param nameType="result">When the method completes, contains the inverse of the specified matrix.</param>
         // Token: 0x0600080B RID: 2059 RVA: 0x000220F0 File Offset: 0x000202F0
         public static void Invert(ref Matrix value, out Matrix result)
         {
@@ -1103,7 +1103,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Calculates the inverse of the specified matrix.
         /// </summary>
-        /// <param name="value">The matrix whose inverse is to be calculated.</param>
+        /// <param nameType="value">The matrix whose inverse is to be calculated.</param>
         /// <returns>The inverse of the specified matrix.</returns>
         // Token: 0x0600080C RID: 2060 RVA: 0x00022544 File Offset: 0x00020744
         public static Matrix Invert(Matrix value)
@@ -1115,11 +1115,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, orthographic projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000820 RID: 2080 RVA: 0x000235F4 File Offset: 0x000217F4
         public static void OrthoLH(float width, float height, float znear, float zfar, out Matrix result)
         {
@@ -1131,10 +1131,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, orthographic projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000821 RID: 2081 RVA: 0x00023620 File Offset: 0x00021820
         public static Matrix OrthoLH(float width, float height, float znear, float zfar)
@@ -1147,11 +1147,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, orthographic projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000822 RID: 2082 RVA: 0x0002363C File Offset: 0x0002183C
         public static void OrthoRH(float width, float height, float znear, float zfar, out Matrix result)
         {
@@ -1163,10 +1163,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, orthographic projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000823 RID: 2083 RVA: 0x00023668 File Offset: 0x00021868
         public static Matrix OrthoRH(float width, float height, float znear, float zfar)
@@ -1179,13 +1179,13 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, customized orthographic projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000824 RID: 2084 RVA: 0x00023684 File Offset: 0x00021884
         public static void OrthoOffCenterLH(float left, float right, float bottom, float top, float znear, float zfar, out Matrix result)
         {
@@ -1202,12 +1202,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, customized orthographic projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000825 RID: 2085 RVA: 0x000236FC File Offset: 0x000218FC
         public static Matrix OrthoOffCenterLH(float left, float right, float bottom, float top, float znear, float zfar)
@@ -1220,13 +1220,13 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, customized orthographic projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000826 RID: 2086 RVA: 0x0002371C File Offset: 0x0002191C
         public static void OrthoOffCenterRH(float left, float right, float bottom, float top, float znear, float zfar, out Matrix result)
         {
@@ -1237,12 +1237,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, customized orthographic projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000827 RID: 2087 RVA: 0x00023740 File Offset: 0x00021940
         public static Matrix OrthoOffCenterRH(float left, float right, float bottom, float top, float znear, float zfar)
@@ -1255,11 +1255,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, perspective projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000828 RID: 2088 RVA: 0x00023760 File Offset: 0x00021960
         public static void PerspectiveLH(float width, float height, float znear, float zfar, out Matrix result)
         {
@@ -1271,10 +1271,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, perspective projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000829 RID: 2089 RVA: 0x0002378C File Offset: 0x0002198C
         public static Matrix PerspectiveLH(float width, float height, float znear, float zfar)
@@ -1287,11 +1287,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, perspective projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x0600082A RID: 2090 RVA: 0x000237A8 File Offset: 0x000219A8
         public static void PerspectiveRH(float width, float height, float znear, float zfar, out Matrix result)
         {
@@ -1303,10 +1303,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, perspective projection matrix.
         /// </summary>
-        /// <param name="width">Width of the viewing volume.</param>
-        /// <param name="height">Height of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="width">Width of the viewing volume.</param>
+        /// <param nameType="height">Height of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x0600082B RID: 2091 RVA: 0x000237D4 File Offset: 0x000219D4
         public static Matrix PerspectiveRH(float width, float height, float znear, float zfar)
@@ -1319,11 +1319,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, perspective projection matrix based on a field of view.
         /// </summary>
-        /// <param name="fov">Field of view in the y direction, in radians.</param>
-        /// <param name="aspect">Aspect ratio, defined as view space width divided by height.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="fov">Field of view in the y direction, in radians.</param>
+        /// <param nameType="aspect">Aspect ratio, defined as view space width divided by height.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x0600082C RID: 2092 RVA: 0x000237F0 File Offset: 0x000219F0
         public static void PerspectiveFovLH(float fov, float aspect, float znear, float zfar, out Matrix result)
         {
@@ -1337,10 +1337,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, perspective projection matrix based on a field of view.
         /// </summary>
-        /// <param name="fov">Field of view in the y direction, in radians.</param>
-        /// <param name="aspect">Aspect ratio, defined as view space width divided by height.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="fov">Field of view in the y direction, in radians.</param>
+        /// <param nameType="aspect">Aspect ratio, defined as view space width divided by height.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x0600082D RID: 2093 RVA: 0x00023834 File Offset: 0x00021A34
         public static Matrix PerspectiveFovLH(float fov, float aspect, float znear, float zfar)
@@ -1353,11 +1353,11 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, perspective projection matrix based on a field of view.
         /// </summary>
-        /// <param name="fov">Field of view in the y direction, in radians.</param>
-        /// <param name="aspect">Aspect ratio, defined as view space width divided by height.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="fov">Field of view in the y direction, in radians.</param>
+        /// <param nameType="aspect">Aspect ratio, defined as view space width divided by height.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x0600082E RID: 2094 RVA: 0x00023850 File Offset: 0x00021A50
         public static void PerspectiveFovRH(float fov, float aspect, float znear, float zfar, out Matrix result)
         {
@@ -1371,10 +1371,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, perspective projection matrix based on a field of view.
         /// </summary>
-        /// <param name="fov">Field of view in the y direction, in radians.</param>
-        /// <param name="aspect">Aspect ratio, defined as view space width divided by height.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="fov">Field of view in the y direction, in radians.</param>
+        /// <param nameType="aspect">Aspect ratio, defined as view space width divided by height.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x0600082F RID: 2095 RVA: 0x00023894 File Offset: 0x00021A94
         public static Matrix PerspectiveFovRH(float fov, float aspect, float znear, float zfar)
@@ -1387,13 +1387,13 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, customized perspective projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000830 RID: 2096 RVA: 0x000238B0 File Offset: 0x00021AB0
         public static void PerspectiveOffCenterLH(float left, float right, float bottom, float top, float znear, float zfar, out Matrix result)
         {
@@ -1411,12 +1411,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a left-handed, customized perspective projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000831 RID: 2097 RVA: 0x00023930 File Offset: 0x00021B30
         public static Matrix PerspectiveOffCenterLH(float left, float right, float bottom, float top, float znear, float zfar)
@@ -1429,13 +1429,13 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, customized perspective projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
-        /// <param name="result">When the method completes, contains the created projection matrix.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="result">When the method completes, contains the created projection matrix.</param>
         // Token: 0x06000832 RID: 2098 RVA: 0x00023950 File Offset: 0x00021B50
         public static void PerspectiveOffCenterRH(float left, float right, float bottom, float top, float znear, float zfar, out Matrix result)
         {
@@ -1449,12 +1449,12 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a right-handed, customized perspective projection matrix.
         /// </summary>
-        /// <param name="left">Minimum x-value of the viewing volume.</param>
-        /// <param name="right">Maximum x-value of the viewing volume.</param>
-        /// <param name="bottom">Minimum y-value of the viewing volume.</param>
-        /// <param name="top">Maximum y-value of the viewing volume.</param>
-        /// <param name="znear">Minimum z-value of the viewing volume.</param>
-        /// <param name="zfar">Maximum z-value of the viewing volume.</param>
+        /// <param nameType="left">Minimum x-value of the viewing volume.</param>
+        /// <param nameType="right">Maximum x-value of the viewing volume.</param>
+        /// <param nameType="bottom">Minimum y-value of the viewing volume.</param>
+        /// <param nameType="top">Maximum y-value of the viewing volume.</param>
+        /// <param nameType="znear">Minimum z-value of the viewing volume.</param>
+        /// <param nameType="zfar">Maximum z-value of the viewing volume.</param>
         /// <returns>The created projection matrix.</returns>
         // Token: 0x06000833 RID: 2099 RVA: 0x000239B8 File Offset: 0x00021BB8
         public static Matrix PerspectiveOffCenterRH(float left, float right, float bottom, float top, float znear, float zfar)
@@ -1467,8 +1467,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that scales along the x-axis, y-axis, and y-axis.
         /// </summary>
-        /// <param name="scale">Scaling factor for all three axes.</param>
-        /// <param name="result">When the method completes, contains the created scaling matrix.</param>
+        /// <param nameType="scale">Scaling factor for all three axes.</param>
+        /// <param nameType="result">When the method completes, contains the created scaling matrix.</param>
         // Token: 0x06000838 RID: 2104 RVA: 0x00023C88 File Offset: 0x00021E88
         public static void Scaling(ref Vector3 scale, out Matrix result)
         {
@@ -1478,7 +1478,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that scales along the x-axis, y-axis, and y-axis.
         /// </summary>
-        /// <param name="scale">Scaling factor for all three axes.</param>
+        /// <param nameType="scale">Scaling factor for all three axes.</param>
         /// <returns>The created scaling matrix.</returns>
         // Token: 0x06000839 RID: 2105 RVA: 0x00023CA4 File Offset: 0x00021EA4
         public static Matrix Scaling(Vector3 scale)
@@ -1491,10 +1491,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that scales along the x-axis, y-axis, and y-axis.
         /// </summary>
-        /// <param name="x">Scaling factor that is applied along the x-axis.</param>
-        /// <param name="y">Scaling factor that is applied along the y-axis.</param>
-        /// <param name="z">Scaling factor that is applied along the z-axis.</param>
-        /// <param name="result">When the method completes, contains the created scaling matrix.</param>
+        /// <param nameType="x">Scaling factor that is applied along the x-axis.</param>
+        /// <param nameType="y">Scaling factor that is applied along the y-axis.</param>
+        /// <param nameType="z">Scaling factor that is applied along the z-axis.</param>
+        /// <param nameType="result">When the method completes, contains the created scaling matrix.</param>
         // Token: 0x0600083A RID: 2106 RVA: 0x00023CBC File Offset: 0x00021EBC
         public static void Scaling(float x, float y, float z, out Matrix result)
         {
@@ -1507,9 +1507,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that scales along the x-axis, y-axis, and y-axis.
         /// </summary>
-        /// <param name="x">Scaling factor that is applied along the x-axis.</param>
-        /// <param name="y">Scaling factor that is applied along the y-axis.</param>
-        /// <param name="z">Scaling factor that is applied along the z-axis.</param>
+        /// <param nameType="x">Scaling factor that is applied along the x-axis.</param>
+        /// <param nameType="y">Scaling factor that is applied along the y-axis.</param>
+        /// <param nameType="z">Scaling factor that is applied along the z-axis.</param>
         /// <returns>The created scaling matrix.</returns>
         public static Matrix Scaling(float x, float y, float z)
         {
@@ -1521,8 +1521,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that uniformly scales along all three axis.
         /// </summary>
-        /// <param name="scale">The uniform scale that is applied along all axis.</param>
-        /// <param name="result">When the method completes, contains the created scaling matrix.</param>
+        /// <param nameType="scale">The uniform scale that is applied along all axis.</param>
+        /// <param nameType="result">When the method completes, contains the created scaling matrix.</param>
         public static void Scaling(float scale, out Matrix result)
         {
             result = Identity;
@@ -1534,7 +1534,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that uniformly scales along all three axis.
         /// </summary>
-        /// <param name="scale">The uniform scale that is applied along all axis.</param>
+        /// <param nameType="scale">The uniform scale that is applied along all axis.</param>
         /// <returns>The created scaling matrix.</returns>
         public static Matrix Scaling(float scale)
         {
@@ -1546,8 +1546,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around the x-axis.
         /// </summary>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
-        /// <param name="result">When the method completes, contains the created rotation matrix.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="result">When the method completes, contains the created rotation matrix.</param>
         public static void RotationX(float angle, out Matrix result)
         {
             float num = (float)Math.Cos((double)angle);
@@ -1562,7 +1562,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around the x-axis.
         /// </summary>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
         public static Matrix RotationX(float angle)
         {
@@ -1574,8 +1574,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around the y-axis.
         /// </summary>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
-        /// <param name="result">When the method completes, contains the created rotation matrix.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="result">When the method completes, contains the created rotation matrix.</param>
         public static void RotationY(float angle, out Matrix result)
         {
             float num = (float)Math.Cos((double)angle);
@@ -1590,7 +1590,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around the y-axis.
         /// </summary>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
         public static Matrix RotationY(float angle)
         {
@@ -1602,8 +1602,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around the z-axis.
         /// </summary>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
-        /// <param name="result">When the method completes, contains the created rotation matrix.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="result">When the method completes, contains the created rotation matrix.</param>
         public static void RotationZ(float angle, out Matrix result)
         {
             float num = (float)Math.Cos((double)angle);
@@ -1618,7 +1618,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around the z-axis.
         /// </summary>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
         public static Matrix RotationZ(float angle)
         {
@@ -1630,9 +1630,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around an arbitrary axis.
         /// </summary>
-        /// <param name="axis">The axis around which to rotate. This parameter is assumed to be normalized.</param>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
-        /// <param name="result">When the method completes, contains the created rotation matrix.</param>
+        /// <param nameType="axis">The axis around which to rotate. This parameter is assumed to be normalized.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="result">When the method completes, contains the created rotation matrix.</param>
         public static void RotationAxis(ref Vector3 axis, float angle, out Matrix result)
         {
             float x = axis.X;
@@ -1661,8 +1661,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a matrix that rotates around an arbitrary axis.
         /// </summary>
-        /// <param name="axis">The axis around which to rotate. This parameter is assumed to be normalized.</param>
-        /// <param name="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
+        /// <param nameType="axis">The axis around which to rotate. This parameter is assumed to be normalized.</param>
+        /// <param nameType="angle">Angle of rotation in radians. Angles are measured clockwise when looking along the rotation axis toward the origin.</param>
         /// <returns>The created rotation matrix.</returns>
         public static Matrix RotationAxis(Vector3 axis, float angle)
         {
@@ -1674,8 +1674,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a rotation matrix from a quaternion.
         /// </summary>
-        /// <param name="rotation">The quaternion to use to build the matrix.</param>
-        /// <param name="result">The created rotation matrix.</param>
+        /// <param nameType="rotation">The quaternion to use to build the matrix.</param>
+        /// <param nameType="result">The created rotation matrix.</param>
         public static void RotationQuaternion(ref Quaternion rotation, out Matrix result)
         {
             float num = rotation.X * rotation.X;
@@ -1702,7 +1702,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a rotation matrix from a quaternion.
         /// </summary>
-        /// <param name="rotation">The quaternion to use to build the matrix.</param>
+        /// <param nameType="rotation">The quaternion to use to build the matrix.</param>
         /// <returns>The created rotation matrix.</returns>
         public static Matrix RotationQuaternion(Quaternion rotation)
         {
@@ -1714,10 +1714,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a rotation matrix with a specified yaw, pitch, and roll.
         /// </summary>
-        /// <param name="yaw">Yaw around the y-axis, in radians.</param>
-        /// <param name="pitch">Pitch around the x-axis, in radians.</param>
-        /// <param name="roll">Roll around the z-axis, in radians.</param>
-        /// <param name="result">When the method completes, contains the created rotation matrix.</param>
+        /// <param nameType="yaw">Yaw around the y-axis, in radians.</param>
+        /// <param nameType="pitch">Pitch around the x-axis, in radians.</param>
+        /// <param nameType="roll">Roll around the z-axis, in radians.</param>
+        /// <param nameType="result">When the method completes, contains the created rotation matrix.</param>
         public static void RotationYawPitchRoll(float yaw, float pitch, float roll, out Matrix result)
         {
             Quaternion quaternion = default(Quaternion);
@@ -1728,9 +1728,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a rotation matrix with a specified yaw, pitch, and roll.
         /// </summary>
-        /// <param name="yaw">Yaw around the y-axis, in radians.</param>
-        /// <param name="pitch">Pitch around the x-axis, in radians.</param>
-        /// <param name="roll">Roll around the z-axis, in radians.</param>
+        /// <param nameType="yaw">Yaw around the y-axis, in radians.</param>
+        /// <param nameType="pitch">Pitch around the x-axis, in radians.</param>
+        /// <param nameType="roll">Roll around the z-axis, in radians.</param>
         /// <returns>The created rotation matrix.</returns>
         public static Matrix RotationYawPitchRoll(float yaw, float pitch, float roll)
         {
@@ -1742,8 +1742,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a translation matrix using the specified offsets.
         /// </summary>
-        /// <param name="value">The offset for all three coordinate planes.</param>
-        /// <param name="result">When the method completes, contains the created translation matrix.</param>
+        /// <param nameType="value">The offset for all three coordinate planes.</param>
+        /// <param nameType="result">When the method completes, contains the created translation matrix.</param>
         public static void Translation(ref Vector3 value, out Matrix result)
         {
             Matrix.Translation(value.X, value.Y, value.Z, out result);
@@ -1752,7 +1752,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a translation matrix using the specified offsets.
         /// </summary>
-        /// <param name="value">The offset for all three coordinate planes.</param>
+        /// <param nameType="value">The offset for all three coordinate planes.</param>
         /// <returns>The created translation matrix.</returns>
         public static Matrix Translation(Vector3 value)
         {
@@ -1764,10 +1764,10 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a translation matrix using the specified offsets.
         /// </summary>
-        /// <param name="x">X-coordinate offset.</param>
-        /// <param name="y">Y-coordinate offset.</param>
-        /// <param name="z">Z-coordinate offset.</param>
-        /// <param name="result">When the method completes, contains the created translation matrix.</param>
+        /// <param nameType="x">X-coordinate offset.</param>
+        /// <param nameType="y">Y-coordinate offset.</param>
+        /// <param nameType="z">Z-coordinate offset.</param>
+        /// <param nameType="result">When the method completes, contains the created translation matrix.</param>
         public static void Translation(float x, float y, float z, out Matrix result)
         {
             result = Matrix.Identity;
@@ -1779,9 +1779,9 @@ namespace LibRun8.Common
         /// <summary>
         /// Creates a translation matrix using the specified offsets.
         /// </summary>
-        /// <param name="x">X-coordinate offset.</param>
-        /// <param name="y">Y-coordinate offset.</param>
-        /// <param name="z">Z-coordinate offset.</param>
+        /// <param nameType="x">X-coordinate offset.</param>
+        /// <param nameType="y">Y-coordinate offset.</param>
+        /// <param nameType="z">Z-coordinate offset.</param>
         /// <returns>The created translation matrix.</returns>
         public static Matrix Translation(float x, float y, float z)
         {
@@ -1793,8 +1793,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Adds two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to add.</param>
-        /// <param name="right">The second matrix to add.</param>
+        /// <param nameType="left">The first matrix to add.</param>
+        /// <param nameType="right">The second matrix to add.</param>
         /// <returns>The sum of the two matrices.</returns>
         public static Matrix operator +(Matrix left, Matrix right)
         {
@@ -1806,7 +1806,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Assert a matrix (return it unchanged).
         /// </summary>
-        /// <param name="value">The matrix to assert (unchanged).</param>
+        /// <param nameType="value">The matrix to assert (unchanged).</param>
         /// <returns>The asserted (unchanged) matrix.</returns>
         public static Matrix operator +(Matrix value)
         {
@@ -1816,8 +1816,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Subtracts two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to subtract.</param>
-        /// <param name="right">The second matrix to subtract.</param>
+        /// <param nameType="left">The first matrix to subtract.</param>
+        /// <param nameType="right">The second matrix to subtract.</param>
         /// <returns>The difference between the two matrices.</returns>
         public static Matrix operator -(Matrix left, Matrix right)
         {
@@ -1829,7 +1829,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Negates a matrix.
         /// </summary>
-        /// <param name="value">The matrix to negate.</param>
+        /// <param nameType="value">The matrix to negate.</param>
         /// <returns>The negated matrix.</returns>
         public static Matrix operator -(Matrix value)
         {
@@ -1841,8 +1841,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by a given value.
         /// </summary>
-        /// <param name="right">The matrix to scale.</param>
-        /// <param name="left">The amount by which to scale.</param>
+        /// <param nameType="right">The matrix to scale.</param>
+        /// <param nameType="left">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
         public static Matrix operator *(float left, Matrix right)
         {
@@ -1854,8 +1854,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by a given value.
         /// </summary>
-        /// <param name="left">The matrix to scale.</param>
-        /// <param name="right">The amount by which to scale.</param>
+        /// <param nameType="left">The matrix to scale.</param>
+        /// <param nameType="right">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
         public static Matrix operator *(Matrix left, float right)
         {
@@ -1867,8 +1867,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Multiplies two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to multiply.</param>
-        /// <param name="right">The second matrix to multiply.</param>
+        /// <param nameType="left">The first matrix to multiply.</param>
+        /// <param nameType="right">The second matrix to multiply.</param>
         /// <returns>The product of the two matrices.</returns>
         public static Matrix operator *(Matrix left, Matrix right)
         {
@@ -1880,8 +1880,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Scales a matrix by a given value.
         /// </summary>
-        /// <param name="left">The matrix to scale.</param>
-        /// <param name="right">The amount by which to scale.</param>
+        /// <param nameType="left">The matrix to scale.</param>
+        /// <param nameType="right">The amount by which to scale.</param>
         /// <returns>The scaled matrix.</returns>
         public static Matrix operator /(Matrix left, float right)
         {
@@ -1893,8 +1893,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Divides two matrices.
         /// </summary>
-        /// <param name="left">The first matrix to divide.</param>
-        /// <param name="right">The second matrix to divide.</param>
+        /// <param nameType="left">The first matrix to divide.</param>
+        /// <param nameType="right">The second matrix to divide.</param>
         /// <returns>The quotient of the two matrices.</returns>
         public static Matrix operator /(Matrix left, Matrix right)
         {
@@ -1921,7 +1921,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents this instance.
         /// </summary>
-        /// <param name="format">The format.</param>
+        /// <param nameType="format">The format.</param>
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
@@ -1957,7 +1957,7 @@ namespace LibRun8.Common
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents this instance.
         /// </summary>
-        /// <param name="formatProvider">The format provider.</param>
+        /// <param nameType="formatProvider">The format provider.</param>
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>
@@ -1987,8 +1987,8 @@ namespace LibRun8.Common
         /// <summary>
         /// Returns a <see cref="T:System.String" /> that represents this instance.
         /// </summary>
-        /// <param name="format">The format.</param>
-        /// <param name="formatProvider">The format provider.</param>
+        /// <param nameType="format">The format.</param>
+        /// <param nameType="formatProvider">The format provider.</param>
         /// <returns>
         /// A <see cref="T:System.String" /> that represents this instance.
         /// </returns>

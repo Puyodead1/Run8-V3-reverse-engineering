@@ -3,7 +3,7 @@
 
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
-from lib_run8.kaitai import common
+from . import common
 
 
 if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):

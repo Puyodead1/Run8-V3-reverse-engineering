@@ -1,6 +1,6 @@
 from enum import Enum, Flag
-from typing import BinaryIO, Union
-
+from typing import BinaryIO, List, Union
+import argparse
 from binreader import BinaryReader
 
 
@@ -9,6 +9,7 @@ class SerializeFlags(Flag):
     Dynamic = 1
     Nullable = 2
 
+
 class EffectShaderType(Enum):
     Vertex = 0
     Hull = 1
@@ -16,6 +17,7 @@ class EffectShaderType(Enum):
     Geometry = 3
     Pixel = 4
     Compute = 5
+
 
 class EffectCompilerFlags(Flag):
     Debug = 1
@@ -36,6 +38,7 @@ class EffectCompilerFlags(Flag):
     WarningsAreErrors = 262144
     Empty = 0
 
+
 class FeatureLevel(Enum):
     Level_9_1 = 37120
     Level_9_2 = 37376
@@ -43,6 +46,7 @@ class FeatureLevel(Enum):
     Level_10_0 = 40960
     Level_10_1 = 41216
     Level_11_0 = 45056
+
 
 class EffectParameterClass(Enum):
     Scalar = 0
@@ -53,6 +57,7 @@ class EffectParameterClass(Enum):
     Struct = 5
     InterfaceClass = 6
     InterfacePointer = 7
+
 
 class EffectParameterType(Enum):
     Void = 0
@@ -108,6 +113,7 @@ class EffectParameterType(Enum):
     AppendStructuredBuffer = 50
     ConsumeStructuredBuffer = 51
 
+
 class WrappedBinaryReader(BinaryReader):
     def __init__(self, buf: BinaryIO, endian: str = "<") -> None:
         super().__init__(buf, endian)
@@ -119,15 +125,16 @@ class WrappedBinaryReader(BinaryReader):
 
             # 1 stores a reference, 2 gets this reference
             if aByte == 1:
-                print("is_serialize_null: 1")
+                pass
+                # print("is_serialize_null: 1")
             elif aByte == 2:
                 raise Exception("length 2 is not supported")
 
             # if 0, string is null
             return aByte == 0
-        
+
         return False
-    
+
     def read_7bit_encoded_int(self) -> int:
         value = 0
         shift = 0
@@ -138,7 +145,7 @@ class WrappedBinaryReader(BinaryReader):
             if (byte_value & 0x80) == 0:
                 break
         return value
-    
+
     def serialize_string(self, flags=SerializeFlags.Normal) -> Union[str, None]:
         if self.is_serialize_null(flags=flags):
             return None
@@ -147,23 +154,24 @@ class WrappedBinaryReader(BinaryReader):
         size = self.read_7bit_encoded_int()
         # read the string
         return self.read(size).decode("utf-8")
-        
+
     def serialize_bytes(self, flags=SerializeFlags.Normal) -> bytes:
         if self.is_serialize_null(flags=flags):
             return None
-        
+
         # read the size
         size = self.read_7bit_encoded_int()
         # read the bytes
         return self.read(size)
-    
+
     def serialize_class_array(self, class_type: type) -> object:
         if self.is_serialize_null(flags=SerializeFlags.Normal):
             return None
-        
+
         # read the number of classes
         count = self.read_7bit_encoded_int()
         return [class_type(self) for i in range(count)]
+
 
 class FourCC:
     @classmethod
@@ -173,12 +181,13 @@ class FourCC:
         """
         if len(code) != 4:
             raise ValueError("FourCC code must be a four-character string.")
-        
+
         fourcc = 0
         for i, char in enumerate(code):
             fourcc += ord(char) << (8 * i)
-        
+
         return fourcc
+
 
 class Chunk:
     id: int
@@ -193,9 +202,10 @@ class Chunk:
         magic = reader.read_int32()
         if magic != self.id:
             raise ValueError("Invalid Chunk Magic.")
-        
+
         # read the chunk end index
         self.index_end = reader.read_int32()
+
 
 class TKFX(Chunk):
     version: int
@@ -207,6 +217,7 @@ class TKFX(Chunk):
         # hard coded version check
         if self.version != 257:
             raise ValueError("Invalid TKFX version.")
+
 
 class SHDRShaderSignatureSemantic:
     name: str
@@ -231,6 +242,7 @@ class SHDRShaderSignatureSemantic:
     def __repr__(self) -> str:
         return f"SHDRShaderSignatureSemantic(name={self.name}, index={self.index}, register={self.register}, system_value_type={self.system_value_type}, component_type={self.component_type}, usage_mask={self.usage_mask}, read_write_mask={self.read_write_mask}, stream={self.stream})"
 
+
 class SHDRShaderSignature:
     semantics: list[SHDRShaderSignatureSemantic]
     bytecode: bytes
@@ -246,6 +258,7 @@ class SHDRShaderSignature:
     def __repr__(self) -> str:
         return f"SHDRShaderSignature(semantics={self.semantics}, bytecode={self.bytecode}, hashcode={self.hashcode})"
 
+
 class Base:
     name: str
     parameter_class: EffectParameterClass
@@ -258,7 +271,8 @@ class Base:
 
     def __repr__(self) -> str:
         return f"Base(name={self.name}, parameter_class={self.parameter_class}, parameter_type={self.parameter_type})"
-    
+
+
 class ValueTypeParameter(Base):
     offset: int
     count: int
@@ -279,6 +293,7 @@ class ValueTypeParameter(Base):
     def __repr__(self) -> str:
         return f"ValueTypeParameter(name={self.name}, class={self.parameter_class}, type={self.parameter_type}, offset={self.offset}, count={self.count}, size={self.size}, row_count={self.row_count}, column_count={self.column_count}, default_value={self.default_value})"
 
+
 class ConstantBuffer:
     name: str
     size: int
@@ -294,6 +309,7 @@ class ConstantBuffer:
     def __repr__(self) -> str:
         return f"ConstantBuffer(name={self.name}, size={self.size}, parameters={self.parameters})"
 
+
 class ResourceParameter(Base):
     slot: int
     count: int
@@ -305,6 +321,7 @@ class ResourceParameter(Base):
 
     def __repr__(self) -> str:
         return f"ResourceParameter(name={self.name}, class={self.parameter_class}, type={self.parameter_type}, slot={self.slot}, count={self.count})"
+
 
 class SHDRShader:
     name: str
@@ -342,19 +359,30 @@ class SHDRShader:
     def __repr__(self) -> str:
         return f"SHDRShader(name={self.name}, shader_type={self.shader_type}, compiler_flags={self.compiler_flags}, feature_level={self.feature_level}, bytecode={self.bytecode}, hashcode={self.hashcode}, input_signature={self.input_signature}, output_signature={self.output_signature}, constant_buffers={self.constant_buffers}, resource_parameters={self.resource_parameters})"
 
+
 class SHDR(Chunk):
     def __init__(self, reader: WrappedBinaryReader):
         super().__init__("SHDR", reader)
 
         # read an array of shaders
-        num_shaders = self.reader.read_7bit_encoded_int()
-        print("Shader Count: " + str(num_shaders))
-        for i in range(num_shaders):
-            shader = SHDRShader(self.reader)
-            print(shader)
+        self.num_shaders = self.reader.read_7bit_encoded_int()
+        print("Shader Count: " + str(self.num_shaders))
+        self.shaders: List[SHDRShader] = []
+        for i in range(self.num_shaders):
+            self.shaders.append(SHDRShader(self.reader))
 
 
-with open("C:\\Run8Studios\\Run8 Train Simulator V3\\Content\\Shaders\\Avatar.tkb", "rb") as f:
-    reader = WrappedBinaryReader(f)
-    tkfx = TKFX(reader)
-    shdr = SHDR(reader)
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Read a TKB file.")
+    parser.add_argument("filename", type=str, help="The TKB file to read.")
+    args = parser.parse_args()
+
+    with open(args.filename, "rb") as f:
+        reader = WrappedBinaryReader(f)
+
+        tkfx = TKFX(reader)
+        print("TKFX Version: " + str(tkfx.version))
+
+        shdr = SHDR(reader)
+        with open("out.bin", "wb") as out_file:
+            out_file.write(shdr.shaders[0].bytecode)

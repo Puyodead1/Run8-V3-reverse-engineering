@@ -17,14 +17,16 @@ namespace LibRun8.Common
         public Quaternion UnkQuat1 { get; set; } = Quaternion.Identity;
         public Matrix UnusedScalingMatrix1 { get; set; }
         public List<VertexStruct> Vertices;
-        public int[] Indices;
+        public uint[] Indices;
         public List<ModelObjectDefinition> ObjectDefinitions { get; set; } = new List<ModelObjectDefinition>();
         public Class252 class252_0 { get; set; }
         public ModelObject ParentObject { get; set; }
         public Vector3 UnkVec30 { get; set; } = Vector3.Zero;
         public Quaternion UnkQuat2 { get; set; } = Quaternion.Identity;
         public bool bool_0 { get; set; }
+        public string[] Textures;
 
+        public ModelObject() { }
         public ModelObject(BinaryReader reader, Model model)
         {
             if (model.IsAdvancedModel)
@@ -123,14 +125,17 @@ namespace LibRun8.Common
                 textureNames[i] = s;
                 Console.WriteLine("\tTexture " + i + ": " + s);
             }
+
+            Textures = textureNames;
+
             bool isUshortIndexBuffer = reader.ReadBoolean();
 
             int indexCount = reader.ReadInt32();
 
-            Indices = new int[indexCount];
+            Indices = new uint[indexCount];
             for (int i = 0; i < indexCount; i++)
             {
-                int a = reader.ReadInt32();
+                uint a = reader.ReadUInt32();
                 Indices[i] = a;
             }
 

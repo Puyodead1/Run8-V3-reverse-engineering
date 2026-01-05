@@ -3,7 +3,6 @@
 
 import kaitaistruct
 from kaitaistruct import KaitaiStruct, KaitaiStream, BytesIO
-import lib_run8.string_utils
 
 
 if getattr(kaitaistruct, 'API_VERSION', (0, 9)) < (0, 11):
@@ -138,9 +137,7 @@ class Common(KaitaiStruct):
 
         def _read(self):
             self.len_value = self._io.read_s4le()
-            self._raw_value = self._io.read_bytes(self.len_value)
-            _process = lib_run8.string_utils.DecodeRun8String(self.len_value)
-            self.value = _process.decode(self._raw_value)
+            self.value = self._io.read_bytes(self.len_value)
 
 
     class Tilexz(KaitaiStruct):

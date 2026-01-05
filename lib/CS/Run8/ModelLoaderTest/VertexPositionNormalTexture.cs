@@ -7,9 +7,9 @@ namespace ModelLoaderTest
         /// <summary>
         /// Initializes a new <see cref="T:SharpDX.Toolkit.Graphics.VertexPositionNormalTexture" /> instance.
         /// </summary>
-        /// <param name="position">The position of this vertex.</param>
-        /// <param name="normal">The vertex normal.</param>
-        /// <param name="textureCoordinate">UV texture coordinates.</param>
+        /// <param nameType="position">The position of this vertex.</param>
+        /// <param nameType="normal">The vertex normal.</param>
+        /// <param nameType="textureCoordinate">UV texture coordinates.</param>
         public VertexPositionNormalTexture(Vector3 position, Vector3 normal, Vector2 textureCoordinate)
         {
             this = default(VertexPositionNormalTexture);
