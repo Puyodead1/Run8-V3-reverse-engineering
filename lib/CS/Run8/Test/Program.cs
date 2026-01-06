@@ -16,9 +16,9 @@ Console.WriteLine("Reading...");
 //string jsonString = JsonConvert.SerializeObject(signal, options);
 //File.WriteAllText("xng.json", jsonString);
 
-//TrackDatabase trackDatabase = TrackDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_MojaveSub\TrackDatabase.r8");
-//jsonString = JsonConvert.SerializeObject(trackDatabase, options);
-//File.WriteAllText("TrackDatabase.json", jsonString);
+TrackDatabase trackDatabase = TrackDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_SanBernardinoSub\TrackDatabase.r8");
+jsonString = JsonConvert.SerializeObject(trackDatabase, options);
+File.WriteAllText("TrackDatabase.json", jsonString);
 
 // Stars4 stars4 = Stars4.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\Misc\stars4.rn8");
 
@@ -91,7 +91,7 @@ Console.WriteLine("Reading...");
 //jsonString = JsonConvert.SerializeObject(tile, options);
 //File.WriteAllText("TerrainTile.json", jsonString);
 
-Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\Run8_ES44_BNSF01.rn8");
+//Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3RailVehicles\Body\Run8_ES44_BNSF01.rn8");
 //Model model = Model.Read(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\R8_Caboose_c509_SP01.rn8");
 //foreach (ModelObject obj in model.Objects)
 //{
@@ -101,4 +101,8 @@ Model model = Model.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Rail
 //jsonString = JsonConvert.SerializeObject(model, options);
 //File.WriteAllText("Model.json", jsonString);
 
-model.WriteGLTF(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\Run8_ES44_BNSF01.glb");
+//model.WriteGLTF(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\Run8_ES44_BNSF01.glb");
+
+SignalHeadDatabase shd = SignalHeadDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_CajonSub\SignalHeadDatabase.r8");
+jsonString = JsonConvert.SerializeObject(shd, options);
+File.WriteAllText("SignalHeadDatabase.json", jsonString);

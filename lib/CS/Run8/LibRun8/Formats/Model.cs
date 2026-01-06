@@ -343,7 +343,7 @@ namespace LibRun8.Formats
                             Position = position,
                             TranslationVector = Vector3.Zero,
                             Vertices = new List<VertexStruct>(),
-                            Indices = Array.Empty<int>(),
+                            Indices = Array.Empty<uint>(),
                             ObjectDefinitions = new List<ModelObjectDefinition>(),
                             Textures = Array.Empty<string>()
                         };
@@ -413,7 +413,7 @@ namespace LibRun8.Formats
                         Position = position,
                         TranslationVector = Vector3.Zero,
                         Vertices = new List<VertexStruct>(),
-                        Indices = Array.Empty<int>(),
+                        Indices = Array.Empty<uint>(),
                         ObjectDefinitions = new List<ModelObjectDefinition>(),
                         Textures = Array.Empty<string>()
                     };

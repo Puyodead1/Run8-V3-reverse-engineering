@@ -114,10 +114,10 @@ namespace ModelLoaderTest
                             @struct.BiNormal = Vector3.Zero;
                             @struct.Tangent = Vector3.Zero;
 
-                            // transform the position
+                            // transform the Position
                             // Vector3.Transform(@struct.Position, @class.RotationMatrix);
 
-                            // offset the position
+                            // offset the Position
                             @struct.Position += @class.PositionOffset;
 
                             list.Add(@struct);
@@ -185,7 +185,7 @@ namespace ModelLoaderTest
                         {
                             Class141 class2 = new Class141
                             {
-                                //int_2 = @class.buffer_1.ElementCount,
+                                //ReadFromDatabasePrefix = @class.buffer_1.ElementCount,
                                 IndexCountPerInstance = @class.isUshortIndexBuffer ? @class.IndexBuffer1.Length : @class.IndexBuffer2.Length,
                                 BaseVertexLocation = 0,
                                 StartIndexLocation = 0
@@ -247,7 +247,7 @@ namespace ModelLoaderTest
                         //List<VertexPositionNormalTexture> list3 = new List<VertexPositionNormalTexture>(list.Count);
                         //foreach (Struct7 struct2 in list)
                         //{
-                        //    list3.Add(new VertexPositionNormalTexture(struct2.position, struct2.vector3_1, struct2.vector2_0));
+                        //    list3.Add(new VertexPositionNormalTexture(struct2.Position, struct2.vector3_1, struct2.vector2_0));
                         //}
                         //@class.VertexBuffer = SharpDX.Toolkit.Graphics.Buffer.Vertex.New<VertexPositionNormalTexture>(graphicsDevice_0, list3.ToArray(), ResourceUsage.Immutable);
                         @class.VertexBuffer = list.ToArray();
@@ -268,7 +268,7 @@ namespace ModelLoaderTest
             //        {
             //            class5.class252_0.class252_0 = this.ObjectList.Find(new Predicate<Class252>(class5.method_0));
             //        }
-            //        string text3 = class5.class252_0.trackName.ToLower();
+            //        string text3 = class5.class252_0.RouteName.ToLower();
             //        if (text3.Contains("wiper"))
             //        {
             //            class5.class252_0.enum41_0 = Enum41.const_5;
@@ -373,7 +373,7 @@ namespace ModelLoaderTest
 
         //// Token: 0x04001DD8 RID: 7640
         //[CompilerGenerated]
-        //private float rotationDegY;
+        //private float RotationDegY;
 
         public uint uint_0;
 

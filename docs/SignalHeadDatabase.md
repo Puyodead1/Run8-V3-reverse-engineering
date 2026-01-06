@@ -2,64 +2,74 @@
 
 ## Header
 
-| Offset | Type      | Explaination            |
-| ------ | --------- | ----------------------- |
-| 0      | Int32     | Reserved                |
-| 4      | Int32     | Int32 count             |
-| ...    | Int32[]   | Unknown Array of Int32s |
-| ...    | Int32     | Class665 Count          |
-| ...    | Int32     | Signal Index            |
-| ...    | Bool      | Unknown                 |
-| ...    | R8String  | Name                    |
-| ...    | Vector3   | Position                |
-| ...    | Float32   | Rotation Degrees Y      |
-| ...    | TileIndex | TileXZ                  |
-| ...    | Int32     | Unknown                 |
-| ...    | Bool      | Unknown                 |
-| ...    | Bool      | Unknown                 |
-| ...    | Bool      | Unknown                 |
-| ...    | Bool      | Unknown                 |
-| ...    | Bool      | Unknown                 |
-| ...    | Bool      | Unknown                 |
+| Offset | Type         | Explaination      |
+| ------ | ------------ | ----------------- |
+| 0      | Int32        | Reserved          |
+| 4      | Int32        | Signal Head Count |
+| ...    | SignalHead[] | Signal Heads      |
 
-## Class665
+## SignalHead
 
-| Offset | Type     | Explaination                                |
-| ------ | -------- | ------------------------------------------- |
-| 0      | Int32    | Reserved                                    |
-| 4      | R8String | Track Name                                  |
-| ...    | Int32    | Unknown                                     |
-| ...    | Int32    | Int32 Count                                 |
-| ...    | Int32[]  | Array of Block Detector IDs?                |
-| ...    | Int32    | Int32 Count                                 |
-| ...    | Int32[]  | Unknown Array of Int32s                     |
-| ...    | Int32    | Class669 Count                              |
-| ...    | Int32[]  | Array of Class669                           |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Int32    | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Bool     | Unknown                                     |
-| ...    | Byte     | Unknown Enum, related to signal instruction |
+| Offset | Type      | Explaination                   |
+| ------ | --------- | ------------------------------ |
+| 0      | Int32     | Reserved                       |
+| 4      | Int32     | Signal Indices Count           |
+| ...    | Int32[]   | Signal Indices                 |
+| ...    | Int32     | Route Count                    |
+| ...    | Int32     | Signal Index                   |
+| ...    | Bool      | Is Absolute                    |
+| ...    | R8String  | Model Name                     |
+| ...    | Vector3   | Position                       |
+| ...    | Float     | Rotation Degrees Y             |
+| ...    | TileIndex | TileXZ                         |
+| ...    | Int32     | Least Restrictive Signal State |
+| ...    | Bool      | Is Advance Diverging           |
+| ...    | Bool      | Unknown                        |
+| ...    | Bool      | Unknown                        |
+| ...    | Bool      | Unknown                        |
+| ...    | Bool      | Unknown                        |
+| ...    | Bool      | Is Dwarf                       |
 
-## Class669
+## Route
 
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | Reserved     |
-| 4      | Int32 | Unknown      |
-| 8      | Bool  | Unknown      |
+| Offset | Type                    | Explaination                                |
+| ------ | ----------------------- | ------------------------------------------- |
+| 0      | Int32                   | Version                                     |
+| 4      | R8String                | Route Name                                  |
+| ...    | Int32                   | Route Max MPH                               |
+| ...    | Int32                   | Block Detector Count                        |
+| ...    | Int32[]                 | Block Detector Indices                      |
+| ...    | Int32                   | Previous Signal Count                       |
+| ...    | Int32[]                 | Previous Signal Indices                     |
+| ...    | Int32                   | Signal Switch Connector Count               |
+| ...    | SignalSwitchConnector[] | Signal Switch Connectors                    |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Int32                   | ReadFromDatabasePrefix                      |
+| ...    | Bool                    | Unknown<sup>1</sup>                         |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Bool                    | Unknown                                     |
+| ...    | Byte                    | Unknown Enum, related to signal instruction |
+
+-   <sup>1</sup>: Only when `version` is 2
+
+## SignalSwitchConnector
+
+| Offset | Type  | Explaination           |
+| ------ | ----- | ---------------------- |
+| 0      | Int32 | Reserved               |
+| 4      | Int32 | Switch Index           |
+| 8      | Bool  | Clear If Thrown Normal |
