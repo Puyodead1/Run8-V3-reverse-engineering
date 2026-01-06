@@ -16,6 +16,7 @@
 | 4      | Int32     | Signal Indices Count           |
 | ...    | Int32[]   | Signal Indices                 |
 | ...    | Int32     | Route Count                    |
+| ...    | Route[]   | Routes                         |
 | ...    | Int32     | Signal Index                   |
 | ...    | Bool      | Is Absolute                    |
 | ...    | R8String  | Model Name                     |
