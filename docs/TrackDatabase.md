@@ -30,20 +30,20 @@ Contain a list of track locations as well as other track related information.
 
 ## Track Node
 
-| Offset | Type      | Explaination                 |
-| ------ | --------- | ---------------------------- |
-| 0      | Int32     | Reserved                     |
-| 4      | TileIndex | Tile Index                   |
-| 12     | Vector3   | Position                     |
-| 24     | Vector3   | Tangent Degrees              |
-| 32     | Vector3   | End Position                 |
-| 44     | Int32     | Index                        |
-| 48     | Byte      | Is Switch Node               |
-| 49     | Byte      | Is Reverse Path              |
-| 50     | Float     | Curvature Degrees            |
-| 54     | Int32     | Curve Sign                   |
-| 58     | Float     | Radius Meters                |
-| 62     | Float     | Arc Length Meters            |
-| 66     | Int32     | Num Segments                 |
-| 70     | Int32     | Section this Node belongs to |
-| 74     | Byte      | Is Selected                  |
+| Offset | Type      | Explaination      |
+| ------ | --------- | ----------------- |
+| 0      | Int32     | Reserved          |
+| 4      | TileIndex | Tile Index        |
+| 12     | Vector3   | Position          |
+| 24     | Vector3   | Tangent Degrees   |
+| 32     | Vector3   | End Position      |
+| 44     | Int32     | Index             |
+| 48     | Byte      | Is Switch Node    |
+| 49     | Byte      | Is Reverse Path   |
+| 50     | Float     | Curvature Degrees |
+| 54     | Int32     | Curve Sign        |
+| 58     | Float     | Radius Meters     |
+| 62     | Float     | Arc Length Meters |
+| 66     | Int32     | Segment Count     |
+| 70     | Int32     | Section Index     |
+| 74     | Byte      | Sound Trigger     |
