@@ -4,25 +4,25 @@ Contains road information.
 
 ## Header
 
-| Offset | Type        | Explaination       |
-| ------ | ----------- | ------------------ |
-| 0      | Int32       | Reserved           |
-| 4      | Int32       | Number of Sections |
-| 8      | RoadSection | Sections           |
+| Offset | Type          | Explaination            |
+| ------ | ------------- | ----------------------- |
+| 0      | Int32         | Reserved                |
+| 4      | Int32         | Number of Road Sections |
+| 8      | RoadSection[] | Road Sections           |
 
 ## RoadSection
 
-| Offset | Type     | Explaination              |
-| ------ | -------- | ------------------------- |
-| 0      | Int32    | Unknown Int               |
-| 4      | Int32    | Number of Nodes           |
-| 8      | RoadNode | Nodes                     |
-| ...    | Int32    | Unknown Int               |
-| ...    | Float    | Reserved                  |
-| ...    | Byte     | RoadExtrusionType         |
-| ...    | Int32    | Num Lanes Per Side        |
-| ...    | Int32    | Lane Center Offset Meters |
-| ...    | Int32    | Lane Spacing Meters       |
+| Offset | Type       | Explaination              |
+| ------ | ---------- | ------------------------- |
+| 0      | Int32      | Unknown Int               |
+| 4      | Int32      | Number of Nodes           |
+| 8      | RoadNode[] | Road Nodes                |
+| ...    | Int32      | Unknown Int               |
+| ...    | Float      | Reserved                  |
+| ...    | Byte       | RoadExtrusionType         |
+| ...    | Int32      | Num Lanes Per Side        |
+| ...    | Int32      | Lane Center Offset Meters |
+| ...    | Int32      | Lane Spacing Meters       |
 
 ## RoadNode
 

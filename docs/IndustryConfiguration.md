@@ -4,25 +4,25 @@ Stores information about industries
 
 ## Header
 
-| Offset | Type     | Explaination   |
-| ------ | -------- | -------------- |
-| 0      | Int32    | Reserved       |
-| 4      | Int32    | Industry Count |
-| 8      | Industry | Industries     |
+| Offset | Type       | Explaination   |
+| ------ | ---------- | -------------- |
+| 0      | Int32      | Reserved       |
+| 4      | Int32      | Industry Count |
+| 8      | Industry[] | Industries     |
 
 ## Industry
 
-| Offset | Type     | Explaination         |
-| ------ | -------- | -------------------- |
-| 0      | Int32    | Reserved             |
-| 4      | R8String | Industry Name        |
-| ...    | R8String | Local Freight Code   |
-| ...    | R8String | Industry Tag         |
-| ...    | Byte     | Unknown Boolean      |
-| ...    | Int32    | Industry Track Count |
-| ...    | IndTrack | Industry Tracks      |
+| Offset | Type            | Explaination         |
+| ------ | --------------- | -------------------- |
+| 0      | Int32           | Reserved             |
+| 4      | R8String        | Industry Name        |
+| ...    | R8String        | Local Freight Code   |
+| ...    | R8String        | Industry Tag         |
+| ...    | Byte            | Unknown Boolean      |
+| ...    | Int32           | Industry Track Count |
+| ...    | IndustryTrack[] | Industry Tracks      |
 
-## Industry Track
+## IndustryTrack
 
 | Offset | Type  | Explaination |
 | ------ | ----- | ------------ |

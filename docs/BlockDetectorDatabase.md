@@ -4,13 +4,13 @@ Contains information for Block Detectors.
 
 ## Header
 
-| Offset | Type          | Explaination   |
-| ------ | ------------- | -------------- |
-| 0      | Int32         | Reserved       |
-| 4      | Int32         | Detector Count |
-| 8      | BlockDetector | Detectors      |
+| Offset | Type            | Explaination         |
+| ------ | --------------- | -------------------- |
+| 0      | Int32           | Reserved             |
+| 4      | Int32           | Block Detector Count |
+| 8      | BlockDetector[] | Block Detectors      |
 
-## Block Detector
+## BlockDetector
 
 | Offset | Type      | Explaination     |
 | ------ | --------- | ---------------- |

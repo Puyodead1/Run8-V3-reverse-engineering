@@ -4,14 +4,14 @@ Contains information related to a signal
 
 ## Header
 
-| Offset | Type         | Explaination                                                  |
-| ------ | ------------ | ------------------------------------------------------------- |
-| 0      | String       | Model Name                                                    |
-| ...    | Int32        | leastRestrictiveSignalState                                   |
-| ...    | Byte         | Unknown Boolean (might be related to signal instruction stop) |
-| ...    | Byte         | isDwarf                                                       |
-| ...    | Int32        | SignalEntry1 Count                                            |
-| ...    | SignalEntry1 | SignalEntry1s                                                 |
+| Offset | Type           | Explaination                                                  |
+| ------ | -------------- | ------------------------------------------------------------- |
+| 0      | String         | Model Name                                                    |
+| ...    | Int32          | leastRestrictiveSignalState                                   |
+| ...    | Byte           | Unknown Boolean (might be related to signal instruction stop) |
+| ...    | Byte           | isDwarf                                                       |
+| ...    | Int32          | SignalEntry1 Count                                            |
+| ...    | SignalEntry1[] | SignalEntry1s                                                 |
 
 ## SignalLight
 
