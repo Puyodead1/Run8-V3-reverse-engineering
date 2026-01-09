@@ -15,7 +15,7 @@ Contains road information.
 | Offset | Type       | Explaination              |
 | ------ | ---------- | ------------------------- |
 | 0      | Int32      | Unknown Int               |
-| 4      | Int32      | Number of Nodes           |
+| 4      | Int32      | Node Count                |
 | 8      | RoadNode[] | Road Nodes                |
 | ...    | Int32      | Unknown Int               |
 | ...    | Float      | Reserved                  |
@@ -26,21 +26,21 @@ Contains road information.
 
 ## RoadNode
 
-| Offset | Type      | Explaination      |
-| ------ | --------- | ----------------- |
-| 0      | Int32     | Reserved          |
-| 4      | TileIndex | TileXZ            |
-| 12     | Vector3   | PositionXYZ       |
-| 24     | Vector3   | TangentXYZ        |
-| 36     | Vector3   | Reserved          |
-| 48     | Int32     | Index             |
-| 52     | Float     | Unknown           |
-| 56     | Int32     | Curve Sign        |
-| 60     | Float     | Unknown           |
-| 64     | Float     | Arc Length Meters |
-| 68     | Int32     | Num of Segments   |
-| 72     | Int32     | Unknown           |
-| 76     | Float     | Max Speed MPH     |
+| Offset | Type      | Explaination            |
+| ------ | --------- | ----------------------- |
+| 0      | Int32     | Reserved                |
+| 4      | TileIndex | TileXZ                  |
+| 12     | Vector3   | PositionXYZ             |
+| 24     | Vector3   | TangentXYZ              |
+| 36     | Vector3   | Reserved                |
+| 48     | Int32     | Index                   |
+| 52     | Float     | Road Curvature Degrees  |
+| 56     | Int32     | Curve Sign              |
+| 60     | Float     | Road Radius Meters      |
+| 64     | Float     | Road Arc Length Meters  |
+| 68     | Int32     | Num of Segments         |
+| 72     | Int32     | Parent Road Index       |
+| 76     | Float     | Max Speed MPH (Unused?) |
 
 ## RoadExtrusionType
 

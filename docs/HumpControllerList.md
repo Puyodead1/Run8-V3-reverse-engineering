@@ -4,23 +4,23 @@ Contains hump controllers
 
 ## Header
 
-| Offset | Type             | Explaination          |
-| ------ | ---------------- | --------------------- |
-| 0      | Int32            | Reserved              |
-| 4      | Int32            | Number of Controllers |
-| 8      | HumpController[] | Controllers           |
+| Offset | Type             | Explaination     |
+| ------ | ---------------- | ---------------- |
+| 0      | Int32            | Reserved         |
+| 4      | Int32            | Controller Count |
+| 8      | HumpController[] | Controllers      |
 
 ## HumpController
 
-| Offset | Type        | Explaination        |
-| ------ | ----------- | ------------------- |
-| 0      | Int32       | Reserved            |
-| 4      | R8String    | Hump Name           |
-| ...    | TileIndex   | TileXZ              |
-| ...    | Vector3     | Position            |
-| ...    | R8String    | Unused              |
-| ...    | Int32       | Number of TrackPath |
-| ...    | TrackPath[] | TrackPaths          |
+| Offset | Type        | Explaination     |
+| ------ | ----------- | ---------------- |
+| 0      | Int32       | Reserved         |
+| 4      | R8String    | Hump Name        |
+| ...    | TileIndex   | TileXZ           |
+| ...    | Vector3     | Position         |
+| ...    | R8String    | Unused           |
+| ...    | Int32       | Track Path Count |
+| ...    | TrackPath[] | TrackPaths       |
 
 ## TrackPath
 

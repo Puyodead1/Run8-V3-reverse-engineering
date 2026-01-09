@@ -14,13 +14,13 @@ Avatar files are 3D model files with the `rn8` file extension. Models are in cm
 | ------ | ----------------- | ------------------------------ |
 | 0      | Int32             | VertexStruct Count<sup>1</sup> |
 | 4      | VertexStruct[]    | VertexStructs                  |
-| ...    | Int32             | Texture Name Count<sup>2</sup> |
+| ...    | Int32             | Texture Count<sup>2</sup>      |
 | ...    | String[]          | Texture Names                  |
 | ...    | Bool              | IsUshortBuffer                 |
 | ...    | Int32             | Index Buffer Size              |
 | ...    | Int32[]           | Index Buffer                   |
-| ...    | Int32             | Unknown1 Count<sup>3</sup>     |
-| ...    | UnknownStruct1    | UnknownStruct1s<sup>4</sup>    |
+| ...    | Int32             | Submesh Count<sup>3</sup>      |
+| ...    | MeshPart          | Submeshes<sup>4</sup>          |
 | ...    | Int32             | Skeleton Hierarchy Count       |
 | ...    | Int32[]           | Skeleton Hierarchy             |
 | ...    | Int32             | Bone Index Count               |
@@ -37,7 +37,7 @@ Avatar files are 3D model files with the `rn8` file extension. Models are in cm
 -   <sup>3</sup>: 9 is subtracted from the number
 -   <sup>4</sup>: These are only read when the count is not 0, otherwise only a single entry is created
 
-## UnknownStruct1
+## MeshPart
 
 | Offset | Type  | Explaination              | Value If Single   |
 | ------ | ----- | ------------------------- | ----------------- |

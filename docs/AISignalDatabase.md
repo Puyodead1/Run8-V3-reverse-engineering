@@ -12,28 +12,22 @@ Contains a list of signals and their information
 
 ## AISignal
 
-| Offset | Type     | Explaination      |
-| ------ | -------- | ----------------- |
-| 0      | Int32    | Reserved          |
-| 4      | Int32    | Unknown           |
-| 8      | Unknown1 | Unknown1          |
-| ...    | Byte     | Unknown Boolean   |
-| ...    | Int32    | Unknown           |
-| ...    | Int32    | Unknown           |
-| ...    | Byte     | Unknown Boolean n |
-| ...    | Unknown2 | Unknown2 (if n)   |
-| ...    | Byte     | Unknown Boolean m |
-| ...    | Unknown2 | Unknown2 (if m)   |
+| Offset | Type     | Explaination            |
+| ------ | -------- | ----------------------- |
+| 0      | Int32    | Reserved                |
+| 4      | Int32    | Signal Index Count      |
+| 8      | Int32[]  | Signal Indices          |
+| ...    | Bool     | Unknown/Unused?         |
+| ...    | Int32    | Unknown                 |
+| ...    | Int32    | Stopping Distance Feet? |
+| ...    | Bool     | Unknown Boolean n       |
+| ...    | Unknown1 | Unknown2 (if n)         |
+| ...    | Bool     | Unknown Boolean m       |
+| ...    | Unknown1 | Unknown2 (if m)         |
 
 ## Unknown1
 
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | Unknown      |
-
-## Unknown2
-
-| Offset | Type  | Explaination |
-| ------ | ----- | ------------ |
-| 0      | Int32 | Unknown      |
-| 4      | Int32 | Unknown      |
+| Offset | Type  | Explaination                                               |
+| ------ | ----- | ---------------------------------------------------------- |
+| 0      | Int32 | Index? Used to lookup TrackDB, TrackSection, and TrackNode |
+| 4      | Int32 | Unknown/Unused?                                            |

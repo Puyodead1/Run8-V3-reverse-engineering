@@ -4,11 +4,11 @@ Contains a list of Comm Towers
 
 ## Header
 
-| Offset | Type        | Explaination         |
-| ------ | ----------- | -------------------- |
-| 0      | Int32       | Reserved             |
-| 4      | Int32       | Number of CommTowers |
-| 8      | CommTower[] | CommTowers           |
+| Offset | Type        | Explaination    |
+| ------ | ----------- | --------------- |
+| 0      | Int32       | Reserved        |
+| 4      | Int32       | CommTower Count |
+| 8      | CommTower[] | CommTowers      |
 
 ## CommTower
 

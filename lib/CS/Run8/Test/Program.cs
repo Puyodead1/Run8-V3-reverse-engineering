@@ -16,22 +16,22 @@ Console.WriteLine("Reading...");
 //string jsonString = JsonConvert.SerializeObject(signal, options);
 //File.WriteAllText("xng.json", jsonString);
 
-TrackDatabase trackDatabase = TrackDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_SanBernardinoSub\TrackDatabase.r8");
-jsonString = JsonConvert.SerializeObject(trackDatabase, options);
-File.WriteAllText("TrackDatabase.json", jsonString);
+//TrackDatabase trackDatabase = TrackDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_SanBernardinoSub\TrackDatabase.r8");
+//jsonString = JsonConvert.SerializeObject(trackDatabase, options);
+//File.WriteAllText("TrackDatabase.json", jsonString);
 
 // Stars4 stars4 = Stars4.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\Misc\stars4.rn8");
 
-// List<string> lines = new List<string>();
-// for (int i = 0; i < stars4.Entries.Length; i++)
-// {
-//     lines.Add(string.Format("String {0} - {1}", i, stars4.Entries[i]));
-// }
+//List<string> lines = new List<string>();
+//for (int i = 0; i < stars4.Entries.Length; i++)
+//{
+//    lines.Add(string.Format("String {0} - {1}", i, stars4.Entries[i]));
+//}
 
-// File.WriteAllLines("stars4.txt", lines);
+//File.WriteAllLines("stars4.txt", lines);
 
 //AISignalDatabase aiSignalDatabase = AISignalDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_BakersfieldSub\AISignalDatabase.r8");
-//string jsonString = JsonConvert.SerializeObject(aiSignalDatabase, options);
+//jsonString = JsonConvert.SerializeObject(aiSignalDatabase, options);
 //File.WriteAllText("AISignalDatabase.json", jsonString);
 
 //AITrackSpeedDatabase aiTrackSpeedDatabase = AITrackSpeedDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\SP-UP_RosevilleSub\AITrackSpeedDatabase.r8");jsonString = JsonConvert.SerializeObject(aiTrackSpeedDatabase, options);
@@ -103,6 +103,10 @@ File.WriteAllText("TrackDatabase.json", jsonString);
 
 //model.WriteGLTF(@"C:\Users\23562\Documents\Code\Run8-V3-reverse-engineering\misc_scripts\Run8_ES44_BNSF01.glb");
 
-SignalHeadDatabase shd = SignalHeadDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_CajonSub\SignalHeadDatabase.r8");
+//SignalHeadDatabase shd = SignalHeadDatabase.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\V3Routes\BNSF_CajonSub\SignalHeadDatabase.r8");
+//jsonString = JsonConvert.SerializeObject(shd, options);
+//File.WriteAllText("SignalHeadDatabase.json", jsonString);
+
+RoadTexture shd = RoadTexture.Read(@"E:\Run8Studios\Run8 Train Simulator V3\Content\misc\road00.tx8");
 jsonString = JsonConvert.SerializeObject(shd, options);
-File.WriteAllText("SignalHeadDatabase.json", jsonString);
+File.WriteAllText("RoadTexture.json", jsonString);

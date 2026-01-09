@@ -1,6 +1,6 @@
 # AI Special Locations (AISpecialLocations.r8)
 
-Seems to contain information about "special" track locations.
+Seems to contain information about "special" track locations, used for spawning AI
 
 ## Header
 
@@ -12,19 +12,19 @@ Seems to contain information about "special" track locations.
 
 ## AISpecialLocation
 
-| Offset | Type     | Explaination        |
-| ------ | -------- | ------------------- |
-| 0      | Int32    | Reserved            |
-| 4      | R8String | Location Name       |
-| ...    | Byte     | SpecialLocationType |
-| ...    | Int32    | Unknown             |
-| ...    | Int32    | Unknown             |
-| ...    | Int32    | Unknown             |
-| ...    | Float    | Unknown             |
-| ...    | Int32    | Unknown             |
-| ...    | Byte     | Unknown Boolean     |
+| Offset | Type     | Explaination          |
+| ------ | -------- | --------------------- |
+| 0      | Int32    | Reserved              |
+| 4      | R8String | Name                  |
+| ...    | Byte     | ESpecialLocationType  |
+| ...    | Int32    | Route Prefix          |
+| ...    | Int32    | Track Section Index   |
+| ...    | Int32    | Track Node Index      |
+| ...    | Float    | Node Position Meters? |
+| ...    | Int32    | Unknown               |
+| ...    | Bool     | Unknown               |
 
-## SpecialLocationType
+## ESpecialLocationType
 
 | Key | Value                      |
 | --- | -------------------------- |

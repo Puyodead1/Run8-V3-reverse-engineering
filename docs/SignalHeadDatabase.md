@@ -13,7 +13,7 @@
 | Offset | Type      | Explaination                   |
 | ------ | --------- | ------------------------------ |
 | 0      | Int32     | Reserved                       |
-| 4      | Int32     | Signal Indices Count           |
+| 4      | Int32     | Signal Index Count             |
 | ...    | Int32[]   | Signal Indices                 |
 | ...    | Int32     | Route Count                    |
 | ...    | Route[]   | Routes                         |
@@ -26,44 +26,44 @@
 | ...    | Int32     | Least Restrictive Signal State |
 | ...    | Bool      | Is Advance Diverging           |
 | ...    | Bool      | Unknown                        |
-| ...    | Bool      | Unknown                        |
+| ...    | Bool      | Is Switch Indicator            |
 | ...    | Bool      | Unknown                        |
 | ...    | Bool      | Unknown                        |
 | ...    | Bool      | Is Dwarf                       |
 
 ## Route
 
-| Offset | Type                    | Explaination                                |
-| ------ | ----------------------- | ------------------------------------------- |
-| 0      | Int32                   | Version                                     |
-| 4      | R8String                | Route Name                                  |
-| ...    | Int32                   | Route Max MPH                               |
-| ...    | Int32                   | Block Detector Count                        |
-| ...    | Int32[]                 | Block Detector Indices                      |
-| ...    | Int32                   | Previous Signal Count                       |
-| ...    | Int32[]                 | Previous Signal Indices                     |
-| ...    | Int32                   | Signal Switch Connector Count               |
-| ...    | SignalSwitchConnector[] | Signal Switch Connectors                    |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Int32                   | ReadFromDatabasePrefix                      |
-| ...    | Bool                    | Unknown<sup>1</sup>                         |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Bool                    | Unknown                                     |
-| ...    | Byte                    | Unknown Enum, related to signal instruction |
+| Offset | Type                    | Explaination                  |
+| ------ | ----------------------- | ----------------------------- |
+| 0      | Int32                   | Version                       |
+| 4      | R8String                | Route Name                    |
+| ...    | Int32                   | Route Max MPH                 |
+| ...    | Int32                   | Block Detector Index Count    |
+| ...    | Int32[]                 | Block Detector Indices        |
+| ...    | Int32                   | Previous Signal Index Count   |
+| ...    | Int32[]                 | Previous Signal Indices       |
+| ...    | Int32                   | Signal Switch Connector Count |
+| ...    | SignalSwitchConnector[] | Signal Switch Connectors      |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Int32                   | ReadFromDatabasePrefix        |
+| ...    | Bool                    | Unknown<sup>1</sup>           |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Unknown                       |
+| ...    | Bool                    | Is Diverging                  |
+| ...    | Byte                    | ERouteSpeedClass              |
 
 -   <sup>1</sup>: Only when `version` is 2
 
@@ -74,3 +74,13 @@
 | 0      | Int32 | Reserved               |
 | 4      | Int32 | Switch Index           |
 | 8      | Bool  | Clear If Thrown Normal |
+
+## ERouteSpeedClass
+
+| Key | Value      |
+| --- | ---------- |
+| 0   | High       |
+| 1   | Limited    |
+| 2   | Medium     |
+| 3   | Low        |
+| 4   | Restricted |

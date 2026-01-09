@@ -14,14 +14,14 @@ Mapping of horn and bell names to xml file configurations
 
 ## Horn
 
-| Offset | Type     | Explaination                                    |
-| ------ | -------- | ----------------------------------------------- |
-| 0      | R8String | Key: Locomotive XML filename                    |
-| ...    | R8String | Value (regular string, no custom bs): Horn name |
+| Offset | Type     | Explaination                 |
+| ------ | -------- | ---------------------------- |
+| 0      | CSString | Key: Locomotive XML filename |
+| ...    | CSString | Value: Horn name             |
 
 ## Bell
 
-| Offset | Type     | Explaination                                    |
-| ------ | -------- | ----------------------------------------------- |
-| 0      | R8String | Key: Locomotive XML Filename                    |
-| ...    | R8String | Value (regular string, no custom bs): Bell name |
+| Offset | Type     | Explaination                 |
+| ------ | -------- | ---------------------------- |
+| 0      | CSString | Key: Locomotive XML Filename |
+| ...    | CSString | Value: Bell name             |

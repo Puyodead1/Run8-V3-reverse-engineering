@@ -4,86 +4,81 @@ Seems to contain information about AI traffic such as cars, etc
 
 ## Header
 
-| Offset | Type    | Explaination    |
-| ------ | ------- | --------------- |
-| 0      | Int32   | Reserved        |
-| 4      | Byte    | Unknown Boolean |
-| 5      | Int32   | Unknown         |
-| 9      | Int32   | Unknown         |
-| 13     | Int32   | Unknown         |
-| 17     | Int32   | Entry Count     |
-| 21     | Entry[] | Entries         |
+| Offset | Type             | Explaination                 |
+| ------ | ---------------- | ---------------------------- |
+| 0      | Int32            | Version                      |
+| 4      | Bool             | AI Spawn Enabled             |
+| 5      | Int32            | Timeout                      |
+| 9      | Int32            | Max Time                     |
+| 13     | Int32            | Max Trains                   |
+| 17     | Int32            | Min Trains (If version >= 2) |
+| 21     | Int32            | Spawn Point Count            |
+| 25     | SpawnPointData[] | Spawn Point Data             |
 
-## Entry
+## SpawnPointData
 
-| Offset | Type       | Explaination     |
-| ------ | ---------- | ---------------- |
-| 0      | Int32      | Reserved         |
-| 4      | R8String   | Route Name       |
-| 8      | Int32      | Unknown          |
-| 12     | Int32      | Unknown1 Count   |
-| 16     | Unknown1[] | Unknown1 Entries |
+| Offset | Type             | Explaination           |
+| ------ | ---------------- | ---------------------- |
+| 0      | Int32            | Reserved               |
+| 4      | R8String         | Name                   |
+| 8      | Int32            | Weight                 |
+| 12     | Int32            | Train Class Count      |
+| 16     | TrainClassData[] | TrainClassData Entries |
 
-## Unknown1
+## TrainClassData
 
-| Offset | Type       | Explaination                                              |
-| ------ | ---------- | --------------------------------------------------------- |
-| 0      | Int32      | Reserved                                                  |
-| 4      | TrainClass | Train Class                                               |
-| 5      | Int32      | Unknown                                                   |
-| 9      | Int32      | Unknown2 Count                                            |
-| 13     | Unknown2[] | Unknown2 Entries (only read if train class is SavedTrain) |
-| ...    | Int32      | Unknown3 Count                                            |
-| ...    | Unknown3[] | Unknown3 Entries                                          |
+| Offset | Type              | Explaination                                       |
+| ------ | ----------------- | -------------------------------------------------- |
+| 0      | Int32             | Reserved                                           |
+| 4      | Byte              | ETrain Class                                       |
+| 5      | Int32             | Weight                                             |
+| 9      | Int32             | Saved Train Count                                  |
+| 13     | SavedTrain[]      | Saved Train Entries (if train class is SavedTrain) |
+| ...    | Int32             | Train Symbol Data Count                            |
+| ...    | TrainSymbolData[] | Train Symbol Data Entries                          |
 
-## Unknown2
+## SavedTrain
 
 | Offset | Type     | Explaination |
 | ------ | -------- | ------------ |
 | 0      | Int32    | Reserved     |
-| 4      | R8String | Unknown      |
-| ...    | R8String | Unknown      |
-| ...    | Int32    | Unknown      |
+| 4      | R8String | Filename     |
+| ...    | R8String | Train Symbol |
+| ...    | Int32    | Weight       |
 
-## Unknown3
+## TrainSymbolData
 
-| Offset | Type       | Explaination                                                             |
-| ------ | ---------- | ------------------------------------------------------------------------ |
-| 0      | Int32      | Unknown n                                                                |
-| 4      | Byte       | Unknown Boolean                                                          |
-| 5      | R8String   | Train Tag (only read if above bool is true)                              |
-| ...    | Byte       | Train Caste                                                              |
-| ...    | Byte       | Train Special Restrictions                                               |
-| ...    | Byte       | Unknown Boolean                                                          |
-| ...    | Byte       | Unknown Boolean                                                          |
-| ...    | Byte       | Unknown Boolean                                                          |
-| ...    | Int32      | Unknown Strings Count                                                    |
-| ...    | R8String   | Unknown Strings                                                          |
-| ...    | Int32      | Unknown Strings Count                                                    |
-| ...    | R8String[] | Unknown Strings (looks like company strings, ex up, csx, etc)            |
-| ...    | Int32      | Unknown Strings Count                                                    |
-| ...    | R8String[] | Unknown Strings (looks like a list of locomotives, ex ES44, SD40-2, etc) |
-| ...    | Int32      | Unknown Strings Count                                                    |
-| ...    | R8String[] | Unknown Strings                                                          |
-| ...    | Sub1       | Sub1 (if n > 1)                                                          |
+| Offset | Type       | Explaination                  |
+| ------ | ---------- | ----------------------------- |
+| 0      | Int32      | Version                       |
+| 4      | Bool       | Has Train Symbol              |
+| 5      | R8String   | Train Tag (if HasTrainSymbol) |
+| ...    | Byte       | ETrainCaste                   |
+| ...    | Byte       | ETrainSpecialRestrictions     |
+| ...    | Byte       | Manifests Use Industry Config |
+| ...    | Byte       | Loaded                        |
+| ...    | Byte       | Allow Mid Train DPUs          |
+| ...    | Int32      | Tag Count                     |
+| ...    | R8String[] | Tags                          |
+| ...    | Int32      | Unknown Strings Count         |
+| ...    | R8String[] | Unknown Strings               |
+| ...    | Int32      | Unknown Strings Count         |
+| ...    | R8String[] | Unknown Strings               |
+| ...    | Int32      | Unknown Strings Count         |
+| ...    | R8String[] | Unknown Strings               |
+| ...    | Sub1       | Sub1 (if version > 1)         |
 
 ### Sub1
 
-| Offset | Type       | Explaination                                              |
-| ------ | ---------- | --------------------------------------------------------- |
-| 0      | Int32      | Unknown Strings Count                                     |
-| 4      | R8String[] | Unknown Strings (looks like xml file names for some cars) |
-| ...    | Int32      | Unknown Strings Count                                     |
-| ...    | R8String[] | Unknown Strings                                           |
-| ...    | Sub2       | Sub2 (if n > 2)                                           |
+| Offset | Type       | Explaination                |
+| ------ | ---------- | --------------------------- |
+| 0      | Int32      | Unknown Strings Count       |
+| 4      | R8String[] | Unknown Strings             |
+| ...    | Int32      | Unknown Strings Count       |
+| ...    | R8String[] | Unknown Strings             |
+| 0      | Bool       | Allow DPUs (If version > 2) |
 
-### Sub2
-
-| Offset | Type | Explaination    |
-| ------ | ---- | --------------- |
-| 0      | Byte | Unknown Boolean |
-
-## TrainClass
+## ETrainClass
 
 | Key | Value                  |
 | --- | ---------------------- |
@@ -106,7 +101,7 @@ Seems to contain information about AI traffic such as cars, etc
 | 16  | UnitCoilSteel          |
 | 255 | SavedTrain             |
 
-## TrainCaste
+## ETrainCaste
 
 | Key | Value          |
 | --- | -------------- |
@@ -116,7 +111,7 @@ Seems to contain information about AI traffic such as cars, etc
 | 3   | High           |
 | 4   | KingOfTheRails |
 
-## TrainSpecialRestrictions
+## ETrainSpecialRestrictions
 
 | Key | Value       | Attribute  |
 | --- | ----------- | ---------- |

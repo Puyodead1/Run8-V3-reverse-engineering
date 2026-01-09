@@ -4,11 +4,11 @@ Seems to contain information related to track speeds
 
 ## Header
 
-| Offset | Type         | Explaination        |
-| ------ | ------------ | ------------------- |
-| 0      | Int32        | Reserved            |
-| 4      | Int32        | Track Speed count   |
-| 8      | TrackSpeed[] | Track Speed Entries |
+| Offset | Type         | Explaination       |
+| ------ | ------------ | ------------------ |
+| 0      | Int32        | Reserved           |
+| 4      | Int32        | Track Speed Count  |
+| 8      | TrackSpeed[] | TrackSpeed Entries |
 
 ## TrackSpeed
 

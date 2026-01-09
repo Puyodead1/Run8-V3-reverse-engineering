@@ -127,12 +127,13 @@ string decodedString = Encoding.UTF8.GetString(decodedBytes);
 -   BlendIndices is an Int4
 -   BlendWeight is a Vector4
 
-## DispatcherLight
+## DispatcherBlockLight
 
-| Offset | Type      | Explaination      |
-| ------ | --------- | ----------------- |
-| 0      | Int32     | Unknown n         |
-| 4      | Rectangle | Button Rectangle  |
-| 20     | Vector2   | Screen XY         |
-| 28     | Int32[]   | Number of Indices |
-| ...    | String    | Name? If n == 2   |
+| Offset | Type      | Explaination               |
+| ------ | --------- | -------------------------- |
+| 0      | Int32     | Version                    |
+| 4      | Rectangle | Button Rectangle           |
+| 20     | Vector2   | Screen XY                  |
+| 28     | Int32     | Index Count                |
+| 28     | Int32[]   | Block Detector Indices     |
+| ...    | String    | Image File (If version==2) |

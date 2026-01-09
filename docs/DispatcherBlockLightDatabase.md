@@ -1,11 +1,11 @@
 # Dispatcher Block Light Database (DispatcherBlockLightDatabase.r8)
 
-List of Dispatcher Lights (whatever those are? something with lights in the dispatcher screen)
+List of Dispatcher Lights
 
 ## Header
 
-| Offset | Type              | Explaination                |
-| ------ | ----------------- | --------------------------- |
-| 0      | Int32             | Reserved                    |
-| 4      | Int32             | Number of Dispatcher Lights |
-| 8      | DispatcherLight[] | Dispatcher Lights           |
+| Offset | Type                   | Explaination                                                |
+| ------ | ---------------------- | ----------------------------------------------------------- |
+| 0      | Int32                  | Reserved                                                    |
+| 4      | Int32                  | Dispatcher Block Light Count                                |
+| 8      | DispatcherBlockLight[] | See [DispatcherBlockLight](/Common.md#DispatcherBlockLight) |

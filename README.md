@@ -12,9 +12,9 @@ This repository contains reverse engineered documentation about various Run8 V3 
 
 ### Progress
 
--   [ ] AISignalDatabase.r8 (Yes, but low accuracy, will come back to it)
--   [ ] AISpecialLocations.r8
--   [ ] AITrackSpeedDatabase.r8 (Yes, but low accuracy, will come back to it)
+-   [x] AISignalDatabase.r8
+-   [x] AISpecialLocations.r8
+-   [x] AITrackSpeedDatabase.r8
 -   [x] BlockDetectorDatabase.r8
 -   [x] CarSpewerDatabase.r8
 -   [x] CommTowerDatabase.r8
@@ -23,34 +23,35 @@ This repository contains reverse engineered documentation about various Run8 V3 
 -   [x] DispatcherBlockLightDatabase.r8
 -   [x] DispatcherSignalControllerDatabase.r8
 -   [x] DispatcherSwitchIconDatabase.r8
--   [ ] DispatchLabelConfig.r8
--   [ ] DispatchNextScreenConfig.r8
+-   [x] DispatchLabelConfig.r8
+-   [x] DispatchNextScreenConfig.r8
 -   [x] HumpControllerList.r8
 -   [x] Hump.r8
--   [ ] MilepostDatabase.r8
--   [ ] RoadDatabase.r8
--   [ ] ServiceAreaDatabase.r8
--   [ ] SignalHeadDatabase.r8
+-   [x] MilepostDatabase.r8
+-   [x] RoadDatabase.r8
+-   [x] ServiceAreaDatabase.r8
+-   [x] SignalHeadDatabase.r8
 -   [x] TrackDatabase.r8
--   [ ] TunnelConfiguration.r8
+-   [x] TunnelConfiguration.r8
 -   [ ] XingDetectorList.r8
 -   [ ] XingGateDatabase.r8
--   [ ] Industry Configuration (.ind)
--   [ ] Traffic.r8
+-   [x] Industry Configuration (.ind)
+-   [x] Traffic.r8
 -   [ ] Tile Scenery (x_y.rn8)
 -   [ ] Tile Scenery Vegetation (x_y.veg)
--   [ ] Terrain Tiles 2 (x_y.tr2)
--   [ ] Terrain Tiles 3 (x_y.tr3)
--   [ ] Terrain Tiles 4 (x_y.tr4)
--   [ ] HornBellConfiguration.r8
--   [ ] 3D Model (.rn8) (Partially, implementations are very crude and barely working)
+-   [x] Terrain Tiles 2 (x_y.tr2)
+-   [x] Terrain Tiles 3 (x_y.tr3)
+-   [x] Terrain Tiles 4 (x_y.tr4)
+-   [x] HornBellConfiguration.r8
+-   [x] 3D Model (.rn8)
 -   [ ] Texture (.tx8)
--   [ ] Avatars (Partially, implementations are very crude and barely working)
+-   [x] Avatars
 -   [x] Shaders/Effects (.tkb)
 -   .xsb (XACT Sound Bank)
 -   .xwb (XACT Wave Bank; `unxwb` from http://aluigi.altervista.org/papers.htm)
 -   [x] Signal (.sig)
 -   [ ] Run8Settings.r8
+-   [x] Run8KeySettings.r8
 -   [x] stars4.r8
 -   [x] Crossing Gate (.xng)
 -   [ ] Timetable.xnb (Microsoft XNA)
