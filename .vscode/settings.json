@@ -1,5 +1,5 @@
 {
-    "python.analysis.extraPaths": ["./blender_scripts/autocomplete", "./old/blender_scripts/autocomplete"],
+    "python.analysis.extraPaths": ["./old/blender_scripts/autocomplete", "./blender/typings"],
     "python.testing.pytestArgs": ["lib"],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true

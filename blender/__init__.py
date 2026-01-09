@@ -12,39 +12,41 @@ bl_info = {
     "category": "Import-Export",
 }
 
-from .tr2.import_ import operators as tr2_import_operators
+
+from pathlib import Path
+import sys
+from .importer import trackdatabase
 
 _needs_reload = "bpy" in locals()
+
 if _needs_reload:
     import importlib
 
-    importlib.reload(tr2_import_operators)
+    importlib.reload(trackdatabase)
 
 import bpy
-from bpy.props import PointerProperty
 
 
-def tr2_import_menu_func(self, context):
+def track_database_import_menu_func(self, context):
     self.layout.operator(
-        tr2_import_operators.TR2_OT_Import.bl_idname, text="TR2 (.tr2)"
+        trackdatabase.IMPORT_SCENE_OT_run8_track_database.bl_idname,
+        text="Run8 Track Database (.r8)",
     )
 
 
-_modules = (tr2_import_operators,)
+_modules = (trackdatabase,)
 
 
 def register():
     for module in _modules:
         module.register()
-    # bpy.types.TOPBAR_MT_file_export.append(psk_export_menu_func)
-    bpy.types.TOPBAR_MT_file_import.append(tr2_import_operators)
+
+    bpy.types.TOPBAR_MT_file_import.append(track_database_import_menu_func)
 
 
 def unregister():
-    # bpy.types.TOPBAR_MT_file_export.remove(psk_export_menu_func)
-    bpy.types.TOPBAR_MT_file_import.remove(tr2_import_operators)
-    # bpy.types.TOPBAR_MT_file_export.remove(psa_export_menu_func)
-    # bpy.types.TOPBAR_MT_file_import.remove(psa_import_menu_func)
+    bpy.types.TOPBAR_MT_file_import.remove(track_database_import_menu_func)
+
     for module in reversed(_modules):
         module.unregister()
 

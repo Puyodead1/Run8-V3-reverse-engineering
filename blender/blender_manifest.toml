@@ -68,3 +68,5 @@ license = ["SPDX:GPL-3.0-or-later"]
 #   "/.git/",
 #   "/*.zip",
 # ]
+
+dependencies = ['pythonnet']

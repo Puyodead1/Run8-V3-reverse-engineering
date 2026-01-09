@@ -1,0 +1,3 @@
+@echo off
+echo Building...
+bbext --all-wheels --install --enable --uninstall
