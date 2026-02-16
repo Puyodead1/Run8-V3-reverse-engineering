@@ -25,7 +25,7 @@ Contains a list of signals and their information
 | ...    | Bool     | Unknown Boolean m       |
 | ...    | RouteTrackReference | Unknown2 (if m)         |
 
-## Unknown1
+## RouteTrackReference
 
 | Offset | Type  | Explaination  |
 | ------ | ----- | ------------- |
