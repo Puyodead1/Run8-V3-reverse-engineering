@@ -21,9 +21,9 @@ Contains a list of signals and their information
 | ...    | Int32    | Unknown                 |
 | ...    | Int32    | Stopping Distance Feet? |
 | ...    | Bool     | Unknown Boolean n       |
-| ...    | Unknown1 | Unknown2 (if n)         |
+| ...    | RouteTrackReference | Unknown2 (if n)         |
 | ...    | Bool     | Unknown Boolean m       |
-| ...    | Unknown1 | Unknown2 (if m)         |
+| ...    | RouteTrackReference | Unknown2 (if m)         |
 
 ## Unknown1
 
