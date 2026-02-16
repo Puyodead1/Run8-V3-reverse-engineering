@@ -27,7 +27,7 @@ Contains a list of signals and their information
 
 ## Unknown1
 
-| Offset | Type  | Explaination                                               |
-| ------ | ----- | ---------------------------------------------------------- |
-| 0      | Int32 | Index? Used to lookup TrackDB, TrackSection, and TrackNode |
-| 4      | Int32 | Unknown/Unused?                                            |
+| Offset | Type  | Explaination  |
+| ------ | ----- | ------------- |
+| 0      | Int32 | Route ID      |
+| 4      | Int32 | Track ID      |
