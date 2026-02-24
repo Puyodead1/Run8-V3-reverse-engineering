@@ -44,8 +44,8 @@ Stores information about industries
 | 16     | Int32      | Capacity                          |
 | 20     | Int32      | Tag Count                         |
 | 24     | R8String[] | Tags                              |
-| ...    | Int32      | Unknown Count (If version >= 2)   |
-| ...    | R8String[] | Unknown Strings (If version >= 2) |
+| ...    | Int32      | Filtered Car Count (version >= 2) |
+| ...    | R8String[] | Filtered cars XML (version >= 2)  |
 
 ## ECarType
 
