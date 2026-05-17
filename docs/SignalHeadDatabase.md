@@ -40,8 +40,8 @@
 | ...    | Int32                   | Route Max MPH                 |
 | ...    | Int32                   | Block Detector Index Count    |
 | ...    | Int32[]                 | Block Detector Indices        |
-| ...    | Int32                   | Previous Signal Index Count   |
-| ...    | Int32[]                 | Previous Signal Indices       |
+| ...    | Int32                   | Next Signal Index Count   |
+| ...    | Int32[]                 | Next Signal Indices       |
 | ...    | Int32                   | Signal Switch Connector Count |
 | ...    | SignalSwitchConnector[] | Signal Switch Connectors      |
 | ...    | Bool                    | Unknown                       |
