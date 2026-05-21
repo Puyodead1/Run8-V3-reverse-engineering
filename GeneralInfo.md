@@ -1,6 +1,6 @@
 # Misc Info
 
-Valid up to: `Update20`
+Valid up to: `Update24A`
 
 ## Regions
 
@@ -16,6 +16,7 @@ Valid up to: `Update20`
 | Route Name              | ID  | Region        |
 | ----------------------- | --- | ------------- |
 | BNSF_MojaveSub          | 100 | SouthernCA    |
+| UP_FresnoSub_South      | 101 | SouthernCA    |
 | BNSF_NeedlesSub         | 110 | SouthernCA    |
 | BNSF_CajonSub           | 120 | SouthernCA    |
 | BNSF_SeligmanSub        | 130 | SouthernCA    |
@@ -28,7 +29,7 @@ Valid up to: `Update20`
 | CSX_MohawkSub           | 240 | SelkirkRegion |
 | BNSF_BakersfieldSub     | 250 | SouthernCA    |
 | SP-UP_RosevilleSub      | 260 | NorthernCA    |
-| SP-NS_AGS_Phase01       | 280 | GulfCoast     |
+| NS_AGS_Phase01          | 280 | GulfCoast     |
 | NS_PittsburghLine_East  | 290 | Pennsylvania  |
 | NS_South_Fork_Secondary | 291 | Pennsylvania  |
 | ArvinOakCreekBranches   | 310 | SouthernCA    |
