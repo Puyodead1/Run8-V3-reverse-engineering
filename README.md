@@ -33,8 +33,8 @@ This repository contains reverse engineered documentation about various Run8 V3 
 -   [x] SignalHeadDatabase.r8
 -   [x] TrackDatabase.r8
 -   [x] TunnelConfiguration.r8
--   [ ] XingDetectorList.r8
--   [ ] XingGateDatabase.r8
+-   [x] XingDetectorList.r8
+-   [x] XingGateDatabase.r8
 -   [x] Industry Configuration (.ind)
 -   [x] Traffic.r8
 -   [ ] Tile Scenery (x_y.rn8)
