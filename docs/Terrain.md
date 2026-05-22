@@ -18,23 +18,23 @@ Start Longitude: `-119`
 
 TR2 Tiles are uncompressed, and only contain terrain textures and height values.
 
-| Offset | Type    | Explaination |
-| ------ | ------- | ------------ |
-| 0      | String  |              |
-| ...    | String  |              |
-| ...    | String  |              |
-| ...    | String  |              |
-| ...    | Chunk[] | Chunk Data   |
+| Offset | Type    | Explaination          |
+| ------ | ------- | --------------------- |
+| 0      | String  | Texture Layer 0 Name  |
+| ...    | String  | Texture Layer 1 Name  |
+| ...    | String  | Texture Layer 2 Name  |
+| ...    | String  | Texture Layer 3 Name  |
+| ...    | Chunk[] | Chunk Data            |
 
 # TR3
 
-| Offset | Type   | Explaination |
-| ------ | ------ | ------------ |
-| 0      | String |              |
-| ...    | String |              |
-| ...    | String |              |
-| ...    | String |              |
-| ...    | Int32  |              |
+| Offset | Type   | Explaination          |
+| ------ | ------ | --------------------- |
+| 0      | String | Texture Layer 0 Name  |
+| ...    | String | Texture Layer 1 Name  |
+| ...    | String | Texture Layer 2 Name  |
+| ...    | String | Texture Layer 3 Name  |
+| ...    | Int32  | Unknown               |
 
 # TR4
 
@@ -42,10 +42,10 @@ TR4 tiles are compressed with Deflate, this version is an extension of TR2, as s
 
 | Offset | Type           | Explaination          |
 | ------ | -------------- | --------------------- |
-| 0      | String         |                       |
-| ...    | String         |                       |
-| ...    | String         |                       |
-| ...    | String         |                       |
+| 0      | String         | Texture Layer 0 Name  |
+| ...    | String         | Texture Layer 1 Name  |
+| ...    | String         | Texture Layer 2 Name  |
+| ...    | String         | Texture Layer 3 Name  |
 | ...    | Chunk[]        | Chunk Data            |
 | ...    | Float?         | Longitude East        |
 | ...    | Float?         | Longitude West        |
@@ -55,10 +55,20 @@ TR4 tiles are compressed with Deflate, this version is an extension of TR2, as s
 | ...    | Int32          | Scenery Asset Count   |
 | ...    | SceneryAsset[] | Scenery Assets        |
 | ...    | Int32          | Vegetation Count      |
-| ...    | Vector4[]      | Vegetation            |
-| ...    | Int32          | Reserved              |
+| ...    | Plant[]        | Vegetation            |
+| ...    | Bytes          | Pre-Weightmap Data    |
+| ...    | PNG            | Weightmap             |
 
 -   `?` indicates a field that may not be present, use a try catch block.
+
+### String
+
+Strings use .NET `BinaryWriter` encoding — a 7-bit encoded integer length prefix followed by UTF-8 bytes.
+
+| Part   | Size       | Explaination                                       |
+| ------ | ---------- | -------------------------------------------------- |
+| 0      | 7-bit Int  | Byte length of the string (1–5 bytes, variable)    |
+| ...    | Byte[]     | UTF-8 encoded string data                          |
 
 ### Chunk
 
@@ -91,3 +101,31 @@ TR4 tiles are compressed with Deflate, this version is an extension of TR2, as s
 | ...    | Vector3 | Rotation Degrees |
 | ...    | Float   | Size             |
 | ...    | String  | Texture Name     |
+
+### Plant
+
+Each vegetation instance is **13 bytes**.
+
+| Offset | Type  | Explaination     |
+| ------ | ----- | ---------------- |
+| 0      | Float | Position X       |
+| 4      | Byte  | Vegetation Type  |
+| 5      | Float | Position Z       |
+| 9      | Float | Scale            |
+
+### TileXZ
+
+| Offset | Type  | Explaination |
+| ------ | ----- | ------------ |
+| 0      | Int32 | Tile X       |
+| 4      | Int32 | Tile Z       |
+
+### Weightmap
+
+The weightmap is a PNG file embedded at the end of the data stream. Locate it by scanning for the PNG file signature:
+
+```
+89 50 4E 47 0D 0A 1A 0A
+```
+
+Any bytes before the signature are pre-weightmap reserved data — preserve them verbatim on write.
