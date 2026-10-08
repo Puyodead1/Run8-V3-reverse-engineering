@@ -37,22 +37,22 @@ This repository contains reverse engineered documentation about various Run8 V3 
 -   [x] XingGateDatabase.r8
 -   [x] Industry Configuration (.ind)
 -   [x] Traffic.r8
--   [ ] Tile Scenery (x_y.rn8)
--   [ ] Tile Scenery Vegetation (x_y.veg)
+-   ~~[ ] Tile Scenery (x_y.rn8)~~
+-   ~~[ ] Tile Scenery Vegetation (x_y.veg)~~
 -   [x] Terrain Tiles 2 (x_y.tr2)
 -   [x] Terrain Tiles 3 (x_y.tr3)
 -   [x] Terrain Tiles 4 (x_y.tr4)
 -   [x] HornBellConfiguration.r8
 -   [x] 3D Model (.rn8)
--   [ ] Texture (.tx8)
+-   ~~[ ] Texture (.tx8)~~
 -   [x] Avatars
 -   [x] Shaders/Effects (.tkb)
 -   .xsb (XACT Sound Bank)
 -   .xwb (XACT Wave Bank; `unxwb` from http://aluigi.altervista.org/papers.htm)
 -   [x] Signal (.sig)
--   [ ] Run8Settings.r8
+-   ~~[ ] Run8Settings.r8~~
 -   [x] Run8KeySettings.r8
 -   [x] stars4.r8
 -   [x] Crossing Gate (.xng)
--   [ ] Timetable.xnb (Microsoft XNA)
--   [ ] .xnb (Microsoft XNA, can apparently store data and images)
+-   ~~[ ] Timetable.xnb (Microsoft XNA)~~
+-   ~~[ ] .xnb (Microsoft XNA, can apparently store data and images)~~
